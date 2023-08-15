@@ -3,8 +3,8 @@
 title: Aoyang Fang (方澳阳)
 
 # Full name (for SEO)
-first_name: Alice
-last_name: Wu
+first_name: Aoyang
+last_name: Fang
 
 # Status emoji
 status:
@@ -14,7 +14,7 @@ status:
 superuser: true
 
 # Role/position/tagline
-role: MPhil of Chinese University of Hongkong
+role: MPhil of Chinese University of Hongkong (Shenzhen)
 
 # Organizations/Affiliations to show in About widget
 # organizations:

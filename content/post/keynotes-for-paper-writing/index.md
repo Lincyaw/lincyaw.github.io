@@ -136,5 +136,7 @@ Why have a "key ideas" section at all?
 
 
 ## References
-
+1. How to write papers so people can read them
 {{< youtube aZp4vZccI6Q >}}
+
+2. [Tips on Writing a Research Paper](https://www.pldi21.org/prerecorded_plmw.2.html)
