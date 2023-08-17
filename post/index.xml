@@ -16,6 +16,7 @@
 &lt;li>&lt;a href="#abstract">Abstract&lt;/a>&lt;/li>
 &lt;li>&lt;a href="#introduction">Introduction&lt;/a>&lt;/li>
 &lt;li>&lt;a href="#key-ideas">Key ideas&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#limitationthreats-to-validity">Limitation/Threats to Validity&lt;/a>&lt;/li>
 &lt;li>&lt;a href="#related-work">Related work&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;/li>
@@ -85,6 +86,35 @@ Rule4: &lt;strong>Give information precisely when it is needed, not before.&lt;/
 &lt;/li>
 &lt;/ul>
 &lt;p>In the second way, it assumes reader already knows the context.&lt;/p>
+&lt;p>Another outline of introduction section:&lt;/p>
+&lt;ul>
+&lt;li>Elevator story &amp;ndash; high-level statement of the problem&lt;/li>
+&lt;li>The problem in more technical terms&lt;/li>
+&lt;li>Conventional wisdom: sketch of previous techniques and their shortcomings&lt;/li>
+&lt;li>Describe the solution to the problem as a black box, so that it is clear what your solution offers over previous work&lt;/li>
+&lt;li>Technical challenges to obtaining a solution (e.g., 1 paragraph for each)&lt;/li>
+&lt;li>State how you solve the challenges (at most a few paragraphs)&lt;/li>
+&lt;li>Experimental highlights&lt;/li>
+&lt;li>Contributions&lt;/li>
+&lt;li>Organization of the paper&lt;/li>
+&lt;/ul>
+&lt;div class="alert alert-warning">
+&lt;div>
+&lt;ol>
+&lt;li>Use an example to introduce the problem&lt;/li>
+&lt;li>Use a list of contribution. 3~5 bullet points. 2 is too little, &amp;gt;5 will make more things to criticize.&lt;/li>
+&lt;li>Describe the contribution refutably. (e.g., We give the syntax and semantics of a language that supports concurrent processes (Section 3). Its innovative features are&amp;hellip;) wrong: We describe the WizWoz system. It is really cool.&lt;/li>
+&lt;li>No related work yet! Readers do not know the context, the background and the terminology, so do not talk about the tradeoffs, it is absolutely incomprehensible. Except:
+&lt;ul>
+&lt;li>Sometimes it is better to discuss the 1-3 most important pieces of related work&lt;/li>
+&lt;li>The best way to introduce your idea might be to contrast it with some well-known concept&lt;/li>
+&lt;li>Sometimes you need to make sure that the reader understands some essential background on which your work depends&lt;/li>
+&lt;li>Want to ensure that the reviewer does not dismiss vour idea as &amp;ldquo;It&amp;rsquo;s just the same as XXX.&amp;rdquo;&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ol>
+&lt;/div>
+&lt;/div>
 &lt;h3 id="key-ideas">Key ideas&lt;/h3>
 &lt;ol>
 &lt;li>
@@ -111,6 +141,20 @@ width="50%"
 height="532"
 loading="lazy" data-zoomable />&lt;/div>
 &lt;/div>&lt;/figure>
+&lt;h3 id="limitationthreats-to-validity">Limitation/Threats to Validity&lt;/h3>
+&lt;p>Construct validity&lt;/p>
+&lt;ul>
+&lt;li>Are the parameters studied in the experiments relevant to the research questions posed?&lt;/li>
+&lt;/ul>
+&lt;p>Internal validity&lt;/p>
+&lt;ul>
+&lt;li>Is there selection bias in the examples chosen for study?&lt;/li>
+&lt;/ul>
+&lt;p>External validity&lt;/p>
+&lt;ul>
+&lt;li>Do the conclusions hold in other scenarios&lt;/li>
+&lt;/ul>
+&lt;p>Ideally: explain how you addressed or controlled for these issues&lt;/p>
 &lt;h3 id="related-work">Related work&lt;/h3>
 &lt;p>&lt;strong>It goes at the end&lt;/strong> of the paper. You can only properly compare to related work once you&amp;rsquo;ve explained your own.&lt;/p>
 &lt;p>&lt;strong>Give real comparisons&lt;/strong>, not a &amp;ldquo;laundry list&amp;rdquo;! Explain in detail how your work fills the &lt;strong>G&lt;/strong>ap in a way that related work doesn&amp;rsquo;t.&lt;/p>
