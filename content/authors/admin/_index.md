@@ -1,6 +1,6 @@
 ---
 # Display name
-title: Aoyang Fang (方澳阳)
+title: Aoyang Fang
 
 # Full name (for SEO)
 first_name: Aoyang
@@ -31,6 +31,9 @@ interests:
 # Education to show in About widget
 education:
   courses:
+    - course: MPhil in Computer Information and Engineering
+      institution: The Chinese University of Hong Kong (Shenzhen)
+      year: 2023-now
     - course: BSc in Computer Science
       institution: Harbin Institute of Technology(Shenzhen)
       year: 2022
@@ -72,5 +75,5 @@ email: 'lincyaw@foxmail.com'
 highlight_name: true
 ---
 
-Aoyang Fang
+I graduated with a bachelor's degree from Harbin Institute of Technology (Shenzhen) and am currently an MPhil candidate in Software Engineering at The Chinese University of Hong Kong, Shenzhen (CUHK(SZ)). My research centers on software testing, with a special focus on fuzz testing. I'm dedicated to advancing software reliability and security through innovative testing methodologies. I warmly welcome collaborations and discussions in this domain.
 {style="text-align: justify;"}

@@ -10,6 +10,7 @@ categories: []
 date: 2023-08-14T21:37:32+08:00
 lastmod: 2023-08-14T21:37:32+08:00
 featured: false
+summary: Watching notes of how to write research paper
 draft: false
 
 # Featured image
@@ -112,6 +113,30 @@ There are two ways in writing the introduction.
 
 In the second way, it assumes reader already knows the context.
 
+Another outline of introduction section:
+
+- Elevator story -- high-level statement of the problem
+- The problem in more technical terms
+- Conventional wisdom: sketch of previous techniques and their shortcomings
+- Describe the solution to the problem as a black box, so that it is clear what your solution offers over previous work
+- Technical challenges to obtaining a solution (e.g., 1 paragraph for each)
+- State how you solve the challenges (at most a few paragraphs)
+- Experimental highlights
+- Contributions
+- Organization of the paper
+
+{{% callout warning %}}
+1. Use an example to introduce the problem
+2. Use a list of contribution. 3~5 bullet points. 2 is too little, >5 will make more things to criticize.
+3. Describe the contribution refutably. (e.g., We give the syntax and semantics of a language that supports concurrent processes (Section 3). Its innovative features are...) wrong: We describe the WizWoz system. It is really cool.
+4. No related work yet! Readers do not know the context, the background and the terminology, so do not talk about the tradeoffs, it is absolutely incomprehensible. Except: 
+    - Sometimes it is better to discuss the 1-3 most important pieces of related work
+    - The best way to introduce your idea might be to contrast it with some well-known concept
+    - Sometimes you need to make sure that the reader understands some essential background on which your work depends
+    - Want to ensure that the reviewer does not dismiss vour idea as "It's just the same as XXX."
+
+{{% /callout %}}
+
 ### Key ideas
 
 1. Use **concrete illustrative** examples and **high-level** intuition.
@@ -127,6 +152,22 @@ Why have a "key ideas" section at all?
 
 
 {{< figure src="1.png" id="wowchemy" width="50%">}}
+
+
+### Limitation/Threats to Validity
+
+Construct validity
+- Are the parameters studied in the experiments relevant to the research questions posed?
+
+Internal validity
+- Is there selection bias in the examples chosen for study?
+
+External validity
+- Do the conclusions hold in other scenarios
+
+
+Ideally: explain how you addressed or controlled for these issues
+
 
 ### Related work
 
