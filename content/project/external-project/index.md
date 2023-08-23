@@ -1,14 +1,14 @@
 ---
-title: External Project
-summary: An example of linking directly to an external project website using `external_link`.
+title: gRPC Dependency Recovery
+summary: A tool that can recover the dependencies among projects that use gRPC (e.g., microservices)
 tags:
-  - Demo
-date: "2016-04-27T00:00:00Z"
+  - competition
+date: "2023-08-23T00:00:00Z"
 
 # Optional external URL for project (replaces project detail page).
-external_link: https://example.org
+external_link: https://github.com/CUHK-SE-Group/protoc-gen-scip
 
-image:
-  caption: Photo by Toa Heftiba on Unsplash
-  focal_point: Smart
+# image:
+#   caption: Photo by Toa Heftiba on Unsplash
+#   focal_point: Smart
 ---
