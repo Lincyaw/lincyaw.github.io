@@ -7,6 +7,8 @@ title: 'RPCover: Recovering gRPC Dependency in Multilingual Projects'
 authors:
   - Aoyang Fang
   - Ruiyu Zhou
+  - Xiaoying Tang
+  - Pinjia He
 
 # Author notes (optional)
 # author_notes:
@@ -23,7 +25,7 @@ publishDate: '2023-08-05T00:00:00Z'
 # Legend: 0 = Uncategorized; 1 = Conference paper; 2 = Journal article;
 # 3 = Preprint / Working Paper; 4 = Report; 5 = Book; 6 = Book section;
 # 7 = Thesis; 8 = Patent
-publication_types: ['2']
+publication_types: ['1']
 
 # Publication name and optional abbreviated publication name.
 publication: In *38th IEEE/ACM International Conference on Automated Software Engineering*
@@ -35,7 +37,7 @@ abstract: The advent of microservice architecture has led to a significant shift
 # summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum.
 
 tags: 
-  - Deep Learning
+  - Static Analysis
 
 # Display this page in the Featured widget?
 featured: false
@@ -45,7 +47,7 @@ featured: false
 # - name: Custom Link
 #   url: http://example.org
 
-url_pdf: ''
+url_pdf: 'publication/ase23/ASE_grpc.pdf'
 url_code: 'https://github.com/CUHK-SE-Group/protoc-gen-scip'
 url_dataset: ''
 url_poster: ''
@@ -57,7 +59,6 @@ url_video: ''
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder.
 image:
-  caption: 'Image credit: [**Unsplash**](https://unsplash.com/photos/pLCdAaMFLTE)'
   focal_point: ''
   preview_only: false
 
@@ -74,15 +75,15 @@ projects:
 #   Simply enter your slide deck's filename without extension.
 #   E.g. `slides: "example"` references `content/slides/example/index.md`.
 #   Otherwise, set `slides: ""`.
-slides: example
+slides: ''
 ---
 
-{{% callout note %}}
+<!-- {{% callout note %}}
 Click the _Cite_ button above to demo the feature to enable visitors to import publication metadata into their reference management software.
 {{% /callout %}}
 
 {{% callout note %}}
 Create your slides in Markdown - click the _Slides_ button to check out the example.
-{{% /callout %}}
+{{% /callout %}} -->
 
-Supplementary notes can be added here, including [code, math, and images](https://wowchemy.com/docs/writing-markdown-latex/).
+<!-- Supplementary notes can be added here, including [code, math, and images](https://wowchemy.com/docs/writing-markdown-latex/). -->
