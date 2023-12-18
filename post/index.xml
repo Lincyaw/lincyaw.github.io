@@ -1,4 +1,510 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts | Lincyaw</title><link>http://profile.aoyangfang.top/post/</link><atom:link href="http://profile.aoyangfang.top/post/index.xml" rel="self" type="application/rss+xml"/><description>Posts</description><generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 14 Aug 2023 21:37:32 +0800</lastBuildDate><image><url>http://profile.aoyangfang.top/media/icon_hu7083ba714b922439a624b6c3bb281e58_32623_512x512_fill_lanczos_center_3.png</url><title>Posts</title><link>http://profile.aoyangfang.top/post/</link></image><item><title>Keynotes for Paper Writing</title><link>http://profile.aoyangfang.top/post/keynotes-for-paper-writing/</link><pubDate>Mon, 14 Aug 2023 21:37:32 +0800</pubDate><guid>http://profile.aoyangfang.top/post/keynotes-for-paper-writing/</guid><description>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts | Lincyaw</title><link>http://profile.aoyangfang.top/post/</link><atom:link href="http://profile.aoyangfang.top/post/index.xml" rel="self" type="application/rss+xml"/><description>Posts</description><generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sun, 10 Dec 2023 15:51:47 +0800</lastBuildDate><image><url>http://profile.aoyangfang.top/media/icon_hu7083ba714b922439a624b6c3bb281e58_32623_512x512_fill_lanczos_center_3.png</url><title>Posts</title><link>http://profile.aoyangfang.top/post/</link></image><item><title>[CSS'23]NestFuzz: Enhancing Fuzzing with Comprehensive Understanding of Input Processing Logic</title><link>http://profile.aoyangfang.top/post/nestfuzz/</link><pubDate>Sun, 10 Dec 2023 15:51:47 +0800</pubDate><guid>http://profile.aoyangfang.top/post/nestfuzz/</guid><description>&lt;p>本篇论文来自复旦大学系统软件与安全实验室。本文的主要贡献有：提出了一个能够有效建模复杂系统输入的方法；基于建模出来的结构应用了一种级联依赖感知的变异策略，这使得它能够更加充分地探索输入空间和程序的代码空间；通过这一套方法找到了46个新bug。&lt;/p>
+&lt;h2 id="现状">现状&lt;/h2>
+&lt;p>现有的fuzzing工具很难生成复杂的输入结构、探索到程序深层的代码区域。以一个 MP4 多媒体播放器为例，这类软件可以接收一个 MP4 文件作为输入，而 MP4 文件的格式与 CSV、XML 相比更为复杂，并且各个结构之间还有互相的依赖和约束。&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt="" srcset="
+/post/nestfuzz/image_hu210df067439316f0b968e3b4889db978_210820_f32802cb63e58aa2ad1fb870f73bdb81.webp 400w,
+/post/nestfuzz/image_hu210df067439316f0b968e3b4889db978_210820_3a1bed4fd19d9119a26dd22decbf52fc.webp 760w,
+/post/nestfuzz/image_hu210df067439316f0b968e3b4889db978_210820_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+src="http://profile.aoyangfang.top/post/nestfuzz/image_hu210df067439316f0b968e3b4889db978_210820_f32802cb63e58aa2ad1fb870f73bdb81.webp"
+width="760"
+height="250"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>例如，最外层的 moof 结构将 type、length 和 payload 聚合在一起。这意味着 payload 的解释很大程度上依赖于 type 和 length。同时， payload 字段又包含 mfhd 和 traf 两个子结构；traf又嵌套了tfhd和sdtp两个结构。这些子结构又可以被任意地组合，所以输入空间非常大，现有工具很难生成一个既符合要求，又能触发bug的输入。&lt;/p>
+&lt;p>具体来讲，现有基于静态分析或者神经网络的方法只能获取（学习）到各个单个字段的边界，但是无法了解字段内部嵌套的结构，以及结构和结构之间的关系。例如 sdtp 必须与 tfhd 结构相邻，并且这两个结构必须是 traf 的子结构。另外的一些方法是通过预定义的格式模板来生成 input 的，但是这需要很多的人力来完成，并且很多文档里定义到的所谓的specification，在真实的代码实现里并不是这样的。&lt;/p>
+&lt;p>针对这个问题，本文主要想通过分析和建模程序的输入处理逻辑来获取两个重要的信息：&lt;/p>
+&lt;ol>
+&lt;li>字段之间的依赖。比如 MP4 里的 moof 结构里的 length 是用来决定 payload 的长度的。如果 payload 的长度与 length 不同，那么就会在程序执行早期就被拒绝。&lt;/li>
+&lt;li>层次间结构依赖。一个更加复杂的情况是推理 input 里的子结构的层次关系。例如在程序里可能会使用循环和递归来处理类似的结构，例如 MP4 里的 moof 的 payload 里会嵌套 traf，而 traf 又会继续嵌套别的结构。&lt;/li>
+&lt;/ol>
+&lt;p>针对这个目标，论文提出了两个步骤：&lt;/p>
+&lt;ol>
+&lt;li>使用 Input Processing Tree(新结构)，来表示输入处理逻辑。该结构能够帮助建模字段到字段的、结构到结构的依赖关系。&lt;/li>
+&lt;li>基于 Input Processing Tree 设计一种能够感知 dependency 的mutation 策略。即，一旦需要变更某个字段，那么那些对这个字段有依赖的元素也要变更。&lt;/li>
+&lt;/ol>
+&lt;blockquote>
+&lt;p>读到这里，小编猜测本文最核心的内容就是这个 Input Processing Tree。针对这个结构，自然而然地能提出几个问题：&lt;/p>
+&lt;ol>
+&lt;li>作者是如何在树中表示一个元素的（field 和 sub-structure）？&lt;/li>
+&lt;li>作者是如何将代码、input seed转换成这样的一颗树的？&lt;/li>
+&lt;li>作者是如何用树来表示元素和元素之间的关系的？&lt;/li>
+&lt;li>假设元素和元素之间的依赖关系存在着环，作者是怎么解决的？
+让我们带着这几个问题，一起往下看&lt;/li>
+&lt;/ol>
+&lt;/blockquote>
+&lt;h2 id="方法">方法&lt;/h2>
+&lt;p>
+&lt;figure >
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt="" srcset="
+/post/nestfuzz/image-1_hub6fb97d6ce3046accf31a289c9ccc2e2_306933_9a21471e12711768d6792be7950f60c8.webp 400w,
+/post/nestfuzz/image-1_hub6fb97d6ce3046accf31a289c9ccc2e2_306933_2b4d88a7c8cc5b17f0816c3d189e9c1a.webp 760w,
+/post/nestfuzz/image-1_hub6fb97d6ce3046accf31a289c9ccc2e2_306933_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+src="http://profile.aoyangfang.top/post/nestfuzz/image-1_hub6fb97d6ce3046accf31a289c9ccc2e2_306933_9a21471e12711768d6792be7950f60c8.webp"
+width="760"
+height="425"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>作者首先给出了一些常用名词的定义：&lt;/p>
+&lt;ol>
+&lt;li>F，字段（Field）。一个字段包含了一组连续的 bytes。F 通常会有一些属性，包括这些 bytes 在 raw data 里的 &lt;code>start&lt;/code> 位置和 &lt;code>end&lt;/code> 位置，具体的值，以及字段的类型。所以可以定义 $F={\cup_{start}^{end}byte_i,value,type}$&lt;/li>
+&lt;li>SF，子结构（substructure）。一个子结构会包含一组连续的 fields，或者是其他的子结构。因此定义$SF=\cup_{i,j}(F_i|SF_j)$。&lt;/li>
+&lt;li>一个$F_1$可能依赖于另一个$F_2$，如果修改了$F_2$的值，那么会影响$F_1$。因此使用$D[F_1,F_2]$来表示这两者之间的依赖关系。&lt;/li>
+&lt;/ol>
+&lt;h3 id="建模-ipl">建模 IPL&lt;/h3>
+&lt;p>Input processing logic 是程序中包含读取、翻译、验证input的代码逻辑。为了建模 IPL，NestFuzz 使用三个步骤：&lt;/p>
+&lt;ol>
+&lt;li>通过动态污点分析来识别 input-accessing 指令。&lt;/li>
+&lt;li>分别推断字段间的依赖和层次间的依赖。&lt;/li>
+&lt;li>最后用 Input Processing Tree 来表示 IPL。&lt;/li>
+&lt;/ol>
+&lt;h4 id="识别处理输入的指令">识别处理输入的指令&lt;/h4>
+&lt;p>作者使用污点分析来识别处理输入的指令。具体来说，作者先把输入的所有字节都标记为 tainted，然后跟踪每一个字节的传播。当一个变量被赋予taint label时，可以通过这些标签追溯到流向该变量的输入字节。因此，当一个指令涉及到被污染的操作数时，它就可以被分类为输入访问指令。在这个过程中，重点关注三种类型的输入访问指令：Load（加载）、Cmp（比较）和Switch（切换）。这些指令被加入了监测代码，以跟踪它们的指令地址和操作数的污点标签，这些标签指示相应输入字段的偏移量。&lt;/p>
+&lt;blockquote>
+&lt;p>这种方式可能只比较适用于二进制格式。&lt;/p>
+&lt;/blockquote>
+&lt;p>此外，一个指令可能在不同的上下文中执行多次，因此具有不同的污点标签。通过这个步骤，就可以采集到一些字段里不同的值被哪些代码处理了。&lt;/p>
+&lt;h4 id="识别字段间的依赖">识别字段间的依赖&lt;/h4>
+&lt;p>在识别到哪些指令是用于处理输入之后，就可以通过这些指令来分析输入的格式信息。在这个步骤中，NestFuzz 会识别关键的字段，例如（length、offset、category、payload），然后推导这些字段汇总的关系。&lt;/p>
+&lt;blockquote>
+&lt;p>根据此处的描述，这些关键字段仍然需要human expert来定义，变相还是使用了模板。后面需要考查一下这种方式的通用性，是否能够覆盖到足够多的情况（除了二进制格式文件外，可能还需要考虑别的格式，例如各种通信协议等）。&lt;/p>
+&lt;/blockquote>
+&lt;p>在这里，作者主要考虑了三种 inter-field 的关系，包括 $D[payload, length]$，$D[payload,offset]$ 和 $D[payload, category]$。&lt;/p>
+&lt;h5 id="dpayload-length">$D[payload, length]$&lt;/h5>
+&lt;p>对于$D[payload, length]$，作者假设 length 字段通常会被用在 buffer 相关的系统 API 中。&lt;/p>
+&lt;p>当一个被污染的变量用作某个API的参数时，如果这个API是以长度类型的参数为特征的，那么这个污点变量就被识别为长度类型的字段。例如，如果一个API负责读取或写入数据，并且它接受一个指定了要处理的字节数的参数，那么这个参数（如果被污点变量所影响）就被视为一个长度字段。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="line">&lt;span class="cl">&lt;span class="nf">read&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">handler&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">buffer&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">length&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1">// read content
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="n">buffer&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nf">malloc&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">length&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1">// allocate a buffer
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="nf">memcpy&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">dst&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">src&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">length&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1">// copy from src to dst
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>一旦长度字段被识别，就可以进一步分析使用这个长度字段的API，以推断出与之相关的有效载荷字段。有效载荷字段是指实际包含数据或信息的部分，其大小或长度通常由前面识别的长度字段所指定。通过观察哪些数据或缓冲区与长度字段一起被处理，可以识别出有效载荷字段。&lt;/p>
+&lt;p>另一方面，如果有一个被污染的变量被用在循环里，来决定读取被污染的数据的循环次数，那么就可以将 length 和 buffer 绑定在一起，并且认定在循环里的被污染变量是 payload 部分。&lt;/p>
+&lt;h5 id="dpayloadoffset">$D[payload,offset]$&lt;/h5>
+&lt;p>当分析系统API的使用时，如果一个变量被污染并且被用作API的参数，这个变量可能被识别为偏移量类型的字段。例如，如果一个API接受一个参数来指定从输入数据的哪个位置开始读取或处理数据，那么这个参数（如果被污染）就被视为偏移量字段。&lt;/p>
+&lt;p>一旦偏移量字段被识别，接下来的步骤是分析在该API调用之后访问的缓冲区。如果这个缓冲区被污染，那么它就可以被认为是与偏移量字段相关的payload。Payload包含了实际的数据或信息，其在输入数据中的位置由偏移量字段指定。&lt;/p>
+&lt;h5 id="dpayload-category">$D[payload, category]$&lt;/h5>
+&lt;p>如果有一个类型字段（如 𝑏𝑜𝑥→𝑡𝑦𝑝𝑒）决定了如何解析缓冲区（如 𝑏𝑜𝑥→𝑑𝑎𝑡𝑎），那么在对目标程序进行模糊测试时，就需要充分理解并识别这个类别字段及其相关的有效载荷结构。&lt;/p>
+&lt;p>如果一个被污染的变量出现在条件检查（如 if-else 或 switch-case 语句）中，这个变量可能是一个类别字段。在条件指令的两个操作数中，只有一个应该被污染，另一个应该是常量或未被污染的值。因此，可以将同一层级（如同一个 if-else 或 switch-case 结构）中条件检查的相关操作数（如 type1 和 type2）分组，作为该类别字段的值选择集。&lt;/p>
+&lt;p>如果是分支语句，那么收集并分组被污染的变量。这些被污染的变量被保存在一个临时列表中，稍后将在下一个阶段处理，以构建相应的有效载荷。&lt;/p>
+&lt;h4 id="识别多层次的依赖">识别多层次的依赖&lt;/h4>
+&lt;p>为了识别层次间的依赖，作者提出了 Input Process Tree，结构如下：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>内部节点&lt;/strong>： 内部节点代表导致其他指令执行的指令。这些通常包括三种类型：函数、分支和循环指令。由这样的内部节点引导的子树必须涉及被污染的数据（即受输入数据影响的数据）。这意味着，这些节点是输入处理逻辑的关键部分，它们控制着程序如何根据输入数据的不同来执行不同的操作。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>叶节点&lt;/strong>： 叶节点是直接访问输入的指令，其操作数被污染。这些指令直接处理输入数据，例如读取或修改基于输入的变量。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>节点关系&lt;/strong>： 如果一个指令包含在对应的内部节点（即函数、循环或分支体）中，那么这个指令就是该内部节点的子节点。这定义了树中节点之间的层级关系，反映了程序中不同指令之间的嵌套和逻辑关系。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>子树包含污点变量的节点&lt;/strong>： 输入处理树的任何子树都包含涉及污点变量的节点。这表明，树的每个部分都以某种方式参与到输入数据的处理中，确保了树结构全面覆盖了程序中所有相关的输入处理逻辑。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>下面给出一个例子来说明这颗树的结构，以及这棵树是如何与代码对应的。&lt;/p>
+&lt;div style="display: flex; justify-content: space-between;">
+&lt;img src="image-2.png"style="max-width: 50%; height: auto;"/> &lt;img src="image-3.png" style="max-width: 50%; height: auto;" />
+&lt;/div>
+&lt;p>总的来说，这个所谓的 input processing tree就是控制流图（control flow graph）的&lt;strong>剪枝&lt;/strong>版本。把控制流图中的环展开、把与input无关程序处理逻辑删除后，就成了input processing tree。&lt;/p>
+&lt;ul>
+&lt;li>根节点表示的是main函数，在该例子中代表的是&lt;code>parse_boxes_internal&lt;/code>。&lt;/li>
+&lt;li>内部节点是函数、分支、循环，在这里是&lt;code>while loop&lt;/code>, &lt;code>box_parse_ex&lt;/code>, &lt;code>moof_read&lt;/code>等。对于循环，在控制流图里表示的是一个环，但是在input processing tree里将环展开了，从而得到了不同的Iter，因为在不同的Iter里，处理的逻辑可能是不同的。&lt;/li>
+&lt;li>而对于叶子结点，在这个图里显示的都是load对应的数据（即与输入处理有关的指令）。其中不同的Load有对应的tag，例如&lt;code>Tag:&amp;lt;0,4&amp;gt;&lt;/code>表示的就是这部分的Load会接收输入的第0个字节到第4个字节的数据。&lt;/li>
+&lt;/ul>
+&lt;p>这么一个input processing 恰好类似于输入的数据格式，原因是一般来说数据处理是类似于解包的过程，是由外往内一层一层解开，因此会与输入格式类似。有了input processing tree，就有助于NestFuzz来识别输入的格式（结构）。&lt;/p>
+&lt;p>基于input processing tree，就可以进行“有依赖的”mutation。即，更改了payload之后，也需要同时修改length。&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt="" srcset="
+/post/nestfuzz/image-4_hu5533dd99c608ced68c096dda72f5c73b_228821_fdfbd627a429ff15245ff3984de22c1e.webp 400w,
+/post/nestfuzz/image-4_hu5533dd99c608ced68c096dda72f5c73b_228821_9a81af0b10c83c2fbdf265d187817f1f.webp 760w,
+/post/nestfuzz/image-4_hu5533dd99c608ced68c096dda72f5c73b_228821_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+src="http://profile.aoyangfang.top/post/nestfuzz/image-4_hu5533dd99c608ced68c096dda72f5c73b_228821_fdfbd627a429ff15245ff3984de22c1e.webp"
+width="760"
+height="564"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;h2 id="实验评估">实验评估&lt;/h2>
+&lt;p>本文主要从代码覆盖率、找到的bug数量、推导出来的输入格式的准确率和性能，三个方面来进行评估。&lt;/p>
+&lt;h3 id="代码覆盖率行覆盖率l分支覆盖率b">代码覆盖率（行覆盖率L，分支覆盖率B）&lt;/h3>
+&lt;p>在二进制格式的输入中，NestFuzz几乎超过了所有的baseline（除了pngtest，原因是当前的实现没有考虑 PNG 格式使用的校验和来检查文件完整性）。因此说明这个方法在二进制格式上的探索非常有效。&lt;/p>
+&lt;p>而在非二进制格式上，就仅有(2/6)超过了baseline。作者给出的理由是例如json或者C语言文件都是基于语法的，有严格的语法约束，并不是他们关注的重点，他们关注的是具有复杂结构的块状输入。&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt="" srcset="
+/post/nestfuzz/image-5_hu21d6dbe20e685a8fe13815c02d0a967c_512061_43df6d1179dc4a11dc52ce55a8288979.webp 400w,
+/post/nestfuzz/image-5_hu21d6dbe20e685a8fe13815c02d0a967c_512061_12c2cbd3c06d546cc3c55a447d0a40e9.webp 760w,
+/post/nestfuzz/image-5_hu21d6dbe20e685a8fe13815c02d0a967c_512061_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+src="http://profile.aoyangfang.top/post/nestfuzz/image-5_hu21d6dbe20e685a8fe13815c02d0a967c_512061_43df6d1179dc4a11dc52ce55a8288979.webp"
+width="760"
+height="451"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;h3 id="找到的bug">找到的Bug&lt;/h3>
+&lt;p>在找到的bug数量方面，NestFuzz几乎也是能比全部的baseline在每个单项测试里找到的都多（除了tic-MOPT和indent-MOPT）。并且有相当一部分的bug是仅能被NestFuzz找到的，这也证明了NestFuzz的巨大有效性。&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt="" srcset="
+/post/nestfuzz/image-6_hu57a12799722d5c0773b6c60928d2685c_295265_f5ced6af884032652425593562f5c0e6.webp 400w,
+/post/nestfuzz/image-6_hu57a12799722d5c0773b6c60928d2685c_295265_1284ac4fb2deb9d8ffc6096ad4d5dc58.webp 760w,
+/post/nestfuzz/image-6_hu57a12799722d5c0773b6c60928d2685c_295265_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+src="http://profile.aoyangfang.top/post/nestfuzz/image-6_hu57a12799722d5c0773b6c60928d2685c_295265_f5ced6af884032652425593562f5c0e6.webp"
+width="760"
+height="336"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>除此之外，NestFuzz还能在更短的时间内达到更高的覆盖率、更短的时间内找到相同数量的bug。作者还对自身做了消融实验，表明是否学习到输入的结构以及是否学习到字段之间的依赖关系对代码覆盖率的影响，结果表明仅使用字段间依赖的知识，代码覆盖率平均下降了11%，而仅使用输入的结构，代码覆盖率平均下降了25%。因此这说明字段之间的依赖关系对NestFuzz，及其对应的场景来说更加重要。
+为了节省空间，这部分的数据就不贴上来了。&lt;/p>
+&lt;h3 id="格式推断的表现">格式推断的表现&lt;/h3>
+&lt;ul>
+&lt;li>NestFuzz在输入结构推断方面表现出色，平均推断时间约为0.77秒，远远快于其他方法（如TIFF平均需要24.9秒）。&lt;/li>
+&lt;li>NestFuzz能够构建复杂的树形结构来表示输入数据，例如在处理MP4文件时，树的平均深度达到11.68。&lt;/li>
+&lt;li>NestFuzz能够识别出即使是相同输入在不同程序中的处理差异，这对于模板化的模糊测试方法（如AFLSmart）是一个显著的优势。&lt;/li>
+&lt;li>相比其他工具，NestFuzz在测试中能生成更多具有复杂结构的输入，这对于发现深层次的漏洞非常有效。&lt;/li>
+&lt;li>输入结构的正确性: NestFuzz在正确识别输入结构方面表现出色，例如在MP4格式中，它能识别出比010 Editor更多的字段和结构。&lt;/li>
+&lt;li>传统工具（如010 Editor）在处理复杂输入时受限于模板，而NestFuzz能够处理更多类型的输入结构，这在发现程序中的深层漏洞方面非常关键。&lt;/li>
+&lt;/ul>
+&lt;h2 id="总结">总结&lt;/h2>
+&lt;p>本文提出了input processing tree来建模输入内的依赖关系以及输入内的层次结构。找到了46个新bug，其中有37个被赋予了CVE-ID。在实验方面，不仅与baseline方法有比较详细的对比，也对自己方法内部有一个比较细节的分析，因此是一个比较充分的工作。但是这篇论文也有比较大的改进空间。&lt;/p>
+&lt;p>首先先来回答小编前面提出的几个问题：&lt;/p>
+&lt;blockquote>
+&lt;ol>
+&lt;li>作者是如何在树中表示一个元素的（field 和 sub-structure）？见上文input processing tree的结构&lt;/li>
+&lt;li>作者是如何将代码、input seed转换成这样的一颗树的？通过控制流图和污点分析&lt;/li>
+&lt;li>作者是如何用树来表示元素和元素之间的关系的？见input processing tree结构&lt;/li>
+&lt;li>假设元素和元素之间的依赖关系存在着环，作者是怎么解决的？将环展开&lt;/li>
+&lt;/ol>
+&lt;/blockquote>
+&lt;p>作者提出的input processing tree，本质上是一个简化版的控制流图。通过展开图里的环（例如将循环展开成对应的分支），以及删减没有被污染的区域，从而将一个图剪枝成了一颗树。&lt;/p>
+&lt;p>然后通过预定义的模式（本文仅仅提出并实现了3种模式，[payload,offset], [payload,category], [payload,length]），去这一个简化版的控制流图中进行匹配，如果匹配上了，那么就对对应的区域打上标记，表示这块区域对应的是payload、category等。这里作者也提到了这部分的缺点，作者的解决方案是增加更加多样的模式来适配不同的情况，原文为：“除此之外，还存在其他类型的复杂输入约束，例如输入校验和验证和字段间的数值约束。对于校验和相关的约束，可以通过插桩和修补校验和来缓解。对于数值约束，可以通过应用符号执行或梯度下降方法来处理。”&lt;/p>
+&lt;p>适用场景方面，NestFuzz只适用于二进制下基于chunk的，有多层次间依赖的场景，无法在约束更加严格的场景下表现良好（例如语法约束），这部分也比较可惜。&lt;/p>
+&lt;p>另外，作者也提到依赖于污点分析带来的局限性：NestFuzz基于字节级动态污点分析来识别输入处理指令。这种方法可能存在欠污点（under-taint）和过污点（over-taint）问题，这些问题不可避免地会影响NestFuzz的精确度。解决这些问题的策略将是未来的研究工作。&lt;/p></description></item><item><title>[FSE'23]NeuRI: Diversifying DNN Generation via Inductive Rule Inference</title><link>http://profile.aoyangfang.top/post/neuri/</link><pubDate>Fri, 08 Dec 2023 17:30:35 +0800</pubDate><guid>http://profile.aoyangfang.top/post/neuri/</guid><description>&lt;blockquote>
+&lt;p>本篇论文是 FSE'23 的 distinguished paper。本文注重于 Deep Learning Library 的测试，提出了NEURI fuzzer，在 4 个月的测试中，找到了 100 个新的 bug，其中81个被 fix 或者confirm 了。&lt;/p>
+&lt;/blockquote>
+&lt;p>众所周知，深度学习的火热带动了一众 Deep Learning Framework 的蓬勃发展，例如 Pytorch、TensorFlow。因此这一系列 DL 的开发基座的安全性、稳定性就相当重要。&lt;/p>
+&lt;p>目前的深度学习框架的测试面临着测试用例生成的问题：合成一个DNN模型的结构，以及对应的输入。（注：类比于&lt;a href="https://mp.weixin.qq.com/s/GIqrS9VWTvs8rPZzCmE09Q" target="_blank" rel="noopener">上一篇推文&lt;/a>，针对 Python Interpreter 的测试，既需要 Python 程序，也需要程序对应的输入）。&lt;/p>
+&lt;p>其中，对于生成的模型有两个重要的要求：&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>多样性：为了测试这类 DL 系统，需要使用多种 API 及其不同的组合方式。另外也需要生成包含多种类型的 operator，从而能够测试到 Compiler 里不同的 passes。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>合法性：DNN 模型还是属于程序，所以需要遵守对应的约束。如果任意组合 operator 以及对应的参数，那么通常来说就会违反约束。从而在编译器早期的约束检查阶段就被检测出来，导致无法找到深层的bug。&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="现状">现状&lt;/h2>
+&lt;p>现有的工作里有较多的针对单个 API 的测试，他们能够生成大量的 API 调用，包括 operator 和其他的一些实用性的函数，这些 API 调用是能够做到符合对应的约束的。但是我们能直接把这些内容拿过来，进行一定的组合，来生成有效的 DNN 模型吗？&lt;/p>
+&lt;p>答案是不行。因为构造一个合法的API调用还需要满足 operator 内细粒度的约束（原文为：Because constructing a valid API invocation further requires satisfying fine-grained constraints between operator attributes）。然后作者用下方的图来说明目前工作的现状，以及他们的目标。&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img src="./images/EYXslEJvO11XhwdqLS6b8MK_a4Tn3nGgfpLeBMW0rO4=.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>针对 Single-API，此处论文里举了一个例子，但我觉得不是很妥。&lt;/p>
+&lt;p>作者说 single-API tester 虽然能知道 conv2d 接受的参数是一个图片，以及对应的 weight tensor，但是他们（single-API tester）新创建的 conv2d 调用中并不能保证通道的维度与权重是匹配的，所以会导致调用失败。&lt;/p>
+&lt;p>然后作者提出，如果不理解这些细粒度的约束，就不可能正确地组合各种 API 来构建格式良好且多样化的模型。直观地，在图 1 中，当 API 被有效构建时，先前的单 API 测试人员可以实现理想的 API 多样性。然而，多样性很难在模型方面扩展，这需要同时构建和正确“连接”多个 API。&lt;/p>
+&lt;blockquote>
+&lt;p>论文作者这样的介绍，就出现了一个 Gap：上一段是在讲一个 single-API（即 conv2d），由于 &lt;strong>API 之内&lt;/strong>的约束没有被满足，导致无法进一步测试的问题；但下一段就转到了 API 和 API 之间的约束，中间缺少了一些必要的过渡。并且很容易提出一个问题：&lt;/p>
+&lt;p>**如果单个API内的约束没有被这些single-API识别到，那么就无法运行这单个API，如果无法运行，那么前人是如何测试这些单个API的呢？**这部分的结论就与之前作者提到的矛盾。&lt;/p>
+&lt;/blockquote>
+&lt;p>但是小编认为，论文作者可能是想要给出这样的一个例子：在下面的代码中展示了一个正确的API调用和错误的API调用。其中，image 和 weight 是通过 torch.rand() 构造的。如果想要正确地运行 conv2d，就需要提前知道 image 和 weight 有这个约束，从而在使用 torch.rand() 构造时就保证符合维度的约束。从而过渡到多个 API 之间的约束上。（即图中的三角形过渡为五边形）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 函数签名: Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=0, dilation=1, groups=1, bias=True)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 正确的使用方式&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 创建一个具有1个通道的图像（例如，灰度图），大小为10x10&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">image&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">torch&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">rand&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">10&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">10&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1"># (batch_size, channels, height, width)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 创建一个匹配的权重张量，具有1个输入通道和1个输出通道，卷积核大小为3x3&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">weight&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">torch&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">rand&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">3&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">3&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1"># (out_channels, in_channels, height, width)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 正确的调用&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">output&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">F&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">conv2d&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">image&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">weight&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 错误的使用方式&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 创建一个具有不匹配通道数的权重张量，例如，有3个输入通道&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">wrong_weight&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">torch&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">rand&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">3&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">3&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">3&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1"># 这里的3个输入通道与图像的1个通道不匹配&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">output&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">F&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">conv2d&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">image&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">wrong_weight&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1"># 这将抛出一个错误，因为通道维度不匹配&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>后续的研究现状小编不再赘述，总而言之就是目前的工作要么只有 validity，要么只有 diversity，要么很费人力。作者想要提出一个全部拉满的 NEURI，又valid，又diverse，还automatic。&lt;/p>
+&lt;h2 id="相关背景介绍">相关背景介绍&lt;/h2>
+&lt;p>不了解 DL system 的读者可能不太清楚 operator 在 DL system 里到底指什么（包括小编），因此简单了解一下 operator。&lt;/p>
+&lt;p>Operator 可以简单被理解为就是一个函数，有对应的输入和输出，代表着在神经网络计算中常见的操作，例如 tensor 的计算、激活函数、卷积操作等。只不过这些函数通常可以使用 GPU 或其他硬件来加速计算。&lt;/p>
+&lt;p>对于不同的 Operator，就会有不同的内部约束，或称为 rules。这类 rules 是被隐式定义的，并不能直接导出这类rules。在 NNSmith 中（同一批团队），这些都是手动指定的。为了将这个过程自动化，作者们将 operator 形式化成三个部分，下面以 avg_pool2d 为例：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">avg_pool2d&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">input&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">kernel_size&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">stride&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">None&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">padding&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">ceil_mode&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">False&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">count_include_pad&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">True&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">divisor_override&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">None&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="err">→&lt;/span> &lt;span class="n">Tensor&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>该 operator 接受一个 tensor 输入（input），和相关的参数，例如 kernel_size（核的大小），stride（步长）等。其中，&lt;code>input&lt;/code> 与 &lt;code>kernel_size&lt;/code> 之间隐含着一个约束：&lt;code>input&lt;/code> 的大小必须大于 &lt;code>kernel_size&lt;/code>。这里，作者用了三个符号来形式化一个operator：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>operator的类型。即函数名&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>符号&lt;code>I&lt;/code>，代表输入的形状向量（shape vector）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>符号&lt;code>A&lt;/code>，代表operator的属性。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>符号&lt;code>O&lt;/code>，代表输出的形状（output shape）&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="输入的约束">输入的约束&lt;/h3>
+&lt;p>作者定义了输入的constraint的符号：&lt;code>C&lt;/code>，&lt;code>C&lt;/code>是一个基于&lt;code>A&lt;/code>和&lt;code>I&lt;/code>的谓词函数。例如，下方的公式表示的一个约束是kernel的高应该小于输入张量的高+2倍的padding高度。&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img src="./images/a4I5Vm1gcb8WtAU8eBZR1TvDDGfCnpLJuBl9iERUxSs=.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;h3 id="形状的传播shape-propagation">形状的传播（shape propagation）&lt;/h3>
+&lt;p>形状的传播可以被形式化为一个函数&lt;code>P&lt;/code>，这个函数接受&lt;code>A&lt;/code>和&lt;code>I&lt;/code>，然后输出对应的输出张量的形状。例如，对于&lt;code>avg_pool2d&lt;/code>，输出张量的高度是&lt;code>(input_height+2*padding-kernel_height)/stride+1&lt;/code>。&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img src="./images/Ie5hUcFSvukI5K6hZC72teIen_akFl7C3RVT7DdNoY0=.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;h2 id="方法">方法&lt;/h2>
+&lt;p>
+&lt;figure >
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img src="./images/Mxe4pEYDqHWv4KFtLUKsDFgMKycLtVGxYfewJjQyG0g=.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;h3 id="改进模型生成搜索空间">&lt;strong>改进模型生成搜索空间&lt;/strong>&lt;/h3>
+&lt;h4 id="采集信息">采集信息&lt;/h4>
+&lt;p>论文中，作者&lt;strong>只关注与 tensor 相关的API&lt;/strong>，因为其他高级的API都可以被分解成一系列的tensor API。并且&lt;strong>要求这些API都是确定性的，且与值无关的&lt;/strong>。&lt;/p>
+&lt;p>采集的来源是 Python 的 API。采集的信息是上文提到的 I、A 和 O。这些均是简化之后的信息，尽量减少了 concrete 的信息，例如input tensor里具体的值是什么。&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt="" srcset="
+/post/neuri/image_hua750f84f47d5ed00e80fd7e2d7ff671b_140457_667ce20a9873e6284cfd5706b62462e2.webp 400w,
+/post/neuri/image_hua750f84f47d5ed00e80fd7e2d7ff671b_140457_045d3dd2a815c35a405a564e8443a3ef.webp 760w,
+/post/neuri/image_hua750f84f47d5ed00e80fd7e2d7ff671b_140457_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+src="http://profile.aoyangfang.top/post/neuri/image_hua750f84f47d5ed00e80fd7e2d7ff671b_140457_667ce20a9873e6284cfd5706b62462e2.webp"
+width="760"
+height="411"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;h4 id="数据增强">数据增强&lt;/h4>
+&lt;p>类似于模型训练，在推理可能的 rules 时，如果只是用采集到的信息，每条 rule 可能只会有 5-7 条数据，通过这种少量的数据推理出来的 rule 可能不是很健壮（可能只是在这几条数据中发现了特定的 rule）。因此需要通过一些方法（突变）来增加数据集。&lt;/p>
+&lt;p>文中，作者将合法的突变产物称为 passing example，不合法的突变产物称为 counter example。突变基于输入的 shape dimension 和 attributes。（就是 A 与 I 的并集）。&lt;/p>
+&lt;p>突变的步骤是：&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>基于 offset 做变换：这一步的目的是为了快速构造一些 passing examples。方法很简单，枚举 $A \cup I$的子集，对于每一个子集，都使其中的元素加一，直到达到固定的数量，或者超时。（这里使用到的假设是 validity locality，有的时候valid的case只需要很少的变换就可以得到一个新的）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>交换：交换 $A\cup I$中的两个值可以很快地验证简单的不相等性。比如，假设$a&amp;gt;b$在所有采集到的passing example中都成立，那么可以通过交换a和b的值来验证是否依然成立。如果不成立，那么这个rule就被推翻了。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>特殊值。随机给某些 attributes 赋特殊值，例如 0, -1 等，以此来测试 attribute 的 negativity。&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>除此以外，如果没有 counter example 产生，那么意味着对应的 operator 没有任何输入约束（或者约束很弱）。&lt;/p>
+&lt;h2 id="规则推导">规则推导&lt;/h2>
+&lt;p>论文通过一个简单的算数语法来推导约束（或规则，指$A\cup I \cup O$之间的规则）&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt="" srcset="
+/post/neuri/image-1_huccc5551e07a0567c32ef1c8adcda2dbf_49618_7ca29df071b5352f871c372274b566b6.webp 400w,
+/post/neuri/image-1_huccc5551e07a0567c32ef1c8adcda2dbf_49618_893615c14075c3ef4eb59916dbd4ab0b.webp 760w,
+/post/neuri/image-1_huccc5551e07a0567c32ef1c8adcda2dbf_49618_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+src="http://profile.aoyangfang.top/post/neuri/image-1_huccc5551e07a0567c32ef1c8adcda2dbf_49618_7ca29df071b5352f871c372274b566b6.webp"
+width="760"
+height="253"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>有了这个语法，就能够通过&lt;strong>遍历&lt;/strong>可能的数学表达式，来构造可能的$|A|,|I|,|O|$之间的关系（并且这个算数表达式最后都可以被归一化到 $0&amp;lt;expr$ 或者 $0=expr$ 的形式）。由于实际上的表达式往往很短，所以论文中使用的是自下而上搜索，先枚举item，然后逐步将其组合，以生成更大的表达式。&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt="" srcset="
+/post/neuri/image-2_hu7ec457c34cbb22ee04cb22fe76d53a06_35149_7022d18aa3276f3f6c06b52fb329b0a9.webp 400w,
+/post/neuri/image-2_hu7ec457c34cbb22ee04cb22fe76d53a06_35149_111df4857e287a0489378897d228cf03.webp 760w,
+/post/neuri/image-2_hu7ec457c34cbb22ee04cb22fe76d53a06_35149_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+src="http://profile.aoyangfang.top/post/neuri/image-2_hu7ec457c34cbb22ee04cb22fe76d53a06_35149_7022d18aa3276f3f6c06b52fb329b0a9.webp"
+width="760"
+height="90"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>在上面的公式中，NeuRI会枚举$\varepsilon$里的expr，对于这个expr，要求对于任意的$A,I,O$都能够用 expr 来描述 A、I、O的关系。如果不满足，那么就推导不出该规则。下方的算法是对这个过程的形式化描述。&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt="" srcset="
+/post/neuri/image-3_hue6cfe888c4c0aebb7bb41b3f790c5a31_128707_f2fc9bdc70c8ec82fb8bc2c5bddeb6ec.webp 400w,
+/post/neuri/image-3_hue6cfe888c4c0aebb7bb41b3f790c5a31_128707_2eaddf490ac1c266b076513a680c2232.webp 760w,
+/post/neuri/image-3_hue6cfe888c4c0aebb7bb41b3f790c5a31_128707_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+src="http://profile.aoyangfang.top/post/neuri/image-3_hue6cfe888c4c0aebb7bb41b3f790c5a31_128707_f2fc9bdc70c8ec82fb8bc2c5bddeb6ec.webp"
+width="760"
+height="511"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>接下来，论文引入了一个新的概念：Partial Operator。（但小编没有太 get 到这部分的作用）&lt;/p>
+&lt;p>文中首先提到，在NNSmith中，operator rules是直接用Python写的，语法比 G（上文提到的算数语法）复杂得多。如果基于Python的语法来进行合成规则的话，是不可行的。&lt;/p>
+&lt;p>接着文中画风一转，作者提出：为了保持像 G 这样简单的语法，我们通过固定部分组件，将一个运算符拆分为多个部分运算符。&lt;/p>
+&lt;blockquote>
+&lt;p>结合后文，小编大概能get到作者的意图是想要把类似的operator统一起来，从而减少所有要处理的operator数量。但在这里，总让人觉得这样的描述仅仅是为了与 NNSmith 保持兼容。假设抛开NNSmith，那么小编并没有感觉到这一部分有什么特别的必要性，理由是通过A、I的集合，加上G语法的约束，已经能够达到一样的推导效果。欢迎读者一起讨论~&lt;/p>
+&lt;/blockquote>
+&lt;p>
+&lt;figure >
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt="" srcset="
+/post/neuri/image-4_hu331ae00884a13a54383e40e03cc73b6f_257879_81ffb65be0bc0de2f5e3738964193bc9.webp 400w,
+/post/neuri/image-4_hu331ae00884a13a54383e40e03cc73b6f_257879_705a19a15d7399d9da5b578fc1aa5fc4.webp 760w,
+/post/neuri/image-4_hu331ae00884a13a54383e40e03cc73b6f_257879_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+src="http://profile.aoyangfang.top/post/neuri/image-4_hu331ae00884a13a54383e40e03cc73b6f_257879_81ffb65be0bc0de2f5e3738964193bc9.webp"
+width="760"
+height="398"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>文中给出了一个例子来说明是如何区分 partial operator的。&lt;/p>
+&lt;ol>
+&lt;li>函数签名。例如圈1和圈2，这两者完全相同（input和ouput有相同的维度，那么定义为一个partial operator），则认为他们是同一个operator。但圈2和圈3的partial operator不同，因为圈2和圈3的input和output里的维度不同。&lt;/li>
+&lt;li>符号属性（Symbolic attributes）。如图所示，这类属性是 operator rule里的自由变量，对于有不同属性的api调用，会被关联不同的partial operator。&lt;/li>
+&lt;li>其他参数（非tensor、非symbolic integer）。大致分为两类：与rule正交的参数；和只会用于识别partial operator对operator rule的潜在影响。第一类举个例子是输入图片的layout是NCHW还是NHWC。第二类就是圈3和圈4里的ceil参数，因为ceil会影响avg_pool2d的形状传播规则。&lt;/li>
+&lt;/ol>
+&lt;h3 id="剪枝">剪枝&lt;/h3>
+&lt;p>尽管G语法已经相当简单，但是搜索空间依旧很大。因此作者对等价、稀有的表达式进行了剪枝。&lt;/p>
+&lt;ol>
+&lt;li>确认边界。如果没有约束的话，G语法派生出来的表达式是无限的。所以通过限制 op 的数量，以及 constant 的采样集合，就减少了搜索空间。例如，文中限制了 op 最多有5个，constant只能是 {1, 2} 中的一个。&lt;/li>
+&lt;li>稀有度。把不常见的表达式给删了。例如&lt;op>, &lt;constant> &lt;constant>，这种比较两个常数大小的表达式是没有意义的。&lt;/li>
+&lt;li>等价性。如果两个表达式有相同的free variable，那么就使用一些随机的值去填充这两个表达式。然后两个表达式会产生相同或者不同的输出，通过这些输出，先把表达式进行快速聚类。针对每一个类别，再使用smt solver来严格找到等价类。&lt;/li>
+&lt;/ol>
+&lt;h3 id="规则重用">规则重用&lt;/h3>
+&lt;p>Partial operator能够共享等价的rules（小编对此持怀疑态度，因为没有证据表明Partial Operator真的能共享rules）。文中表示，如果一个operator的A、I、O与之前已经推导出约束的partial operator一致，那么可以直接复用rules。&lt;/p>
+&lt;h3 id="规则去重">规则去重&lt;/h3>
+&lt;p>
+&lt;figure >
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt="" srcset="
+/post/neuri/image-5_hu3ef47f6c3ebf5ec8d4d093702073cbc0_59528_3ddcc58cab9688e250a93834ceb8cc53.webp 400w,
+/post/neuri/image-5_hu3ef47f6c3ebf5ec8d4d093702073cbc0_59528_095d50c170aa91dfca8cce35e444560e.webp 760w,
+/post/neuri/image-5_hu3ef47f6c3ebf5ec8d4d093702073cbc0_59528_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+src="http://profile.aoyangfang.top/post/neuri/image-5_hu3ef47f6c3ebf5ec8d4d093702073cbc0_59528_3ddcc58cab9688e250a93834ceb8cc53.webp"
+width="760"
+height="296"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>如果去掉c和没去掉C是等价的，那么表明c是冗余的。&lt;/p>
+&lt;h2 id="实验对比">实验对比&lt;/h2>
+&lt;p>论文提出了三个RQ：&lt;/p>
+&lt;ol>
+&lt;li>NeuRI与其他SOTA相比，code coverage如何？&lt;/li>
+&lt;li>分别采集和推导出来了多少API、Partial Opertor和records？与其他通用的progra synthesis工具相比效率如何？&lt;/li>
+&lt;li>NeuRI找到了多少新bug？&lt;/li>
+&lt;/ol>
+&lt;p>论文对 TensorFlow 和 Pytorch 两个框架进行了测试。&lt;/p>
+&lt;p>对比的baseline是 NNSmith、Muffin（这两个是model level的fuzzer）、DeepREL（Operator level的fuzzer）以及没有符号推导的NeuRI、只有符号推导的NeuRI（消融实验）。&lt;/p>
+&lt;p>对比的指标是找到的bug数量以及分支覆盖率。&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt="" srcset="
+/post/neuri/image-6_hucf7d1724bcd64467b4681b217476d996_202081_18959d5923ba7fe60bb76e6b55118578.webp 400w,
+/post/neuri/image-6_hucf7d1724bcd64467b4681b217476d996_202081_a4d374c896b58ef19f317e06365657c2.webp 760w,
+/post/neuri/image-6_hucf7d1724bcd64467b4681b217476d996_202081_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+src="http://profile.aoyangfang.top/post/neuri/image-6_hucf7d1724bcd64467b4681b217476d996_202081_18959d5923ba7fe60bb76e6b55118578.webp"
+width="760"
+height="276"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>如图所示，NeuRI及其变种都超过了现有SOTA。并且值得注意的是，NeuRI只使用了一部分的Operator（基础Operator），但覆盖率依旧超过了针对Operator的DeepREL。&lt;/p>
+&lt;p>另外，NeuRI分别在TensorFlow和Pytorch上达到了10.8%和17.4%的覆盖率。这个数量并不算少，因为一些linux 的fuzzer通常只能达到10%的覆盖率（百万行代码）。&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt="Alt text" srcset="
+/post/neuri/image-7_hue54143c491039dd190e6abddcc9ae55f_117329_cb35ffbc0340c6d51aea219a63299ed6.webp 400w,
+/post/neuri/image-7_hue54143c491039dd190e6abddcc9ae55f_117329_fd854788ee53011b3eb32f8d24904c3f.webp 760w,
+/post/neuri/image-7_hue54143c491039dd190e6abddcc9ae55f_117329_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+src="http://profile.aoyangfang.top/post/neuri/image-7_hue54143c491039dd190e6abddcc9ae55f_117329_cb35ffbc0340c6d51aea219a63299ed6.webp"
+width="760"
+height="347"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>对于生成测试用例的质量，在同样的4小时内，NeuRI比NNSmith更慢，因为多了约束推理和求解的步骤。在去掉了自动推理后（NeuRI^r），速度比只有推理的NeuRI^i更快。结合上面的覆盖率信息，可以发现两种操作（rule inferen和concrete operator）都是有用的，能够带来一定覆盖率增长，但并不是非常明显。&lt;/p>
+&lt;p>另外作者还讨论了关于超参数的设置对覆盖率带来的影响。如下图所示，在实验默认设置下，grammar G里的最大op数量是5。下图对比了不同的op下，在给定的时间里能达到的覆盖率。结果显示如果只有一个op的话，结果就比较糟糕，但是5个、9个、13个的话就不相上下。&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt="" srcset="
+/post/neuri/image-8_huc73d5ef1fb3761a495462ce6c751b585_89000_d1c1bc7a154224253a3ff5c1ce24e593.webp 400w,
+/post/neuri/image-8_huc73d5ef1fb3761a495462ce6c751b585_89000_e407f31a1091c052c0cf120daed1b441.webp 760w,
+/post/neuri/image-8_huc73d5ef1fb3761a495462ce6c751b585_89000_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+src="http://profile.aoyangfang.top/post/neuri/image-8_huc73d5ef1fb3761a495462ce6c751b585_89000_d1c1bc7a154224253a3ff5c1ce24e593.webp"
+width="760"
+height="535"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>关于推理出来的oprator的分布，如下图所示。作者分别在Pytorch和TensorFlow中采集了758条和248条API，大约是百分之50多。因为其他的API要么没有测试，要么是跟tensor无关的API，所以没有采集。其中这里采集到的records分别是63136和33973条。平均一个API有大约10条的records。&lt;/p>
+&lt;p>在过滤了不想要的API（要求确定性的、结果不会随着状态或者输入的值改变）后，分别剩余681和214条API，以及29589和12908条records。经过数据增强后，patial operator的数量分别达到了5875和1799，records数量分别达到了1041459和303314。&lt;/p>
+&lt;p>对于每个rule给定1000s的budget，NeuRI分别能够推理620和192条API的rules，patial API则分别是4475和1507条。其中，分别有604和185条在fuzzing过程中被使用了（表格倒数第二行），并且有582和176条仔使用过程中一直能构建正确用例（表格倒数第三行）。所以整体的效果还是不错的。&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt="" srcset="
+/post/neuri/image-9_hu869b813d7735164bfce5cc14f056ede2_122959_195ed776e178d12fa7688c6535feaeaa.webp 400w,
+/post/neuri/image-9_hu869b813d7735164bfce5cc14f056ede2_122959_17679c34e078e90615a4e643bf9504d4.webp 760w,
+/post/neuri/image-9_hu869b813d7735164bfce5cc14f056ede2_122959_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+src="http://profile.aoyangfang.top/post/neuri/image-9_hu869b813d7735164bfce5cc14f056ede2_122959_195ed776e178d12fa7688c6535feaeaa.webp"
+width="760"
+height="322"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>作者还对约束求解的时间进行了分析。结果表明大部分的约束求解规模还是比较小的（大部分小于1s就能求解完成），但是随着符号的增加，会出现求解时间长，甚至超时的情况（123个求解失败）。&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt="" srcset="
+/post/neuri/image-10_hu7c9988da64f00dd295e598bc8e5c9cb9_167116_dc36475098ca182a978e1b05bd208565.webp 400w,
+/post/neuri/image-10_hu7c9988da64f00dd295e598bc8e5c9cb9_167116_e7c339413577a51fa082fd64c610460e.webp 760w,
+/post/neuri/image-10_hu7c9988da64f00dd295e598bc8e5c9cb9_167116_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+src="http://profile.aoyangfang.top/post/neuri/image-10_hu7c9988da64f00dd295e598bc8e5c9cb9_167116_dc36475098ca182a978e1b05bd208565.webp"
+width="760"
+height="574"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>作者还对剪枝的效果进行了分析。结果表明在剪枝后，搜索空间的大小在数量级上有了缩减。&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt="" srcset="
+/post/neuri/image-11_hu60320b60fbb3447441750499f1afb707_81723_fd53ffe987f4b9040609b6b3221a51b4.webp 400w,
+/post/neuri/image-11_hu60320b60fbb3447441750499f1afb707_81723_598198e101957bc6bc886dfc78b4de82.webp 760w,
+/post/neuri/image-11_hu60320b60fbb3447441750499f1afb707_81723_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+src="http://profile.aoyangfang.top/post/neuri/image-11_hu60320b60fbb3447441750499f1afb707_81723_fd53ffe987f4b9040609b6b3221a51b4.webp"
+width="760"
+height="325"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>在找bug的能力方面，作者找到了100个新bug，数量相当可观。&lt;/p>
+&lt;h2 id="总结">总结&lt;/h2>
+&lt;p>这篇论文是NNSmith的后续工作，其基于NNSmith的model生成模式进行改进，从人工定义operator rules升级成了自动推导operator rules。为了达到这个目标，论文首先定义了问题的scope（基于tensor的API），并且定义了constraint的scope（A、I和O之间的关系）。使用算数语法G来描述constraint，然后使用SMT来求解这些约束。其中，为了减少SMT求解的overhead，使用了大量的剪枝手段来减少搜索空间（例如简化API描述，仅使用简单的结构表示，以此对operator进行聚类；对rule的op数量进行限制；删除稀有、等价的rule等）。最后依托于NNSmith的DNN生成，完成了NeuRI这个工作。&lt;/p>
+&lt;p>实验部分比较完整，对于外部的SOTA有效率（code coverage）上的比较。在实现内部，针对不同的技术带来的效益变化也有一个详细的展示（不同的model size对coverage的影响；多少API在fuzzing过程中被使用等）。因此，本论文是一篇比较完整、充分的工作。&lt;/p></description></item><item><title>Keynotes for Paper Writing</title><link>http://profile.aoyangfang.top/post/keynotes-for-paper-writing/</link><pubDate>Mon, 14 Aug 2023 21:37:32 +0800</pubDate><guid>http://profile.aoyangfang.top/post/keynotes-for-paper-writing/</guid><description>
 &lt;details class="toc-inpage d-print-none " open>
 &lt;summary class="font-weight-bold">Table of Contents&lt;/summary>
 &lt;nav id="TableOfContents">
