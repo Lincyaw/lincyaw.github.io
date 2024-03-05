@@ -1,3 +1,3 @@
 all:
 	hugo
-	rsync -avz ./public azureuser@100.78.214.97:/home/azureuser/www
+	rsync -avz ./public azureuser@20.2.240.114:/home/azureuser/www

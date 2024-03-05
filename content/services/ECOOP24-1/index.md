@@ -1,14 +1,14 @@
 ---
 # Documentation: https://wowchemy.com/docs/managing-content/
 
-title: "Committee Member in Artifact Evaluation Committee within the Artifact Evaluation-track"
+title: "Committee Member in Extended Review Committee and External Reviewers within the Technical Papers-track"
 subtitle: ""
 summary: ""
 authors: []
 tags: []
 categories: []
-date: 2024-01-11T15:45:03+08:00
-lastmod: 2024-01-11T15:45:03+08:00
+date: 2024-01-27T15:45:03+08:00
+lastmod: 2024-01-27T15:45:03+08:00
 featured: false
 draft: false
 
