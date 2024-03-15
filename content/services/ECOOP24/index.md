@@ -1,7 +1,7 @@
 ---
 # Documentation: https://wowchemy.com/docs/managing-content/
 
-title: "Committee Member in Artifact Evaluation Committee within the Artifact Evaluation-track"
+title: "ECOOP'24, Committee Member in Artifact Evaluation Committee within the Artifact Evaluation-track"
 subtitle: ""
 summary: ""
 authors: []

@@ -1,14 +1,14 @@
 ---
 # Documentation: https://wowchemy.com/docs/managing-content/
 
-title: "ECOOP'24, Committee Member in Extended Review Committee and External Reviewers within the Technical Papers-track"
+title: "ISSTA'24 Artifact Reviewer"
 subtitle: ""
 summary: ""
 authors: []
 tags: []
 categories: []
-date: 2024-01-27T15:45:03+08:00
-lastmod: 2024-01-27T15:45:03+08:00
+date: 2024-03-15T15:45:03+08:00
+lastmod: 2024-03-15T15:45:03+08:00
 featured: false
 draft: false
 
@@ -29,4 +29,6 @@ projects: []
 ---
 
 
-ECOOP is Europe’s longest-standing annual Programming Languages conference, bringing together researchers, practitioners, and students to share their ideas and experiences in all topics related to programming languages, software development, systems and applications. ECOOP welcomes high quality research papers relating to these fields in a broad sense.
+The ACM SIGSOFT International Symposium on Software Testing and Analysis (ISSTA) is the leading research symposium on software testing and analysis, bringing together academics, industrial researchers, and practitioners to exchange new ideas, problems, and experience on how to analyze and test software systems.
+
+2024 will mark the 33rd edition of ISSTA!
