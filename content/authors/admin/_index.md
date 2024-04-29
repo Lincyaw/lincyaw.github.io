@@ -27,16 +27,20 @@ bio: My research interests include software testing and fuzzing.
 # Interests to show in About widget
 interests:
   - Software Testing
+  - AIops
 
 # Education to show in About widget
 education:
   courses:
+    - course: PhD in Computer Science
+      institution: The Chinese University of Hong Kong (Shenzhen)
+      year: 2024-2028
     - course: MPhil in Computer Information and Engineering
       institution: The Chinese University of Hong Kong (Shenzhen)
-      year: 2023-now
+      year: 2023-2024
     - course: BSc in Computer Science
       institution: Harbin Institute of Technology(Shenzhen)
-      year: 2022
+      year: 2018-2022
 
 # Social/Academic Networking
 # For available icons, see: https://wowchemy.com/docs/getting-started/page-builder/#icons
@@ -75,5 +79,7 @@ email: 'lincyaw@foxmail.com'
 highlight_name: true
 ---
 
-I graduated with a bachelor's degree from Harbin Institute of Technology (Shenzhen) and am currently an MPhil candidate in Software Engineering at The Chinese University of Hong Kong, Shenzhen (CUHK(SZ)). My research centers on software testing, with a special focus on fuzz testing. I'm dedicated to advancing software reliability and security through innovative testing methodologies. I warmly welcome collaborations and discussions in this domain.
+I graduated with a bachelor's degree from Harbin Institute of Technology (Shenzhen) and am currently an MPhil candidate in Software Engineering at The Chinese University of Hong Kong, Shenzhen (CUHK(SZ)) and fortunate to be advised by [Prof. Pinjia He](https://pinjiahe.github.io/).
+
+My research centers on software testing, with a special focus on fuzz testing as well as AIops. I'm dedicated to advancing software reliability, security and observerability through innovative testing and monitoring methodologies. I warmly welcome collaborations and discussions in this domain.
 {style="text-align: justify;"}
