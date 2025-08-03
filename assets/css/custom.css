@@ -36,3 +36,66 @@
 .prose li {
   font-size: 0.9rem !important;
 }
+
+
+/* Custom markmap container with larger width - override all parent containers */
+.markmap-container,
+.markmap-container .prose,
+.markmap-container .container,
+.markmap-container .max-w-prose,
+.markmap-container .mx-auto {
+  max-width: none !important;
+  width: 85vw !important;
+  margin-left: calc(-42.5vw + 50%) !important;
+  margin-right: calc(-42.5vw + 50%) !important;
+  padding-left: 3rem !important;
+  padding-right: 3rem !important;
+  position: relative;
+}
+
+.markmap-container {
+  padding-top: 2rem !important;
+  padding-bottom: 2rem !important;
+}
+
+/* Override any parent container restrictions */
+#research .markmap-container {
+  max-width: none !important;
+  width: 85vw !important;
+}
+
+.markmap-container .markmap {
+  width: 100% !important;
+  min-height: 100px !important;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.markmap-container pre {
+  max-width: 100% !important;
+  overflow-x: auto;
+  background: #f8f9fa;
+  border-radius: 6px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+}
+
+/* Markmap interactive link styles */
+.markmap-container .markmap a {
+  color: inherit !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+}
+
+.markmap-container .markmap a:hover {
+  color: #2563eb !important;
+  text-decoration: underline !important;
+}
+
+/* Style for different levels of nodes */
+.markmap-container .markmap .markmap-node {
+  cursor: pointer !important;
+}
+

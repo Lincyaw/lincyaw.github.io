@@ -30,20 +30,26 @@ sections:
           size: cover
           position: center
           parallax: false
-  # - block: markdown
-  #   id: research
-  #   content:
-  #     title: "📚 My Research"
-  #     subtitle: ""
-  #     text: |-
-  #       Use this area to speak to your mission. I'm a research scientist in the Moonshot team at DeepMind. I blog about machine learning, deep learning, and moonshots.
+  - block: markdown
+    id: research
+    content:
+      title: "Research Road Map"
+      subtitle: ""
+      text: |-
+        ```markmap
+        # <a href="/research/">Data-driven Software Reliability</a>
+        
+        ## <a">Software Architecture Recovery</a>
+        
+        ### <a href="/publication/ase23/">[ASE'23] RPCover</a>
 
-  #       I apply a range of qualitative and quantitative methods to comprehensively investigate the role of science and technology in the economy.
+        ## <a>Software Testing</a>
 
-  #       Please reach out to collaborate 😃
-  #   design:
-  #     columns: "1"
-  #     css_class: "wide-content"
+        ### <a href="/publication/ase23/">[ICSE'24] GRev</a>
+        ```
+    design:
+      columns: "1"
+      css_class: "markmap-container"
   # - block: collection
   #   id: featured-papers
   #   content:
