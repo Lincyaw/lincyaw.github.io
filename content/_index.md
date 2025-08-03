@@ -31,6 +31,7 @@ sections:
           position: center
           parallax: false
   # - block: markdown
+  #   id: research
   #   content:
   #     title: "📚 My Research"
   #     subtitle: ""
@@ -42,8 +43,9 @@ sections:
   #       Please reach out to collaborate 😃
   #   design:
   #     columns: "1"
+  #     css_class: "wide-content"
   # - block: collection
-  #   id: papers
+  #   id: featured-papers
   #   content:
   #     title: Featured Publications
   #     filters:
@@ -53,7 +55,9 @@ sections:
   #   design:
   #     view: article-grid
   #     columns: 2
+  #     css_class: "wide-content"
   - block: collection
+    id: papers
     content:
       title: Recent Publications
       text: ""
@@ -63,6 +67,8 @@ sections:
         exclude_featured: false
     design:
       view: citation
+      columns: '1'
+      css_class: "wide-content"
   # - block: collection
   #   id: talks
   #   content:
@@ -73,6 +79,7 @@ sections:
   #   design:
   #     view: article-grid
   #     columns: 1
+  #     css_class: "wide-content"
   - block: collection
     id: news
     content:
@@ -99,6 +106,8 @@ sections:
     design:
       # Choose a layout view
       view: date-title-summary
+      columns: '1'
+      css_class: "wide-content"
       # Reduce spacing
       spacing:
         padding: [0, 0, 0, 0]

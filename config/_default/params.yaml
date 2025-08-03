@@ -17,7 +17,7 @@ marketing:
     description: 'The highly-customizable Hugo Academic theme powered by Hugo Blox Builder. Easily create your personal academic website.'
     twitter: 'GetResearchDev'
   analytics:
-    google_analytics: ''
+    google_analytics: 'G-3NBZL4Y7YB'
     baidu_tongji: ''
     plausible: ''
     fathom: ''
@@ -55,6 +55,55 @@ locale:
 # Site features
 features:
   math:
-    enable: false
+    enable: true
   privacy_pack:
-    enable: false
+    enable: true
+  # Enable custom CSS
+  css:
+    enable: true
+  # Enable content editing features
+  edit_page:
+    repo_url: 'https://github.com/username/repo-name'
+    content_dir: content
+    repo_branch: main
+    editable:
+      page: true
+      post: true
+      book: true
+  # Enable search functionality
+  search:
+    enable: true
+    provider: wowchemy
+    algolia:
+      app_id: ''
+      api_key: ''
+      index_name: ''
+      show_logo: false
+  # Enable map functionality
+  map:
+    provider: 'mapnik'
+    api_key: ''
+    zoom: 15
+  # Enable comments
+  comments:
+    provider: 'disqus'
+    commentable:
+      post: true
+      book: true
+      project: true
+      publication: true
+      event: true
+    disqus:
+      shortname: ''
+  # Enable reading time estimation
+  reading_time: true
+  # Enable section pager
+  section_pager: true
+  # Enable sharing buttons
+  sharing: true
+  # Enable copyright license
+  copyright_license:
+    enable: true
+    allow_derivatives: false
+    share_alike: true
+    allow_commercial: false
