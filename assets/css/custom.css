@@ -1,0 +1,38 @@
+
+/* 调整所有字体大小 */
+.prose {
+  font-size: 0.9rem !important;
+  line-height: 1.6 !important;
+}
+
+.prose h1 {
+  font-size: 2rem !important;
+}
+
+.prose h2 {
+  font-size: 1.6rem !important;
+}
+
+.prose h3 {
+  font-size: 1.3rem !important;
+}
+
+.prose h4 {
+  font-size: 1.1rem !important;
+}
+
+.prose h5 {
+  font-size: 1rem !important;
+}
+
+.prose h6 {
+  font-size: 0.95rem !important;
+}
+
+.prose p {
+  font-size: 0.9rem !important;
+}
+
+.prose li {
+  font-size: 0.9rem !important;
+}

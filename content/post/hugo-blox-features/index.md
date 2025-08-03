@@ -48,8 +48,6 @@ show_breadcrumb: true
 ## 🔗 各种链接类型
 
 ### 内部链接
-- [链接到项目页面]({{< relref "/project/example-project" >}})
-- [链接到演讲页面]({{< relref "/event/example-talk" >}})
 - [滚动到数学公式部分](#数学公式)
 
 ### 外部链接

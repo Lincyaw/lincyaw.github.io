@@ -79,6 +79,15 @@ education:
     #   - lorem ipsum dolor sit amet, consectetur adipiscing elit
     #   - lorem ipsum dolor sit amet, consectetur adipiscing elit
 work:  
+  - position: Research Intern
+    company_name: ByteDance Byte Brain
+    company_url: "https://www.bytedance.com/"
+    date_start: 2025-08-01
+  - position: Research Intern
+    company_name: Microsoft Research Asia (MSRA)
+    company_url: "https://www.microsoft.com/en-us/research/lab/microsoft-research-asia/"
+    date_start: 2025-01-01
+    date_end: 2025-05-31
   - position: USENIX Security '25 Cycle-1 Artifact Reviewer
     date_start: 2024-11-26
     date_end: 2025-04-03
