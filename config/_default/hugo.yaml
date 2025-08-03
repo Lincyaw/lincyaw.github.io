@@ -1,3 +1,59 @@
+title: Hugo Academic CV Theme
+# Website URL
+baseURL: 'https://example.com/'
+>>>>>>> upstream/main
+
+############################
+## LANGUAGE
+############################
+
+defaultContentLanguage: en
+hasCJKLanguage: false
+defaultContentLanguageInSubdir: false
+removePathAccents: true
+
+############################
+## ADVANCED
+############################
+
+build:
+  writeStats: true
+enableGitInfo: false
+summaryLength: 30
+<<<<<<< HEAD
+pagination:
+  pagerSize: 10
+>>>>>>> upstream/main
+enableEmoji: true
+enableRobotsTXT: true
+footnotereturnlinkcontents: <sup>^</sup>
+ignoreFiles: [\.ipynb$, .ipynb_checkpoints$, \.Rmd$, \.Rmarkdown$, _cache$]
+permalinks:
+  authors: '/author/:slug/'
+disableAliases: true
+outputs:
+  home: [HTML, RSS, headers, redirects, backlinks]
+  section: [HTML, RSS]
+imaging:
+  resampleFilter: lanczos
+<<<<<<< HEAD
+  quality: 100
+  quality: 80
+>>>>>>> upstream/main
+  anchor: smart
+timeout: 600000
+taxonomies:
+  author: authors
+  tag: tags
+  publication_type: publication_types
+markup:
+  _merge: deep
+  highlight:
+    lineNos: false
+security:
+  _merge: deep
+sitemap:
+  _merge: deep
 # Configuration of Hugo
 # Guide: https://docs.hugoblox.com/tutorial/
 # Hugo Documentation: https://gohugo.io/getting-started/configuration/#all-configuration-settings
@@ -25,6 +81,8 @@ build:
   writeStats: true
 enableGitInfo: false
 summaryLength: 30
+pagination:
+  pagerSize: 10
 enableEmoji: true
 enableRobotsTXT: true
 footnotereturnlinkcontents: <sup>^</sup>
@@ -37,7 +95,66 @@ outputs:
   section: [HTML, RSS]
 imaging:
   resampleFilter: lanczos
+  quality: 80
+  anchor: smart
+timeout: 600000
+taxonomies:
+  author: authors
+  tag: tags
+  publication_type: publication_types
+markup:
+  _merge: deep
+  highlight:
+    lineNos: false
+security:
+  _merge: deep
+sitemap:
+  _merge: deep
+=======
+title: Hugo Academic CV Theme
+# Website URL
+baseURL: 'https://example.com/'
+>>>>>>> upstream/main
+
+############################
+## LANGUAGE
+############################
+
+defaultContentLanguage: en
+hasCJKLanguage: false
+defaultContentLanguageInSubdir: false
+removePathAccents: true
+
+############################
+## ADVANCED
+############################
+
+build:
+  writeStats: true
+enableGitInfo: false
+summaryLength: 30
+<<<<<<< HEAD
+=======
+pagination:
+  pagerSize: 10
+>>>>>>> upstream/main
+enableEmoji: true
+enableRobotsTXT: true
+footnotereturnlinkcontents: <sup>^</sup>
+ignoreFiles: [\.ipynb$, .ipynb_checkpoints$, \.Rmd$, \.Rmarkdown$, _cache$]
+permalinks:
+  authors: '/author/:slug/'
+disableAliases: true
+outputs:
+  home: [HTML, RSS, headers, redirects, backlinks]
+  section: [HTML, RSS]
+imaging:
+  resampleFilter: lanczos
+<<<<<<< HEAD
   quality: 100
+=======
+  quality: 80
+>>>>>>> upstream/main
   anchor: smart
 timeout: 600000
 taxonomies:
