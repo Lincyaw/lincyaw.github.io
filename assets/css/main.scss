@@ -87,6 +87,7 @@
 
 }
 
+
 $scroll_offset : 2em;
 h1:before, .anchor:before { 
     content: ''; 
@@ -95,15 +96,4 @@ h1:before, .anchor:before {
     width: 0; 
     height: $scroll_offset; 
     margin-top: -$scroll_offset;
-}
-
-.badge {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    position: absolute;
-    margin-top: .5em;
-    margin-left: -.5em;
-    color: white;
-    background-color: #00369f;
-    font-size: .8em;
 }

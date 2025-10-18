@@ -151,3 +151,21 @@
     font-size: $type-size-7;
   }
 }
+
+/* Badge */
+.badge {
+  display: inline;
+  padding: 0.05em 0.2em;
+  font-size: 0.6em;
+  color: #fff;
+  background: #007bff;
+  border-radius: 0.25em;
+  text-decoration: none;
+  margin-left: 0.5em;
+
+  &:hover {
+    background: #0056b3;
+    text-decoration: none;
+    color: #fff;
+  }
+}

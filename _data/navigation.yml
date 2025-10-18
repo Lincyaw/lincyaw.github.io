@@ -4,19 +4,23 @@ main:
     url: "/#about-me"
 
   - title: "News"
-    url: "/#-news"
+    url: "/#news"
 
   - title: "Publications"
-    url: "/#-publications"
+    url: "/#publications"
 
   - title: "Honors and Awards"
-    url: "/#-honors-and-awards"
+    url: "/#honors-and-awards"
 
   - title: "Educations"
-    url: "/#-educations"
+    url: "/#educations"
 
-  - title: "Invited Talks"
-    url: "/#-invited-talks"
+  - title: "Academic Experiences"
+    url: "/#academic-positions-and-internships"
 
-  - title: "Internships"
-    url: "/#-internships"
+  - title: "Industry Experience"
+    url: "/#industry-experience"
+
+  - title: "CV"
+    url: "/assets/pdf/cv.pdf"
+    external: true

@@ -17,42 +17,50 @@ redirect_from:
 
 <span class='anchor' id='about-me'></span>
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. Suspendisse condimentum, libero vel tempus mattis, risus risus vulputate libero, elementum fermentum mi neque vel nisl. Maecenas facilisis maximus dignissim. Curabitur mattis vulputate dui, tincidunt varius libero luctus eu. Mauris mauris nulla, scelerisque eget massa id, tincidunt congue felis. Sed convallis tempor ipsum rhoncus viverra. Pellentesque nulla orci, accumsan volutpat fringilla vitae, maximus sit amet tortor. Aliquam ultricies odio ut volutpat scelerisque. Donec nisl nisl, porttitor vitae pharetra quis, fringilla sed mi. Fusce pretium dolor ut aliquam consequat. Cras volutpat, tellus accumsan mattis molestie, nisl lacus tempus massa, nec malesuada tortor leo vel quam. Aliquam vel ex consectetur, vehicula leo nec, efficitur eros. Donec convallis non urna quis feugiat.
+I graduated with a bachelor's degree from Harbin Institute of Technology (Shenzhen) and am currently a PhD student in Software Engineering at The Chinese University of Hong Kong, Shenzhen (CUHK(SZ)) and fortunate to be advised by [Prof. Pinjia He](https://pinjiahe.github.io/).
 
-My research interest includes neural machine translation and computer vision. I have published more than 100 papers at the top international AI conferences with total <a href='https://scholar.google.com/citations?user=DhtAFkwAAAAJ'>google scholar citations <strong><span id='total_cit'>260000+</span></strong></a> (You can also use google scholar badge <a href='https://scholar.google.com/citations?user=DhtAFkwAAAAJ'><img src="https://img.shields.io/endpoint?url={{ url | url_encode }}&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=citations"></a>).
+My research centers on software testing, with a special focus on fuzz testing as well as AIops. I'm dedicated to advancing software reliability, security and observability through innovative testing and monitoring methodologies. I warmly welcome collaborations and discussions in this domain.
+
+My research interests include Software Testing, AIops/Devops, and AI4SE. 
+
+# 🔥 News {#news}
+- *2025.10*: &nbsp;🎉🎉 Our paper "An Empirical Study of SOTA RCA Models: From Oversimplified Benchmarks to Realistic Failures" has preprint available on Arxiv!
+- *2025.09*: &nbsp;🎉🎉 Our paper "Triangle: Empowering Incident Triage with Multi-Agent" has been directly accepted by ASE 2025!
+- *2024.09*: &nbsp;🎉🎉 I have been invited to serve on the Artifact Reviewer Program Committee for TACAS 2025.
+- *2024.09*: &nbsp;🎉🎉 Recieved ECOOP'24 Distinguished Artifact Reviewer Award!
+- *2024.09*: &nbsp;🎉🎉 I have been invited to serve on the Artifact Reviewer Program Committee for ICSE 2025.
 
 
-# 🔥 News
-- *2022.02*: &nbsp;🎉🎉 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-- *2022.02*: &nbsp;🎉🎉 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
+# 📝 Publications {#publications} 
 
-# 📝 Publications 
+- `Arxiv` [An Empirical Study of SOTA RCA Models: From Oversimplified Benchmarks to Realistic Failures](https://www.arxiv.org/abs/2510.04711), **Aoyang Fang**, Songhan Zhang, Yifan Yang, Haotong Wu, Junjielong Xu, Xuyang Wang, Rui Wang, Manyi Wang, Qisheng Lu, Pinjia He
+- `ASE'25` [Triangle: Empowering Incident Triage with Multi-Agent](/assets/publications/ase25/ASE_triangle.pdf), Zhaoyang Yu, **Aoyang Fang** (co-first author), Minghua Ma, Jaskaran Singh Walia, Chaoyun Zhang, Ze Li, Murali Chintalapati, Xuchao Zhang, Rujia Wang, Chetan Bansal, Saravan Rajmohan, Qingwei Lin, Shenglin Zhang, Dan Pei, Pinjia He
+- `ICSE'24` [Testing Graph Database Systems via Equivalent Query Rewriting](/assets/publications/icse24/grev.pdf), Qiuyang Mang, **Aoyang Fang** (co-first author), Boxi Yu, Hanfei Chen, Pinjia He <a href="https://github.com/CUHK-SE-Group/GRev" class="badge">Code</a>
+- `ASE'23` [RPCover: Recovering gRPC Dependency in Multilingual Projects](/assets/publications/ase23/ASE_grpc.pdf), Aoyang Fang, Ruiyu Zhou, Xiaoying Tang, Pinjia He <a href="https://github.com/CUHK-SE-Group/protoc-gen-scip" class="badge">Code</a>
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">CVPR 2016</div><img src='images/500x300.png' alt="sym" width="100%"></div></div>
-<div class='paper-box-text' markdown="1">
 
-[Deep Residual Learning for Image Recognition](https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf)
+# 🎖 Honors and Awards {#honors-and-awards}
+- *2024.09* Distinguished Artifact Reviewer Award, ECOOP. 4 reviewers (out of 61) whose reviews and contributions to the discussions stood out and to whom we would like to present a Distinguished Artifact Reviewer award.
+- *2023.09* Distinguished Paper Award of Industry Challenge Track, ASE. 
 
-**Kaiming He**, Xiangyu Zhang, Shaoqing Ren, Jian Sun
+# 📖 Educations {#educations}
+- *2024.09 - 2028.07*, PhD in Computer Science, The Chinese University of Hong Kong (Shenzhen)
+- *2023.01 - 2024.07*, MPhil in Computer Information and Engineering, The Chinese University of Hong Kong (Shenzhen)
+- *2018.09 - 2022.06*, BSc in Computer Science, Harbin Institute of Technology(Shenzhen) 
 
-[**Project**](https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=DhtAFkwAAAAJ&citation_for_view=DhtAFkwAAAAJ:ALROH1vI_8AC) <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
-- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-</div>
-</div>
+# 💻 Academic Positions and Internships {#academic-positions-and-internships}
+- *2025.08 - Present*, Research Intern, [ByteDance Byte Brain](https://www.bytedance.com/)
+- *2025.01 - 2025.05*, Research Intern, [Microsoft Research Asia (MSRA)](https://www.microsoft.com/en-us/research/lab/microsoft-research-asia/)
+- *2024.11 - 2025.04*, USENIX Security '25 Cycle-1 Artifact Reviewer
+- *2024.09 - 2025.02*, TACAS'25 Artifact Reviewer
+- *2024.09 - Present*, ICSE'25 Artifact Reviewer
+- *2024.08 - 2024.09*, ISSRE'24 Artifact Reviewer
+- *2024.04 - 2024.05*, ATC'24 Artifact Reviewer
+- *2024.04 - 2024.05*, OSDI'24 Artifact Reviewer
+- *2024.03 - 2024.04*, TOSEM'24 Reviewer
+- *2024.01 - 2024.02*, ISSTA'24 Artifact Reviewer
+- *2023.12 - 2024.01*, ECOOP'24, Extended Reviewer and Artifact Reviewer
+- *2023.12 - 2023.12*, TACAS'24 Artifact Reviewer
 
-- [Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet](https://github.com), A, B, C, **CVPR 2020**
-
-# 🎖 Honors and Awards
-- *2021.10* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-- *2021.09* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-
-# 📖 Educations
-- *2019.06 - 2022.04 (now)*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-- *2015.09 - 2019.06*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-
-# 💬 Invited Talks
-- *2021.06*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-- *2021.03*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet.  \| [\[video\]](https://github.com/)
-
-# 💻 Internships
-- *2019.05 - 2020.02*, [Lorem](https://github.com/), China.
+# 💼 Industry Experience {#industry-experience}
+- *2022.03 - 2022.09*, Backend Software Engineer, [Shopee Pte. Ltd.](https://shopee.com/)
