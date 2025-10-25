@@ -46,7 +46,7 @@ I warmly welcome collaborations and discussions in this domain (DevOps, MLOps, L
 - *2023.09* Distinguished Paper Award of Industry Challenge Track, ASE. 
 
 # 📖 Educations {#educations}
-- *2024.09 - 2028.07*, PhD in Computer Science, The Chinese University of Hong Kong (Shenzhen)
+- *2024.09 - now*, PhD in Computer Science, The Chinese University of Hong Kong (Shenzhen)
 - *2023.01 - 2024.07*, MPhil in Computer Information and Engineering, The Chinese University of Hong Kong (Shenzhen)
 - *2018.09 - 2022.06*, BSc in Computer Science, Harbin Institute of Technology(Shenzhen) 
 
