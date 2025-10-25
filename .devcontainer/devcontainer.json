@@ -1,0 +1,61 @@
+{
+  "name": "Jekyll GitHub Pages Development",
+  "dockerFile": "Dockerfile",
+  
+  // Configure tool-specific properties
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.vscode-json",
+        "redhat.vscode-yaml",
+        "bradlc.vscode-tailwindcss",
+        "ms-vscode.vscode-css-peek",
+        "formulahendry.auto-rename-tag",
+        "ms-vscode.vscode-html-preview",
+        "yzhang.markdown-all-in-one",
+        "DavidAnson.vscode-markdownlint",
+        "streetsidesoftware.code-spell-checker"
+      ],
+      "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash",
+        "files.associations": {
+          "*.md": "markdown",
+          "*.yml": "yaml",
+          "*.yaml": "yaml"
+        },
+        "markdown.preview.breaks": true,
+        "markdown.preview.linkify": true
+      }
+    }
+  },
+
+  // Use 'forwardPorts' to make a list of ports inside the container available locally
+  "forwardPorts": [4000],
+  
+  // Ports description
+  "portsAttributes": {
+    "4000": {
+      "label": "Jekyll Server",
+      "onAutoForward": "notify"
+    }
+  },
+
+  // Use 'postCreateCommand' to run commands after the container is created
+  "postCreateCommand": "bundle install",
+
+  // Use 'postStartCommand' to run commands after the container starts
+  "postStartCommand": "echo 'Jekyll development environment is ready! Run: bundle exec jekyll serve --host 0.0.0.0 --livereload'",
+
+  // Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root
+  "remoteUser": "root",
+
+  // Mount the local folder to a volume for better performance on Windows/macOS
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/site,type=bind,consistency=cached"
+  ],
+
+  // Set environment variables
+  "containerEnv": {
+    "BUNDLE_PATH": "/usr/local/bundle"
+  }
+}
