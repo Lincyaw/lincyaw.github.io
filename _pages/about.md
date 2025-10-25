@@ -24,6 +24,7 @@ My research centers on software testing, with a special focus on fuzz testing as
 My research interests include Software Testing, AIops/Devops, and AI4SE. 
 
 # 🔥 News {#news}
+- *2025.10*: &nbsp;🎉🎉 Our paper "A Goal-Driven Survey on Root Cause Analysis" has preprint available on Arxiv!
 - *2025.10*: &nbsp;🎉🎉 Our paper "An Empirical Study of SOTA RCA Models: From Oversimplified Benchmarks to Realistic Failures" has preprint available on Arxiv!
 - *2025.09*: &nbsp;🎉🎉 Our paper "Triangle: Empowering Incident Triage with Multi-Agent" has been directly accepted by ASE 2025!
 - *2024.09*: &nbsp;🎉🎉 I have been invited to serve on the Artifact Reviewer Program Committee for TACAS 2025.
@@ -33,6 +34,7 @@ My research interests include Software Testing, AIops/Devops, and AI4SE.
 
 # 📝 Publications {#publications} 
 
+- `Arxiv` [A Goal-Driven Survey on Root Cause Analysis](https://arxiv.org/abs/2510.19593), **Aoyang Fang**, Haowen Yang, Haoze Dong, Qisheng Lu, Junjielong Xu, Pinjia He
 - `Arxiv` [An Empirical Study of SOTA RCA Models: From Oversimplified Benchmarks to Realistic Failures](https://www.arxiv.org/abs/2510.04711), **Aoyang Fang**, Songhan Zhang, Yifan Yang, Haotong Wu, Junjielong Xu, Xuyang Wang, Rui Wang, Manyi Wang, Qisheng Lu, Pinjia He
 - `ASE'25` [Triangle: Empowering Incident Triage with Multi-Agent](/assets/publications/ase25/ASE_triangle.pdf), Zhaoyang Yu, **Aoyang Fang** (co-first author), Minghua Ma, Jaskaran Singh Walia, Chaoyun Zhang, Ze Li, Murali Chintalapati, Xuchao Zhang, Rujia Wang, Chetan Bansal, Saravan Rajmohan, Qingwei Lin, Shenglin Zhang, Dan Pei, Pinjia He
 - `ICSE'24` [Testing Graph Database Systems via Equivalent Query Rewriting](/assets/publications/icse24/grev.pdf), Qiuyang Mang, **Aoyang Fang** (co-first author), Boxi Yu, Hanfei Chen, Pinjia He <a href="https://github.com/CUHK-SE-Group/GRev" class="badge">Code</a>
