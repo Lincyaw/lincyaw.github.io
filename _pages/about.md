@@ -17,11 +17,11 @@ redirect_from:
 
 <span class='anchor' id='about-me'></span>
 
-I graduated with a bachelor's degree from Harbin Institute of Technology (Shenzhen) and am currently a PhD student in Software Engineering at The Chinese University of Hong Kong, Shenzhen (CUHK(SZ)) and fortunate to be advised by [Prof. Pinjia He](https://pinjiahe.github.io/).
+I graduated with a bachelor's degree from Harbin Institute of Technology (Shenzhen) and am currently a PhD student in School of Data Science at The Chinese University of Hong Kong, Shenzhen (CUHK(SZ)) and fortunate to be advised by [Prof. Pinjia He](https://pinjiahe.github.io/).
 
-My research centers on software testing, with a special focus on fuzz testing as well as AIops. I'm dedicated to advancing software reliability, security and observability through innovative testing and monitoring methodologies. I warmly welcome collaborations and discussions in this domain.
+My research centers on software reliability, security and observability through innovative testing and monitoring methodologies. 
 
-My research interests include Software Testing, AIops/Devops, and AI4SE. 
+I warmly welcome collaborations and discussions in this domain (DevOps, MLOps, LLMOps, AI4SE, SE4AI). 
 
 # 🔥 News {#news}
 - *2025.10*: &nbsp;🎉🎉 Our paper "A Goal-Driven Survey on Root Cause Analysis" has preprint available on Arxiv!
