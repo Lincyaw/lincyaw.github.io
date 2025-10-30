@@ -40,7 +40,7 @@ I warmly welcome collaborations and discussions in this domain (DevOps, MLOps, L
 - `Arxiv` [An Empirical Study of SOTA RCA Models: From Oversimplified Benchmarks to Realistic Failures](https://www.arxiv.org/abs/2510.04711), **Aoyang Fang**, Songhan Zhang, Yifan Yang, Haotong Wu, Junjielong Xu, Xuyang Wang, Rui Wang, Manyi Wang, Qisheng Lu, Pinjia He
 - `ASE'25` [Triangle: Empowering Incident Triage with Multi-Agent](/assets/publications/ase25/ASE_triangle.pdf), Zhaoyang Yu, **Aoyang Fang** (co-first author), Minghua Ma, Jaskaran Singh Walia, Chaoyun Zhang, Ze Li, Murali Chintalapati, Xuchao Zhang, Rujia Wang, Chetan Bansal, Saravan Rajmohan, Qingwei Lin, Shenglin Zhang, Dan Pei, Pinjia He
 - `ICSE'24` [Testing Graph Database Systems via Equivalent Query Rewriting](/assets/publications/icse24/grev.pdf), Qiuyang Mang, **Aoyang Fang** (co-first author), Boxi Yu, Hanfei Chen, Pinjia He <a href="https://github.com/CUHK-SE-Group/GRev" class="badge">Code</a>
-- `ASE'23` [RPCover: Recovering gRPC Dependency in Multilingual Projects](/assets/publications/ase23/ASE_grpc.pdf), Aoyang Fang, Ruiyu Zhou, Xiaoying Tang, Pinjia He <a href="https://github.com/CUHK-SE-Group/protoc-gen-scip" class="badge">Code</a>
+- `ASE'23` [RPCover: Recovering gRPC Dependency in Multilingual Projects](/assets/publications/ase23/ASE_grpc.pdf), **Aoyang Fang**, Ruiyu Zhou, Xiaoying Tang, Pinjia He <a href="https://github.com/CUHK-SE-Group/protoc-gen-scip" class="badge">Code</a>
 
 
 # 🎖 Honors and Awards {#honors-and-awards}
