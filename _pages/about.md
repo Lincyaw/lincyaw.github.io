@@ -57,7 +57,7 @@ I warmly welcome collaborations and discussions in this domain (DevOps, MLOps, L
 - *2025.01 - 2025.05*, Research Intern, [Microsoft Research Asia (MSRA)](https://www.microsoft.com/en-us/research/lab/microsoft-research-asia/)
 - *2024.11 - 2025.04*, USENIX Security '25 Cycle-1 Artifact Reviewer
 - *2024.09 - 2025.02*, TACAS'25 Artifact Reviewer
-- *2024.09 - Present*, ICSE'25 Artifact Reviewer
+- *2024.09 - 2025.02*, ICSE'25 Artifact Reviewer
 - *2024.08 - 2024.09*, ISSRE'24 Artifact Reviewer
 - *2024.04 - 2024.05*, ATC'24 Artifact Reviewer
 - *2024.04 - 2024.05*, OSDI'24 Artifact Reviewer
@@ -65,6 +65,11 @@ I warmly welcome collaborations and discussions in this domain (DevOps, MLOps, L
 - *2024.01 - 2024.02*, ISSTA'24 Artifact Reviewer
 - *2023.12 - 2024.01*, ECOOP'24, Extended Reviewer and Artifact Reviewer
 - *2023.12 - 2023.12*, TACAS'24 Artifact Reviewer
+
+# 🎓 Teaching Assistant {#teaching-assistant}
+- *2025 Fall*, Teaching Assistant, CSC1001: Introduction to Computer Science: Programming Methodology
+- *2025 Fall*, Leading Teaching Assistant, AIE1001: Introduction to AI Programming
+- *2025 Spring*, Teaching Assistant, CSC4001: Software Engineering
 
 # 💼 Industry Experience {#industry-experience}
 - *2022.03 - 2022.09*, Backend Software Engineer, [Shopee Pte. Ltd.](https://shopee.com/)
