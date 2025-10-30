@@ -24,6 +24,7 @@ My research centers on software reliability, security and observability through 
 I warmly welcome collaborations and discussions in this domain (DevOps, MLOps, LLMOps, AI4SE, SE4AI). 
 
 # 🔥 News {#news}
+- *2025.10*: &nbsp;🎉🎉 Our paper "DynaCausal: Dynamic Causality-Aware Root Cause Analysis for Distributed Microservices" has preprint available on Arxiv!
 - *2025.10*: &nbsp;🎉🎉 Our paper "A Goal-Driven Survey on Root Cause Analysis" has preprint available on Arxiv!
 - *2025.10*: &nbsp;🎉🎉 Our paper "An Empirical Study of SOTA RCA Models: From Oversimplified Benchmarks to Realistic Failures" has preprint available on Arxiv!
 - *2025.09*: &nbsp;🎉🎉 Our paper "Triangle: Empowering Incident Triage with Multi-Agent" has been directly accepted by ASE 2025!
@@ -34,6 +35,7 @@ I warmly welcome collaborations and discussions in this domain (DevOps, MLOps, L
 
 # 📝 Publications {#publications} 
 
+- `Arxiv` [DynaCausal: Dynamic Causality-Aware Root Cause Analysis for Distributed Microservices](https://arxiv.org/abs/2510.22613), Songhan Zhang, **Aoyang Fang**, Yifan Yang, Ruiyi Cheng, Xiaoying Tang, Pinjia He
 - `Arxiv` [A Goal-Driven Survey on Root Cause Analysis](https://arxiv.org/abs/2510.19593), **Aoyang Fang**, Haowen Yang, Haoze Dong, Qisheng Lu, Junjielong Xu, Pinjia He
 - `Arxiv` [An Empirical Study of SOTA RCA Models: From Oversimplified Benchmarks to Realistic Failures](https://www.arxiv.org/abs/2510.04711), **Aoyang Fang**, Songhan Zhang, Yifan Yang, Haotong Wu, Junjielong Xu, Xuyang Wang, Rui Wang, Manyi Wang, Qisheng Lu, Pinjia He
 - `ASE'25` [Triangle: Empowering Incident Triage with Multi-Agent](/assets/publications/ase25/ASE_triangle.pdf), Zhaoyang Yu, **Aoyang Fang** (co-first author), Minghua Ma, Jaskaran Singh Walia, Chaoyun Zhang, Ze Li, Murali Chintalapati, Xuchao Zhang, Rujia Wang, Chetan Bansal, Saravan Rajmohan, Qingwei Lin, Shenglin Zhang, Dan Pei, Pinjia He
