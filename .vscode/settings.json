@@ -1,0 +1,76 @@
+{
+    // LaTeX Workshop 配置
+    "latex-workshop.latex.tools": [
+        {
+            "name": "pdflatex",
+            "command": "pdflatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOCFILE%"
+            ]
+        },
+        {
+            "name": "biber",
+            "command": "biber",
+            "args": [
+                "%DOCFILE%"
+            ]
+        }
+    ],
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "pdflatex + biber + pdflatex × 2",
+            "tools": [
+                "pdflatex",
+                "biber",
+                "pdflatex",
+                "pdflatex"
+            ]
+        },
+        {
+            "name": "pdflatex",
+            "tools": [
+                "pdflatex"
+            ]
+        }
+    ],
+    // 设置默认的编译配方
+    "latex-workshop.latex.recipe.default": "pdflatex + biber + pdflatex × 2",
+    
+    // 自动编译设置
+    "latex-workshop.latex.autoBuild.run": "onSave",
+    
+    // 清理辅助文件
+    "latex-workshop.latex.clean.fileTypes": [
+        "*.aux",
+        "*.bbl",
+        "*.blg",
+        "*.idx",
+        "*.ind",
+        "*.lof",
+        "*.lot",
+        "*.out",
+        "*.toc",
+        "*.acn",
+        "*.acr",
+        "*.alg",
+        "*.glg",
+        "*.glo",
+        "*.gls",
+        "*.fls",
+        "*.log",
+        "*.fdb_latexmk",
+        "*.bcf",
+        "*.run.xml",
+        "*.synctex.gz"
+    ],
+    
+    // PDF 查看器设置
+    "latex-workshop.view.pdf.viewer": "tab",
+    
+    // 错误显示设置
+    "latex-workshop.message.error.show": true,
+    "latex-workshop.message.warning.show": false
+}

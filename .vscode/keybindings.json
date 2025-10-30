@@ -1,0 +1,14 @@
+[
+    {
+        "key": "ctrl+alt+b",
+        "command": "workbench.action.tasks.runTask",
+        "args": "LaTeX: Build CV (pdflatex + biber)",
+        "when": "resourceExtname == .tex"
+    },
+    {
+        "key": "ctrl+alt+c",
+        "command": "workbench.action.tasks.runTask", 
+        "args": "LaTeX: Clean auxiliary files",
+        "when": "resourceExtname == .tex"
+    }
+]

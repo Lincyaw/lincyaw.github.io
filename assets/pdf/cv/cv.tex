@@ -1,0 +1,93 @@
+\documentclass{academcv}
+
+% ---- BibLaTeX configuration ----
+\usepackage[backend=biber,style=ieee,maxbibnames=10,minbibnames=3,sorting=none]{biblatex}
+\addbibresource{publications.bib}
+
+% ---- Personal Information (CUSTOMIZE THESE) ----
+\Name{Aoyang Fang}
+\Affiliation{Ph.D. Student, School of Data Science, The Chinese University of Hong Kong, Shenzhen}
+\Email{aoyangfang@link.cuhk.edu.cn}
+\Homepage{https://profile.aoyangfang.top/}
+\Github{https://github.com/Lincyaw}
+% \LinkedIn{}
+% \Orcid{}
+% \Phone{}
+\Location{Shenzhen, China}
+
+\begin{document}
+
+\makecvheader
+
+% ====== Research Interests ======
+\cvsection{Research Interests}
+\textcolor{cvgray}{
+My research focuses on leveraging AI for Software Engineering, particularly LLM-based approaches, to advance root cause localization and enhance the stability, reliability, and resilience of large-scale software systems.
+}
+
+% ====== Education ======
+\cvsection{Education}
+\cventry{2024 -- Present}{Ph.D. in Computer Science}{The Chinese University of Hong Kong, Shenzhen}{Shenzhen, China}{}
+\vspace{-0.8em}
+\cventry{2023 -- 2024}{MPhil. in Computer Information and Engineering}{The Chinese University of Hong Kong, Shenzhen}{Shenzhen, China}{}
+\vspace{-0.8em}
+\cventry{2018 -- 2022}{B.Sc. in Computer Science and Technology}{Harbin Institute of Technology, Shenzhen}{Shenzhen, China}{}
+\vspace{-1em}
+
+% ====== Publications ======
+\cvsection{Publications}
+\nocite{*}
+\printbibliography[title={},heading=none]
+
+
+% ====== Professional Experience ======
+\cvsection{Professional Experience}
+\cventry{2025.8 -- now}{Research Intern}{Bytedance ByteBrain}{}{Led the research on root cause analysis}
+\cventry{2025.1 -- 2025.5}{Research Intern}{Microsoft Research Asia}{}{Led the research on automated incident triage}
+\cventry{2022.3 -- 2022.9}{Full-time Backend Developer}{Shopee Pte. Ltd}{}{Backend development and system implementation}
+
+% ====== Academic Service ======
+\cvsection{Academic Service}
+\textbf{Artifact Evaluation Committee:}
+\begin{itemize}
+  \item 2025: ICSE, USENIX Security
+  \item 2024: ISSRE, ATC, OSDI, ISSTA, ECOOP, TACAS
+\end{itemize}
+
+\textbf{Reviewer:}
+\begin{itemize}
+  \item TOSEM 2024
+\end{itemize}
+
+\textbf{Teaching Assistant:}
+\begin{itemize}
+  \item CSC4001 Software Engineering, Spring 2025
+  \item CSC1001 Introduction to Computer Science: Programming Methodology, Fall 2025
+  \item AIE1001 Introduction to AI Programming, Fall 2025
+\end{itemize}
+
+% ====== Awards \& Honors ======
+\cvsection{Awards \& Honors}
+\begin{itemize}
+  \item School of Data Science Merit Scholarship, 2024
+  \item The 1st China Graduate Operating System Open Source Innovation Competition, Third Prize, 2024
+  \item ECOOP'24 Distinguished Artifact Reviewer Award, 2024
+  \item ASE'23 Distinguished Paper Award of Industry Challenge Track, 2023
+  \item National Student Computer System Ability Competition, Operating System Design Competition, Second Prize, 2021
+  \item Harbin Institute of Technology (Shenzhen) Undergraduate Academic Scholarship, 2021
+  \item Harbin Institute of Technology (Shenzhen) "Outstanding Student Leaders" Scholarship, 2021
+\end{itemize}
+
+% ====== Technical Skills ======
+% \cvsection{Technical Skills}
+% \textbf{Programming Languages:} Go, Python \\
+% \textbf{Systems:} Linux Operations, Service Development and Deployment \\
+% \textbf{Research Areas:} Software Engineering, Automated Systems \\
+% \textbf{Tools \& Platforms:} Git, Docker, Linux, \LaTeX
+
+
+% ====== Last updated ======
+% \vfill
+% \begin{center}\footnotesize Last updated: \today\end{center}
+
+\end{document}
