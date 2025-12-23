@@ -24,7 +24,7 @@ My research centers on software reliability, security and observability through 
 I warmly welcome collaborations and discussions in this domain (DevOps, MLOps, LLMOps, AI4SE, SE4AI). 
 
 # 🔥 News {#news}
-- *2025.12*: &nbsp;🎉🎉 Our paper "Rethinking the Evaluation of Microservice RCA with a Fault Propagation-Aware Benchmark" (arxiv version: "An Empirical Study of ...") has been accepted by FSE 2026!
+- *2025.12*: &nbsp;🎉🎉 Our paper "Rethinking the Evaluation of Microservice RCA with a Fault Propagation-Aware Benchmark" (arxiv version: "An Empirical Study of ...") has been directly accepted by FSE 2026 (**Direct Accept**, 87/920, 9.5%)!
 - *2025.10*: &nbsp;🎉🎉 Our paper "DynaCausal: Dynamic Causality-Aware Root Cause Analysis for Distributed Microservices" has preprint available on Arxiv!
 - *2025.10*: &nbsp;🎉🎉 Our paper "A Goal-Driven Survey on Root Cause Analysis" has preprint available on Arxiv!
 - *2025.10*: &nbsp;🎉🎉 Our paper "An Empirical Study of SOTA RCA Models: From Oversimplified Benchmarks to Realistic Failures" has preprint available on Arxiv!
