@@ -1,4 +1,21 @@
 <script src="assets/js/main.min.js"></script>
 
+<!-- Mermaid for diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'base',
+    themeVariables: {
+      primaryColor: '#e8f4fd',
+      primaryTextColor: '#24292e',
+      primaryBorderColor: '#0366d6',
+      lineColor: '#586069',
+      secondaryColor: '#f6f8fa',
+      tertiaryColor: '#fff'
+    }
+  });
+</script>
+
 {% include analytics.html %}
 {% include fetch_google_scholar_stats.html %}
