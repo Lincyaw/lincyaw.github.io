@@ -87,7 +87,7 @@ function research(): string {
     </article>`
   }
   return `<section class="px-section" id="research" aria-labelledby="research-title">
-    <div class="px-section__head"><h2 id="research-title">Research</h2><p>Two directions between LLMs and software.</p></div>
+    <div class="px-section__head"><h2 id="research-title">Research</h2></div>
     <div class="px-research">${lane('llm4se')}${lane('se4llm')}</div>
   </section>`
 }
@@ -113,7 +113,7 @@ function papers(): string {
     <button type="button" class="px-button px-button--dark" data-open="${paper.id}">${PLAY}1:00</button>
   </li>`).join('')}</ol>`
   return `<section class="px-section" id="papers" aria-labelledby="papers-title">
-    <div class="px-section__head px-section__head--tools"><h2 id="papers-title">Papers</h2><p>Each with a one-minute film.</p>
+    <div class="px-section__head px-section__head--tools"><h2 id="papers-title">Papers</h2>
       <div class="px-filters" role="group" aria-label="Filter by thread">${filters}</div>
       <div class="px-toggle" role="group" aria-label="View"><button type="button" data-view="map" aria-pressed="${state.view === 'map'}">Map</button><button type="button" data-view="list" aria-pressed="${state.view === 'list'}">List</button></div>
     </div>
