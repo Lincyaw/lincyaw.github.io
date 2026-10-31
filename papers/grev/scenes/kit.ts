@@ -16,7 +16,7 @@ const BASE = `
   .mono { font-family: 'IBM Plex Mono', var(--pm-font-mono), ui-monospace, monospace; }
   .card { position: absolute; background: var(--white); border: 0.22cqw solid var(--ink); box-shadow: 0.55cqw 0.55cqw 0 var(--ink); }
   .label { position: absolute; font-family: 'Silkscreen', ui-monospace, monospace; font-size: 1.7cqw; color: var(--muted); white-space: nowrap; }
-  .caption { position: absolute; left: 0; right: 0; bottom: 4.5cqh; z-index: 2; text-align: center; font-family: 'Silkscreen', ui-monospace, monospace; font-size: 2.6cqw; color: var(--ink); white-space: nowrap; }
+  .caption { position: absolute; left: 0; right: 0; bottom: 4.5cqh; z-index: 2; text-align: center; font-family: 'Silkscreen', ui-monospace, monospace; font-size: 2.1cqw; color: var(--ink); white-space: nowrap; }
   .src { position: absolute; right: 2.4cqw; bottom: 2.2cqh; font-size: 1.35cqw; color: var(--muted); white-space: nowrap; }
 `
 

@@ -57,17 +57,18 @@ export default gsapScene(({ root, gsap, durations }) => {
     <div class="card panel r">
       <div class="head">Split the filter</div>
       <svg viewBox="0 0 60 46" preserveAspectRatio="xMidYMid meet">
-        <g class="bar match"><rect x="4" y="2" width="30" height="7" /><text x="19" y="6.6">MATCH (a)-[]-&gt;(b)</text></g>
-        <g class="bar where"><rect x="35" y="2" width="21" height="7" /><text x="45.5" y="6.6">WHERE p</text></g>
-        <g class="part p1"><rect x="34" y="15" width="10" height="6" /><text x="39" y="18.8">p</text></g>
-        <g class="part p2"><rect x="45.5" y="15" width="12" height="6" /><text x="51.5" y="18.8">NOT p</text></g>
-        <g class="part p3"><rect x="38" y="24" width="17" height="6" /><text x="46.5" y="27.8">p IS NULL</text></g>
+        <g class="bar match"><rect x="4" y="2" width="30" height="7" /><text x="19" y="6.6">graph walk</text></g>
+        <g class="bar where"><rect x="35" y="2" width="21" height="7" /><text x="45.5" y="6.6">filter</text></g>
+        <g class="part p1"><rect x="34" y="15" width="10" height="6" /><text x="39" y="18.8">true</text></g>
+        <g class="part p2"><rect x="45.5" y="15" width="12" height="6" /><text x="51.5" y="18.8">false</text></g>
+        <g class="part p3"><rect x="38" y="24" width="17" height="6" /><text x="46.5" y="27.8">null</text></g>
         <path class="walk" d="M 19 9 V 36" /><text class="walk-label" x="19" y="40">walk unchanged</text>
         <g class="bug"><circle cx="19" cy="26" r="1.6" /><text x="12" y="26.8">bug</text></g>
       </svg>
       <div class="need">touches: the filter only</div>
     </div>
-    <div class="caption">Bugs in the walk slip past</div>`)
+    <div class="caption cap1">Differential testing compares answers from two databases that speak Cypher</div>
+    <div class="caption cap2">Partitioning splits the filter three ways; the walk never changes</div>`)
   const D = durations[0] / 1000
   const q = (s: string) => f.querySelectorAll(s)
   const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
@@ -87,7 +88,9 @@ export default gsapScene(({ root, gsap, durations }) => {
     .from(q('.walk-label'), { autoAlpha: 0, duration: 0.3 }, 0.72 * D)
     .from(q('.panel.r .need'), { autoAlpha: 0, duration: 0.3 }, 0.74 * D)
     .from(q('.bug'), { autoAlpha: 0, scale: 2.2, transformOrigin: '50% 50%', duration: 0.45, ease: 'back.out(2)' }, 0.8 * D)
-    .from(pick(f, '.caption'), { autoAlpha: 0, yPercent: 40, duration: 0.4 }, 0.86 * D)
+    .from(pick(f, '.cap1'), { autoAlpha: 0, yPercent: 40, duration: 0.4 }, 0.06 * D)
+    .to(pick(f, '.cap1'), { autoAlpha: 0, duration: 0.25 }, 0.4 * D)
+    .from(pick(f, '.cap2'), { autoAlpha: 0, yPercent: 40, duration: 0.4 }, 0.43 * D)
     .set({}, {}, D)
   return tl
 })

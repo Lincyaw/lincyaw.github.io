@@ -35,7 +35,8 @@
       "children": [
         "two-answers-to-one-question--text-0",
         "two-answers-to-one-question--scene",
-        "two-answers-to-one-question--text-1"
+        "two-answers-to-one-question--text-1",
+        "two-answers-to-one-question--code-2"
       ],
       "stepOrder": [
         "two-answers-to-one-question--step"
@@ -283,6 +284,15 @@
           ]
         }
       ]
+    },
+    "two-answers-to-one-question--code-2": {
+      "id": "two-answers-to-one-question--code-2",
+      "type": "code",
+      "only": [
+        "web"
+      ],
+      "language": "cypher",
+      "value": "// query 1: counts 7\nMATCH (A)-[]->(B :L1), (C)<-[]-(A)\nMATCH (C)<-[]-(D :L2)-[]->(D :L2) RETURN COUNT(*)\n\n// query 2: counts 8\nMATCH (C)<-[]-(A)-[]->(B :L1)\nMATCH (C)<-[]-(D :L2)-[]->(D :L2) RETURN COUNT(*)"
     },
     "two-answers-to-one-question--scene": {
       "id": "two-answers-to-one-question--scene",
@@ -1214,7 +1224,7 @@
           "children": [
             {
               "type": "text",
-              "text": "Film music: “Investigations” by Kevin MacLeod ("
+              "text": "Film music: “Thinking Music” by Kevin MacLeod ("
             },
             {
               "type": "link",
@@ -1274,6 +1284,10 @@
         },
         {
           "blockId": "two-answers-to-one-question--text-1",
+          "visible": true
+        },
+        {
+          "blockId": "two-answers-to-one-question--code-2",
           "visible": true
         }
       ],
@@ -1469,8 +1483,8 @@
       "id": "film-score",
       "kind": "audio",
       "location": "audio/score.ogg",
-      "title": "GRev film · score (music: “Investigations”, Kevin MacLeod, incompetech.com, CC BY 4.0)",
-      "fingerprint": "sha256:207137e255dfe0b4f65e18efaef0cc10c56f7f79b26a896406d4a28f5c6c98f8",
+      "title": "GRev film · score (music: “Thinking Music”, Kevin MacLeod, incompetech.com, CC BY 4.0)",
+      "fingerprint": "sha256:173db4169083c1c22ec8f5ca2e77bf4d8cc652b00f30305d363329f8df3be366",
       "mediaType": "audio/ogg"
     },
     "the-question-is-a-graph--image-1-asset": {
@@ -1501,7 +1515,7 @@
         "plugin": "presmium.motion",
         "name": "PmScene",
         "durations": [
-          8000
+          9200
         ],
         "fallback": {
           "type": "root",
@@ -1657,7 +1671,7 @@
         "plugin": "presmium.motion",
         "name": "PmScene",
         "durations": [
-          9000
+          11000
         ],
         "fallback": {
           "type": "root",

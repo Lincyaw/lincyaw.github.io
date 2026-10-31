@@ -1,18 +1,21 @@
 {
   "title": "grev film · score",
   "music": {
-    "title": "Investigations",
+    "title": "Thinking Music",
     "author": "Kevin MacLeod",
-    "url": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Investigations.mp3",
+    "url": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Thinking%20Music.mp3",
     "license": "CC BY 4.0",
-    "from": 0,
+    "from": 2.9,
     "length": 60,
-    "credit": "Music: \"Investigations\" by Kevin MacLeod (incompetech.com). Licensed under Creative Commons: By Attribution 4.0 License, http://creativecommons.org/licenses/by/4.0/",
+    "credit": "Music: \"Thinking Music\" by Kevin MacLeod (incompetech.com). Licensed under Creative Commons: By Attribution 4.0 License, http://creativecommons.org/licenses/by/4.0/",
     "excerpt": {
-      "from": 0,
+      "from": 2.9,
       "seconds": 60,
       "fadeInSeconds": 0.3,
       "fadeOutSeconds": 2.5
+    },
+    "phraseBreaks": {
+      "note": "the track pauses ~0.5 s between phrases; starting at 2.9 s puts them at 10.8, 27.2 and 46.0 s, so the last chapter (the reveal, 46 s) opens on a break"
     }
   },
   "target": {
@@ -20,8 +23,8 @@
     "truePeak": -1.5
   },
   "measured": {
-    "integratedLufs": -17.2,
+    "integratedLufs": -16.6,
     "normalization": "ffmpeg loudnorm"
   },
-  "fingerprint": "sha256:207137e255dfe0b4f65e18efaef0cc10c56f7f79b26a896406d4a28f5c6c98f8"
+  "fingerprint": "sha256:173db4169083c1c22ec8f5ca2e77bf4d8cc652b00f30305d363329f8df3be366"
 }
