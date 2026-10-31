@@ -71,7 +71,6 @@ main { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 .px-button--dark { background: var(--ink); color: var(--bg); box-shadow: none; font: 11px var(--pixel); }
 .px-button--dark:hover { background: var(--accent); color: var(--on-accent); }
 .px-button--small { min-height: 40px; font: 11px var(--pixel); text-transform: uppercase; }
-.px-citations { padding: 1px 6px; background: var(--ink); color: var(--bg); font: 10px var(--pixel); text-transform: uppercase; }
 .px-play { width: 10px; height: 12px; fill: currentColor; flex: none; }
 .px-inline { padding: 0; border: 0; background: none; color: var(--accent); text-decoration: underline; cursor: pointer; }
 

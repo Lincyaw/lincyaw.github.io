@@ -62,7 +62,7 @@ function hero(): string {
       <p class="px-lead">I make large software systems more reliable with LLMs and program analysis, and make LLM agents more trustworthy with software-engineering methods. Advised by <a href="https://pinjiahe.github.io/">Prof. Pinjia He</a>; research intern at ByteDance.</p>
       <div class="px-actions">
         <a class="px-button px-button--primary" href="#papers">${PLAY}Watch the one-minute papers</a>
-        <a class="px-button" href="https://scholar.google.com/citations?user=fknpyMIAAAAJ">Google Scholar<span class="px-citations" data-citations hidden></span></a>
+        <a class="px-button" href="https://scholar.google.com/citations?user=fknpyMIAAAAJ">Google Scholar</a>
         <a class="px-button" href="${site.base}assets/pdf/cv/cv.pdf">CV</a>
         <a class="px-button" href="https://github.com/Lincyaw">GitHub</a>
         <a class="px-button" href="mailto:aoyangfang@gmail.com">Email</a>
@@ -289,14 +289,3 @@ if (!saveData) {
   app.addEventListener('touchstart', intent, { passive: true })
 }
 
-// The citation count, updated daily by the Scholar crawler on the google-scholar-stats branch.
-let citations: string | undefined
-fetch('https://cdn.jsdelivr.net/gh/Lincyaw/lincyaw.github.io@google-scholar-stats/gs_data_shieldsio.json')
-  .then(response => response.ok ? response.json() : undefined)
-  .then((data?: { message?: string }) => {
-    citations = data?.message
-    const show = () => { for (const el of app.querySelectorAll<HTMLElement>('[data-citations]')) { el.textContent = `${citations} citations`; el.hidden = !citations } }
-    show()
-    new MutationObserver(show).observe(app, { childList: true })
-  })
-  .catch(() => {})
