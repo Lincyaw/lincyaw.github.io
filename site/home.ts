@@ -35,7 +35,6 @@ const state = {
   newsAll: false,
   card: 0 as number | undefined,
   chapter: 0,
-  playing: false,
 }
 
 const tag = (paper: Paper) => `<span class="px-tag" data-thread="${paper.thread}">${esc(paper.venue)}</span>`
@@ -152,9 +151,8 @@ function overlay(paper: Paper): string {
   return `<div class="px-overlay" data-close>
     <div class="px-dialog" role="dialog" aria-modal="true" aria-labelledby="px-dialog-title" tabindex="-1">
       <div class="px-film">
-        ${state.playing
-          ? `<iframe class="px-film__live" src="${filmOf(paper, state.chapter)}" title="${esc(`${paper.short}: one-minute film`)}" allow="autoplay; fullscreen"></iframe>`
-          : `<button type="button" class="px-film__frame" data-play>${PLAY}<span>Play the one-minute film</span></button>`}
+        <iframe class="px-film__live" src="${filmOf(paper, state.chapter)}" title="${esc(`${paper.short}: one-minute film`)}" allow="autoplay; fullscreen"></iframe>
+        <div class="px-film__frame" data-cover aria-hidden="true">${PLAY}<span>Loading the film · ${esc(paper.chapters[state.chapter]![1])}</span></div>
         <button type="button" class="px-film__close" data-close aria-label="Close">X</button>
       </div>
       <div class="px-chapters" role="group" aria-label="Chapters" style="--count: ${paper.chapters.length}">${paper.chapters.map(([at, name], n) => `<button type="button" data-chapter="${n}" aria-pressed="${n === state.chapter}"><time>${at}</time><span>${esc(name)}</span></button>`).join('')}</div>
@@ -181,23 +179,43 @@ function render(): void {
   const paper = opened()
   app.innerHTML = `${header()}<main>${hero()}${research()}${papers()}${talks()}${about()}</main><footer class="px-footer">Built with Presmium · © 2026 Aoyang Fang</footer>${paper ? overlay(paper) : ''}`
   document.body.classList.toggle('px-locked', Boolean(paper))
-  if (paper) app.querySelector<HTMLElement>('.px-dialog')?.focus()
+  if (paper) {
+    app.querySelector<HTMLElement>('.px-dialog')?.focus()
+    revealWhenDrawn()
+  }
+}
+
+/**
+ * The film starts loading, and playing, as the overlay opens; a cover hides it until its first scene is drawn, so the
+ * reader sees neither a blank frame nor the player's loading state, and the music starts with the picture.
+ */
+function revealWhenDrawn(): void {
+  const frame = app.querySelector<HTMLIFrameElement>('.px-film__live'), cover = app.querySelector<HTMLElement>('[data-cover]')
+  if (!frame || !cover) return
+  const started = Date.now()
+  const check = () => {
+    if (!frame.isConnected) return
+    const film = frame.contentDocument
+    const drawn = film?.querySelector('.pm-present .pm-scene[data-status="ready"]') && !film.querySelector('.pm-lecture-player__status')
+    if (drawn || Date.now() - started > 12000) cover.dataset.cover = 'gone'
+    else setTimeout(check, 120)
+  }
+  check()
 }
 
 let returnTo: string | undefined
 app.addEventListener('click', (event) => {
   const target = event.target as HTMLElement
-  const el = target.closest<HTMLElement>('[data-open],[data-close],[data-play],[data-filter],[data-topic],[data-view],[data-news],[data-card],[data-chapter],.px-menu,.px-appearance')
+  const el = target.closest<HTMLElement>('[data-open],[data-close],[data-filter],[data-topic],[data-view],[data-news],[data-card],[data-chapter],.px-menu,.px-appearance')
   if (!el) return
-  if (el.dataset.open) { returnTo ??= el.dataset.open; state.chapter = 0; state.playing = false; history.pushState(null, '', `#paper/${el.dataset.open}`); return render() }
-  if (el.dataset.play !== undefined) { state.playing = true; return render() }
+  if (el.dataset.open) { returnTo ??= el.dataset.open; state.chapter = 0; history.pushState(null, '', `#paper/${el.dataset.open}`); return render() }
   if (el.dataset.close !== undefined) { if (target === el || el.tagName === 'BUTTON') close(); return }
   if (el.dataset.filter) { state.thread = el.dataset.filter as Thread | 'all'; return render() }
   if (el.dataset.topic) { state.thread = el.dataset.topic as Thread; render(); document.getElementById('papers')?.scrollIntoView({ behavior: 'smooth' }); return }
   if (el.dataset.view) { state.view = el.dataset.view; return render() }
   if (el.dataset.news !== undefined) { state.newsAll = !state.newsAll; return render() }
   if (el.dataset.card) { const n = Number(el.dataset.card); state.card = state.card === n ? undefined : n; return render() }
-  if (el.dataset.chapter) { state.chapter = Number(el.dataset.chapter); state.playing = true; return render() }
+  if (el.dataset.chapter) { state.chapter = Number(el.dataset.chapter); return render() }
   if (el.classList.contains('px-menu')) { const open = el.getAttribute('aria-expanded') !== 'true'; el.setAttribute('aria-expanded', String(open)); return }
   if (el.classList.contains('px-appearance')) {
     const dark = !root.classList.contains('dark')
@@ -217,7 +235,6 @@ app.addEventListener('focusin', (event) => {
 })
 
 function close(): void {
-  state.playing = false
   history.pushState(null, '', location.pathname + location.search)
   render()
   if (returnTo) app.querySelector<HTMLElement>(`[data-open="${returnTo}"]`)?.focus()

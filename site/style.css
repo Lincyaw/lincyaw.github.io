@@ -178,8 +178,10 @@ main { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 .px-dialog:focus { outline: none; }
 .px-film { position: relative; aspect-ratio: 16 / 9; background: #17171c; color: #f6f6f1; }
 .px-film__live { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-.px-film__frame { position: absolute; inset: 0; width: 100%; border: 0; color: inherit; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; font: 13px var(--pixel); text-transform: uppercase; background-image: linear-gradient(rgb(255 255 255 / 5%) 1px, transparent 1px); background-size: 100% 4px; }
-.px-film__frame .px-play { width: 48px; height: 56px; }
+.px-film__frame { position: absolute; inset: 0; width: 100%; border: 0; color: inherit; background-color: #17171c; transition: opacity 200ms ease-out; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; font: 13px var(--pixel); text-transform: uppercase; background-image: linear-gradient(rgb(255 255 255 / 5%) 1px, transparent 1px); background-size: 100% 4px; }
+.px-film__frame .px-play { width: 48px; height: 56px; animation: px-blink 1s steps(2, jump-none) infinite; }
+.px-film__frame[data-cover='gone'] { opacity: 0; pointer-events: none; }
+@keyframes px-blink { 50% { opacity: 0.35; } }
 .px-film__close { position: absolute; top: 12px; right: 12px; width: 44px; height: 44px; border: 0; background: #f6f6f1; color: #17171c; cursor: pointer; font: 16px var(--pixel); }
 .px-chapters { display: grid; grid-template-columns: repeat(var(--count), minmax(0, 1fr)); gap: 3px; padding-bottom: 3px; background: #17171c; }
 .px-chapters button { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; min-height: 52px; padding: 8px 12px; border: 0; background: #26262e; color: #c9c9d1; text-align: left; cursor: pointer; }
