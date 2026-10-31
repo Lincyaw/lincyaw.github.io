@@ -8,7 +8,7 @@ export const H = 720
 /** Colours with one meaning each, the same in every scene of the film. */
 export const C = {
   ink: '#17171c',
-  paper: '#f6f6f1',
+  paper: '#ffffff',
   white: '#ffffff',
   muted: '#5a5a66',
   line: '#d9d9d0',

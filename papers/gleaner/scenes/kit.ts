@@ -5,8 +5,8 @@ export const W = 1280
 export const H = 720
 /** `keep` is Gleaner and what it keeps (the Collect thread's colour); `error` is an error log or an alarm. */
 export const C = {
-  ink: '#17171c', paper: '#f6f6f1', white: '#ffffff', muted: '#5a5a66', line: '#d9d9d0',
-  keep: '#0f766e', error: '#b93a0b', soft: '#ecece4',
+  ink: '#17171c', paper: '#ffffff', white: '#ffffff', muted: '#5a5a66', line: '#d9d9d0',
+  keep: '#0f766e', error: '#b93a0b', soft: '#f3f3f5',
 }
 export const PIXEL = "'Silkscreen', ui-monospace, monospace"
 export const SANS = "'IBM Plex Sans', system-ui, sans-serif"

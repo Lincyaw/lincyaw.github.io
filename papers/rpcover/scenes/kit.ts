@@ -2,12 +2,12 @@
 // pixel look (square corners, hard offset shadows), so every chapter of the film shares one visual language.
 
 const PALETTE = `
-  --ink: #17171c; --paper: #f6f6f1; --white: #ffffff; --muted: #5a5a66; --line: #d9d9d0;
+  --ink: #17171c; --paper: #ffffff; --white: #ffffff; --muted: #5a5a66; --line: #d9d9d0;
   --acc: #5b4b99; --acc-soft: color-mix(in oklab, #5b4b99 14%, #ffffff);
   --warn: #b93a0b; --warn-soft: color-mix(in oklab, #b93a0b 12%, #ffffff);
 `
 
-const ROOT = `.pp { position: absolute; inset: 0; container-type: size; overflow: hidden; background: #f6f6f1;
+const ROOT = `.pp { position: absolute; inset: 0; container-type: size; overflow: hidden; background: #ffffff;
   font-family: 'IBM Plex Sans', var(--pm-font-sans), system-ui, sans-serif; color: #17171c; line-height: 1.25; ${PALETTE} }`
 
 const BASE = `
