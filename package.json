@@ -9,7 +9,7 @@
     "voiceover": "node tools/voiceover.mjs"
   },
   "devDependencies": {
-    "@lincyaw/presmium": "1.0.0-rc.4",
+    "@lincyaw/presmium": "1.0.0-rc.5",
     "@modelcontextprotocol/client": "2.3.1"
   }
 }
