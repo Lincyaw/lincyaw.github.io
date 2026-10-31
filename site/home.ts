@@ -62,7 +62,7 @@ function hero(): string {
       <h1>LLM for SE,<br>and SE for LLM.</h1>
       <p class="px-lead">I make large software systems more reliable with LLMs and program analysis, and make LLM agents more trustworthy with software-engineering methods. Advised by <a href="https://pinjiahe.github.io/">Prof. Pinjia He</a>; research intern at ByteDance.</p>
       <div class="px-actions">
-        <a class="px-button px-button--primary" href="#research">${PLAY}Watch the one-minute papers</a>
+        <a class="px-button px-button--primary" href="#papers">${PLAY}Watch the one-minute papers</a>
         <a class="px-button" href="https://scholar.google.com/citations?user=fknpyMIAAAAJ">Google Scholar<span class="px-citations" data-citations hidden></span></a>
         <a class="px-button" href="${site.base}assets/pdf/cv/cv.pdf">CV</a>
         <a class="px-button" href="https://github.com/Lincyaw">GitHub</a>
@@ -73,8 +73,6 @@ function hero(): string {
   </section>`
 }
 
-const chip = (paper: Paper) => `<button type="button" class="px-paper-chip" data-open="${paper.id}">${PLAY}${tag(paper)}<span class="px-paper-chip__name">${esc(paper.short)}</span></button>`
-
 /** The research as two directions between LLMs and software; every paper sits in the direction it serves. */
 function research(): string {
   const lane = (direction: Direction) => {
@@ -83,12 +81,15 @@ function research(): string {
       <div class="px-lane__arrow" aria-hidden="true"></div>
       <p class="px-lane__head"><span class="px-lane__label">${esc(d.label)}</span><span class="px-lane__route">${esc(d.from)} → ${esc(d.to)}</span></p>
       <p class="px-lane__says">${esc(d.says)}</p>
-      <div class="px-lane__threads">${d.threads.map(thread => `<section class="px-lane__thread" data-thread="${thread}"><h3>${esc(THREADS[thread].label)}</h3><div class="px-lane__papers">${PAPERS.filter(paper => paper.thread === thread).map(chip).join('')}</div></section>`).join('')}</div>
+      <div class="px-lane__threads">${d.threads.map((thread) => {
+        const count = PAPERS.filter(paper => paper.thread === thread).length
+        return `<button type="button" class="px-topic" data-thread="${thread}" data-topic="${thread}"><span class="px-topic__name">${esc(THREADS[thread].label)}</span><span class="px-topic__about">${esc(THREADS[thread].about)}</span><span class="px-topic__count">${count} ${count === 1 ? 'paper' : 'papers'} →</span></button>`
+      }).join('')}</div>
       ${d.now ? `<p class="px-lane__now">${esc(d.now)}</p>` : ''}
     </article>`
   }
   return `<section class="px-section" id="research" aria-labelledby="research-title">
-    <div class="px-section__head"><h2 id="research-title">Research</h2><p>Two directions between LLMs and software. Every paper comes with a one-minute film.</p></div>
+    <div class="px-section__head"><h2 id="research-title">Research</h2><p>Two directions between LLMs and software.</p></div>
     <div class="px-research">
       <div class="px-pole px-pole--left" aria-hidden="true"><strong>LLMs</strong><span>models and agents</span></div>
       ${lane('llm4se')}
@@ -119,7 +120,7 @@ function papers(): string {
     <button type="button" class="px-button px-button--dark" data-open="${paper.id}">${PLAY}1:00</button>
   </li>`).join('')}</ol>`
   return `<section class="px-section" id="papers" aria-labelledby="papers-title">
-    <div class="px-section__head px-section__head--tools"><h2 id="papers-title">Papers</h2>
+    <div class="px-section__head px-section__head--tools"><h2 id="papers-title">Papers</h2><p>Each with a one-minute film.</p>
       <div class="px-filters" role="group" aria-label="Filter by thread">${filters}</div>
       <div class="px-toggle" role="group" aria-label="View"><button type="button" data-view="map" aria-pressed="${state.view === 'map'}">Map</button><button type="button" data-view="list" aria-pressed="${state.view === 'list'}">List</button></div>
     </div>
@@ -192,12 +193,13 @@ function render(): void {
 let returnTo: string | undefined
 app.addEventListener('click', (event) => {
   const target = event.target as HTMLElement
-  const el = target.closest<HTMLElement>('[data-open],[data-close],[data-play],[data-filter],[data-view],[data-news],[data-card],[data-chapter],.px-menu,.px-appearance')
+  const el = target.closest<HTMLElement>('[data-open],[data-close],[data-play],[data-filter],[data-topic],[data-view],[data-news],[data-card],[data-chapter],.px-menu,.px-appearance')
   if (!el) return
   if (el.dataset.open) { returnTo ??= el.dataset.open; state.chapter = 0; state.playing = false; history.pushState(null, '', `#paper/${el.dataset.open}`); return render() }
   if (el.dataset.play !== undefined) { state.playing = true; return render() }
   if (el.dataset.close !== undefined) { if (target === el || el.tagName === 'BUTTON') close(); return }
   if (el.dataset.filter) { state.thread = el.dataset.filter as Thread | 'all'; return render() }
+  if (el.dataset.topic) { state.thread = el.dataset.topic as Thread; render(); document.getElementById('papers')?.scrollIntoView({ behavior: 'smooth' }); return }
   if (el.dataset.view) { state.view = el.dataset.view; return render() }
   if (el.dataset.news !== undefined) { state.newsAll = !state.newsAll; return render() }
   if (el.dataset.card) { const n = Number(el.dataset.card); state.card = state.card === n ? undefined : n; return render() }

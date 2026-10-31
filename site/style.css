@@ -111,12 +111,11 @@ main { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 .px-lane__route { font: 12px var(--mono); color: var(--muted); }
 .px-lane__says { margin: 0; font-size: 17px; max-width: 720px; }
 .px-lane__threads { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
-.px-lane__thread { display: flex; flex-direction: column; gap: 8px; }
-.px-lane__thread h3 { margin: 0; font: 12px var(--pixel); color: var(--thread); text-transform: uppercase; }
-.px-lane__papers { display: flex; flex-wrap: wrap; gap: 8px; }
-.px-paper-chip { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 6px 10px; border: 0; background: var(--bg); text-align: left; cursor: pointer; box-shadow: inset 0 0 0 2px var(--line); }
-.px-paper-chip:hover { box-shadow: inset 0 0 0 2px var(--ink), 3px 3px 0 0 var(--ink); }
-.px-paper-chip__name { font-weight: 600; font-size: 14px; }
+.px-topic { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; padding: 14px 16px; border: 0; background: var(--bg); text-align: left; cursor: pointer; box-shadow: inset 4px 0 0 var(--thread), inset 0 0 0 2px var(--line); }
+.px-topic:hover { box-shadow: inset 4px 0 0 var(--thread), inset 0 0 0 2px var(--ink), 3px 3px 0 0 var(--ink); }
+.px-topic__name { font: 13px var(--pixel); color: var(--thread); text-transform: uppercase; }
+.px-topic__about { font-size: 15px; }
+.px-topic__count { margin-top: auto; font: 11px var(--pixel); color: var(--muted); text-transform: uppercase; }
 .px-lane__now { margin: 0; padding: 8px 12px; background: var(--bg); font-size: 14px; box-shadow: inset 3px 0 0 var(--lane); }
 
 /* Papers: filters, map and list */

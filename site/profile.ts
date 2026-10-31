@@ -18,10 +18,10 @@ export const DIRECTIONS: Record<Direction, { label: string, from: string, to: st
   },
 }
 
-export const THREADS: Record<Thread, { label: string }> = {
-  incident: { label: 'Incident management' },
-  testing: { label: 'Testing & analysis' },
-  agents: { label: 'LLM agents' },
+export const THREADS: Record<Thread, { label: string, about: string }> = {
+  incident: { label: 'Incident management', about: 'Sampling telemetry, locating root causes, routing incidents, and benchmarks that measure them' },
+  testing: { label: 'Testing & analysis', about: 'Finding database bugs by rewriting queries, recovering cross-language service dependencies' },
+  agents: { label: 'LLM agents', about: 'Grading how LLM agents reason about failures, step by step' },
 }
 
 export interface Paper {
