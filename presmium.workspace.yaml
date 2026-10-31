@@ -10,6 +10,9 @@ documents:
   - "papers/grev/lecture.json"
   - "papers/rpcover/lecture.json"
   - "papers/*/lecture.json"
+# Generating narration (tools/voiceover.mjs) is allowed without asking.
+approvals:
+  spend: allow
 site:
   base: /
   lang: en

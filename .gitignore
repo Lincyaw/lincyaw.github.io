@@ -1,4 +1,3 @@
-_site/
 push.sh
 .DS_Store
 *.aux
@@ -10,6 +9,12 @@ push.sh
 *.bcf
 *.run.xml
 *.synctex.gz
-*.fdb_latexmk/dist/
+*.fdb_latexmk
+/dist/
 /.presmium/
 papers/*/source/
+node_modules/
+# A paper keeps its narration audio (CI has no speech engine); the rest of .presmium is a cache.
+papers/*/.presmium/*
+!papers/*/.presmium/speech/
+!papers/*/.presmium/speech.lock.json

@@ -1,0 +1,15 @@
+{
+  "name": "lincyaw-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "serve": "presmium serve",
+    "build": "presmium build",
+    "check": "presmium check papers/fse26",
+    "voiceover": "node tools/voiceover.mjs"
+  },
+  "devDependencies": {
+    "@lincyaw/presmium": "1.0.0-rc.4",
+    "@modelcontextprotocol/client": "2.3.1"
+  }
+}

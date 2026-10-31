@@ -1,0 +1,12 @@
+allowBuilds:
+  '@ast-grep/lang-python': false
+  '@deepseek-ai/dsh-subprocess-local': false
+  '@google/genai': false
+  '@vscode/vsce-sign': false
+  esbuild: true
+  koffi: false
+  node-pty: false
+  playwright-chromium: true
+  protobufjs: false
+# Take Presmium releases as soon as they are out.
+minimumReleaseAge: 0

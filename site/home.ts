@@ -23,6 +23,10 @@ root.classList.toggle('dark', stored ? stored === 'dark' : matchMedia('(prefers-
 const esc = (text: string) => text.replace(/[&<>"']/g, c => `&#${c.charCodeAt(0)};`)
 const pageOf = (paper: Paper) => site.documents.find(doc => doc.id === `papers/${paper.id}`)?.href ?? `${site.base}papers/${paper.id}/`
 const ME = /Aoyang Fang( \(co-first\))?/
+/** A chapter's section in the paper's document: its name in lower case, every run of other characters one '-'. */
+const sectionOf = (name: string) => name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+/** The film plays from its document: the presentation with its narrated lecture, from the chapter's section. */
+const filmOf = (paper: Paper, chapter: number) => `${pageOf(paper)}slides/?view=present&track=script&section=${encodeURIComponent(sectionOf(paper.chapters[chapter]![1]))}&step=0&autoplay`
 
 const state = {
   thread: 'all' as Thread | 'all',
@@ -31,6 +35,7 @@ const state = {
   newsAll: false,
   card: 0 as number | undefined,
   chapter: 0,
+  playing: false,
 }
 
 const tag = (paper: Paper) => `<span class="px-tag" data-thread="${paper.thread}">${esc(paper.venue)}</span>`
@@ -58,7 +63,8 @@ function hero(): string {
       <p class="px-lead">I study root cause analysis for microservices: keeping the telemetry that matters, locating the faulty service, and building benchmarks that show which methods hold up on realistic failures. Advised by <a href="https://pinjiahe.github.io/">Prof. Pinjia He</a>; research intern at ByteDance.</p>
       <div class="px-actions">
         <a class="px-button px-button--primary" href="#now">${PLAY}Watch the one-minute papers</a>
-        <a class="px-button" href="https://scholar.google.com/citations?user=fknpyMIAAAAJ">Google Scholar</a>
+        <a class="px-button" href="https://scholar.google.com/citations?user=fknpyMIAAAAJ">Google Scholar<span class="px-citations" data-citations hidden></span></a>
+        <a class="px-button" href="${site.base}assets/pdf/cv/cv.pdf">CV</a>
         <a class="px-button" href="https://github.com/Lincyaw">GitHub</a>
         <a class="px-button" href="mailto:aoyangfang@gmail.com">Email</a>
       </div>
@@ -145,7 +151,9 @@ function overlay(paper: Paper): string {
   return `<div class="px-overlay" data-close>
     <div class="px-dialog" role="dialog" aria-modal="true" aria-labelledby="px-dialog-title" tabindex="-1">
       <div class="px-film">
-        <div class="px-film__frame">${PLAY}<span>One-minute film · ${esc(paper.chapters[state.chapter]![1])}</span></div>
+        ${state.playing
+          ? `<iframe class="px-film__live" src="${filmOf(paper, state.chapter)}" title="${esc(`${paper.short}: one-minute film`)}" allow="autoplay; fullscreen"></iframe>`
+          : `<button type="button" class="px-film__frame" data-play>${PLAY}<span>Play the one-minute film</span></button>`}
         <button type="button" class="px-film__close" data-close aria-label="Close">X</button>
       </div>
       <div class="px-chapters" role="group" aria-label="Chapters" style="--count: ${paper.chapters.length}">${paper.chapters.map(([at, name], n) => `<button type="button" data-chapter="${n}" aria-pressed="${n === state.chapter}"><time>${at}</time><span>${esc(name)}</span></button>`).join('')}</div>
@@ -178,15 +186,16 @@ function render(): void {
 let returnTo: string | undefined
 app.addEventListener('click', (event) => {
   const target = event.target as HTMLElement
-  const el = target.closest<HTMLElement>('[data-open],[data-close],[data-filter],[data-view],[data-news],[data-card],[data-chapter],.px-menu,.px-appearance')
+  const el = target.closest<HTMLElement>('[data-open],[data-close],[data-play],[data-filter],[data-view],[data-news],[data-card],[data-chapter],.px-menu,.px-appearance')
   if (!el) return
-  if (el.dataset.open) { returnTo ??= el.dataset.open; state.chapter = 0; history.pushState(null, '', `#paper/${el.dataset.open}`); return render() }
+  if (el.dataset.open) { returnTo ??= el.dataset.open; state.chapter = 0; state.playing = false; history.pushState(null, '', `#paper/${el.dataset.open}`); return render() }
+  if (el.dataset.play !== undefined) { state.playing = true; return render() }
   if (el.dataset.close !== undefined) { if (target === el || el.tagName === 'BUTTON') close(); return }
   if (el.dataset.filter) { state.thread = el.dataset.filter as Thread | 'all'; return render() }
   if (el.dataset.view) { state.view = el.dataset.view; return render() }
   if (el.dataset.news !== undefined) { state.newsAll = !state.newsAll; return render() }
   if (el.dataset.card) { const n = Number(el.dataset.card); state.card = state.card === n ? undefined : n; return render() }
-  if (el.dataset.chapter) { state.chapter = Number(el.dataset.chapter); return render() }
+  if (el.dataset.chapter) { state.chapter = Number(el.dataset.chapter); state.playing = true; return render() }
   if (el.classList.contains('px-menu')) { const open = el.getAttribute('aria-expanded') !== 'true'; el.setAttribute('aria-expanded', String(open)); return }
   if (el.classList.contains('px-appearance')) {
     const dark = !root.classList.contains('dark')
@@ -206,6 +215,7 @@ app.addEventListener('focusin', (event) => {
 })
 
 function close(): void {
+  state.playing = false
   history.pushState(null, '', location.pathname + location.search)
   render()
   if (returnTo) app.querySelector<HTMLElement>(`[data-open="${returnTo}"]`)?.focus()
@@ -214,3 +224,15 @@ function close(): void {
 document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && opened()) close() })
 addEventListener('popstate', render)
 render()
+
+// The citation count, updated daily by the Scholar crawler on the google-scholar-stats branch.
+let citations: string | undefined
+fetch('https://cdn.jsdelivr.net/gh/Lincyaw/lincyaw.github.io@google-scholar-stats/gs_data_shieldsio.json')
+  .then(response => response.ok ? response.json() : undefined)
+  .then((data?: { message?: string }) => {
+    citations = data?.message
+    const show = () => { for (const el of app.querySelectorAll<HTMLElement>('[data-citations]')) { el.textContent = `${citations} citations`; el.hidden = !citations } }
+    show()
+    new MutationObserver(show).observe(app, { childList: true })
+  })
+  .catch(() => {})
