@@ -59,7 +59,7 @@ function hero(): string {
     <div class="px-hero__text">
       <p class="px-kicker">&gt; PhD candidate · CUHK-Shenzhen</p>
       <h1>LLM for SE,<br>and SE for LLM.</h1>
-      <p class="px-lead">I make large software systems more reliable with LLMs and program analysis, and make LLM agents more trustworthy with software-engineering methods. Advised by <a href="https://pinjiahe.github.io/">Prof. Pinjia He</a>; research intern at ByteDance.</p>
+      <p class="px-lead">I make large software systems more reliable with LLMs and program analysis, and make LLM agents more trustworthy with software-engineering methods. Advised by <a href="https://pinjiahe.github.io/">Prof. Pinjia He</a>; research intern at Tencent Hunyuan.</p>
       <div class="px-actions">
         <a class="px-button px-button--primary" href="#papers">${PLAY}Watch the one-minute papers</a>
         <a class="px-button" href="https://scholar.google.com/citations?user=fknpyMIAAAAJ">Google Scholar</a>
@@ -198,7 +198,9 @@ function revealWhenDrawn(): void {
   const check = () => {
     if (!frame.isConnected) return
     const film = frame.contentDocument
-    const drawn = film?.querySelector('.pm-present .pm-scene[data-status="ready"]') && !film.querySelector('.pm-lecture-player__status')
+    // Drawn, and the lecture either ready, waiting for the reader's click (autoplay refused) or failed.
+    const status = film?.querySelector('.pm-lecture-player__status')
+    const drawn = film?.querySelector('.pm-present .pm-scene[data-status="ready"]') && (!status || status.getAttribute('role') === 'alert' || film.querySelector('.pm-lecture-start'))
     if (drawn || Date.now() - started > 12000) cover.dataset.cover = 'gone'
     else setTimeout(check, 120)
   }

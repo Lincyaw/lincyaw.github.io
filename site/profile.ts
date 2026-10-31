@@ -14,7 +14,7 @@ export const DIRECTIONS: Record<Direction, { label: string, from: string, to: st
     label: 'SE for LLM', from: 'Software engineering', to: 'LLMs',
     says: 'Checking how LLM agents reason, step by step, not only what they answer.',
     threads: ['agents'],
-    now: 'Now: analyzing and monitoring LLM agent trajectories (ByteDance).',
+    now: 'Now at Tencent Hunyuan; before, at ByteDance, analyzing and monitoring LLM agent trajectories.',
   },
 }
 
@@ -143,7 +143,8 @@ export const NEWS: [string, string][] = [
 ]
 
 export const ABOUT: { label: string, summary: string, items: [string, string][] }[] = [
-  { label: 'Experience', summary: 'ByteDance · MSRA · Shopee', items: [
+  { label: 'Experience', summary: 'Tencent Hunyuan · ByteDance · MSRA · Shopee', items: [
+    ['2026.09–now', 'Research intern, Tencent Hunyuan'],
     ['2025.08–2026.08', 'Research intern, ByteDance Byte Brain'],
     ['2025.01–2025.05', 'Research intern, Microsoft Research Asia'],
     ['2022.03–2022.09', 'Backend software engineer, Shopee'],
@@ -157,11 +158,14 @@ export const ABOUT: { label: string, summary: string, items: [string, string][] 
     ['2024.09', 'Distinguished Artifact Reviewer Award, ECOOP'],
     ['2023.09', 'Distinguished Paper Award, ASE Industry Challenge Track'],
   ] },
-  { label: 'Service', summary: 'TOSEM · OSDI · ATC · ICSE …', items: [
-    ['Reviewer', 'TOSEM 2024, TOSEM 2025'],
+  { label: 'Service', summary: 'ICSE Shadow PC · TOSEM · OSDI · ATC …', items: [
+    ['Shadow PC', 'ICSE'],
+    ['Reviewer', 'TOSEM 2024, TOSEM 2025, TOSEM 2026'],
     ['Artifacts', 'USENIX Security 2025, TACAS 2025, ICSE 2025, ISSRE 2024, ATC 2024, OSDI 2024, ISSTA 2024, ECOOP 2024, TACAS 2024'],
   ] },
-  { label: 'Teaching', summary: '3 courses', items: [
+  { label: 'Teaching', summary: '5 courses', items: [
+    ['2026 Fall', 'TA, CSC4130 Human-Machine Interaction'],
+    ['2026 Spring', 'TA, CSC4001 Software Engineering'],
     ['2025 Fall', 'Lead TA, AIE1001 Introduction to AI Programming'],
     ['2025 Fall', 'TA, CSC1001 Programming Methodology'],
     ['2025 Spring', 'TA, CSC4001 Software Engineering'],
