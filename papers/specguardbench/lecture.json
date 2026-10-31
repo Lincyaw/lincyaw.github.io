@@ -1,0 +1,2005 @@
+{
+  "schemaVersion": 1,
+  "id": "paper-specguardbench",
+  "metadata": {
+    "title": "SpecGuardBench: Can Coding Agents Construct Reliable Validation Harnesses from Natural Language Specifications?",
+    "lang": "en",
+    "description": "Coding agents' validation harnesses mirror the reference code instead of the specification; none of four agents is faithful on more than 63% of 291 tasks.",
+    "plugins": [
+      "@lincyaw/addon-motion",
+      "@lincyaw/addon-lecture",
+      "@lincyaw/addon-speech"
+    ],
+    "renderers": {
+      "web": {},
+      "slides": {},
+      "lecture": {}
+    },
+    "tags": [
+      "LLM agents",
+      "arXiv'26"
+    ]
+  },
+  "sectionOrder": [
+    "tests-pass-the-rule-breaks",
+    "an-agent-writes-the-checks",
+    "three-implementations-one-verdict",
+    "detection-is-not-faithfulness",
+    "shown-the-wrong-code"
+  ],
+  "sections": {
+    "tests-pass-the-rule-breaks": {
+      "id": "tests-pass-the-rule-breaks",
+      "title": "SpecGuardBench: Can Coding Agents Construct Reliable Validation Harnesses from Natural Language Specifications?",
+      "level": 1,
+      "children": [
+        "intro-card",
+        "tests-pass-the-rule-breaks--scene"
+      ],
+      "stepOrder": [
+        "tests-pass-the-rule-breaks--step-0",
+        "tests-pass-the-rule-breaks--step-1"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    },
+    "an-agent-writes-the-checks": {
+      "id": "an-agent-writes-the-checks",
+      "title": "An agent writes the checks",
+      "level": 1,
+      "children": [
+        "an-agent-writes-the-checks--scene",
+        "agent-figure",
+        "agent-text"
+      ],
+      "stepOrder": [
+        "an-agent-writes-the-checks--step-0",
+        "an-agent-writes-the-checks--step-1"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    },
+    "three-implementations-one-verdict": {
+      "id": "three-implementations-one-verdict",
+      "title": "Three implementations, one verdict",
+      "level": 1,
+      "children": [
+        "three-implementations-one-verdict--scene",
+        "verdict-columns",
+        "verdict-figure"
+      ],
+      "stepOrder": [
+        "three-implementations-one-verdict--step-0",
+        "three-implementations-one-verdict--step-1"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    },
+    "detection-is-not-faithfulness": {
+      "id": "detection-is-not-faithfulness",
+      "title": "Detection is not faithfulness",
+      "level": 1,
+      "children": [
+        "detection-is-not-faithfulness--scene",
+        "detect-text",
+        "detect-figure"
+      ],
+      "stepOrder": [
+        "detection-is-not-faithfulness--step-0",
+        "detection-is-not-faithfulness--step-1"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    },
+    "shown-the-wrong-code": {
+      "id": "shown-the-wrong-code",
+      "title": "Shown the wrong code",
+      "level": 1,
+      "children": [
+        "shown-the-wrong-code--scene",
+        "swap-text",
+        "swap-bibtex",
+        "swap-credit"
+      ],
+      "stepOrder": [
+        "shown-the-wrong-code--step-0",
+        "shown-the-wrong-code--step-1"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    }
+  },
+  "blocks": {
+    "intro-card": {
+      "id": "intro-card",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "p-1",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Zhiqing Zhong, Mingyu Chen, "
+            },
+            {
+              "type": "text",
+              "text": "Aoyang Fang",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": ", Yuzhong Zhang, Haoye Tian, Lionel Briand, Boxi Yu, Pinjia He. "
+            },
+            {
+              "type": "text",
+              "text": "arXiv preprint",
+              "marks": [
+                {
+                  "type": "italic"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " 2610.16870, 2026."
+            }
+          ]
+        },
+        {
+          "id": "p-2",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "link",
+              "href": "https://arxiv.org/abs/2610.16870",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "arXiv"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " · "
+            },
+            {
+              "type": "link",
+              "href": "https://arxiv.org/pdf/2610.16870v1",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "PDF"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " · "
+            },
+            {
+              "type": "link",
+              "href": "https://github.com/coxhin/SpecGuardBench",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "Code"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " · "
+            },
+            {
+              "type": "link",
+              "href": "https://huggingface.co/datasets/coxhin/SpecGuardBench",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "Dataset"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "p-3",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Coding agents now write the tests that judge code, and their checks copy the reference implementation instead of the specification. Judged on whether they reject a violating implementation "
+            },
+            {
+              "type": "text",
+              "text": "and",
+              "marks": [
+                {
+                  "type": "italic"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " accept correct ones, none of four coding agents is faithful on more than "
+            },
+            {
+              "type": "text",
+              "text": "63%",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " of SpecGuardBench's 291 tasks."
+            }
+          ]
+        },
+        {
+          "id": "p-4",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Every task has a violating implementation that the repository's own test suite passes: the gap between passing tests and meeting the specification, made measurable."
+            }
+          ]
+        }
+      ]
+    },
+    "agent-figure": {
+      "id": "agent-figure",
+      "type": "image",
+      "only": [
+        "web"
+      ],
+      "assetId": "task-asset",
+      "alt": "The task: a natural language specification and the repository with a reference implementation go to an LLM agent, which builds test scenarios and a scenario-agnostic executable check; the check must accept satisfying and reject violating implementations, and the scenarios' edge coverage is measured.",
+      "caption": [
+        {
+          "type": "text",
+          "text": "The task: from a specification, the repository and a reference implementation, the agent builds scenarios and executable checks (paper, Fig. 1)."
+        }
+      ],
+      "width": 100,
+      "alignment": "center"
+    },
+    "agent-text": {
+      "id": "agent-text",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "p-5",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Each task gives the agent one atomic specification, the repository and a reference implementation, without saying whether the reference meets the specification. The agent submits a scenario generator, which yields the arguments of single calls, and checks that take any one scenario, make the call and assert what the specification requires. Because the checks do not depend on the scenarios, the same checks can judge new scenarios and real executions after deployment."
+            }
+          ]
+        },
+        {
+          "id": "p-6",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "The 291 tasks come from 30 features of 13 Python repositories in FeatureBench and span eight kinds of verification logic, from functional postconditions (49%) and input validation (18%) to interaction protocols (11%), frame conditions and relational properties."
+            }
+          ]
+        }
+      ]
+    },
+    "verdict-columns": {
+      "id": "verdict-columns",
+      "type": "container",
+      "only": [
+        "web"
+      ],
+      "layout": "columns",
+      "children": [
+        "verdict-built",
+        "verdict-scored"
+      ],
+      "properties": {
+        "columnWidths": [
+          1,
+          1
+        ]
+      }
+    },
+    "verdict-built": {
+      "id": "verdict-built",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "h-7",
+          "type": "heading",
+          "level": 3,
+          "children": [
+            {
+              "type": "text",
+              "text": "How each task is built"
+            }
+          ]
+        },
+        {
+          "id": "list-8",
+          "type": "list",
+          "ordered": true,
+          "children": [
+            {
+              "id": "li-9",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-10",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Split.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " An LLM splits a feature's specification into atomic requirements, each copied from the original text."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-11",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-12",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Break.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " It injects a violation of one requirement and writes a witness: scenarios on which the violation and gold differ."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-13",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-14",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Filter.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " A violation is kept only if it passes the original test suite, its witness diverges from gold, and a second LLM from another family confirms it breaks that requirement alone."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-15",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-16",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Pair.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " A neighbouring requirement's violation that leaves this requirement intact becomes the valid alternative."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "p-17",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Two authors checked 50 tasks: they agreed on 94.7% of judgments and confirmed the pipeline on 98% of tasks."
+            }
+          ]
+        }
+      ]
+    },
+    "verdict-scored": {
+      "id": "verdict-scored",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "h-18",
+          "type": "heading",
+          "level": 3,
+          "children": [
+            {
+              "type": "text",
+              "text": "How a harness is scored"
+            }
+          ]
+        },
+        {
+          "id": "list-19",
+          "type": "list",
+          "ordered": false,
+          "children": [
+            {
+              "id": "li-20",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-21",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Detection:",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " the checks reject the violating implementation."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-22",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-23",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "False alarm:",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " the checks reject the gold implementation or a valid alternative."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-24",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-25",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Faithfulness:",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " detection with no false alarm, the headline metric."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-26",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-27",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Edge coverage:",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " control-flow edges the scenarios reach in the gold functions behind the requirement."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "p-28",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Every failure is witnessed by a concrete implementation the harness misjudges, so the measured faithfulness can only overstate the agents."
+            }
+          ]
+        }
+      ]
+    },
+    "verdict-figure": {
+      "id": "verdict-figure",
+      "type": "image",
+      "only": [
+        "web"
+      ],
+      "assetId": "construction-asset",
+      "alt": "Construction of a task: decomposition into atomic specifications, synthesis of a violating implementation with a witness, validation against FeatureBench tests and gold, cross-validation with neighbouring witnesses and a specification judge.",
+      "caption": [
+        {
+          "type": "text",
+          "text": "Building a task: decompose, synthesize a violation with its witness, validate, cross-validate (paper, Fig. 2)."
+        }
+      ],
+      "width": 100,
+      "alignment": "center"
+    },
+    "detect-text": {
+      "id": "detect-text",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "p-29",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Four coding agents, 291 tasks, 80 model calls each, the gold implementation as reference (paper, Table 1):"
+            }
+          ]
+        },
+        {
+          "id": "table-30",
+          "type": "table",
+          "headerRows": 1,
+          "children": [
+            {
+              "id": "tr-31",
+              "type": "tableRow",
+              "children": [
+                {
+                  "id": "td-32",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Agent"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-33",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Detection"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-34",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "False alarm"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-35",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Faithfulness"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-36",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Edge coverage"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-37",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Cost / task"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "tr-38",
+              "type": "tableRow",
+              "children": [
+                {
+                  "id": "td-39",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Codex / GPT-5.6-sol"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-40",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "81.8%"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-41",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "23.0%"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-42",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "61.9%"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-43",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "82.0%"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-44",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "$0.74"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "tr-45",
+              "type": "tableRow",
+              "children": [
+                {
+                  "id": "td-46",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Claude Code / Claude Opus 5"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-47",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "65.3%"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-48",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "20.6%"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-49",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "50.2%"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-50",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "72.4%"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-51",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "$1.79"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "tr-52",
+              "type": "tableRow",
+              "children": [
+                {
+                  "id": "td-53",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "OpenCode / DeepSeek-V4-Pro"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-54",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "66.7%"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-55",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "26.8%"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-56",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "45.0%"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-57",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "75.1%"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-58",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "$0.43"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "tr-59",
+              "type": "tableRow",
+              "children": [
+                {
+                  "id": "td-60",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "OpenCode / GLM-5.3"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-61",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "74.2%"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-62",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "15.1%"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-63",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "62.9%"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-64",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "84.3%"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-65",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "$1.48"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "p-66",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "False alarms leave every agent's faithfulness 11 to 22 points below its detection, and they make up 42–60% of each agent's failures. A detection-only evaluation misranks the agents: GPT-5.6-sol detects 8 points more often than GLM-5.3 and raises 8 points more false alarms, so the two end up similarly faithful."
+            }
+          ]
+        },
+        {
+          "id": "p-67",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "The scenarios are the smaller problem. Given witness scenarios that are known to expose the violation, three of the four agents' checks still accept most of the violations they missed; scenarios account for at most 33–42% of any agent's failures."
+            }
+          ]
+        }
+      ]
+    },
+    "detect-figure": {
+      "id": "detect-figure",
+      "type": "image",
+      "only": [
+        "web"
+      ],
+      "assetId": "failures-asset",
+      "alt": "Failure distribution per agent: checks accept the violation, reject the valid alternative, or reject all implementations; and of missed violations, the share repaired by witness scenarios versus persisting.",
+      "caption": [
+        {
+          "type": "text",
+          "text": "Where the failures come from (a), and how many missed violations survive scenarios that expose them (b) (paper, Fig. 5)."
+        }
+      ],
+      "width": 100,
+      "alignment": "center"
+    },
+    "swap-text": {
+      "id": "swap-text",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "p-68",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Swap the reference for the violating implementation and run the 100-task Lite Set again. Every agent loses 19 to 31 points of faithfulness, and rejection of the unseen gold implementation rises from 0–15% to 12–41% (paper, Table 2)."
+            }
+          ]
+        },
+        {
+          "id": "list-69",
+          "type": "list",
+          "ordered": false,
+          "children": [
+            {
+              "id": "li-70",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-71",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Claude Opus 5 and GLM-5.3",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " treat their checks' rejections of the reference as bugs in the checks: their checks come to accept the violation, and detection falls from 66% to 33% and from 75% to 44%."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-72",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-73",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "GPT-5.6-sol and DeepSeek-V4-Pro",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " treat them as bugs in the implementation: detection barely moves, but their checks over-assert and reject the gold implementation in 29% and 41% of tasks."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "p-74",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "More model calls do not close the gap: a harness finished within 50 steps is no more faithful than one finished within 30. What is missing is checks that assert no more and no less than the specification, the capability that benchmark evaluation, coding assistants and reinforcement learning with verifiable rewards all rely on."
+            }
+          ]
+        },
+        {
+          "id": "p-75",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "The benchmark, its construction pipeline, prompts and a 100-task Lite Set are public, so the pipeline can turn more specified code into tasks."
+            }
+          ]
+        }
+      ]
+    },
+    "swap-bibtex": {
+      "id": "swap-bibtex",
+      "type": "code",
+      "only": [
+        "web"
+      ],
+      "language": "bibtex",
+      "value": "@misc{zhong2026specguardbench,\n  title         = {{SpecGuardBench}: Can Coding Agents Construct Reliable Validation Harnesses from Natural Language Specifications?},\n  author        = {Zhong, Zhiqing and Chen, Mingyu and Fang, Aoyang and Zhang, Yuzhong and Tian, Haoye and Briand, Lionel and Yu, Boxi and He, Pinjia},\n  year          = {2026},\n  eprint        = {2610.16870},\n  archivePrefix = {arXiv},\n  primaryClass  = {cs.CL},\n  url           = {https://arxiv.org/abs/2610.16870}\n}"
+    },
+    "swap-credit": {
+      "id": "swap-credit",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "p-76",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Film music: “Spy Glass” by Kevin MacLeod ("
+            },
+            {
+              "type": "link",
+              "href": "https://incompetech.com",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "incompetech.com"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "), licensed under "
+            },
+            {
+              "type": "link",
+              "href": "http://creativecommons.org/licenses/by/4.0/",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "CC BY 4.0"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "."
+            }
+          ]
+        }
+      ]
+    },
+    "tests-pass-the-rule-breaks--scene": {
+      "id": "tests-pass-the-rule-breaks--scene",
+      "type": "component",
+      "definitionId": "tests-pass-the-rule-breaks--scene--definition",
+      "parameters": {
+        "scene": "rule",
+        "alt": "astropy's rule for default_cosmology.validate: values other than None, a str or a Cosmology raise TypeError. The original tests pass both the gold version and a violating version that also accepts int and float; on 1, 0 and 2.5 only gold raises TypeError."
+      }
+    },
+    "an-agent-writes-the-checks--scene": {
+      "id": "an-agent-writes-the-checks--scene",
+      "type": "component",
+      "definitionId": "an-agent-writes-the-checks--scene--definition",
+      "parameters": {
+        "scene": "agent",
+        "alt": "The coding agent reads the rule, the repository and the reference version and writes eight scenarios and one check: values that are not None, a str or a Cosmology must raise TypeError, others are not asserted on (paper, App. B, harness by Codex / GPT-5.6-sol)."
+      }
+    },
+    "three-implementations-one-verdict--scene": {
+      "id": "three-implementations-one-verdict--scene",
+      "type": "component",
+      "definitionId": "three-implementations-one-verdict--scene--definition",
+      "parameters": {
+        "scene": "verdict",
+        "alt": "The check as a gate: gold and a valid alternative pass, the violating version is rejected. A check with one extra assertion about what the reference does (illustrative) rejects the valid alternative: a false alarm."
+      }
+    },
+    "detection-is-not-faithfulness--scene": {
+      "id": "detection-is-not-faithfulness--scene",
+      "type": "component",
+      "definitionId": "detection-is-not-faithfulness--scene--definition",
+      "parameters": {
+        "scene": "bars",
+        "alt": "Paper, Table 1, 291 tasks: detection 81.8, 65.3, 66.7 and 74.2% for Codex / GPT-5.6-sol, Claude Code / Claude Opus 5, OpenCode / DeepSeek-V4-Pro and OpenCode / GLM-5.3; with false alarms counted, faithfulness 61.9, 50.2, 45.0 and 62.9%, none above 63%."
+      }
+    },
+    "shown-the-wrong-code--scene": {
+      "id": "shown-the-wrong-code--scene",
+      "type": "component",
+      "definitionId": "shown-the-wrong-code--scene--definition",
+      "parameters": {
+        "scene": "swap",
+        "alt": "Paper, Table 2, Lite Set of 100 tasks: with the violating version as reference, faithfulness falls 65 to 46, 52 to 21, 52 to 28 and 68 to 39. Checks follow the code they are shown, not the specification."
+      }
+    }
+  },
+  "steps": {
+    "tests-pass-the-rule-breaks--step-0": {
+      "id": "tests-pass-the-rule-breaks--step-0",
+      "sectionId": "tests-pass-the-rule-breaks",
+      "visuals": [
+        {
+          "blockId": "intro-card",
+          "visible": true
+        },
+        {
+          "blockId": "tests-pass-the-rule-breaks--scene",
+          "visible": true,
+          "state": "rule"
+        }
+      ],
+      "narrationIds": [
+        "tests-pass-the-rule-breaks--narration-0"
+      ]
+    },
+    "tests-pass-the-rule-breaks--step-1": {
+      "id": "tests-pass-the-rule-breaks--step-1",
+      "sectionId": "tests-pass-the-rule-breaks",
+      "visuals": [
+        {
+          "blockId": "intro-card",
+          "visible": true
+        },
+        {
+          "blockId": "tests-pass-the-rule-breaks--scene",
+          "visible": true,
+          "state": "ask"
+        }
+      ],
+      "narrationIds": [
+        "tests-pass-the-rule-breaks--narration-1"
+      ]
+    },
+    "an-agent-writes-the-checks--step-0": {
+      "id": "an-agent-writes-the-checks--step-0",
+      "sectionId": "an-agent-writes-the-checks",
+      "visuals": [
+        {
+          "blockId": "agent-figure",
+          "visible": true
+        },
+        {
+          "blockId": "agent-text",
+          "visible": true
+        },
+        {
+          "blockId": "an-agent-writes-the-checks--scene",
+          "visible": true,
+          "state": "inputs"
+        }
+      ],
+      "narrationIds": [
+        "an-agent-writes-the-checks--narration-0"
+      ]
+    },
+    "an-agent-writes-the-checks--step-1": {
+      "id": "an-agent-writes-the-checks--step-1",
+      "sectionId": "an-agent-writes-the-checks",
+      "visuals": [
+        {
+          "blockId": "agent-figure",
+          "visible": true
+        },
+        {
+          "blockId": "agent-text",
+          "visible": true
+        },
+        {
+          "blockId": "an-agent-writes-the-checks--scene",
+          "visible": true,
+          "state": "route"
+        }
+      ],
+      "narrationIds": [
+        "an-agent-writes-the-checks--narration-1"
+      ]
+    },
+    "three-implementations-one-verdict--step-0": {
+      "id": "three-implementations-one-verdict--step-0",
+      "sectionId": "three-implementations-one-verdict",
+      "visuals": [
+        {
+          "blockId": "verdict-columns",
+          "visible": true
+        },
+        {
+          "blockId": "verdict-built",
+          "visible": true
+        },
+        {
+          "blockId": "verdict-scored",
+          "visible": true
+        },
+        {
+          "blockId": "verdict-figure",
+          "visible": true
+        },
+        {
+          "blockId": "three-implementations-one-verdict--scene",
+          "visible": true,
+          "state": "judge"
+        }
+      ],
+      "narrationIds": [
+        "three-implementations-one-verdict--narration-0"
+      ]
+    },
+    "three-implementations-one-verdict--step-1": {
+      "id": "three-implementations-one-verdict--step-1",
+      "sectionId": "three-implementations-one-verdict",
+      "visuals": [
+        {
+          "blockId": "verdict-columns",
+          "visible": true
+        },
+        {
+          "blockId": "verdict-built",
+          "visible": true
+        },
+        {
+          "blockId": "verdict-scored",
+          "visible": true
+        },
+        {
+          "blockId": "verdict-figure",
+          "visible": true
+        },
+        {
+          "blockId": "three-implementations-one-verdict--scene",
+          "visible": true,
+          "state": "alternative"
+        }
+      ],
+      "narrationIds": [
+        "three-implementations-one-verdict--narration-1"
+      ]
+    },
+    "detection-is-not-faithfulness--step-0": {
+      "id": "detection-is-not-faithfulness--step-0",
+      "sectionId": "detection-is-not-faithfulness",
+      "visuals": [
+        {
+          "blockId": "detect-text",
+          "visible": true
+        },
+        {
+          "blockId": "detect-figure",
+          "visible": true
+        },
+        {
+          "blockId": "detection-is-not-faithfulness--scene",
+          "visible": true,
+          "state": "detect"
+        }
+      ],
+      "narrationIds": [
+        "detection-is-not-faithfulness--narration-0"
+      ]
+    },
+    "detection-is-not-faithfulness--step-1": {
+      "id": "detection-is-not-faithfulness--step-1",
+      "sectionId": "detection-is-not-faithfulness",
+      "visuals": [
+        {
+          "blockId": "detect-text",
+          "visible": true
+        },
+        {
+          "blockId": "detect-figure",
+          "visible": true
+        },
+        {
+          "blockId": "detection-is-not-faithfulness--scene",
+          "visible": true,
+          "state": "faithful"
+        }
+      ],
+      "narrationIds": [
+        "detection-is-not-faithfulness--narration-1"
+      ]
+    },
+    "shown-the-wrong-code--step-0": {
+      "id": "shown-the-wrong-code--step-0",
+      "sectionId": "shown-the-wrong-code",
+      "visuals": [
+        {
+          "blockId": "swap-text",
+          "visible": true
+        },
+        {
+          "blockId": "swap-bibtex",
+          "visible": true
+        },
+        {
+          "blockId": "swap-credit",
+          "visible": true
+        },
+        {
+          "blockId": "shown-the-wrong-code--scene",
+          "visible": true,
+          "state": "swap"
+        }
+      ],
+      "narrationIds": [
+        "shown-the-wrong-code--narration-0"
+      ]
+    },
+    "shown-the-wrong-code--step-1": {
+      "id": "shown-the-wrong-code--step-1",
+      "sectionId": "shown-the-wrong-code",
+      "visuals": [
+        {
+          "blockId": "swap-text",
+          "visible": true
+        },
+        {
+          "blockId": "swap-bibtex",
+          "visible": true
+        },
+        {
+          "blockId": "swap-credit",
+          "visible": true
+        },
+        {
+          "blockId": "shown-the-wrong-code--scene",
+          "visible": true,
+          "state": "remember"
+        }
+      ],
+      "narrationIds": [
+        "shown-the-wrong-code--narration-1"
+      ]
+    }
+  },
+  "narrations": {
+    "tests-pass-the-rule-breaks--narration-0": {
+      "id": "tests-pass-the-rule-breaks--narration-0",
+      "content": [
+        {
+          "type": "text",
+          "text": "Here is one rule from astropy: anything that is not None, a string or a cosmology must raise a TypeError. The original tests pass both of these versions, yet one of them returns numbers instead of raising."
+        }
+      ]
+    },
+    "tests-pass-the-rule-breaks--narration-1": {
+      "id": "tests-pass-the-rule-breaks--narration-1",
+      "content": [
+        {
+          "type": "text",
+          "text": "Can a coding agent write the check that catches it?"
+        }
+      ]
+    },
+    "an-agent-writes-the-checks--narration-0": {
+      "id": "an-agent-writes-the-checks--narration-0",
+      "content": [
+        {
+          "type": "text",
+          "text": "Given the rule, the repository and a reference version, the agent writes test scenarios and a check."
+        }
+      ]
+    },
+    "an-agent-writes-the-checks--narration-1": {
+      "id": "an-agent-writes-the-checks--narration-1",
+      "content": [
+        {
+          "type": "text",
+          "text": "The check asserts only what the rule requires."
+        }
+      ]
+    },
+    "three-implementations-one-verdict--narration-0": {
+      "id": "three-implementations-one-verdict--narration-0",
+      "content": [
+        {
+          "type": "text",
+          "text": "The check must accept the gold version and reject the violation."
+        }
+      ]
+    },
+    "three-implementations-one-verdict--narration-1": {
+      "id": "three-implementations-one-verdict--narration-1",
+      "content": [
+        {
+          "type": "text",
+          "text": "It must also accept a correct variant. Assert more than the rule, and the correct variant is rejected: a false alarm."
+        }
+      ]
+    },
+    "detection-is-not-faithfulness--narration-0": {
+      "id": "detection-is-not-faithfulness--narration-0",
+      "content": [
+        {
+          "type": "text",
+          "text": "Four coding agents catch most violations."
+        }
+      ]
+    },
+    "detection-is-not-faithfulness--narration-1": {
+      "id": "detection-is-not-faithfulness--narration-1",
+      "content": [
+        {
+          "type": "text",
+          "text": "Count the false alarms, and none is faithful on more than sixty-three percent of tasks."
+        }
+      ]
+    },
+    "shown-the-wrong-code--narration-0": {
+      "id": "shown-the-wrong-code--narration-0",
+      "content": [
+        {
+          "type": "text",
+          "text": "Show them the violating version as reference, and every agent loses nineteen to thirty-one points."
+        }
+      ]
+    },
+    "shown-the-wrong-code--narration-1": {
+      "id": "shown-the-wrong-code--narration-1",
+      "content": [
+        {
+          "type": "text",
+          "text": "Their checks follow the code they are shown, not the specification."
+        }
+      ]
+    }
+  },
+  "assets": {
+    "task-asset": {
+      "id": "task-asset",
+      "kind": "image",
+      "location": "figures/task-spec-reference-to-harness-verdicts.png",
+      "mediaType": "image/png"
+    },
+    "construction-asset": {
+      "id": "construction-asset",
+      "kind": "image",
+      "location": "figures/construction-violation-synthesis-and-filters.png",
+      "mediaType": "image/png"
+    },
+    "failures-asset": {
+      "id": "failures-asset",
+      "kind": "image",
+      "location": "figures/failures-false-alarms-and-missed-violations.png",
+      "mediaType": "image/png"
+    },
+    "film-score": {
+      "id": "film-score",
+      "kind": "audio",
+      "location": "audio/score.ogg",
+      "title": "Film score (music: “Spy Glass”, Kevin MacLeod, incompetech.com, CC BY 4.0)",
+      "mediaType": "audio/ogg"
+    }
+  },
+  "definitions": {
+    "tests-pass-the-rule-breaks--scene--definition": {
+      "id": "tests-pass-the-rule-breaks--scene--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/rule.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "rule"
+        },
+        {
+          "id": "ask"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          8750,
+          4400
+        ],
+        "language": "typescript",
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "astropy's rule for default_cosmology.validate: values other than None, a str or a Cosmology raise TypeError. The original tests pass both the gold version and a violating version that also accepts int and float; on 1, 0 and 2.5 only gold raises TypeError."
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "an-agent-writes-the-checks--scene--definition": {
+      "id": "an-agent-writes-the-checks--scene--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/agent.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "inputs"
+        },
+        {
+          "id": "route"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          8700,
+          4300
+        ],
+        "language": "typescript",
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "The coding agent reads the rule, the repository and the reference version and writes eight scenarios and one check: values that are not None, a str or a Cosmology must raise TypeError, others are not asserted on (paper, App. B, harness by Codex / GPT-5.6-sol)."
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "three-implementations-one-verdict--scene--definition": {
+      "id": "three-implementations-one-verdict--scene--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/verdict.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "judge"
+        },
+        {
+          "id": "alternative"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          4400,
+          8750
+        ],
+        "language": "typescript",
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "The check as a gate: gold and a valid alternative pass, the violating version is rejected. A check with one extra assertion about what the reference does (illustrative) rejects the valid alternative: a false alarm."
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "detection-is-not-faithfulness--scene--definition": {
+      "id": "detection-is-not-faithfulness--scene--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/bars.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "detect"
+        },
+        {
+          "id": "faithful"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          7750,
+          4400
+        ],
+        "language": "typescript",
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Paper, Table 1, 291 tasks: detection 81.8, 65.3, 66.7 and 74.2% for Codex / GPT-5.6-sol, Claude Code / Claude Opus 5, OpenCode / DeepSeek-V4-Pro and OpenCode / GLM-5.3; with false alarms counted, faithfulness 61.9, 50.2, 45.0 and 62.9%, none above 63%."
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "shown-the-wrong-code--scene--definition": {
+      "id": "shown-the-wrong-code--scene--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/swap.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "swap"
+        },
+        {
+          "id": "remember"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          5350,
+          5200
+        ],
+        "language": "typescript",
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Paper, Table 2, Lite Set of 100 tasks: with the violating version as reference, faithfulness falls 65 to 46, 52 to 21, 52 to 28 and 68 to 39. Checks follow the code they are shown, not the specification."
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
+  "production": {
+    "defaults": {
+      "voiceSource": {
+        "type": "none"
+      },
+      "narrationStart": "with-animation",
+      "trailingPauseMs": 0
+    },
+    "stepOverrides": {
+      "tests-pass-the-rule-breaks--step-0": {
+        "minimumHoldMs": 8750,
+        "trailingPauseMs": 0
+      },
+      "tests-pass-the-rule-breaks--step-1": {
+        "minimumHoldMs": 4400,
+        "trailingPauseMs": 0
+      },
+      "an-agent-writes-the-checks--step-0": {
+        "minimumHoldMs": 8700,
+        "trailingPauseMs": 0
+      },
+      "an-agent-writes-the-checks--step-1": {
+        "minimumHoldMs": 4300,
+        "trailingPauseMs": 0
+      },
+      "three-implementations-one-verdict--step-0": {
+        "minimumHoldMs": 4400,
+        "trailingPauseMs": 0
+      },
+      "three-implementations-one-verdict--step-1": {
+        "minimumHoldMs": 8750,
+        "trailingPauseMs": 0
+      },
+      "detection-is-not-faithfulness--step-0": {
+        "minimumHoldMs": 7750,
+        "trailingPauseMs": 0
+      },
+      "detection-is-not-faithfulness--step-1": {
+        "minimumHoldMs": 4400,
+        "trailingPauseMs": 0
+      },
+      "shown-the-wrong-code--step-0": {
+        "minimumHoldMs": 5350,
+        "trailingPauseMs": 0
+      },
+      "shown-the-wrong-code--step-1": {
+        "minimumHoldMs": 5200,
+        "trailingPauseMs": 0
+      }
+    },
+    "mediaClips": [
+      {
+        "id": "score--tests-pass-the-rule-breaks--step-0",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 0,
+          "endMs": 8750
+        },
+        "attachment": {
+          "stepId": "tests-pass-the-rule-breaks--step-0",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--tests-pass-the-rule-breaks--step-1",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 8750,
+          "endMs": 13150
+        },
+        "attachment": {
+          "stepId": "tests-pass-the-rule-breaks--step-1",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--an-agent-writes-the-checks--step-0",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 13150,
+          "endMs": 21850
+        },
+        "attachment": {
+          "stepId": "an-agent-writes-the-checks--step-0",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--an-agent-writes-the-checks--step-1",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 21850,
+          "endMs": 26150
+        },
+        "attachment": {
+          "stepId": "an-agent-writes-the-checks--step-1",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--three-implementations-one-verdict--step-0",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 26150,
+          "endMs": 30550
+        },
+        "attachment": {
+          "stepId": "three-implementations-one-verdict--step-0",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--three-implementations-one-verdict--step-1",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 30550,
+          "endMs": 39300
+        },
+        "attachment": {
+          "stepId": "three-implementations-one-verdict--step-1",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--detection-is-not-faithfulness--step-0",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 39300,
+          "endMs": 47050
+        },
+        "attachment": {
+          "stepId": "detection-is-not-faithfulness--step-0",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--detection-is-not-faithfulness--step-1",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 47050,
+          "endMs": 51450
+        },
+        "attachment": {
+          "stepId": "detection-is-not-faithfulness--step-1",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--shown-the-wrong-code--step-0",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 51450,
+          "endMs": 56800
+        },
+        "attachment": {
+          "stepId": "shown-the-wrong-code--step-0",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--shown-the-wrong-code--step-1",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 56800,
+          "endMs": 62000
+        },
+        "attachment": {
+          "stepId": "shown-the-wrong-code--step-1",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      }
+    ]
+  }
+}

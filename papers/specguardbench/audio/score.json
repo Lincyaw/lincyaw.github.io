@@ -1,0 +1,18 @@
+{
+  "title": "specguardbench film · score",
+  "music": {
+    "title": "Spy Glass",
+    "author": "Kevin MacLeod",
+    "url": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Spy%20Glass.mp3",
+    "license": "CC BY 4.0",
+    "credit": "Music: \"Spy Glass\" by Kevin MacLeod (incompetech.com). Licensed under Creative Commons: By Attribution 4.0 License, http://creativecommons.org/licenses/by/4.0/",
+    "excerpt": { "from": 0.35, "seconds": 62, "fadeOutSeconds": 2.5 },
+    "stabs": {
+      "note": "the track's stabs (track time) at 9.1, 13.5, 22.2, 26.5, 30.9, 39.65, 47.4, 51.8 s; starting at 0.35 s puts them on the step boundaries 8.75, 13.15, 21.85, 26.15, 30.55, 39.3, 47.05, 51.45 s"
+    }
+  },
+  "made": "ffmpeg -i source/spy-glass.mp3 -af 'atrim=start=0.35:duration=62,asetpts=PTS-STARTPTS,afade=t=in:st=0:d=0.05,afade=t=out:st=59.5:d=2.5,loudnorm=I=-16:TP=-1.5:LRA=11,aresample=48000' -c:a libopus -b:a 128k score.ogg",
+  "target": { "lufs": -16, "truePeak": -1.5 },
+  "measured": { "integratedLufs": -16.9, "peak": -1.5 },
+  "fingerprint": "sha256:d618c932306149dc26d90b92c402ea13c621c3e3cdf010bc7764efa119cecc5a"
+}

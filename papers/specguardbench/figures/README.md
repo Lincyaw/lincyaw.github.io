@@ -1,0 +1,8 @@
+# SpecGuardBench figures
+
+From arXiv 2610.16870v1. The two diagrams are rendered at 200 dpi with `pdftoppm` from the vector figures in the e-print (`source/tex/figures/`); the chart and table are cropped at 400 dpi from the PDF (`source/pdf/`), captions cut off.
+
+- `task-spec-reference-to-harness-verdicts.png` — Figure 1: the task. A natural language specification and the repository with a reference implementation go to an LLM agent, which builds a validation harness of test scenarios (`yield {"args": …}`) and a scenario-agnostic executable check; evaluation asks that satisfying implementations are accepted, violating ones rejected, and reports edge coverage.
+- `construction-violation-synthesis-and-filters.png` — Figure 2: building a task. (a) the full specification is split into atomic specifications S1–S3; (b) for each, an LLM writes a violating implementation V and a witness w from the gold G; (c) V must pass the FeatureBench validation tests and its witness output must differ from gold; (d) neighbours' witnesses cross-validate, and a second LLM keeps V only if it violates the target specification alone.
+- `failures-false-alarms-and-missed-violations.png` — Figure 5: (a) each agent's failures split into accepting the violation, rejecting the valid alternative, rejecting all implementations (false alarms are 42–60%); (b) of missed violations, the share repaired by witness scenarios (63, 26, 23, 48%) versus persisting (37, 74, 77, 52%).
+- `table1-detection-false-alarm-faithfulness.png` — Table 1: detection, false alarm, faithfulness, edge coverage and cost per task for Codex/GPT-5.6-sol, Claude Code/Claude Opus 5, OpenCode/DeepSeek-V4-Pro and OpenCode/GLM-5.3 on 291 tasks.

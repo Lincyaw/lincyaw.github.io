@@ -1,0 +1,1541 @@
+{
+  "schemaVersion": 1,
+  "id": "paper-rca-trajectories",
+  "metadata": {
+    "title": "Beyond Fault Localization: A Trajectory-Level Study of LLM Agents for Microservice Root Cause Analysis",
+    "lang": "en",
+    "description": "Across 5,000 RCA agent trajectories, correct answers hide broken causal chains; failures recur in three evidence-handling families, and guarding against them raises accuracy everywhere.",
+    "plugins": [
+      "@lincyaw/addon-motion",
+      "@lincyaw/addon-lecture",
+      "@lincyaw/addon-speech"
+    ],
+    "renderers": {
+      "web": {},
+      "slides": {},
+      "lecture": {}
+    },
+    "tags": [
+      "LLM agents",
+      "arXiv'26"
+    ]
+  },
+  "sectionOrder": [
+    "it-reached-the-cause-then-left",
+    "on-the-path-or-off-it",
+    "three-ways-to-miss",
+    "guarded-runs-find-it"
+  ],
+  "sections": {
+    "it-reached-the-cause-then-left": {
+      "id": "it-reached-the-cause-then-left",
+      "title": "Beyond Fault Localization: A Trajectory-Level Study of LLM Agents for Microservice Root Cause Analysis",
+      "level": 1,
+      "children": [
+        "it-reached-the-cause-then-left--text-4",
+        "it-reached-the-cause-then-left--scene",
+        "it-reached-the-cause-then-left--image-5"
+      ],
+      "stepOrder": [
+        "it-reached-the-cause-then-left--score",
+        "it-reached-the-cause-then-left--walk"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    },
+    "on-the-path-or-off-it": {
+      "id": "on-the-path-or-off-it",
+      "title": "On the path or off it",
+      "level": 1,
+      "children": [
+        "on-the-path-or-off-it--scene",
+        "on-the-path-or-off-it--columns-26",
+        "on-the-path-or-off-it--image-27"
+      ],
+      "stepOrder": [
+        "on-the-path-or-off-it--correct",
+        "on-the-path-or-off-it--failed"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    },
+    "three-ways-to-miss": {
+      "id": "three-ways-to-miss",
+      "title": "Three ways to miss",
+      "level": 1,
+      "children": [
+        "three-ways-to-miss--text-37",
+        "three-ways-to-miss--image-38",
+        "three-ways-to-miss--scene"
+      ],
+      "stepOrder": [
+        "three-ways-to-miss--incident",
+        "three-ways-to-miss--families"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    },
+    "guarded-runs-find-it": {
+      "id": "guarded-runs-find-it",
+      "title": "Guarded runs find it",
+      "level": 1,
+      "children": [
+        "guarded-runs-find-it--scene",
+        "guarded-runs-find-it--text-50",
+        "guarded-runs-find-it--code-51",
+        "guarded-runs-find-it--text-53"
+      ],
+      "stepOrder": [
+        "guarded-runs-find-it--guard",
+        "guarded-runs-find-it--gains"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    }
+  },
+  "blocks": {
+    "it-reached-the-cause-then-left--text-4": {
+      "id": "it-reached-the-cause-then-left--text-4",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "p-1",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Qisheng Lu, "
+            },
+            {
+              "type": "text",
+              "text": "Aoyang Fang",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": ", Junjielong Xu, Jin'ao Shang, Songhan Zhang, Yifan Yang, Xiaochuan Yan, Pinjia He. "
+            },
+            {
+              "type": "text",
+              "text": "arXiv preprint",
+              "marks": [
+                {
+                  "type": "italic"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": ", 2026. Aoyang Fang and Pinjia He are co-corresponding authors."
+            }
+          ]
+        },
+        {
+          "id": "p-2",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "link",
+              "href": "https://arxiv.org/abs/2608.21310",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "arXiv"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " · "
+            },
+            {
+              "type": "link",
+              "href": "https://arxiv.org/pdf/2608.21310",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "PDF"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " · "
+            },
+            {
+              "type": "link",
+              "href": "https://doi.org/10.48550/arXiv.2608.21310",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "DOI"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "p-3",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "An RCA agent's final answer hides how the diagnosis was reached. Graded against each incident's fault propagation path, "
+            },
+            {
+              "type": "text",
+              "text": "5,000 trajectories",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " of LLM agents show that correct runs stay on that path and act on what their queries return, while failed runs wander off it; wrong diagnoses trace to evidence never gathered, evidence misread, or reasoning detached from the evidence. DiagGuard, a guard built from these failures, raises Acc@1 in "
+            },
+            {
+              "type": "text",
+              "text": "all 14",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " tested configurations, by 3.5 to 35.1 points."
+            }
+          ]
+        }
+      ]
+    },
+    "it-reached-the-cause-then-left--image-5": {
+      "id": "it-reached-the-cause-then-left--image-5",
+      "type": "image",
+      "only": [
+        "web"
+      ],
+      "assetId": "it-reached-the-cause-then-left--asset",
+      "alt": "Figure 1: an annotated fault path, an agent trajectory by step range, and outcome metrics that see only the final answer",
+      "caption": [
+        {
+          "type": "text",
+          "text": "Figure 1: the agent reaches the root-cause service at steps 37–40, leaves its metrics uninspected, rechecks the symptom and reports the affected service; Acc@k, MRR and MAP record only that final answer."
+        }
+      ],
+      "width": 100,
+      "alignment": "center"
+    },
+    "it-reached-the-cause-then-left--scene": {
+      "id": "it-reached-the-cause-then-left--scene",
+      "type": "component",
+      "definitionId": "it-reached-the-cause-then-left--definition",
+      "parameters": {
+        "alt": "An outcome card scores the answer 'affected service' wrong; the agent's footprints on the fault path show it reached the root cause at steps 37–40 and left without querying its metrics."
+      }
+    },
+    "on-the-path-or-off-it--text-24": {
+      "id": "on-the-path-or-off-it--text-24",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "h-6",
+          "type": "heading",
+          "level": 3,
+          "children": [
+            {
+              "type": "text",
+              "text": "Grading the process"
+            }
+          ]
+        },
+        {
+          "id": "list-7",
+          "type": "list",
+          "ordered": false,
+          "children": [
+            {
+              "id": "li-8",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-9",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Ground truth.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " 500 RCABench incidents on TrainTicket, each with a manually validated service-level fault propagation path from the root cause to the alarming service; two reviewers agree on 97.4% of decisions."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-10",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-11",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Trajectories.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " 5,000 runs from ten configurations: nine agent frameworks under Qwen 3.5-Plus, and ThinkDepth.ai under Claude Sonnet 4.6."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-12",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-13",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Labels.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " Each round is placed on or off the fault's path and gets one of 10 navigation moves and one of 4 evidence-use labels; 92,501 SQL actions each carry one of 11 SRE diagnostic intents."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "on-the-path-or-off-it--text-25": {
+      "id": "on-the-path-or-off-it--text-25",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "h-14",
+          "type": "heading",
+          "level": 3,
+          "children": [
+            {
+              "type": "text",
+              "text": "What separates correct runs"
+            }
+          ]
+        },
+        {
+          "id": "list-15",
+          "type": "list",
+          "ordered": false,
+          "children": [
+            {
+              "id": "li-16",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-17",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "They use their evidence.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " Correct runs re-query services on the path and act on what returns; failed runs Stray, Wander and Retrace, and more often hit empty or ignored results."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-18",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-19",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "The backbone shapes the search.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " Sonnet acts on the previous result in 54.3% of rounds, Qwen in 24.9%; Sonnet pivots to resource and topology queries (resource_probe in 82.8% of its trajectories, Qwen 16.6%)."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-20",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-21",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "More rounds do not help.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " Within a framework, failed runs take up to 11.4 more rounds than correct ones and still score lower on both F1 metrics."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-22",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-23",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Links are harder than services.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " Edge F1 trails Node F1 in every configuration and stays at or below 0.67 even on correctly localized cases."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "on-the-path-or-off-it--columns-26": {
+      "id": "on-the-path-or-off-it--columns-26",
+      "type": "container",
+      "only": [
+        "web"
+      ],
+      "layout": "columns",
+      "children": [
+        "on-the-path-or-off-it--text-24",
+        "on-the-path-or-off-it--text-25"
+      ],
+      "properties": {
+        "columnWidths": [
+          1,
+          1
+        ]
+      }
+    },
+    "on-the-path-or-off-it--image-27": {
+      "id": "on-the-path-or-off-it--image-27",
+      "type": "image",
+      "only": [
+        "web"
+      ],
+      "assetId": "on-the-path-or-off-it--asset",
+      "alt": "Figure 3: the ten navigation moves, the four evidence-use labels, and a worked trajectory plotted as depth over rounds",
+      "caption": [
+        {
+          "type": "text",
+          "text": "Figure 3: each round is reduced to its primary service and plotted by depth from the root cause; the worked run strays into the off-path band twice before it reaches the root at round 11."
+        }
+      ],
+      "width": 100,
+      "alignment": "center"
+    },
+    "on-the-path-or-off-it--scene": {
+      "id": "on-the-path-or-off-it--scene",
+      "type": "component",
+      "definitionId": "on-the-path-or-off-it--definition",
+      "parameters": {
+        "alt": "Two runs plotted round by round against the fault's path: the correct run stays on the path, mostly acts on what it retrieves and reaches the root in 31 rounds; the failed run strays off the path, mostly ignores its results and ends off the path after 38."
+      }
+    },
+    "three-ways-to-miss--text-37": {
+      "id": "three-ways-to-miss--text-37",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "p-28",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Two authors coded all 154 failed ThinkDepth.ai trajectories against the evidence each fault type requires (93.5% identical code sets). Twelve recurring modes fall into three families, by what happened to the decisive evidence:"
+            }
+          ]
+        },
+        {
+          "id": "list-29",
+          "type": "list",
+          "ordered": false,
+          "children": [
+            {
+              "id": "li-30",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-31",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Never gathered (OMIT).",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " Evidence reachable in telemetry is never queried: no healthy baseline, no span-level test of a claimed edge, no resource probe with concrete names, no peer ranking, no drill-down, no timing check."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-32",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-33",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Gathered, misread (MIS).",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " Silence read as health, the loudest victim blamed over a quieter culprit, caller and callee sides reversed."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-34",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-35",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Reasoning off the evidence (GEN).",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " An early hypothesis kept against later evidence, a cause outside the allowed states, a channel abandoned after an empty result."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "p-36",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Qwen fails mostly by omission (no resource probe in 63.5% of its failures), Sonnet mostly by misreading (wrong service-side semantics in 86.0%). On the held-out RCA100 benchmark all eleven comparable modes recur, and incorrect runs show 3.29 distinct modes on average against 0.71 for correct runs."
+            }
+          ]
+        }
+      ]
+    },
+    "three-ways-to-miss--image-38": {
+      "id": "three-ways-to-miss--image-38",
+      "type": "image",
+      "only": [
+        "web"
+      ],
+      "assetId": "three-ways-to-miss--asset",
+      "alt": "Figure 6b: a disk fault on tidb-tikv-0 seen as a slow product page; the baseline blames the noisy Ad service, DiagGuard finds the storage node",
+      "caption": [
+        {
+          "type": "text",
+          "text": "Figure 6b: a disk-I/O fault on the TiKV node tidb-tikv-0 surfaces only as product-page tail latency (p99 0.25 s → 10 s); the baseline anchors on Ad, whose errors are chronic noise, and never leaves the service tier."
+        }
+      ],
+      "width": 100,
+      "alignment": "center"
+    },
+    "three-ways-to-miss--scene": {
+      "id": "three-ways-to-miss--scene",
+      "type": "component",
+      "definitionId": "three-ways-to-miss--definition",
+      "parameters": {
+        "alt": "On a held-out incident, a disk fault on tidb-tikv-0 shows only as a slow product page; the agent searches the service tier, blames the chronically noisy Ad service, and its six coded failures fall into three families."
+      }
+    },
+    "guarded-runs-find-it--text-50": {
+      "id": "guarded-runs-find-it--text-50",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "p-39",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "DiagGuard wraps an unchanged agent framework with two defenses traced to the three families: a "
+            },
+            {
+              "type": "text",
+              "text": "Verifier",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " that runs a diagnostic self-audit before the investigation and a soundness check before the answer, and a "
+            },
+            {
+              "type": "text",
+              "text": "Grounder",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " that profiles the actual telemetry before the first query. Both are added through prompts and tools, with rules fixed across settings."
+            }
+          ]
+        },
+        {
+          "id": "list-40",
+          "type": "list",
+          "ordered": false,
+          "children": [
+            {
+              "id": "li-41",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-42",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Every configuration improves.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " ThinkDepth.ai on AIOps 2025 gains 6.5 points of Acc@1 under Qwen and 9.0 under Doubao; across 12 RCA100 configurations the median gain is 10.5 points, from 3.5 to 35.1 (mABC under Doubao, from a 3.5% baseline). Node F1 and Edge F1 rise in 11 of 12."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-43",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-44",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Failures become rarer.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " Distinct failure modes per run fall from 1.94 to 1.39 over 1,368 runs; seven modes drop significantly, such as untested edges (57.3% → 44.7%) and channels dropped after an empty result (15.1% → 4.7%)."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-45",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-46",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Each defense adds its share.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " On AIOps 2025 (Doubao, five runs) the Grounder alone adds 4.5 points, the Verifier alone 4.1, both together 9.0 (43.5% → 52.5%), at $0.16 per incident."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-47",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-48",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "The framework sets the failure profile.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " Failure profiles are more alike across backbones within one framework (cosine 0.950) than across frameworks (0.767)."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "p-49",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "A correct label says whether an agent localized the fault; its trajectory says whether the diagnosis is grounded, where it broke, and what to guard against."
+            }
+          ]
+        }
+      ]
+    },
+    "guarded-runs-find-it--code-51": {
+      "id": "guarded-runs-find-it--code-51",
+      "type": "code",
+      "only": [
+        "web"
+      ],
+      "language": "bibtex",
+      "value": "@misc{lu2026beyond,\n  title         = {Beyond Fault Localization: A Trajectory-Level Study of {LLM} Agents for Microservice Root Cause Analysis},\n  author        = {Lu, Qisheng and Fang, Aoyang and Xu, Junjielong and Shang, Jin'ao and Zhang, Songhan and Yang, Yifan and Yan, Xiaochuan and He, Pinjia},\n  year          = {2026},\n  eprint        = {2608.21310},\n  archivePrefix = {arXiv},\n  primaryClass  = {cs.SE},\n  doi           = {10.48550/arXiv.2608.21310},\n  url           = {https://arxiv.org/abs/2608.21310}\n}"
+    },
+    "guarded-runs-find-it--text-53": {
+      "id": "guarded-runs-find-it--text-53",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "p-52",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Film music: \"Ouroboros\" by Kevin MacLeod ("
+            },
+            {
+              "type": "link",
+              "href": "https://incompetech.com/",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "incompetech.com"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "), licensed under "
+            },
+            {
+              "type": "link",
+              "href": "http://creativecommons.org/licenses/by/4.0/",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "CC BY 4.0"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "."
+            }
+          ]
+        }
+      ]
+    },
+    "guarded-runs-find-it--scene": {
+      "id": "guarded-runs-find-it--scene",
+      "type": "component",
+      "definitionId": "guarded-runs-find-it--definition",
+      "parameters": {
+        "alt": "DiagGuard places a Verifier before and after the unchanged agent and a Grounder feeding it; on the same incident the answer flips from Ad to tidb-tikv-0, and Acc@1 rises in all 14 configurations, by 3.5 to 35.1 points."
+      }
+    }
+  },
+  "steps": {
+    "it-reached-the-cause-then-left--score": {
+      "id": "it-reached-the-cause-then-left--score",
+      "sectionId": "it-reached-the-cause-then-left",
+      "visuals": [
+        {
+          "blockId": "it-reached-the-cause-then-left--scene",
+          "visible": true,
+          "state": "score"
+        },
+        {
+          "blockId": "it-reached-the-cause-then-left--text-4",
+          "visible": true
+        },
+        {
+          "blockId": "it-reached-the-cause-then-left--image-5",
+          "visible": true
+        }
+      ],
+      "narrationIds": [
+        "it-reached-the-cause-then-left--score--narration"
+      ]
+    },
+    "it-reached-the-cause-then-left--walk": {
+      "id": "it-reached-the-cause-then-left--walk",
+      "sectionId": "it-reached-the-cause-then-left",
+      "visuals": [
+        {
+          "blockId": "it-reached-the-cause-then-left--scene",
+          "visible": true,
+          "state": "walk"
+        },
+        {
+          "blockId": "it-reached-the-cause-then-left--text-4",
+          "visible": true
+        },
+        {
+          "blockId": "it-reached-the-cause-then-left--image-5",
+          "visible": true
+        }
+      ],
+      "narrationIds": [
+        "it-reached-the-cause-then-left--walk--narration"
+      ]
+    },
+    "on-the-path-or-off-it--correct": {
+      "id": "on-the-path-or-off-it--correct",
+      "sectionId": "on-the-path-or-off-it",
+      "visuals": [
+        {
+          "blockId": "on-the-path-or-off-it--scene",
+          "visible": true,
+          "state": "correct"
+        },
+        {
+          "blockId": "on-the-path-or-off-it--columns-26",
+          "visible": true
+        },
+        {
+          "blockId": "on-the-path-or-off-it--image-27",
+          "visible": true
+        },
+        {
+          "blockId": "on-the-path-or-off-it--text-24",
+          "visible": true
+        },
+        {
+          "blockId": "on-the-path-or-off-it--text-25",
+          "visible": true
+        }
+      ],
+      "narrationIds": [
+        "on-the-path-or-off-it--correct--narration"
+      ]
+    },
+    "on-the-path-or-off-it--failed": {
+      "id": "on-the-path-or-off-it--failed",
+      "sectionId": "on-the-path-or-off-it",
+      "visuals": [
+        {
+          "blockId": "on-the-path-or-off-it--scene",
+          "visible": true,
+          "state": "failed"
+        },
+        {
+          "blockId": "on-the-path-or-off-it--columns-26",
+          "visible": true
+        },
+        {
+          "blockId": "on-the-path-or-off-it--image-27",
+          "visible": true
+        },
+        {
+          "blockId": "on-the-path-or-off-it--text-24",
+          "visible": true
+        },
+        {
+          "blockId": "on-the-path-or-off-it--text-25",
+          "visible": true
+        }
+      ],
+      "narrationIds": [
+        "on-the-path-or-off-it--failed--narration"
+      ]
+    },
+    "three-ways-to-miss--incident": {
+      "id": "three-ways-to-miss--incident",
+      "sectionId": "three-ways-to-miss",
+      "visuals": [
+        {
+          "blockId": "three-ways-to-miss--scene",
+          "visible": true,
+          "state": "incident"
+        },
+        {
+          "blockId": "three-ways-to-miss--text-37",
+          "visible": true
+        },
+        {
+          "blockId": "three-ways-to-miss--image-38",
+          "visible": true
+        }
+      ],
+      "narrationIds": [
+        "three-ways-to-miss--incident--narration"
+      ]
+    },
+    "three-ways-to-miss--families": {
+      "id": "three-ways-to-miss--families",
+      "sectionId": "three-ways-to-miss",
+      "visuals": [
+        {
+          "blockId": "three-ways-to-miss--scene",
+          "visible": true,
+          "state": "families"
+        },
+        {
+          "blockId": "three-ways-to-miss--text-37",
+          "visible": true
+        },
+        {
+          "blockId": "three-ways-to-miss--image-38",
+          "visible": true
+        }
+      ],
+      "narrationIds": [
+        "three-ways-to-miss--families--narration"
+      ]
+    },
+    "guarded-runs-find-it--guard": {
+      "id": "guarded-runs-find-it--guard",
+      "sectionId": "guarded-runs-find-it",
+      "visuals": [
+        {
+          "blockId": "guarded-runs-find-it--scene",
+          "visible": true,
+          "state": "guard"
+        },
+        {
+          "blockId": "guarded-runs-find-it--text-50",
+          "visible": true
+        },
+        {
+          "blockId": "guarded-runs-find-it--code-51",
+          "visible": true
+        },
+        {
+          "blockId": "guarded-runs-find-it--text-53",
+          "visible": true
+        }
+      ],
+      "narrationIds": [
+        "guarded-runs-find-it--guard--narration"
+      ]
+    },
+    "guarded-runs-find-it--gains": {
+      "id": "guarded-runs-find-it--gains",
+      "sectionId": "guarded-runs-find-it",
+      "visuals": [
+        {
+          "blockId": "guarded-runs-find-it--scene",
+          "visible": true,
+          "state": "gains"
+        },
+        {
+          "blockId": "guarded-runs-find-it--text-50",
+          "visible": true
+        },
+        {
+          "blockId": "guarded-runs-find-it--code-51",
+          "visible": true
+        },
+        {
+          "blockId": "guarded-runs-find-it--text-53",
+          "visible": true
+        }
+      ],
+      "narrationIds": [
+        "guarded-runs-find-it--gains--narration"
+      ]
+    }
+  },
+  "narrations": {
+    "it-reached-the-cause-then-left--score--narration": {
+      "id": "it-reached-the-cause-then-left--score--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "An AI agent investigates a failing microservice system and answers: the affected service. Wrong, and the score records nothing else."
+        }
+      ]
+    },
+    "it-reached-the-cause-then-left--walk--narration": {
+      "id": "it-reached-the-cause-then-left--walk--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "By step 37 it stood on the real root cause, left its metrics unread, and walked back."
+        }
+      ]
+    },
+    "on-the-path-or-off-it--correct--narration": {
+      "id": "on-the-path-or-off-it--correct--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "Plot each round by its distance from the fault's root. Correct runs keep re-querying the path and use what returns."
+        }
+      ]
+    },
+    "on-the-path-or-off-it--failed--narration": {
+      "id": "on-the-path-or-off-it--failed--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "Failed runs stray off the path, ignore what they found, and run longer."
+        }
+      ]
+    },
+    "three-ways-to-miss--incident--narration": {
+      "id": "three-ways-to-miss--incident--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "Here, the agent trusts the noisiest service, skips its healthy baseline, and never probes storage."
+        }
+      ]
+    },
+    "three-ways-to-miss--families--narration": {
+      "id": "three-ways-to-miss--families--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "Across 154 failed runs, misses fall into three families: evidence never gathered, misread, or left behind by the reasoning."
+        }
+      ]
+    },
+    "guarded-runs-find-it--guard--narration": {
+      "id": "guarded-runs-find-it--guard--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "DiagGuard maps the data first and checks plan and answer. The same agent now finds the storage node."
+        }
+      ]
+    },
+    "guarded-runs-find-it--gains--narration": {
+      "id": "guarded-runs-find-it--gains--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "Across two benchmarks and six frameworks, accuracy rises in all fourteen setups. Read the trajectory: it shows where the diagnosis broke."
+        }
+      ]
+    }
+  },
+  "assets": {
+    "it-reached-the-cause-then-left--asset": {
+      "id": "it-reached-the-cause-then-left--asset",
+      "kind": "image",
+      "location": "figures/correct-label-vs-trajectory.png",
+      "mediaType": "image/png"
+    },
+    "on-the-path-or-off-it--asset": {
+      "id": "on-the-path-or-off-it--asset",
+      "kind": "image",
+      "location": "figures/navigation-labels-trajectory-example.png",
+      "mediaType": "image/png"
+    },
+    "three-ways-to-miss--asset": {
+      "id": "three-ways-to-miss--asset",
+      "kind": "image",
+      "location": "figures/diagguard-case-tikv.png",
+      "mediaType": "image/png"
+    },
+    "film-score": {
+      "id": "film-score",
+      "kind": "audio",
+      "location": "audio/score.ogg",
+      "title": "Film score (music: “Ouroboros”, Kevin MacLeod, incompetech.com, CC BY 4.0)",
+      "fingerprint": "sha256:b2521239842c653dbd9c3abe5f1255d416c102a1ba8cfea079f15ce8979171ed",
+      "mediaType": "audio/ogg"
+    }
+  },
+  "definitions": {
+    "it-reached-the-cause-then-left--definition": {
+      "id": "it-reached-the-cause-then-left--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/reached.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "score"
+        },
+        {
+          "id": "walk"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          6687,
+          6687
+        ],
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Outcome metrics record only the final answer, the affected service, scored wrong. The trajectory shows the agent ranking services by error count (steps 4–7), hypothesizing the affected service (9–13), querying to confirm it (16–30), reaching the root cause at steps 37–40 without querying its metrics, and rechecking the symptom before answering (45–47)."
+                }
+              ]
+            }
+          ]
+        },
+        "language": "typescript"
+      }
+    },
+    "on-the-path-or-off-it--definition": {
+      "id": "on-the-path-or-off-it--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/path.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "correct"
+        },
+        {
+          "id": "failed"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          8916,
+          6687
+        ],
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Each dot is one round of tool calls, placed by its service's distance from the root cause, solid when it acted on the previous result. An illustrative correct ThinkDepth.ai · Sonnet run stays on the path for 31 rounds and ends on the root; a failed run spends about a third of its 38 rounds off the path and ends there (mean rounds from Table 2, shares from Figure 5a)."
+                }
+              ]
+            }
+          ]
+        },
+        "language": "typescript"
+      }
+    },
+    "three-ways-to-miss--definition": {
+      "id": "three-ways-to-miss--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/miss.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "incident"
+        },
+        {
+          "id": "families"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          8916,
+          6687
+        ],
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "A disk fault on tidb-tikv-0 slows the product page (p99 0.25 s → 10 s). The baseline agent searches only the service tier and blames Ad, whose errors (0.25% → 0.69%) are chronic noise. Its six coded failures fall into three families: never gathered (OMIT1, OMIT3, OMIT5, OMIT6), gathered but misread (MIS2), reasoning off the evidence (GEN3)."
+                }
+              ]
+            }
+          ]
+        },
+        "language": "typescript"
+      }
+    },
+    "guarded-runs-find-it--definition": {
+      "id": "guarded-runs-find-it--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/guard.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "guard"
+        },
+        {
+          "id": "gains"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          6687,
+          8916
+        ],
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "DiagGuard adds a Verifier self-audit before the investigation, a Grounder's search-space profile before the first query and a Verifier soundness check before the answer. On the incident of Figure 6b the agent now reaches the storage tier (disk writes 15 → 105 Mbps) and answers tidb-tikv-0. Acc@1 gains (Figure 7a): ThinkDepth.ai on AIOps 2025 +6.5 / +9.0; on RCA100 GoS +10.5 / +15.8, OpsAgent +10.5 / +5.3, RCLAgent V2 +5.3 / +7.0, mABC +21.1 / +35.1, OpenRCA +19.3 / +14.0, ThinkDepth.ai +3.5 / +7.0 (Qwen / Doubao)."
+                }
+              ]
+            }
+          ]
+        },
+        "language": "typescript"
+      }
+    }
+  },
+  "production": {
+    "defaults": {
+      "voiceSource": {
+        "type": "none"
+      },
+      "narrationStart": "with-animation",
+      "trailingPauseMs": 0
+    },
+    "stepOverrides": {
+      "it-reached-the-cause-then-left--score": {
+        "minimumHoldMs": 6687,
+        "trailingPauseMs": 0
+      },
+      "it-reached-the-cause-then-left--walk": {
+        "minimumHoldMs": 6687,
+        "trailingPauseMs": 0
+      },
+      "on-the-path-or-off-it--correct": {
+        "minimumHoldMs": 8916,
+        "trailingPauseMs": 0
+      },
+      "on-the-path-or-off-it--failed": {
+        "minimumHoldMs": 6687,
+        "trailingPauseMs": 0
+      },
+      "three-ways-to-miss--incident": {
+        "minimumHoldMs": 8916,
+        "trailingPauseMs": 0
+      },
+      "three-ways-to-miss--families": {
+        "minimumHoldMs": 6687,
+        "trailingPauseMs": 0
+      },
+      "guarded-runs-find-it--guard": {
+        "minimumHoldMs": 6687,
+        "trailingPauseMs": 0
+      },
+      "guarded-runs-find-it--gains": {
+        "minimumHoldMs": 8916,
+        "trailingPauseMs": 0
+      }
+    },
+    "mediaClips": [
+      {
+        "id": "score-it-reached-the-cause-then-left--score",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 0,
+          "endMs": 6687
+        },
+        "attachment": {
+          "stepId": "it-reached-the-cause-then-left--score",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score-it-reached-the-cause-then-left--walk",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 6687,
+          "endMs": 13374
+        },
+        "attachment": {
+          "stepId": "it-reached-the-cause-then-left--walk",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score-on-the-path-or-off-it--correct",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 13374,
+          "endMs": 22290
+        },
+        "attachment": {
+          "stepId": "on-the-path-or-off-it--correct",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score-on-the-path-or-off-it--failed",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 22290,
+          "endMs": 28977
+        },
+        "attachment": {
+          "stepId": "on-the-path-or-off-it--failed",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score-three-ways-to-miss--incident",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 28977,
+          "endMs": 37893
+        },
+        "attachment": {
+          "stepId": "three-ways-to-miss--incident",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score-three-ways-to-miss--families",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 37893,
+          "endMs": 44580
+        },
+        "attachment": {
+          "stepId": "three-ways-to-miss--families",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score-guarded-runs-find-it--guard",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 44580,
+          "endMs": 51267
+        },
+        "attachment": {
+          "stepId": "guarded-runs-find-it--guard",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score-guarded-runs-find-it--gains",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 51267,
+          "endMs": 60183
+        },
+        "attachment": {
+          "stepId": "guarded-runs-find-it--gains",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      }
+    ]
+  }
+}

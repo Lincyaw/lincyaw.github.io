@@ -22,7 +22,7 @@ root.classList.toggle('dark', stored ? stored === 'dark' : matchMedia('(prefers-
 
 const esc = (text: string) => text.replace(/[&<>"']/g, c => `&#${c.charCodeAt(0)};`)
 const pageOf = (paper: Paper) => site.documents.find(doc => doc.id === `papers/${paper.id}`)?.href ?? `${site.base}papers/${paper.id}/`
-const ME = /Aoyang Fang( \(co-first\))?/
+const ME = /Aoyang Fang( \(co-(?:first|corresponding)\))?/
 /** A chapter's section in the paper's document: its name in lower case, every run of other characters one '-'. */
 const sectionOf = (name: string) => name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 /** The film plays from its document: the presentation with its narrated lecture, from the chapter's section. */
@@ -96,7 +96,7 @@ function papers(): string {
   const filters = (['all', 'agents', 'incident', 'testing'] as const).map(key => `<button type="button" class="px-filter" data-filter="${key}" data-thread="${key}" aria-pressed="${state.thread === key}">${key === 'all' ? 'All' : esc(THREADS[key].label)}</button>`).join('')
   const shown = PAPERS.filter(paper => state.thread === 'all' || paper.thread === state.thread)
   const lanes: Thread[] = ['agents', 'incident', 'testing']
-  const x = (at: number) => ((at - 2023.4) / 3.4 * 100).toFixed(2)
+  const x = (at: number) => ((at - 2023.4) / 3.6 * 100).toFixed(2)
   const hovered = PAPERS.find(paper => paper.id === state.hover) ?? PAPERS[0]!
   const map = `<div class="px-map" role="group" aria-label="Papers by thread and year">
     <div class="px-map__scroll"><div class="px-map__plot">

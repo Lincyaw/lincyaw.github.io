@@ -1,6 +1,8 @@
 title: Aoyang Fang
 # The order of the sidebar and of the pager: LLM agents, incident management, testing and analysis; newest first.
 documents:
+  - "papers/specguardbench/lecture.json"
+  - "papers/rca-trajectories/lecture.json"
   - "papers/openrca2/lecture.json"
   - "papers/gleaner/lecture.json"
   - "papers/fse26/lecture.json"

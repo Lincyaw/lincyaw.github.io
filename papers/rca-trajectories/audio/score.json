@@ -1,0 +1,24 @@
+{
+  "music": {
+    "title": "Ouroboros",
+    "author": "Kevin MacLeod",
+    "url": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Ouroboros.mp3",
+    "license": "CC BY 4.0",
+    "credit": "Music: \"Ouroboros\" by Kevin MacLeod (incompetech.com). Licensed under Creative Commons: By Attribution 4.0 License, http://creativecommons.org/licenses/by/4.0/",
+    "excerpt": { "from": 0.395, "seconds": 60.183, "fadeOutSeconds": 2.183 },
+    "beat": { "bpm": 107.7, "barMs": 2229, "firstDownbeatInSource": 0.395, "measured": "spectral-flux autocorrelation over the first 70 s" }
+  },
+  "steps": [
+    ["it-reached-the-cause-then-left--score", 0, 6687],
+    ["it-reached-the-cause-then-left--walk", 6687, 13374],
+    ["on-the-path-or-off-it--correct", 13374, 22290],
+    ["on-the-path-or-off-it--failed", 22290, 28977],
+    ["three-ways-to-miss--incident", 28977, 37893],
+    ["three-ways-to-miss--families", 37893, 44580],
+    ["guarded-runs-find-it--guard", 44580, 51267],
+    ["guarded-runs-find-it--gains", 51267, 60183]
+  ],
+  "made": "ffmpeg -i source/ouroboros.mp3 -af 'atrim=start=0.395:duration=60.183,asetpts=PTS-STARTPTS,afade=t=out:st=58.0:d=2.183,loudnorm=I=-16:TP=-1.5:LRA=11,aresample=48000' -c:a libopus -b:a 128k score.ogg",
+  "target": { "lufs": -16, "truePeak": -1.5 },
+  "fingerprint": "sha256:b2521239842c653dbd9c3abe5f1255d416c102a1ba8cfea079f15ce8979171ed"
+}

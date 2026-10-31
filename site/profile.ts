@@ -43,6 +43,23 @@ export interface Paper {
 
 export const PAPERS: Paper[] = [
   {
+    id: 'specguardbench', venue: "arXiv'26", short: 'SpecGuardBench', at: 2026.78, thread: 'agents',
+    title: 'SpecGuardBench: Can Coding Agents Construct Reliable Validation Harnesses from Natural Language Specifications?',
+    authors: 'Zhiqing Zhong, Mingyu Chen, Aoyang Fang, Yuzhong Zhang, Haoye Tian, Lionel Briand, Boxi Yu, Pinjia He',
+    claim: 'Asked to write the checks for a specification, coding agents copy what the reference code does rather than what the specification says.',
+    links: [{ label: 'arXiv', href: 'https://arxiv.org/abs/2610.16870' }, { label: 'Code', href: 'https://github.com/coxhin/SpecGuardBench' }, { label: 'Data', href: 'https://huggingface.co/datasets/coxhin/SpecGuardBench' }],
+    chapters: [['0:00', 'Tests pass, the rule breaks'], ['0:13', 'An agent writes the checks'], ['0:26', 'Three implementations, one verdict'], ['0:39', 'Detection is not faithfulness'], ['0:51', 'Shown the wrong code']],
+  },
+  {
+    id: 'rca-trajectories', venue: "arXiv'26", short: 'RCA agent trajectories', at: 2026.62, thread: 'agents',
+    title: 'Beyond Fault Localization: A Trajectory-Level Study of LLM Agents for Microservice Root Cause Analysis',
+    authors: "Qisheng Lu, Aoyang Fang (co-corresponding), Junjielong Xu, Jin'ao Shang, Songhan Zhang, Yifan Yang, Xiaochuan Yan, Pinjia He",
+    claim: 'Across 5,000 trajectories of RCA agents, right answers often rest on broken causal chains; the failures fall into three ways of handling evidence, and guarding against them helps every model.',
+    badge: 'Co-corresponding author',
+    links: [{ label: 'arXiv', href: 'https://arxiv.org/abs/2608.21310' }],
+    chapters: [['0:00', 'It reached the cause, then left'], ['0:13', 'On the path or off it'], ['0:28', 'Three ways to miss'], ['0:44', 'Guarded runs find it']],
+  },
+  {
     id: 'openrca2', venue: "arXiv'26", short: 'OpenRCA 2.0', at: 2026.45, thread: 'agents',
     title: 'OpenRCA 2.0: From Outcome Labels to Causal Process Supervision',
     authors: "Aoyang Fang, Yifan Yang, Jin'ao Shang, Qisheng Lu, Junjielong Xu, Rui Wang, Songhan Zhang, Yuzhong Zhang, Boxi Yu, Pinjia He",
@@ -114,6 +131,8 @@ export const PAPERS: Paper[] = [
 ]
 
 export const NEWS: [string, string][] = [
+  ['2026.10', 'SpecGuardBench: Can Coding Agents Construct Reliable Validation Harnesses from Natural Language Specifications? is on arXiv.'],
+  ['2026.08', 'Beyond Fault Localization: A Trajectory-Level Study of LLM Agents for Microservice Root Cause Analysis is on arXiv.'],
   ['2026.06', 'OpenRCA 2.0: From Outcome Labels to Causal Process Supervision is on arXiv.'],
   ['2026.04', 'Gleaner is directly accepted by ISSTA 2026 (90 direct accepts of 888). Congrats to Yifan, whom I mainly advised on this work.'],
   ['2025.12', 'Our fault propagation-aware RCA benchmark is directly accepted by FSE 2026 (87 of 920).'],
