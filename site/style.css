@@ -172,6 +172,9 @@ main { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
 .px-footer { margin-top: 48px; padding: 24px; border-top: 3px solid var(--ink); text-align: center; font: 11px var(--pixel); color: var(--muted); text-transform: uppercase; }
 
+/* A film loading ahead, invisible behind the page at the overlay's size (on screen, so its scenes load). */
+.px-warm { position: fixed; left: 0; top: 0; z-index: -1; width: 880px; height: 495px; border: 0; opacity: 0; pointer-events: none; }
+
 /* The paper overlay */
 .px-overlay { position: fixed; inset: 0; z-index: 20; display: flex; align-items: center; justify-content: center; padding: 24px; background: rgb(23 23 28 / 62%); }
 .px-dialog { width: 100%; max-width: 880px; max-height: 92vh; overflow-y: auto; background: var(--surface); box-shadow: var(--frame), 10px 10px 0 0 #17171c; }

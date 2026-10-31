@@ -192,6 +192,8 @@ function render(): void {
 function revealWhenDrawn(): void {
   const frame = app.querySelector<HTMLIFrameElement>('.px-film__live'), cover = app.querySelector<HTMLElement>('[data-cover]')
   if (!frame || !cover) return
+  // The film holds the focus while it plays: Escape there closes the overlay too.
+  frame.addEventListener('load', () => frame.contentWindow?.addEventListener('keydown', (event) => { if (event.key === 'Escape') close() }), { once: true })
   const started = Date.now()
   const check = () => {
     if (!frame.isConnected) return
@@ -243,6 +245,49 @@ function close(): void {
 document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && opened()) close() })
 addEventListener('popstate', render)
 render()
+
+// Films load before they are opened: in idle time one after another, and at once for the paper under the pointer, each
+// in an off-screen frame that fills the cache (the viewer app is shared by all of them) and is then removed. The paper
+// under the pointer also fetches its music. Nothing is fetched ahead when the reader asked to save data.
+const warmed = new Map<string, Promise<void>>()
+const saveData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData
+function warm(paper: Paper): Promise<void> {
+  let done = warmed.get(paper.id)
+  if (!done) {
+    done = new Promise((resolve) => {
+      const frame = Object.assign(document.createElement('iframe'), { src: `${pageOf(paper)}slides/?view=present&section=${encodeURIComponent(sectionOf(paper.chapters[0]![1]))}&step=0`, tabIndex: -1 })
+      frame.setAttribute('aria-hidden', 'true')
+      frame.className = 'px-warm'
+      const finish = () => { frame.remove(); resolve() }
+      const started = Date.now()
+      const drawn = () => frame.contentDocument?.querySelector('.pm-scene[data-status="ready"]') || Date.now() - started > 15000 ? finish() : setTimeout(drawn, 300)
+      frame.addEventListener('load', drawn, { once: true })
+      document.body.append(frame)
+    })
+    warmed.set(paper.id, done)
+  }
+  return done
+}
+const music = new Set<string>()
+async function warmMusic(paper: Paper): Promise<void> {
+  if (music.has(paper.id)) return
+  music.add(paper.id)
+  const lecture = `${pageOf(paper)}lecture/script/`
+  const track = await fetch(`${lecture}track.json`).then(response => response.ok ? response.text() : '').catch(() => '')
+  for (const file of new Set(track.match(/audio\/[\w.-]+\.(?:ogg|mp3|m4a|opus|wav)/g) ?? [])) void fetch(`${lecture}${file}`).catch(() => {})
+}
+if (!saveData) {
+  const idle = (run: () => void) => ('requestIdleCallback' in window ? requestIdleCallback(run, { timeout: 3000 }) : setTimeout(run, 1500))
+  addEventListener('load', () => idle(async () => { for (const paper of PAPERS) await warm(paper) }), { once: true })
+  const intent = (event: Event) => {
+    const id = (event.target as HTMLElement).closest<HTMLElement>('[data-open]')?.dataset.open
+    const paper = PAPERS.find(each => each.id === id)
+    if (paper) { void warm(paper); void warmMusic(paper) }
+  }
+  app.addEventListener('pointerover', intent)
+  app.addEventListener('focusin', intent)
+  app.addEventListener('touchstart', intent, { passive: true })
+}
 
 // The citation count, updated daily by the Scholar crawler on the google-scholar-stats branch.
 let citations: string | undefined
