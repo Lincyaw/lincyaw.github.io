@@ -887,7 +887,6 @@
       "kind": "audio",
       "location": "audio/score.ogg",
       "title": "Gleaner film score (music: \"Digital Lemonade\", Kevin MacLeod, CC BY 4.0)",
-      "fingerprint": "sha256:12bb740ad130608151ae999e63f6234448a2d810c5118470696fc29dd3b22c95",
       "mediaType": "audio/ogg"
     },
     "traces-as-sets-of-pairs--asset-1": {

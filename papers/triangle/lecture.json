@@ -1050,7 +1050,6 @@
       "kind": "audio",
       "location": "audio/score.ogg",
       "title": "Film score (music: “Inspired”, Kevin MacLeod, CC BY 4.0)",
-      "fingerprint": "sha256:0d692317ef64b366f8ce0a20d290033ace25331d818b5df180f3e40ae4169ac4",
       "mediaType": "audio/ogg"
     }
   },
