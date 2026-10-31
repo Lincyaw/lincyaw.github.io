@@ -78,24 +78,18 @@ function research(): string {
   const lane = (direction: Direction) => {
     const d = DIRECTIONS[direction]
     return `<article class="px-lane" data-direction="${direction}">
-      <div class="px-lane__arrow" aria-hidden="true"></div>
-      <p class="px-lane__head"><span class="px-lane__label">${esc(d.label)}</span><span class="px-lane__route">${esc(d.from)} → ${esc(d.to)}</span></p>
+      <p class="px-lane__route" aria-label="${esc(`${d.from} to ${d.to}`)}"><span>LLMs</span><span class="px-lane__arrow"><span class="px-lane__label">${esc(d.label)}</span></span><span>Software</span></p>
       <p class="px-lane__says">${esc(d.says)}</p>
       <div class="px-lane__threads">${d.threads.map((thread) => {
         const count = PAPERS.filter(paper => paper.thread === thread).length
-        return `<button type="button" class="px-topic" data-thread="${thread}" data-topic="${thread}"><span class="px-topic__name">${esc(THREADS[thread].label)}</span><span class="px-topic__about">${esc(THREADS[thread].about)}</span><span class="px-topic__count">${count} ${count === 1 ? 'paper' : 'papers'} →</span></button>`
+        return `<button type="button" class="px-topic" data-thread="${thread}" data-topic="${thread}"><span class="px-topic__name">${esc(THREADS[thread].label)}<span class="px-topic__count">${count} →</span></span><span class="px-topic__about">${esc(THREADS[thread].about)}</span></button>`
       }).join('')}</div>
       ${d.now ? `<p class="px-lane__now">${esc(d.now)}</p>` : ''}
     </article>`
   }
   return `<section class="px-section" id="research" aria-labelledby="research-title">
     <div class="px-section__head"><h2 id="research-title">Research</h2><p>Two directions between LLMs and software.</p></div>
-    <div class="px-research">
-      <div class="px-pole px-pole--left" aria-hidden="true"><strong>LLMs</strong><span>models and agents</span></div>
-      ${lane('llm4se')}
-      ${lane('se4llm')}
-      <div class="px-pole px-pole--right" aria-hidden="true"><strong>Software</strong><span>systems and how they are built</span></div>
-    </div>
+    <div class="px-research">${lane('llm4se')}${lane('se4llm')}</div>
   </section>`
 }
 

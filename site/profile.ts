@@ -7,21 +7,21 @@ export type Direction = 'llm4se' | 'se4llm'
 export const DIRECTIONS: Record<Direction, { label: string, from: string, to: string, says: string, threads: Thread[], now?: string }> = {
   llm4se: {
     label: 'LLM for SE', from: 'LLMs', to: 'Software',
-    says: 'Keeping large software systems reliable: testing them, recovering how they are built, and finding why they fail in production, more and more with LLM agents.',
+    says: 'Testing large systems, recovering how they are built, and finding why they fail, more and more with LLM agents.',
     threads: ['incident', 'testing'],
   },
   se4llm: {
     label: 'SE for LLM', from: 'Software engineering', to: 'LLMs',
-    says: 'Engineering rigor for LLM agents: benchmarks that grade how they reason step by step, not only what they answer, and analysis of what they do.',
+    says: 'Checking how LLM agents reason, step by step, not only what they answer.',
     threads: ['agents'],
-    now: 'Now at ByteDance: analyzing and monitoring the trajectories of LLM agents.',
+    now: 'Now: analyzing and monitoring LLM agent trajectories (ByteDance).',
   },
 }
 
 export const THREADS: Record<Thread, { label: string, about: string }> = {
-  incident: { label: 'Incident management', about: 'Sampling telemetry, locating root causes, routing incidents, and benchmarks that measure them' },
-  testing: { label: 'Testing & analysis', about: 'Finding database bugs by rewriting queries, recovering cross-language service dependencies' },
-  agents: { label: 'LLM agents', about: 'Grading how LLM agents reason about failures, step by step' },
+  incident: { label: 'Incident management', about: 'Telemetry sampling, root cause analysis, incident triage, benchmarks' },
+  testing: { label: 'Testing & analysis', about: 'Graph database testing, cross-language dependency recovery' },
+  agents: { label: 'LLM agents', about: 'Step-by-step grading of how agents reason about failures' },
 }
 
 export interface Paper {
