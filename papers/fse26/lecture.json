@@ -1,0 +1,807 @@
+{
+  "schemaVersion": 1,
+  "id": "paper-fse26",
+  "metadata": {
+    "title": "Rethinking the Evaluation of Microservice RCA with a Fault Propagation-Aware Benchmark",
+    "lang": "en",
+    "description": "On 1,430 failures that propagate like real incidents, 11 state-of-the-art RCA models rank the true root cause first 21% of the time.",
+    "plugins": [],
+    "renderers": {
+      "web": {}
+    },
+    "tags": [
+      "Evaluate",
+      "FSE'26"
+    ]
+  },
+  "sectionOrder": [
+    "claim",
+    "shortcut",
+    "travel",
+    "scores",
+    "cite"
+  ],
+  "sections": {
+    "claim": {
+      "id": "claim",
+      "title": "Rethinking the Evaluation of Microservice RCA with a Fault Propagation-Aware Benchmark",
+      "level": 1,
+      "children": [
+        "claim-text-1"
+      ],
+      "stepOrder": [
+        "claim-step"
+      ],
+      "layout": {
+        "type": "stack"
+      }
+    },
+    "shortcut": {
+      "id": "shortcut",
+      "title": "The shortcut",
+      "level": 1,
+      "children": [
+        "shortcut-text-5",
+        "shortcut-columns-7",
+        "shortcut-image-27"
+      ],
+      "stepOrder": [
+        "shortcut-step"
+      ],
+      "layout": {
+        "type": "stack"
+      }
+    },
+    "travel": {
+      "id": "travel",
+      "title": "Faults that travel",
+      "level": 1,
+      "children": [
+        "travel-text-28",
+        "travel-image-42"
+      ],
+      "stepOrder": [
+        "travel-step"
+      ],
+      "layout": {
+        "type": "stack"
+      }
+    },
+    "scores": {
+      "id": "scores",
+      "title": "The scores fall",
+      "level": 1,
+      "children": [
+        "scores-text-43"
+      ],
+      "stepOrder": [
+        "scores-step"
+      ],
+      "layout": {
+        "type": "stack"
+      }
+    },
+    "cite": {
+      "id": "cite",
+      "title": "Cite",
+      "level": 1,
+      "children": [
+        "cite-code-54"
+      ],
+      "stepOrder": [
+        "cite-step"
+      ],
+      "layout": {
+        "type": "stack"
+      }
+    }
+  },
+  "blocks": {
+    "claim-text-1": {
+      "id": "claim-text-1",
+      "type": "text",
+      "content": [
+        {
+          "id": "p-2",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Aoyang Fang",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": ", Songhan Zhang, Yifan Yang, Haotong Wu, Junjielong Xu, Xuyang Wang, Rui Wang, Manyi Wang, Qisheng Lu, Pinjia He. "
+            },
+            {
+              "type": "text",
+              "text": "Proc. ACM Softw. Eng.",
+              "marks": [
+                {
+                  "type": "italic"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " 3(FSE), 1605–1627, 2026. Direct accept, 87 of 920."
+            }
+          ]
+        },
+        {
+          "id": "p-3",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "link",
+              "href": "https://dl.acm.org/doi/pdf/10.1145/3797100",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "PDF"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " · "
+            },
+            {
+              "type": "link",
+              "href": "https://doi.org/10.1145/3797100",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "ACM DL"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " · "
+            },
+            {
+              "type": "link",
+              "href": "https://arxiv.org/abs/2510.04711",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "arXiv"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " · "
+            },
+            {
+              "type": "link",
+              "href": "https://operationspai.github.io/revisiting-rca-evaluation/",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "Project"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " · "
+            },
+            {
+              "type": "link",
+              "href": "https://profile.aoyangfang.top/fse26-rca/",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "Talk slides"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "p-4",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Public RCA benchmarks overstate how well root cause analysis works. On 1,430 failures that propagate like real incidents, 11 state-of-the-art models rank the true root cause first "
+            },
+            {
+              "type": "text",
+              "text": "21%",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " of the time; the best, MicroRCA, 37%."
+            }
+          ]
+        }
+      ]
+    },
+    "shortcut-text-5": {
+      "id": "shortcut-text-5",
+      "type": "text",
+      "content": [
+        {
+          "id": "p-6",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "SimpleRCA, a naive rule that ranks services by their number of alerts, matches or beats state-of-the-art models on four widely used public benchmarks: Top@1 0.93 against Nezha's 0.87 on Nezha-TT."
+            }
+          ]
+        }
+      ]
+    },
+    "shortcut-column-8": {
+      "id": "shortcut-column-8",
+      "type": "text",
+      "content": [
+        {
+          "id": "h-9",
+          "type": "heading",
+          "level": 3,
+          "children": [
+            {
+              "type": "text",
+              "text": "Public benchmarks"
+            }
+          ]
+        },
+        {
+          "id": "list-10",
+          "type": "list",
+          "ordered": false,
+          "children": [
+            {
+              "id": "li-11",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-12",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Fewer than 200 cases in all but one"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-13",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-14",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Faults reach 2–3 hops at most"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-15",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-16",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "99% of cases miss some fault-relevant signal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "shortcut-column-17": {
+      "id": "shortcut-column-17",
+      "type": "text",
+      "content": [
+        {
+          "id": "h-18",
+          "type": "heading",
+          "level": 3,
+          "children": [
+            {
+              "type": "text",
+              "text": "This benchmark"
+            }
+          ]
+        },
+        {
+          "id": "list-19",
+          "type": "list",
+          "ordered": false,
+          "children": [
+            {
+              "id": "li-20",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-21",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "1,430 validated failure cases"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-22",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-23",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Call depth up to 7, 84% of services reached"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-24",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-25",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "16.47 requests per second, against 0.14–4.35"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "shortcut-columns-7": {
+      "id": "shortcut-columns-7",
+      "type": "container",
+      "layout": "columns",
+      "children": [
+        "shortcut-column-8",
+        "shortcut-column-17"
+      ],
+      "properties": {
+        "columnWidths": [
+          1,
+          1
+        ]
+      }
+    },
+    "shortcut-image-27": {
+      "id": "shortcut-image-27",
+      "type": "image",
+      "assetId": "shortcut-asset-26",
+      "alt": "CPU of five TrainTicket services during CPU faults in a public dataset: only the injected services spike",
+      "caption": [
+        {
+          "type": "text",
+          "text": "In most benchmark cases the root cause is the loudest symptom. Across 737 cases in 11 public datasets, 86% show pronounced symptoms only at the injected service, or none at all."
+        }
+      ],
+      "width": 100,
+      "alignment": "center"
+    },
+    "travel-text-28": {
+      "id": "travel-text-28",
+      "type": "text",
+      "content": [
+        {
+          "id": "p-29",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "A closed-loop generator makes faults propagate, so the cause is no longer the loudest symptom, and keeps a failure only when users would notice it."
+            }
+          ]
+        },
+        {
+          "id": "list-30",
+          "type": "list",
+          "ordered": true,
+          "children": [
+            {
+              "id": "li-31",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-32",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Load.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " TrainTicket, 50 services, driven by a state-machine workload."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-33",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-34",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Inject.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " 9,152 faults sampled from 31 types in 6 categories through ChaosMesh."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-35",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-36",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Observe.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " Metrics, logs, traces and network telemetry through OpenTelemetry."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-37",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-38",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Validate.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " Z-tests on user-facing SLIs; 84.4% of first injections are filtered out."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-39",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-40",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Label.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " 1,430 cases, each labelled from the service down to the function."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "travel-image-42": {
+      "id": "travel-image-42",
+      "type": "image",
+      "assetId": "travel-asset-41",
+      "alt": "The closed-loop benchmark construction pipeline",
+      "caption": [
+        {
+          "type": "text",
+          "text": "The pipeline as drawn in the paper."
+        }
+      ],
+      "width": 100,
+      "alignment": "center"
+    },
+    "scores-text-43": {
+      "id": "scores-text-43",
+      "type": "text",
+      "content": [
+        {
+          "id": "p-44",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "The rule that scored 0.93 before falls to 0.28. The 11 models average 0.21 Top@1, and running time grows from seconds to hours: CausalRCA needs 927 s for each 8-minute window."
+            }
+          ]
+        },
+        {
+          "id": "p-45",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "No single model wins every fault type. In the 262 hardest cases, the misses fall into three patterns, each pointing to what the next methods need:"
+            }
+          ]
+        },
+        {
+          "id": "list-46",
+          "type": "list",
+          "ordered": false,
+          "children": [
+            {
+              "id": "li-47",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-48",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Modeling bottlenecks, 47.4%.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " A model's assumption breaks: Nezha expects a fault to raise event frequency, and PodKill does not."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-49",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-50",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Scalability issues, 39.8%.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " Methods slow down or fail on 50 services under real load."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-51",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-52",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Observability blind spots, 12.9%.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " The cause leaves no signal the model reads."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "p-53",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "The benchmark, its generator and the 11 re-engineered models are public, so the next RCA method can be measured on failures that travel."
+            }
+          ]
+        }
+      ]
+    },
+    "cite-code-54": {
+      "id": "cite-code-54",
+      "type": "code",
+      "language": "bibtex",
+      "value": "@article{fang2026rethinking,\n  title   = {Rethinking the Evaluation of Microservice RCA with a Fault Propagation-Aware Benchmark},\n  author  = {Fang, Aoyang and Zhang, Songhan and Yang, Yifan and Wu, Haotong and Xu, Junjielong and Wang, Xuyang and Wang, Rui and Wang, Manyi and Lu, Qisheng and He, Pinjia},\n  journal = {Proc. ACM Softw. Eng.},\n  volume  = {3},\n  number  = {FSE},\n  pages   = {1605--1627},\n  year    = {2026},\n  doi     = {10.1145/3797100}\n}"
+    }
+  },
+  "steps": {
+    "claim-step": {
+      "id": "claim-step",
+      "sectionId": "claim",
+      "visuals": [
+        {
+          "blockId": "claim-text-1",
+          "visible": true
+        }
+      ],
+      "narrationIds": []
+    },
+    "shortcut-step": {
+      "id": "shortcut-step",
+      "sectionId": "shortcut",
+      "visuals": [
+        {
+          "blockId": "shortcut-text-5",
+          "visible": true
+        },
+        {
+          "blockId": "shortcut-columns-7",
+          "visible": true
+        },
+        {
+          "blockId": "shortcut-column-8",
+          "visible": true
+        },
+        {
+          "blockId": "shortcut-column-17",
+          "visible": true
+        },
+        {
+          "blockId": "shortcut-image-27",
+          "visible": true
+        }
+      ],
+      "narrationIds": []
+    },
+    "travel-step": {
+      "id": "travel-step",
+      "sectionId": "travel",
+      "visuals": [
+        {
+          "blockId": "travel-text-28",
+          "visible": true
+        },
+        {
+          "blockId": "travel-image-42",
+          "visible": true
+        }
+      ],
+      "narrationIds": []
+    },
+    "scores-step": {
+      "id": "scores-step",
+      "sectionId": "scores",
+      "visuals": [
+        {
+          "blockId": "scores-text-43",
+          "visible": true
+        }
+      ],
+      "narrationIds": []
+    },
+    "cite-step": {
+      "id": "cite-step",
+      "sectionId": "cite",
+      "visuals": [
+        {
+          "blockId": "cite-code-54",
+          "visible": true
+        }
+      ],
+      "narrationIds": []
+    }
+  },
+  "narrations": {},
+  "assets": {
+    "shortcut-asset-26": {
+      "id": "shortcut-asset-26",
+      "kind": "image",
+      "location": "figures/symptom-only-at-injected-service.png",
+      "mediaType": "image/png"
+    },
+    "travel-asset-41": {
+      "id": "travel-asset-41",
+      "kind": "image",
+      "location": "figures/benchmark-pipeline.png",
+      "mediaType": "image/png"
+    }
+  },
+  "definitions": {},
+  "production": {
+    "defaults": {},
+    "stepOverrides": {},
+    "mediaClips": []
+  }
+}

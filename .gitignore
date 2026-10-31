@@ -10,4 +10,6 @@ push.sh
 *.bcf
 *.run.xml
 *.synctex.gz
-*.fdb_latexmk
+*.fdb_latexmk/dist/
+/.presmium/
+papers/*/source/

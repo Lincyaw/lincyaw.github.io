@@ -1,0 +1,31 @@
+title: Aoyang Fang
+# The order of the sidebar and of the pager: by research thread, newest first within each.
+documents:
+  - "papers/gleaner/lecture.json"
+  - "papers/dynacausal/lecture.json"
+  - "papers/triangle/lecture.json"
+  - "papers/openrca2/lecture.json"
+  - "papers/fse26/lecture.json"
+  - "papers/survey/lecture.json"
+  - "papers/grev/lecture.json"
+  - "papers/rpcover/lecture.json"
+  - "papers/*/lecture.json"
+site:
+  base: /
+  lang: en
+  theme: ./theme
+  landing:
+    template: ./site/home.html
+  head:
+    description: Aoyang Fang, PhD candidate at CUHK-Shenzhen, works on root cause analysis for microservice systems. Each paper comes with a one-minute film.
+  nav:
+    - text: Research
+      link: /#now
+    - text: Papers
+      link: /#papers
+    - text: Talks
+      link: /#talks
+    - text: GitHub
+      link: https://github.com/Lincyaw
+  footer:
+    message: Built with Presmium

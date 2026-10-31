@@ -1,0 +1,113 @@
+/*
+ * The pixel theme: Silkscreen for the wordmark, labels and section marks, IBM Plex for reading, square corners and hard
+ * shadows. The research threads have their own colors, shared by the home page and the paper pages.
+ */
+
+[data-pm-site-theme-name='pixel'] {
+  --px-font: 'Silkscreen', ui-monospace, monospace;
+  --px-border: 3px;
+  --px-collect: #0f766e;
+  --px-diagnose: #2546b8;
+  --px-evaluate: #b93a0b;
+  --px-testing: #5b4b99;
+  --px-collect-soft: #e3f2f0;
+  --px-diagnose-soft: #e6ebfa;
+  --px-evaluate-soft: #fbeae2;
+  --px-testing-soft: #edeaf6;
+}
+
+:root.dark [data-pm-site-theme-name='pixel'] {
+  --px-collect: #4fd1c5;
+  --px-diagnose: #8ea6ff;
+  --px-evaluate: #f28c5b;
+  --px-testing: #b6a6f2;
+  --px-collect-soft: #10302d;
+  --px-diagnose-soft: #1f2747;
+  --px-evaluate-soft: #3a2116;
+  --px-testing-soft: #2a2442;
+}
+
+/* The header: a heavy rule and the pixel wordmark. */
+[data-pm-site-theme-name='pixel'] .pm-site-header {
+  border-bottom: var(--px-border) solid var(--pm-color-ink);
+}
+
+[data-pm-site-theme-name='pixel'] .pm-site-header__title {
+  font-family: var(--px-font);
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+[data-pm-site-theme-name='pixel'] .pm-site-search-button {
+  box-shadow: inset 0 0 0 2px var(--pm-color-ink);
+  border: 0;
+}
+
+/* Side columns: pixel labels above plain links. */
+[data-pm-site-theme-name='pixel'] .pm-site-sidebar__heading,
+[data-pm-site-theme-name='pixel'] .pm-site-outline__title {
+  font-family: var(--px-font);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--pm-color-muted);
+}
+
+[data-pm-site-theme-name='pixel'] .pm-site-sidebar__link[aria-current='page'] {
+  background: var(--pm-color-surface);
+  box-shadow: inset 3px 0 0 var(--pm-color-accent);
+}
+
+[data-pm-site-theme-name='pixel'] .pm-site-outline__link[aria-current] {
+  box-shadow: inset 3px 0 0 var(--pm-color-accent);
+}
+
+/* Section marks: the anchor is a pixel '#', always shown beside the heading. */
+[data-pm-site-theme-name='pixel'] .header-anchor {
+  font-family: var(--px-font);
+  font-weight: 400;
+  opacity: 0.55;
+}
+
+[data-pm-site-theme-name='pixel'] .pm-section__title:hover .header-anchor,
+[data-pm-site-theme-name='pixel'] .header-anchor:focus-visible {
+  opacity: 1;
+}
+
+/* Blocks: square, outlined, with a hard shadow where they stand out. */
+[data-pm-site-theme-name='pixel'] .pm-document img {
+  outline: 2px solid var(--pm-color-line);
+}
+
+[data-pm-site-theme-name='pixel'] .pm-document pre {
+  box-shadow: inset 0 0 0 2px var(--pm-color-ink);
+}
+
+[data-pm-site-theme-name='pixel'] .pm-ui-button--primary {
+  box-shadow: 3px 3px 0 0 var(--pm-color-ink);
+}
+
+[data-pm-site-theme-name='pixel'] .pm-site-pager__link {
+  border: 0;
+  box-shadow: inset 0 0 0 2px var(--pm-color-line);
+}
+
+[data-pm-site-theme-name='pixel'] .pm-site-pager__link:hover {
+  box-shadow: inset 0 0 0 2px var(--pm-color-ink), 3px 3px 0 0 var(--pm-color-ink);
+}
+
+[data-pm-site-theme-name='pixel'] .pm-site-pager__label {
+  font-family: var(--px-font);
+  font-size: 0.625rem;
+  text-transform: uppercase;
+}
+
+[data-pm-site-theme-name='pixel'] .pm-site-footer {
+  border-top: var(--px-border) solid var(--pm-color-ink);
+  font-family: var(--px-font);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+}
