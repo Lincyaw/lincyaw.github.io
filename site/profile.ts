@@ -37,8 +37,8 @@ export interface Paper {
   claim: string
   badge?: string
   links: { label: string, href: string }[]
-  /** The film's chapters, as its story names them. */
-  chapters: [string, string][]
+  /** The film's chapters: where each starts, its name, and its section in the paper's document. */
+  chapters: [string, string, string][]
 }
 
 export const PAPERS: Paper[] = [
@@ -48,7 +48,7 @@ export const PAPERS: Paper[] = [
     authors: 'Zhiqing Zhong, Mingyu Chen, Aoyang Fang, Yuzhong Zhang, Haoye Tian, Lionel Briand, Boxi Yu, Pinjia He',
     claim: 'Asked to write the checks for a specification, coding agents copy what the reference code does rather than what the specification says.',
     links: [{ label: 'arXiv', href: 'https://arxiv.org/abs/2610.16870' }, { label: 'Code', href: 'https://github.com/coxhin/SpecGuardBench' }, { label: 'Data', href: 'https://huggingface.co/datasets/coxhin/SpecGuardBench' }],
-    chapters: [['0:00', 'Tests pass, the rule breaks'], ['0:13', 'An agent writes the checks'], ['0:26', 'Three implementations, one verdict'], ['0:39', 'Detection is not faithfulness'], ['0:51', 'Shown the wrong code']],
+    chapters: [['0:00', 'Tests pass, the rule breaks', 'tests-pass-the-rule-breaks'], ['0:13', 'An agent writes the checks', 'an-agent-writes-the-checks'], ['0:26', 'Three implementations, one verdict', 'three-implementations-one-verdict'], ['0:39', 'Detection is not faithfulness', 'detection-is-not-faithfulness'], ['0:51', 'Shown the wrong code', 'shown-the-wrong-code']],
   },
   {
     id: 'rca-trajectories', venue: "arXiv'26", short: 'RCA agent trajectories', at: 2026.62, thread: 'agents',
@@ -57,7 +57,7 @@ export const PAPERS: Paper[] = [
     claim: 'Across 5,000 trajectories of RCA agents, right answers often rest on broken causal chains; the failures fall into three ways of handling evidence, and guarding against them helps every model.',
     badge: 'Co-corresponding author',
     links: [{ label: 'arXiv', href: 'https://arxiv.org/abs/2608.21310' }],
-    chapters: [['0:00', 'It reached the cause, then left'], ['0:13', 'On the path or off it'], ['0:28', 'Three ways to miss'], ['0:44', 'Guarded runs find it']],
+    chapters: [['0:00', 'It reached the cause, then left', 'it-reached-the-cause-then-left'], ['0:13', 'On the path or off it', 'on-the-path-or-off-it'], ['0:28', 'Three ways to miss', 'three-ways-to-miss'], ['0:44', 'Guarded runs find it', 'guarded-runs-find-it']],
   },
   {
     id: 'openrca2', venue: "arXiv'26", short: 'OpenRCA 2.0', at: 2026.45, thread: 'agents',
@@ -65,7 +65,7 @@ export const PAPERS: Paper[] = [
     authors: "Aoyang Fang, Yifan Yang, Jin'ao Shang, Qisheng Lu, Junjielong Xu, Rui Wang, Songhan Zhang, Yuzhong Zhang, Boxi Yu, Pinjia He",
     claim: "A right root cause is not a right diagnosis. OpenRCA 2.0 grades whether an agent's reasoning follows the fault the way it really spread.",
     links: [{ label: 'arXiv', href: 'https://arxiv.org/abs/2606.27154' }],
-    chapters: [['0:00', 'Right answer, skipped step'], ['0:14', 'The cause is known'], ['0:27', 'Following the fault forward'], ['0:45', 'Grading the chain']],
+    chapters: [['0:00', 'Right answer, skipped step', 'right-answer-skipped-step'], ['0:14', 'The cause is known', 'the-cause-is-known'], ['0:27', 'Following the fault forward', 'following-the-fault-forward'], ['0:45', 'Grading the chain', 'grading-the-chain']],
   },
   {
     id: 'gleaner', venue: "ISSTA'26", short: 'Gleaner', at: 2026.3, thread: 'incident',
@@ -74,7 +74,7 @@ export const PAPERS: Paper[] = [
     claim: 'A trace that looks fine can hide the error in its logs. Gleaner reads traces and logs together, so a small sample keeps what diagnosis needs.',
     badge: 'Direct accept · 90 of 888',
     links: [{ label: 'arXiv', href: 'https://arxiv.org/abs/2604.16810' }],
-    chapters: [['0:00', 'A trace that looks fine'], ['0:14', 'Why samplers drop it'], ['0:27', 'Traces as sets of pairs'], ['0:46', 'One percent, better diagnosis']],
+    chapters: [['0:00', 'A trace that looks fine', 'a-trace-that-looks-fine'], ['0:14', 'Why samplers drop it', 'why-samplers-drop-it'], ['0:27', 'Traces as sets of pairs', 'traces-as-sets-of-pairs'], ['0:46', 'One percent, better diagnosis', 'one-percent-better-diagnosis']],
   },
   {
     id: 'fse26', venue: "FSE'26", short: 'RCA benchmark', at: 2026.0, thread: 'incident',
@@ -83,7 +83,7 @@ export const PAPERS: Paper[] = [
     claim: 'Public benchmarks made RCA look solved. When faults travel, 11 state-of-the-art models find the root cause first 21% of the time.',
     badge: 'Direct accept · 87 of 920',
     links: [{ label: 'PDF', href: 'https://dl.acm.org/doi/pdf/10.1145/3797100' }, { label: 'arXiv', href: 'https://arxiv.org/abs/2510.04711' }, { label: 'Project', href: 'https://operationspai.github.io/revisiting-rca-evaluation/' }],
-    chapters: [['0:00', 'Who gets blamed?'], ['0:13', 'The shortcut'], ['0:31', 'Faults that travel'], ['0:46', 'The scores fall']],
+    chapters: [['0:00', 'Who gets blamed?', 'who-gets-blamed'], ['0:13', 'The shortcut', 'the-shortcut'], ['0:31', 'Faults that travel', 'faults-that-travel'], ['0:46', 'The scores fall', 'the-scores-fall']],
   },
   {
     id: 'dynacausal', venue: "arXiv'25", short: 'DynaCausal', at: 2025.85, thread: 'incident',
@@ -91,7 +91,7 @@ export const PAPERS: Paper[] = [
     authors: 'Songhan Zhang, Aoyang Fang, Yifan Yang, Ruiyi Cheng, Xiaoying Tang, Pinjia He',
     claim: 'The loudest services are often victims. DynaCausal follows a fault upstream over a call graph rebuilt in every time window.',
     links: [{ label: 'arXiv', href: 'https://arxiv.org/abs/2510.22613' }],
-    chapters: [['0:00', 'Which service broke?'], ['0:13', 'The loudest are victims'], ['0:27', 'Follow the fault upstream'], ['0:42', 'Where to look first']],
+    chapters: [['0:00', 'Which service broke?', 'which-service-broke'], ['0:13', 'The loudest are victims', 'the-loudest-are-victims'], ['0:27', 'Follow the fault upstream', 'follow-the-fault-upstream'], ['0:42', 'Where to look first', 'where-to-look-first']],
   },
   {
     id: 'survey', venue: "arXiv'25", short: 'RCA survey', at: 2025.62, thread: 'incident',
@@ -99,7 +99,7 @@ export const PAPERS: Paper[] = [
     authors: 'Aoyang Fang, Haowen Yang, Haoze Dong, Qisheng Lu, Junjielong Xu, Pinjia He',
     claim: '135 RCA papers, sorted by the goal they serve, each explain points of an incident. None yet returns its whole propagation path.',
     links: [{ label: 'arXiv', href: 'https://arxiv.org/abs/2510.19593' }],
-    chapters: [['0:00', 'One incident, 135 papers'], ['0:15', 'Same data, different goals'], ['0:30', 'Sorted by goal'], ['0:43', 'Points, not the path']],
+    chapters: [['0:00', 'One incident, 135 papers', 'one-incident-135-papers'], ['0:15', 'Same data, different goals', 'same-data-different-goals'], ['0:30', 'Sorted by goal', 'sorted-by-goal'], ['0:43', 'Points, not the path', 'points-not-the-path']],
   },
   {
     id: 'triangle', venue: "ASE'25", short: 'Triangle', at: 2025.55, thread: 'incident',
@@ -108,7 +108,7 @@ export const PAPERS: Paper[] = [
     claim: 'An incident ticket alone cannot name its owner. One LLM agent per team fetches evidence and votes, so tickets reach the right team in fewer hops.',
     badge: 'Co-first author',
     links: [{ label: 'PDF', href: 'https://profile.aoyangfang.top/assets/publications/ase25/ASE_triangle.pdf' }, { label: 'DOI', href: 'https://doi.org/10.1109/ASE63991.2025.00062' }],
-    chapters: [['0:00', 'A ticket nobody owns'], ['0:16', "The answer isn't in the ticket"], ['0:24', 'Agents go and look'], ['0:44', 'Fewer hops, sooner']],
+    chapters: [['0:00', 'A ticket nobody owns', 'a-ticket-nobody-owns'], ['0:16', "The answer isn't in the ticket", 'the-answer-isn-t-in-the-ticket'], ['0:24', 'Agents go and look', 'agents-go-and-look'], ['0:44', 'Fewer hops, sooner', 'fewer-hops-sooner']],
   },
   {
     id: 'grev', venue: "ICSE'24", short: 'GRev', at: 2024.3, thread: 'testing',
@@ -117,7 +117,7 @@ export const PAPERS: Paper[] = [
     claim: 'Ask a graph database one question many equivalent ways: where the answers disagree, there is a bug. GRev found 22 unknown ones.',
     badge: 'Co-first author',
     links: [{ label: 'DOI', href: 'https://doi.org/10.1145/3597503.3639200' }, { label: 'Code', href: 'https://github.com/CUHK-SE-Group/GRev' }],
-    chapters: [['0:00', 'Two answers to one question'], ['0:10', 'Why testers miss it'], ['0:22', 'The question is a graph'], ['0:35', 'Same question, many routes'], ['0:46', 'Where routes disagree']],
+    chapters: [['0:00', 'Two answers to one question', 'two-answers-to-one-question'], ['0:10', 'Why testers miss it', 'why-testers-miss-it'], ['0:22', 'The question is a graph', 'the-question-is-a-graph'], ['0:35', 'Same question, many routes', 'same-question-many-routes'], ['0:46', 'Where routes disagree', 'where-routes-disagree']],
   },
   {
     id: 'rpcover', venue: "ASE'23", short: 'RPCover', at: 2023.75, thread: 'testing',
@@ -126,7 +126,7 @@ export const PAPERS: Paper[] = [
     claim: 'Cross-language gRPC calls can be traced from source code alone, by joining both ends of each call through the Protobuf definition they share.',
     badge: 'Distinguished Paper Award, Industry Challenge Track',
     links: [{ label: 'DOI', href: 'https://doi.org/10.1109/ASE56229.2023.00108' }, { label: 'Code', href: 'https://github.com/CUHK-SE-Group/protoc-gen-scip' }],
-    chapters: [['0:00', 'A call loses its trail'], ['0:12', 'Tracing waits for traffic'], ['0:19', 'The shared blueprint'], ['0:32', 'Every service, one map'], ['0:43', 'The system, drawn from source']],
+    chapters: [['0:00', 'A call loses its trail', 'a-call-loses-its-trail'], ['0:12', 'Tracing waits for traffic', 'tracing-waits-for-traffic'], ['0:19', 'The shared blueprint', 'the-shared-blueprint'], ['0:32', 'Every service, one map', 'every-service-one-map'], ['0:43', 'The system, drawn from source', 'the-system-drawn-from-source']],
   },
 ]
 

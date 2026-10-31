@@ -1,14 +1,13 @@
 import { gsapScene } from '@lincyaw/addon-motion/scene'
 import { C, frame, moves } from './kit/frame.ts'
 import { TICKET_CSS } from './kit/ticket.ts'
+import fig3 from '../figures/triage-time-vs-transfer-hops.png?url'
 
 // A ticket nobody owns. `hops`: the Mac sign-in ticket of Figure 1 lands on Team A, moves to B, then C; each landing
 // leaves a hop mark and adds a longer slice to the waiting bar. `curve`: the lanes step aside and Figure 3 (median
 // triage time against transfer hops, over 3,000+ teams and 12 months) is uncovered from left to right.
 const LANES = [{ team: 'A', x: 20 }, { team: 'B', x: 42 }, { team: 'C', x: 64 }]
 const WAIT = [5, 9, 14] // cqw per hop: each hop costs more
-
-const fig3 = new URL('../figures/triage-time-vs-transfer-hops.png', import.meta.url).href
 
 export default gsapScene(({ root, gsap, at }) => {
   const f = frame(root, `${TICKET_CSS}

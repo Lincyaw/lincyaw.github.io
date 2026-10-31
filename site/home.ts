@@ -1,18 +1,13 @@
+import { prefetchPresentation, whenPresentationReady } from '@lincyaw/presmium/site'
+import type { SiteContent } from '@lincyaw/presmium/site'
 import './style.css'
 import avatar from './assets/avatar.jpg'
 import { ABOUT, DIRECTIONS, NEWS, PAPERS, THREADS } from './profile.ts'
 import type { Direction, Paper, Thread } from './profile.ts'
 
-/** What Presmium injects into the page: the site's documents and its theme's stylesheets. */
-interface SiteData {
-  base: string
-  documents: { id: string, href: string }[]
-  theme?: { name: string, stylesheets: string[] }
-}
-
+// What Presmium gives the page: the site's documents, each with its pages and its presentation.
 const data = document.getElementById('presmium-site-data')?.textContent
-const site: SiteData = data ? JSON.parse(data) : { base: '/', documents: [] }
-for (const href of site.theme?.stylesheets ?? []) document.head.append(Object.assign(document.createElement('link'), { rel: 'stylesheet', href }))
+const site: Pick<SiteContent, 'base' | 'documents'> = data ? JSON.parse(data) : { base: '/', documents: [] }
 
 // The reader's appearance, shared with the paper pages.
 const APPEARANCE = 'presmium-appearance'
@@ -21,16 +16,23 @@ const root = document.documentElement
 root.classList.toggle('dark', stored ? stored === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches)
 
 const esc = (text: string) => text.replace(/[&<>"']/g, c => `&#${c.charCodeAt(0)};`)
-const pageOf = (paper: Paper) => site.documents.find(doc => doc.id === `papers/${paper.id}`)?.href ?? `${site.base}papers/${paper.id}/`
+const documentOf = (paper: Paper) => site.documents.find(doc => doc.id === `papers/${paper.id}`)
+const pageOf = (paper: Paper) => documentOf(paper)?.href ?? `${site.base}papers/${paper.id}/`
 const ME = /Aoyang Fang( \(co-(?:first|corresponding)\))?/
-/** A chapter's section in the paper's document: its name in lower case, every run of other characters one '-'. */
-const sectionOf = (name: string) => name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
-/** The film plays from its document: the presentation with its narrated lecture, from the chapter's section. */
-const filmOf = (paper: Paper, chapter: number) => `${pageOf(paper)}slides/?view=present&track=script&section=${encodeURIComponent(sectionOf(paper.chapters[chapter]![1]))}&step=0&autoplay`
+/** The lecture track each film plays: the music under its scenes. */
+const FILM_TRACK = 'script'
+/** The film plays from the paper's presentation, with its lecture, from the chapter's section. */
+const filmOf = (paper: Paper, chapter: number) => {
+  const slides = documentOf(paper)?.slides
+  return slides && `${slides}?view=present&track=${FILM_TRACK}&section=${encodeURIComponent(paper.chapters[chapter]![2])}&step=0&autoplay`
+}
+
+// Phones get the list, wider screens the map, until the reader picks one; the width is style.css's phone breakpoint.
+const PHONE = matchMedia('(max-width: 767px)')
 
 const state = {
   thread: 'all' as Thread | 'all',
-  view: matchMedia('(max-width: 767px)').matches ? 'list' : 'map',
+  view: undefined as 'map' | 'list' | undefined,
   hover: 'fse26',
   newsAll: false,
   card: 0 as number | undefined,
@@ -99,7 +101,7 @@ function papers(): string {
   // Papers are spaced by their order, not their dates: the busy recent years get as much room as the quiet early ones.
   // A year's mark sits between the last paper before it and the first one in it.
   const order = [...PAPERS].sort((a, b) => a.at - b.at)
-  const slot = (i: number) => 3 + i * 94 / Math.max(1, order.length - 1)
+  const slot = (i: number) => MAP_INSET + i * (100 - 2 * MAP_INSET) / Math.max(1, order.length - 1)
   const x = (paper: Paper) => slot(order.indexOf(paper)).toFixed(2)
   const years = [...new Set(order.map(paper => Math.floor(paper.at)))].slice(1).map((year) => {
     const first = order.findIndex(paper => paper.at >= year)
@@ -107,27 +109,33 @@ function papers(): string {
   })
   const hovered = PAPERS.find(paper => paper.id === state.hover) ?? PAPERS[0]!
   const map = `<div class="px-map" role="group" aria-label="Papers by thread and year">
-    <div class="px-map__scroll"><div class="px-map__plot">
+    <div class="px-map__scroll"><div class="px-map__plot" style="--lanes: ${lanes.length}">
       ${lanes.map(lane => `<div class="px-map__lane" data-thread="${lane}"><span class="px-map__label">${esc(THREADS[lane].label)}</span><span class="px-map__track">
         ${PAPERS.filter(paper => paper.thread === lane).sort((a, b) => a.at - b.at).map((paper, i) => `<button type="button" class="px-map__node" data-open="${paper.id}" data-hover="${paper.id}" ${i % 2 ? 'data-label="above"' : ''} style="left: ${x(paper)}%" aria-label="${esc(`${paper.venue}: ${paper.title}`)}" ${shown.includes(paper) ? '' : 'data-dim'} ${paper.id === hovered.id ? 'data-active' : ''}><span class="px-map__dot"></span><span class="px-map__venue">${esc(paper.venue)}</span></button>`).join('')}
       </span></div>`).join('')}
       <div class="px-map__years"><span class="px-map__label"></span><span class="px-map__track">${years.map(({ year, left }) => `<span class="px-map__year" style="left: ${left}%">${year}</span>`).join('')}</span></div>
     </div></div>
-    <p class="px-map__readout" aria-live="polite">${tag(hovered)}<strong>${esc(hovered.short)}</strong><span>${esc(hovered.claim)}</span></p>
+    <p class="px-map__readout" aria-live="polite">${readout(hovered)}</p>
   </div>`
   const list = `<ol class="px-list">${shown.map(paper => `<li>
     ${tag(paper)}
     <div><button type="button" class="px-list__title" data-open="${paper.id}">${esc(paper.title)}</button><p>${authorLine(paper)}</p></div>
     <button type="button" class="px-button px-button--dark" data-open="${paper.id}">${PLAY}1:00</button>
   </li>`).join('')}</ol>`
+  const view = state.view ?? (PHONE.matches ? 'list' : 'map')
   return `<section class="px-section" id="papers" aria-labelledby="papers-title">
     <div class="px-section__head px-section__head--tools"><h2 id="papers-title">Papers</h2>
       <div class="px-filters" role="group" aria-label="Filter by thread">${filters}</div>
-      <div class="px-toggle" role="group" aria-label="View"><button type="button" data-view="map" aria-pressed="${state.view === 'map'}">Map</button><button type="button" data-view="list" aria-pressed="${state.view === 'list'}">List</button></div>
+      <div class="px-toggle" role="group" aria-label="View"><button type="button" data-view="map" aria-pressed="${view === 'map'}">Map</button><button type="button" data-view="list" aria-pressed="${view === 'list'}">List</button></div>
     </div>
-    ${state.view === 'map' ? map : list}
+    ${view === 'map' ? map : list}
   </section>`
 }
+
+// The first and last papers sit this far (percent of the track) from its ends, so their labels stay inside the map.
+const MAP_INSET = 3
+
+const readout = (paper: Paper) => `${tag(paper)}<strong>${esc(paper.short)}</strong><span>${esc(paper.claim)}</span>`
 
 const authorLine = (paper: Paper) => esc(paper.authors).replace(ME, match => `<strong>${match}</strong>`)
 
@@ -156,10 +164,11 @@ function about(): string {
 function overlay(paper: Paper): string {
   const i = PAPERS.indexOf(paper)
   const prev = PAPERS[(i + PAPERS.length - 1) % PAPERS.length]!, next = PAPERS[(i + 1) % PAPERS.length]!
+  const film = filmOf(paper, state.chapter)
   return `<div class="px-overlay" data-close>
     <div class="px-dialog" role="dialog" aria-modal="true" aria-labelledby="px-dialog-title" tabindex="-1">
       <div class="px-film">
-        <iframe class="px-film__live" src="${filmOf(paper, state.chapter)}" title="${esc(`${paper.short}: one-minute film`)}" allow="autoplay; fullscreen"></iframe>
+        ${film ? `<iframe class="px-film__live" src="${film}" title="${esc(`${paper.short}: one-minute film`)}" allow="autoplay; fullscreen"></iframe>` : ''}
         <div class="px-film__frame" data-cover aria-hidden="true">${PLAY}<span>Loading the film · ${esc(paper.chapters[state.chapter]![1])}</span></div>
         <button type="button" class="px-film__close" data-close aria-label="Close">X</button>
       </div>
@@ -193,26 +202,20 @@ function render(): void {
   }
 }
 
+let stopWatching: (() => void) | undefined
+
 /**
- * The film starts loading, and playing, as the overlay opens; a cover hides it until its first scene is drawn, so the
- * reader sees neither a blank frame nor the player's loading state, and the music starts with the picture.
+ * The film starts loading, and playing, as the overlay opens; a cover hides it until its first scene is drawn and its
+ * lecture has settled, so the reader sees neither a blank frame nor the player's loading state, and the music starts
+ * with the picture.
  */
 function revealWhenDrawn(): void {
+  stopWatching?.()
   const frame = app.querySelector<HTMLIFrameElement>('.px-film__live'), cover = app.querySelector<HTMLElement>('[data-cover]')
   if (!frame || !cover) return
   // The film holds the focus while it plays: Escape there closes the overlay too.
   frame.addEventListener('load', () => frame.contentWindow?.addEventListener('keydown', (event) => { if (event.key === 'Escape') close() }), { once: true })
-  const started = Date.now()
-  const check = () => {
-    if (!frame.isConnected) return
-    const film = frame.contentDocument
-    // Drawn, and the lecture either ready, waiting for the reader's click (autoplay refused) or failed.
-    const status = film?.querySelector('.pm-lecture-player__status')
-    const drawn = film?.querySelector('.pm-present .pm-scene[data-status="ready"]') && (!status || status.getAttribute('role') === 'alert' || film.querySelector('.pm-lecture-start'))
-    if (drawn || Date.now() - started > 12000) cover.dataset.cover = 'gone'
-    else setTimeout(check, 120)
-  }
-  check()
+  stopWatching = whenPresentationReady(frame, () => { cover.dataset.cover = 'gone' }, { lecture: true })
 }
 
 let returnTo: string | undefined
@@ -224,7 +227,7 @@ app.addEventListener('click', (event) => {
   if (el.dataset.close !== undefined) { if (target === el || el.tagName === 'BUTTON') close(); return }
   if (el.dataset.filter) { state.thread = el.dataset.filter as Thread | 'all'; return render() }
   if (el.dataset.topic) { state.thread = el.dataset.topic as Thread; render(); document.getElementById('papers')?.scrollIntoView({ behavior: 'smooth' }); return }
-  if (el.dataset.view) { state.view = el.dataset.view; return render() }
+  if (el.dataset.view) { state.view = el.dataset.view as 'map' | 'list'; return render() }
   if (el.dataset.news !== undefined) { state.newsAll = !state.newsAll; return render() }
   if (el.dataset.card) { const n = Number(el.dataset.card); state.card = state.card === n ? undefined : n; return render() }
   if (el.dataset.chapter) { state.chapter = Number(el.dataset.chapter); return render() }
@@ -237,16 +240,23 @@ app.addEventListener('click', (event) => {
   }
 })
 
-app.addEventListener('pointerover', (event) => {
+/** The paper under the pointer or the focus: its node marked on the map, its claim in the readout. */
+function hover(event: Event): void {
   const node = (event.target as HTMLElement).closest<HTMLElement>('[data-hover]')
-  if (node && node.dataset.hover !== state.hover) { state.hover = node.dataset.hover!; render() }
-})
-app.addEventListener('focusin', (event) => {
-  const node = (event.target as HTMLElement).closest<HTMLElement>('[data-hover]')
-  if (node && node.dataset.hover !== state.hover) { state.hover = node.dataset.hover!; render(); app.querySelector<HTMLElement>(`[data-hover="${state.hover}"]`)?.focus() }
-})
+  const paper = PAPERS.find(each => each.id === node?.dataset.hover)
+  if (!node || !paper || paper.id === state.hover) return
+  state.hover = paper.id
+  for (const each of app.querySelectorAll<HTMLElement>('.px-map__node[data-active]')) delete each.dataset.active
+  node.dataset.active = ''
+  const shown = app.querySelector('.px-map__readout')
+  if (shown) shown.innerHTML = readout(paper)
+}
+app.addEventListener('pointerover', hover)
+app.addEventListener('focusin', hover)
+PHONE.addEventListener('change', () => { if (!state.view && !opened()) render() })
 
 function close(): void {
+  stopWatching?.()
   history.pushState(null, '', location.pathname + location.search)
   render()
   if (returnTo) app.querySelector<HTMLElement>(`[data-open="${returnTo}"]`)?.focus()
@@ -256,46 +266,19 @@ document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && 
 addEventListener('popstate', render)
 render()
 
-// Films load before they are opened: in idle time one after another, and at once for the paper under the pointer, each
-// in an off-screen frame that fills the cache (the viewer app is shared by all of them) and is then removed. The paper
-// under the pointer also fetches its music. Nothing is fetched ahead when the reader asked to save data.
-const warmed = new Map<string, Promise<void>>()
-const saveData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData
-function warm(paper: Paper): Promise<void> {
-  let done = warmed.get(paper.id)
-  if (!done) {
-    done = new Promise((resolve) => {
-      const frame = Object.assign(document.createElement('iframe'), { src: `${pageOf(paper)}slides/?view=present&section=${encodeURIComponent(sectionOf(paper.chapters[0]![1]))}&step=0`, tabIndex: -1 })
-      frame.setAttribute('aria-hidden', 'true')
-      frame.className = 'px-warm'
-      const finish = () => { frame.remove(); resolve() }
-      const started = Date.now()
-      const drawn = () => frame.contentDocument?.querySelector('.pm-scene[data-status="ready"]') || Date.now() - started > 15000 ? finish() : setTimeout(drawn, 300)
-      frame.addEventListener('load', drawn, { once: true })
-      document.body.append(frame)
-    })
-    warmed.set(paper.id, done)
-  }
-  return done
+// Films load ahead of the click (the shared viewer app, each paper's IR and scenes): in idle time for every paper, and
+// at once for the one under the pointer.
+const warm = (paper: Paper) => {
+  const slides = documentOf(paper)?.slides
+  return slides ? prefetchPresentation(slides) : Promise.resolve()
 }
-const music = new Set<string>()
-async function warmMusic(paper: Paper): Promise<void> {
-  if (music.has(paper.id)) return
-  music.add(paper.id)
-  const lecture = `${pageOf(paper)}lecture/script/`
-  const track = await fetch(`${lecture}track.json`).then(response => response.ok ? response.text() : '').catch(() => '')
-  for (const file of new Set(track.match(/audio\/[\w.-]+\.(?:ogg|mp3|m4a|opus|wav)/g) ?? [])) void fetch(`${lecture}${file}`).catch(() => {})
+const idle = (run: () => void) => ('requestIdleCallback' in window ? requestIdleCallback(run, { timeout: 3000 }) : setTimeout(run, 1500))
+addEventListener('load', () => idle(async () => { for (const paper of PAPERS) await warm(paper) }), { once: true })
+const intent = (event: Event) => {
+  const id = (event.target as HTMLElement).closest<HTMLElement>('[data-open]')?.dataset.open
+  const paper = PAPERS.find(each => each.id === id)
+  if (paper) void warm(paper)
 }
-if (!saveData) {
-  const idle = (run: () => void) => ('requestIdleCallback' in window ? requestIdleCallback(run, { timeout: 3000 }) : setTimeout(run, 1500))
-  addEventListener('load', () => idle(async () => { for (const paper of PAPERS) await warm(paper) }), { once: true })
-  const intent = (event: Event) => {
-    const id = (event.target as HTMLElement).closest<HTMLElement>('[data-open]')?.dataset.open
-    const paper = PAPERS.find(each => each.id === id)
-    if (paper) { void warm(paper); void warmMusic(paper) }
-  }
-  app.addEventListener('pointerover', intent)
-  app.addEventListener('focusin', intent)
-  app.addEventListener('touchstart', intent, { passive: true })
-}
-
+app.addEventListener('pointerover', intent)
+app.addEventListener('focusin', intent)
+app.addEventListener('touchstart', intent, { passive: true })

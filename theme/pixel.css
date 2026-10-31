@@ -13,6 +13,11 @@
   --px-agents-soft: #e3f2f0;
   --px-incident-soft: #fbeae2;
   --px-testing-soft: #edeaf6;
+  /* The film and its frame stay dark in both appearances, as a screen does. */
+  --px-film: #17171c;
+  --px-film-panel: #26262e;
+  --px-film-ink: #ffffff;
+  --px-film-muted: #c9c9d1;
 }
 
 :root.dark [data-pm-site-theme-name='pixel'] {
