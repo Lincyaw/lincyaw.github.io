@@ -96,14 +96,22 @@ function papers(): string {
   const filters = (['all', 'agents', 'incident', 'testing'] as const).map(key => `<button type="button" class="px-filter" data-filter="${key}" data-thread="${key}" aria-pressed="${state.thread === key}">${key === 'all' ? 'All' : esc(THREADS[key].label)}</button>`).join('')
   const shown = PAPERS.filter(paper => state.thread === 'all' || paper.thread === state.thread)
   const lanes: Thread[] = ['agents', 'incident', 'testing']
-  const x = (at: number) => ((at - 2023.4) / 3.6 * 100).toFixed(2)
+  // Papers are spaced by their order, not their dates: the busy recent years get as much room as the quiet early ones.
+  // A year's mark sits between the last paper before it and the first one in it.
+  const order = [...PAPERS].sort((a, b) => a.at - b.at)
+  const slot = (i: number) => 3 + i * 94 / Math.max(1, order.length - 1)
+  const x = (paper: Paper) => slot(order.indexOf(paper)).toFixed(2)
+  const years = [...new Set(order.map(paper => Math.floor(paper.at)))].slice(1).map((year) => {
+    const first = order.findIndex(paper => paper.at >= year)
+    return { year, left: ((slot(first - 1) + slot(first)) / 2).toFixed(2) }
+  })
   const hovered = PAPERS.find(paper => paper.id === state.hover) ?? PAPERS[0]!
   const map = `<div class="px-map" role="group" aria-label="Papers by thread and year">
     <div class="px-map__scroll"><div class="px-map__plot">
       ${lanes.map(lane => `<div class="px-map__lane" data-thread="${lane}"><span class="px-map__label">${esc(THREADS[lane].label)}</span><span class="px-map__track">
-        ${PAPERS.filter(paper => paper.thread === lane).sort((a, b) => a.at - b.at).map((paper, i) => `<button type="button" class="px-map__node" data-open="${paper.id}" data-hover="${paper.id}" ${i % 2 ? 'data-label="above"' : ''} style="left: ${x(paper.at)}%" aria-label="${esc(`${paper.venue}: ${paper.title}`)}" ${shown.includes(paper) ? '' : 'data-dim'} ${paper.id === hovered.id ? 'data-active' : ''}><span class="px-map__dot"></span><span class="px-map__venue">${esc(paper.venue)}</span></button>`).join('')}
+        ${PAPERS.filter(paper => paper.thread === lane).sort((a, b) => a.at - b.at).map((paper, i) => `<button type="button" class="px-map__node" data-open="${paper.id}" data-hover="${paper.id}" ${i % 2 ? 'data-label="above"' : ''} style="left: ${x(paper)}%" aria-label="${esc(`${paper.venue}: ${paper.title}`)}" ${shown.includes(paper) ? '' : 'data-dim'} ${paper.id === hovered.id ? 'data-active' : ''}><span class="px-map__dot"></span><span class="px-map__venue">${esc(paper.venue)}</span></button>`).join('')}
       </span></div>`).join('')}
-      <div class="px-map__years"><span class="px-map__label"></span><span class="px-map__track">${[2024, 2025, 2026].map(year => `<span style="left: ${x(year)}%">${year}</span>`).join('')}</span></div>
+      <div class="px-map__years"><span class="px-map__label"></span><span class="px-map__track">${years.map(({ year, left }) => `<span class="px-map__year" style="left: ${left}%">${year}</span>`).join('')}</span></div>
     </div></div>
     <p class="px-map__readout" aria-live="polite">${tag(hovered)}<strong>${esc(hovered.short)}</strong><span>${esc(hovered.claim)}</span></p>
   </div>`

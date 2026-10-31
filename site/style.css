@@ -129,6 +129,8 @@ main { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 .px-map__track { position: relative; flex: 1; height: 100%; margin-right: 48px; }
 .px-map__lane .px-map__track::before { content: ''; position: absolute; left: 0; right: -48px; top: 50%; border-top: 3px dotted var(--thread); opacity: 0.45; }
 .px-map__years .px-map__track span { position: absolute; transform: translateX(-50%); }
+/* A year begins between two papers: a short rule up from its label marks the boundary. */
+.px-map__year::before { content: ''; position: absolute; left: 50%; bottom: 100%; height: 186px; border-left: 2px dashed var(--line); }
 .px-map__node { position: absolute; top: 50%; transform: translate(-8px, -11px); display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: 2px; border: 0; background: transparent; cursor: pointer; }
 .px-map__node[data-dim] { opacity: 0.2; }
 .px-map__dot { width: 16px; height: 16px; background: var(--thread); box-shadow: 3px 3px 0 0 var(--ink); }
