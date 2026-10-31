@@ -158,8 +158,8 @@ export const ABOUT: { label: string, summary: string, items: [string, string][] 
     ['2024.09', 'Distinguished Artifact Reviewer Award, ECOOP'],
     ['2023.09', 'Distinguished Paper Award, ASE Industry Challenge Track'],
   ] },
-  { label: 'Service', summary: 'ICSE Shadow PC · TOSEM · OSDI · ATC …', items: [
-    ['Shadow PC', 'ICSE'],
+  { label: 'Service', summary: 'ICSE 2027 Shadow PC · TOSEM · OSDI · ATC …', items: [
+    ['Shadow PC', 'ICSE 2027'],
     ['Reviewer', 'TOSEM 2024, TOSEM 2025, TOSEM 2026'],
     ['Artifacts', 'USENIX Security 2025, TACAS 2025, ICSE 2025, ISSRE 2024, ATC 2024, OSDI 2024, ISSTA 2024, ECOOP 2024, TACAS 2024'],
   ] },
