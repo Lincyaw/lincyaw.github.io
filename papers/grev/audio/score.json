@@ -1,0 +1,27 @@
+{
+  "title": "grev film · score",
+  "music": {
+    "title": "Investigations",
+    "author": "Kevin MacLeod",
+    "url": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Investigations.mp3",
+    "license": "CC BY 4.0",
+    "from": 0,
+    "length": 60,
+    "credit": "Music: \"Investigations\" by Kevin MacLeod (incompetech.com). Licensed under Creative Commons: By Attribution 4.0 License, http://creativecommons.org/licenses/by/4.0/",
+    "excerpt": {
+      "from": 0,
+      "seconds": 60,
+      "fadeInSeconds": 0.3,
+      "fadeOutSeconds": 2.5
+    }
+  },
+  "target": {
+    "lufs": -16,
+    "truePeak": -1.5
+  },
+  "measured": {
+    "integratedLufs": -17.2,
+    "normalization": "ffmpeg loudnorm"
+  },
+  "fingerprint": "sha256:207137e255dfe0b4f65e18efaef0cc10c56f7f79b26a896406d4a28f5c6c98f8"
+}

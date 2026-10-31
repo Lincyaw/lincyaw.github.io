@@ -1,0 +1,1783 @@
+{
+  "schemaVersion": 1,
+  "id": "paper-grev",
+  "metadata": {
+    "title": "Testing Graph Database Systems via Equivalent Query Rewriting",
+    "lang": "en",
+    "description": "GRev rewrites a graph-database query into many equivalent queries via an Abstract Syntax Graph, finding 22 previously unknown bugs in five graph databases.",
+    "plugins": [
+      "@lincyaw/addon-motion",
+      "@lincyaw/addon-lecture",
+      "@lincyaw/addon-speech"
+    ],
+    "renderers": {
+      "web": {},
+      "slides": {},
+      "lecture": {}
+    },
+    "tags": [
+      "Testing & analysis",
+      "ICSE'24"
+    ]
+  },
+  "sectionOrder": [
+    "two-answers-to-one-question",
+    "why-testers-miss-it",
+    "the-question-is-a-graph",
+    "same-question-many-routes",
+    "where-routes-disagree"
+  ],
+  "sections": {
+    "two-answers-to-one-question": {
+      "id": "two-answers-to-one-question",
+      "title": "Testing Graph Database Systems via Equivalent Query Rewriting",
+      "level": 1,
+      "children": [
+        "two-answers-to-one-question--text-0",
+        "two-answers-to-one-question--scene",
+        "two-answers-to-one-question--text-1"
+      ],
+      "stepOrder": [
+        "two-answers-to-one-question--step"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    },
+    "why-testers-miss-it": {
+      "id": "why-testers-miss-it",
+      "title": "Why testers miss it",
+      "level": 1,
+      "children": [
+        "why-testers-miss-it--text-0",
+        "why-testers-miss-it--scene",
+        "why-testers-miss-it--columns-1",
+        "why-testers-miss-it--text-2"
+      ],
+      "stepOrder": [
+        "why-testers-miss-it--step"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    },
+    "the-question-is-a-graph": {
+      "id": "the-question-is-a-graph",
+      "title": "The question is a graph",
+      "level": 1,
+      "children": [
+        "the-question-is-a-graph--text-0",
+        "the-question-is-a-graph--scene",
+        "the-question-is-a-graph--image-1"
+      ],
+      "stepOrder": [
+        "the-question-is-a-graph--step"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    },
+    "same-question-many-routes": {
+      "id": "same-question-many-routes",
+      "title": "Same question, many routes",
+      "level": 1,
+      "children": [
+        "same-question-many-routes--text-0",
+        "same-question-many-routes--text-1",
+        "same-question-many-routes--scene",
+        "same-question-many-routes--text-2"
+      ],
+      "stepOrder": [
+        "same-question-many-routes--step"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    },
+    "where-routes-disagree": {
+      "id": "where-routes-disagree",
+      "title": "Where routes disagree",
+      "level": 1,
+      "children": [
+        "where-routes-disagree--text-0",
+        "where-routes-disagree--scene",
+        "where-routes-disagree--text-1",
+        "where-routes-disagree--code-2",
+        "where-routes-disagree--text-3"
+      ],
+      "stepOrder": [
+        "where-routes-disagree--step"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    }
+  },
+  "blocks": {
+    "two-answers-to-one-question--text-0": {
+      "id": "two-answers-to-one-question--text-0",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "two-answers-to-one-question--text-0-p-1",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Qiuyang Mang, "
+            },
+            {
+              "type": "text",
+              "text": "Aoyang Fang",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " (co-first author), Boxi Yu, Hanfei Chen, Pinjia He. "
+            },
+            {
+              "type": "text",
+              "text": "ICSE 2024",
+              "marks": [
+                {
+                  "type": "italic"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": ", the 46th IEEE/ACM International Conference on Software Engineering, Lisbon."
+            }
+          ]
+        },
+        {
+          "id": "two-answers-to-one-question--text-0-p-2",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "link",
+              "href": "https://profile.aoyangfang.top/assets/publications/icse24/grev.pdf",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "PDF"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " · "
+            },
+            {
+              "type": "link",
+              "href": "https://doi.org/10.1145/3597503.3639200",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "DOI 10.1145/3597503.3639200"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " · "
+            },
+            {
+              "type": "link",
+              "href": "https://github.com/CUHK-SE-Group/GRev",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "Code"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "two-answers-to-one-question--text-0-p-3",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Ask a graph database one question in many equivalent ways; where the answers disagree, there is a bug. GRev found "
+            },
+            {
+              "type": "text",
+              "text": "22",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " previously unknown bugs in Neo4j, RedisGraph, MemGraph, TinkerGraph and NebulaGraph: 15 confirmed by developers, 14 in graph data retrieval itself."
+            }
+          ]
+        }
+      ]
+    },
+    "two-answers-to-one-question--text-1": {
+      "id": "two-answers-to-one-question--text-1",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "two-answers-to-one-question--text-1-p-4",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "The opening example is one of them. On the same graph, RedisGraph counts 7 for the first phrasing and 8 for the second, although both ask for the same pattern ("
+            },
+            {
+              "type": "link",
+              "href": "https://github.com/RedisGraph/RedisGraph/issues/3093",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "issue #3093"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "). No other database and no hand-written expected answer is needed to see the bug: the two answers contradict each other."
+            }
+          ]
+        }
+      ]
+    },
+    "two-answers-to-one-question--scene": {
+      "id": "two-answers-to-one-question--scene",
+      "type": "component",
+      "definitionId": "two-answers-to-one-question--scene--definition",
+      "parameters": {
+        "scene": "two-answers",
+        "alt": "Two equivalent Cypher queries on the same RedisGraph data count 7 and 8."
+      }
+    },
+    "why-testers-miss-it--text-0": {
+      "id": "why-testers-miss-it--text-0",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "why-testers-miss-it--text-0-p-5",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Graph databases have no common query language: Neo4j speaks Cypher, TinkerGraph Gremlin, NebulaGraph nGQL. The two families of testers before GRev each work under a condition that leaves graph traversal untested."
+            }
+          ]
+        }
+      ]
+    },
+    "why-testers-miss-it--columns-1-c0": {
+      "id": "why-testers-miss-it--columns-1-c0",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "why-testers-miss-it--columns-1-c0-h-6",
+          "type": "heading",
+          "level": 3,
+          "children": [
+            {
+              "type": "text",
+              "text": "Comparing databases"
+            }
+          ]
+        },
+        {
+          "id": "why-testers-miss-it--columns-1-c0-p-7",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Differential testers such as GDsmith and Grand send one query to several databases and compare the answers. That requires databases that share a language, so they test only shared features, and porting them to a new language is extensive engineering; existing research covers at most Cypher and Gremlin."
+            }
+          ]
+        }
+      ]
+    },
+    "why-testers-miss-it--columns-1-c1": {
+      "id": "why-testers-miss-it--columns-1-c1",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "why-testers-miss-it--columns-1-c1-h-8",
+          "type": "heading",
+          "level": 3,
+          "children": [
+            {
+              "type": "text",
+              "text": "Partitioning a filter"
+            }
+          ]
+        },
+        {
+          "id": "why-testers-miss-it--columns-1-c1-p-9",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "GDBMeter reuses Ternary Logic Partitioning from relational testing: it splits a "
+            },
+            {
+              "type": "text",
+              "text": "WHERE",
+              "marks": [
+                {
+                  "type": "code"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " predicate into its true, false and null parts. The traversal in "
+            },
+            {
+              "type": "text",
+              "text": "MATCH",
+              "marks": [
+                {
+                  "type": "code"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " is never changed, and none of its reported bugs are graph-related."
+            }
+          ]
+        }
+      ]
+    },
+    "why-testers-miss-it--columns-1": {
+      "id": "why-testers-miss-it--columns-1",
+      "type": "container",
+      "layout": "columns",
+      "only": [
+        "web"
+      ],
+      "children": [
+        "why-testers-miss-it--columns-1-c0",
+        "why-testers-miss-it--columns-1-c1"
+      ],
+      "properties": {
+        "columnWidths": [
+          1,
+          1
+        ]
+      }
+    },
+    "why-testers-miss-it--text-2": {
+      "id": "why-testers-miss-it--text-2",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "why-testers-miss-it--text-2-p-10",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Neither family targets performance bugs: different engines differ in speed by design, and partitioned sub-queries have no expected timing relation to the original."
+            }
+          ]
+        }
+      ]
+    },
+    "why-testers-miss-it--scene": {
+      "id": "why-testers-miss-it--scene",
+      "type": "component",
+      "definitionId": "why-testers-miss-it--scene--definition",
+      "parameters": {
+        "scene": "testers",
+        "alt": "Comparing databases needs a shared query language; partitioning a filter leaves the graph walk unchanged."
+      }
+    },
+    "the-question-is-a-graph--text-0": {
+      "id": "the-question-is-a-graph--text-0",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "the-question-is-a-graph--text-0-p-11",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "The insight: the meaning of a graph query can live in the paths of a graph. GRev parses a query into an "
+            },
+            {
+              "type": "text",
+              "text": "Abstract Syntax Graph",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " (ASG): its vertices are the kinds of nodes to retrieve, with their label and property constraints; its edges are the relationships between them. Any set of non-overlapping paths that together cover every edge and constraint is an equivalent query."
+            }
+          ]
+        },
+        {
+          "id": "the-question-is-a-graph--text-0-p-12",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Random Walk Covering",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " picks a random path, removes its edges and a random part of its vertices' constraints, and translates the path back into a query fragment, until the ASG is covered exactly once. Because the ASG is language-independent, a new query language needs only a translator (about 260 lines of Python for Cypher), not new rewrite rules."
+            }
+          ]
+        }
+      ]
+    },
+    "the-question-is-a-graph--image-1": {
+      "id": "the-question-is-a-graph--image-1",
+      "type": "image",
+      "only": [
+        "web"
+      ],
+      "assetId": "the-question-is-a-graph--image-1-asset",
+      "alt": "One ASG in the centre and four Random Walk Coverings around it, each giving a different equivalent Cypher query",
+      "caption": [
+        {
+          "type": "text",
+          "text": "Four coverings of one ASG, four equivalent queries (paper, Fig. 3)."
+        }
+      ],
+      "width": 100,
+      "alignment": "center"
+    },
+    "the-question-is-a-graph--scene": {
+      "id": "the-question-is-a-graph--scene",
+      "type": "component",
+      "definitionId": "the-question-is-a-graph--scene--definition",
+      "parameters": {
+        "scene": "covering",
+        "alt": "A query becomes a graph of what to match; coloured random paths cover it and spell an equivalent query."
+      }
+    },
+    "same-question-many-routes--text-0": {
+      "id": "same-question-many-routes--text-0",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "same-question-many-routes--text-0-p-13",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "A database cannot predict the shape of the graph before it runs a query, so different path orders are hard to optimise into one plan. The rewrites therefore reach different code, and GRev checks each pair three ways:"
+            }
+          ]
+        }
+      ]
+    },
+    "same-question-many-routes--text-1": {
+      "id": "same-question-many-routes--text-1",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "same-question-many-routes--text-1-l-14",
+          "type": "list",
+          "ordered": false,
+          "children": [
+            {
+              "id": "same-question-many-routes--text-1-li-15",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "same-question-many-routes--text-1-p-16",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Logic bug:",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " the results differ and no exception is raised."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "same-question-many-routes--text-1-li-17",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "same-question-many-routes--text-1-p-18",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Exception bug:",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " the results differ and an exception is raised (unexpected or missing)."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "same-question-many-routes--text-1-li-19",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "same-question-many-routes--text-1-p-20",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Performance bug:",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " the slower query is at least 5× and at least 1,000 ms slower."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "same-question-many-routes--text-2": {
+      "id": "same-question-many-routes--text-2",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "same-question-many-routes--text-2-l-21",
+          "type": "list",
+          "ordered": false,
+          "children": [
+            {
+              "id": "same-question-many-routes--text-2-li-22",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "same-question-many-routes--text-2-p-23",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Ten long base queries with 300 rewrites each triggered "
+                    },
+                    {
+                      "type": "text",
+                      "text": "1,253",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " distinct query plans in RedisGraph; ten random ones, 178 (Fig. 6). Partitioning yields at most 4 plans per base query, differential testing one per database."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "same-question-many-routes--text-2-li-24",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "same-question-many-routes--text-2-p-25",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "2,394 of 3,000 rewrites of random base queries and all 3,000 of long ones were unique (Fig. 5)."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "same-question-many-routes--text-2-li-26",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "same-question-many-routes--text-2-p-27",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "In 12 hours, 1,250,000 test cases on RedisGraph gave 945 bug-triggering ones, one per 1,322 executions, about one a minute."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "same-question-many-routes--scene": {
+      "id": "same-question-many-routes--scene",
+      "type": "component",
+      "definitionId": "same-question-many-routes--scene--definition",
+      "parameters": {
+        "scene": "routes",
+        "alt": "Equivalent queries fall into the database and trigger distinct query plans: 1,253 for ten long base queries."
+      }
+    },
+    "where-routes-disagree--text-0": {
+      "id": "where-routes-disagree--text-0",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "where-routes-disagree--text-0-t-28",
+          "type": "table",
+          "headerRows": 1,
+          "children": [
+            {
+              "id": "where-routes-disagree--text-0-tr-29",
+              "type": "tableRow",
+              "children": [
+                {
+                  "id": "where-routes-disagree--text-0-td-30",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Database"
+                    }
+                  ]
+                },
+                {
+                  "id": "where-routes-disagree--text-0-td-31",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Language"
+                    }
+                  ]
+                },
+                {
+                  "id": "where-routes-disagree--text-0-td-32",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Detected"
+                    }
+                  ]
+                },
+                {
+                  "id": "where-routes-disagree--text-0-td-33",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Confirmed"
+                    }
+                  ]
+                },
+                {
+                  "id": "where-routes-disagree--text-0-td-34",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Graph-related"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "where-routes-disagree--text-0-tr-35",
+              "type": "tableRow",
+              "children": [
+                {
+                  "id": "where-routes-disagree--text-0-td-36",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Neo4j"
+                    }
+                  ]
+                },
+                {
+                  "id": "where-routes-disagree--text-0-td-37",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Cypher"
+                    }
+                  ]
+                },
+                {
+                  "id": "where-routes-disagree--text-0-td-38",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "3"
+                    }
+                  ]
+                },
+                {
+                  "id": "where-routes-disagree--text-0-td-39",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "2"
+                    }
+                  ]
+                },
+                {
+                  "id": "where-routes-disagree--text-0-td-40",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "1"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "where-routes-disagree--text-0-tr-41",
+              "type": "tableRow",
+              "children": [
+                {
+                  "id": "where-routes-disagree--text-0-td-42",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "RedisGraph"
+                    }
+                  ]
+                },
+                {
+                  "id": "where-routes-disagree--text-0-td-43",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Cypher"
+                    }
+                  ]
+                },
+                {
+                  "id": "where-routes-disagree--text-0-td-44",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "6"
+                    }
+                  ]
+                },
+                {
+                  "id": "where-routes-disagree--text-0-td-45",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "2"
+                    }
+                  ]
+                },
+                {
+                  "id": "where-routes-disagree--text-0-td-46",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "4"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "where-routes-disagree--text-0-tr-47",
+              "type": "tableRow",
+              "children": [
+                {
+                  "id": "where-routes-disagree--text-0-td-48",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "MemGraph"
+                    }
+                  ]
+                },
+                {
+                  "id": "where-routes-disagree--text-0-td-49",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Cypher"
+                    }
+                  ]
+                },
+                {
+                  "id": "where-routes-disagree--text-0-td-50",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "4"
+                    }
+                  ]
+                },
+                {
+                  "id": "where-routes-disagree--text-0-td-51",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "3"
+                    }
+                  ]
+                },
+                {
+                  "id": "where-routes-disagree--text-0-td-52",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "3"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "where-routes-disagree--text-0-tr-53",
+              "type": "tableRow",
+              "children": [
+                {
+                  "id": "where-routes-disagree--text-0-td-54",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "TinkerGraph"
+                    }
+                  ]
+                },
+                {
+                  "id": "where-routes-disagree--text-0-td-55",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Gremlin"
+                    }
+                  ]
+                },
+                {
+                  "id": "where-routes-disagree--text-0-td-56",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "3"
+                    }
+                  ]
+                },
+                {
+                  "id": "where-routes-disagree--text-0-td-57",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "2"
+                    }
+                  ]
+                },
+                {
+                  "id": "where-routes-disagree--text-0-td-58",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "2"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "where-routes-disagree--text-0-tr-59",
+              "type": "tableRow",
+              "children": [
+                {
+                  "id": "where-routes-disagree--text-0-td-60",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "NebulaGraph"
+                    }
+                  ]
+                },
+                {
+                  "id": "where-routes-disagree--text-0-td-61",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "nGQL"
+                    }
+                  ]
+                },
+                {
+                  "id": "where-routes-disagree--text-0-td-62",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "6"
+                    }
+                  ]
+                },
+                {
+                  "id": "where-routes-disagree--text-0-td-63",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "6"
+                    }
+                  ]
+                },
+                {
+                  "id": "where-routes-disagree--text-0-td-64",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "4"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "where-routes-disagree--text-0-tr-65",
+              "type": "tableRow",
+              "children": [
+                {
+                  "id": "where-routes-disagree--text-0-td-66",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Total",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "where-routes-disagree--text-0-td-67",
+                  "type": "tableCell",
+                  "children": []
+                },
+                {
+                  "id": "where-routes-disagree--text-0-td-68",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "22",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "where-routes-disagree--text-0-td-69",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "15",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "where-routes-disagree--text-0-td-70",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "14",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "where-routes-disagree--text-0-p-71",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "By type: 12 logic bugs, 3 performance bugs, 4 missing and 3 unexpected exceptions (Table 2). No performance report was rejected as a false alarm."
+            }
+          ]
+        }
+      ]
+    },
+    "where-routes-disagree--text-1": {
+      "id": "where-routes-disagree--text-1",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "where-routes-disagree--text-1-p-72",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Most of the bugs are graph-related, a class that partitioning-based testing did not reach: all of GDBMeter's logic bugs came from queries with only a simple "
+            },
+            {
+              "type": "text",
+              "text": "MATCH (n)",
+              "marks": [
+                {
+                  "type": "code"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " or a returned expression. 9 of the 13 bugs from MemGraph, RedisGraph and TinkerGraph (69%) also reproduce in the older versions that earlier tools tested, so those tools had missed them; the Neo4j bugs involve newer features such as label expressions."
+            }
+          ]
+        },
+        {
+          "id": "where-routes-disagree--text-1-p-73",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Coverage depends on the system: with the same base-query generator, GRev reached higher instruction and branch coverage than GDsmith on Neo4j; on RedisGraph it matched GDsmith, and GDBMeter's more diverse base queries reached higher coverage."
+            }
+          ]
+        }
+      ]
+    },
+    "where-routes-disagree--code-2": {
+      "id": "where-routes-disagree--code-2",
+      "type": "code",
+      "only": [
+        "web"
+      ],
+      "language": "bibtex",
+      "value": "@inproceedings{mang2024grev,\n  title     = {Testing Graph Database Systems via Equivalent Query Rewriting},\n  author    = {Mang, Qiuyang and Fang, Aoyang and Yu, Boxi and Chen, Hanfei and He, Pinjia},\n  booktitle = {Proceedings of the IEEE/ACM 46th International Conference on Software Engineering},\n  series    = {ICSE '24},\n  pages     = {1--12},\n  year      = {2024},\n  publisher = {ACM},\n  address   = {Lisbon, Portugal},\n  doi       = {10.1145/3597503.3639200}\n}"
+    },
+    "where-routes-disagree--text-3": {
+      "id": "where-routes-disagree--text-3",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "where-routes-disagree--text-3-p-74",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Film music: “Investigations” by Kevin MacLeod ("
+            },
+            {
+              "type": "link",
+              "href": "https://incompetech.com",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "incompetech.com"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "), licensed under "
+            },
+            {
+              "type": "link",
+              "href": "http://creativecommons.org/licenses/by/4.0/",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "Creative Commons: By Attribution 4.0"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "."
+            }
+          ]
+        }
+      ]
+    },
+    "where-routes-disagree--scene": {
+      "id": "where-routes-disagree--scene",
+      "type": "component",
+      "definitionId": "where-routes-disagree--scene--definition",
+      "parameters": {
+        "scene": "disagree",
+        "alt": "The 7-versus-8 pair becomes one of 22 bugs across Neo4j, RedisGraph, MemGraph, TinkerGraph and NebulaGraph."
+      }
+    }
+  },
+  "steps": {
+    "two-answers-to-one-question--step": {
+      "id": "two-answers-to-one-question--step",
+      "sectionId": "two-answers-to-one-question",
+      "visuals": [
+        {
+          "blockId": "two-answers-to-one-question--text-0",
+          "visible": true
+        },
+        {
+          "blockId": "two-answers-to-one-question--scene",
+          "visible": true,
+          "state": "main"
+        },
+        {
+          "blockId": "two-answers-to-one-question--text-1",
+          "visible": true
+        }
+      ],
+      "narrationIds": [
+        "two-answers-to-one-question--narration"
+      ]
+    },
+    "why-testers-miss-it--step": {
+      "id": "why-testers-miss-it--step",
+      "sectionId": "why-testers-miss-it",
+      "visuals": [
+        {
+          "blockId": "why-testers-miss-it--text-0",
+          "visible": true
+        },
+        {
+          "blockId": "why-testers-miss-it--scene",
+          "visible": true,
+          "state": "main"
+        },
+        {
+          "blockId": "why-testers-miss-it--columns-1",
+          "visible": true
+        },
+        {
+          "blockId": "why-testers-miss-it--text-2",
+          "visible": true
+        },
+        {
+          "blockId": "why-testers-miss-it--columns-1-c0",
+          "visible": true
+        },
+        {
+          "blockId": "why-testers-miss-it--columns-1-c1",
+          "visible": true
+        }
+      ],
+      "narrationIds": [
+        "why-testers-miss-it--narration"
+      ]
+    },
+    "the-question-is-a-graph--step": {
+      "id": "the-question-is-a-graph--step",
+      "sectionId": "the-question-is-a-graph",
+      "visuals": [
+        {
+          "blockId": "the-question-is-a-graph--text-0",
+          "visible": true
+        },
+        {
+          "blockId": "the-question-is-a-graph--scene",
+          "visible": true,
+          "state": "main"
+        },
+        {
+          "blockId": "the-question-is-a-graph--image-1",
+          "visible": true
+        }
+      ],
+      "narrationIds": [
+        "the-question-is-a-graph--narration"
+      ]
+    },
+    "same-question-many-routes--step": {
+      "id": "same-question-many-routes--step",
+      "sectionId": "same-question-many-routes",
+      "visuals": [
+        {
+          "blockId": "same-question-many-routes--text-0",
+          "visible": true
+        },
+        {
+          "blockId": "same-question-many-routes--text-1",
+          "visible": true
+        },
+        {
+          "blockId": "same-question-many-routes--scene",
+          "visible": true,
+          "state": "main"
+        },
+        {
+          "blockId": "same-question-many-routes--text-2",
+          "visible": true
+        }
+      ],
+      "narrationIds": [
+        "same-question-many-routes--narration"
+      ]
+    },
+    "where-routes-disagree--step": {
+      "id": "where-routes-disagree--step",
+      "sectionId": "where-routes-disagree",
+      "visuals": [
+        {
+          "blockId": "where-routes-disagree--text-0",
+          "visible": true
+        },
+        {
+          "blockId": "where-routes-disagree--scene",
+          "visible": true,
+          "state": "main"
+        },
+        {
+          "blockId": "where-routes-disagree--text-1",
+          "visible": true
+        },
+        {
+          "blockId": "where-routes-disagree--code-2",
+          "visible": true
+        },
+        {
+          "blockId": "where-routes-disagree--text-3",
+          "visible": true
+        }
+      ],
+      "narrationIds": [
+        "where-routes-disagree--narration"
+      ]
+    }
+  },
+  "narrations": {
+    "two-answers-to-one-question--narration": {
+      "id": "two-answers-to-one-question--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "Ask "
+        },
+        {
+          "type": "pronunciation",
+          "display": "RedisGraph",
+          "spoken": "Redis Graph"
+        },
+        {
+          "type": "text",
+          "text": " one question two ways, on the same data. One phrasing counts seven, the other eight. One of them is wrong."
+        }
+      ]
+    },
+    "why-testers-miss-it--narration": {
+      "id": "why-testers-miss-it--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "Testers compare different databases, which only works where they share a query language, or split a query's filter, which never changes how the graph is walked. Bugs in the walk slip past."
+        }
+      ]
+    },
+    "the-question-is-a-graph--narration": {
+      "id": "the-question-is-a-graph--narration",
+      "content": [
+        {
+          "type": "pronunciation",
+          "display": "GRev",
+          "spoken": "G-Rev"
+        },
+        {
+          "type": "text",
+          "text": "'s idea: a query is a small graph of what to match. Cover that graph with random paths, each edge used once, and each covering asks the same question in new words."
+        }
+      ]
+    },
+    "same-question-many-routes--narration": {
+      "id": "same-question-many-routes--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "Each new wording can send the database down a different internal route, so one question exercises many query plans, and every route must reach the same answer."
+        }
+      ]
+    },
+    "where-routes-disagree--narration": {
+      "id": "where-routes-disagree--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "When two routes disagree, the database has a bug, like seven against eight. Asking the same question many ways, "
+        },
+        {
+          "type": "pronunciation",
+          "display": "GRev",
+          "spoken": "G-Rev"
+        },
+        {
+          "type": "text",
+          "text": " found 22 previously unknown bugs in five graph databases."
+        }
+      ]
+    }
+  },
+  "assets": {
+    "film-score": {
+      "id": "film-score",
+      "kind": "audio",
+      "location": "audio/score.ogg",
+      "title": "GRev film · score (music: “Investigations”, Kevin MacLeod, incompetech.com, CC BY 4.0)",
+      "fingerprint": "sha256:207137e255dfe0b4f65e18efaef0cc10c56f7f79b26a896406d4a28f5c6c98f8",
+      "mediaType": "audio/ogg"
+    },
+    "the-question-is-a-graph--image-1-asset": {
+      "id": "the-question-is-a-graph--image-1-asset",
+      "kind": "image",
+      "location": "figures/random-walk-covering-four-equivalent-queries.png",
+      "mediaType": "image/png"
+    }
+  },
+  "definitions": {
+    "two-answers-to-one-question--scene--definition": {
+      "id": "two-answers-to-one-question--scene--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/two-answers.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "main"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          8000
+        ],
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Two equivalent Cypher queries on the same RedisGraph data count 7 and 8."
+                }
+              ]
+            }
+          ]
+        },
+        "language": "typescript"
+      }
+    },
+    "why-testers-miss-it--scene--definition": {
+      "id": "why-testers-miss-it--scene--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/testers.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "main"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          10000
+        ],
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Comparing databases needs a shared query language; partitioning a filter leaves the graph walk unchanged."
+                }
+              ]
+            }
+          ]
+        },
+        "language": "typescript"
+      }
+    },
+    "the-question-is-a-graph--scene--definition": {
+      "id": "the-question-is-a-graph--scene--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/covering.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "main"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          11000
+        ],
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "A query becomes a graph of what to match; coloured random paths cover it and spell an equivalent query."
+                }
+              ]
+            }
+          ]
+        },
+        "language": "typescript"
+      }
+    },
+    "same-question-many-routes--scene--definition": {
+      "id": "same-question-many-routes--scene--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/routes.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "main"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          9000
+        ],
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Equivalent queries fall into the database and trigger distinct query plans: 1,253 for ten long base queries."
+                }
+              ]
+            }
+          ]
+        },
+        "language": "typescript"
+      }
+    },
+    "where-routes-disagree--scene--definition": {
+      "id": "where-routes-disagree--scene--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/disagree.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "main"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          9000
+        ],
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "The 7-versus-8 pair becomes one of 22 bugs across Neo4j, RedisGraph, MemGraph, TinkerGraph and NebulaGraph."
+                }
+              ]
+            }
+          ]
+        },
+        "language": "typescript"
+      }
+    }
+  },
+  "production": {
+    "defaults": {
+      "voiceSource": {
+        "type": "none"
+      },
+      "narrationStart": "with-animation",
+      "trailingPauseMs": 0
+    },
+    "stepOverrides": {
+      "two-answers-to-one-question--step": {
+        "minimumHoldMs": 10000,
+        "trailingPauseMs": 0
+      },
+      "why-testers-miss-it--step": {
+        "minimumHoldMs": 12000,
+        "trailingPauseMs": 0
+      },
+      "the-question-is-a-graph--step": {
+        "minimumHoldMs": 13000,
+        "trailingPauseMs": 0
+      },
+      "same-question-many-routes--step": {
+        "minimumHoldMs": 11000,
+        "trailingPauseMs": 0
+      },
+      "where-routes-disagree--step": {
+        "minimumHoldMs": 14000,
+        "trailingPauseMs": 0
+      }
+    },
+    "mediaClips": [
+      {
+        "id": "score-two-answers-to-one-question",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 0,
+          "endMs": 10000
+        },
+        "attachment": {
+          "stepId": "two-answers-to-one-question--step",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score-why-testers-miss-it",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 10000,
+          "endMs": 22000
+        },
+        "attachment": {
+          "stepId": "why-testers-miss-it--step",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score-the-question-is-a-graph",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 22000,
+          "endMs": 35000
+        },
+        "attachment": {
+          "stepId": "the-question-is-a-graph--step",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score-same-question-many-routes",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 35000,
+          "endMs": 46000
+        },
+        "attachment": {
+          "stepId": "same-question-many-routes--step",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score-where-routes-disagree",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 46000,
+          "endMs": 60000
+        },
+        "attachment": {
+          "stepId": "where-routes-disagree--step",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      }
+    ]
+  }
+}

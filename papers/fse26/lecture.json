@@ -5,9 +5,15 @@
     "title": "Rethinking the Evaluation of Microservice RCA with a Fault Propagation-Aware Benchmark",
     "lang": "en",
     "description": "On 1,430 failures that propagate like real incidents, 11 state-of-the-art RCA models rank the true root cause first 21% of the time.",
-    "plugins": [],
+    "plugins": [
+      "@lincyaw/addon-motion",
+      "@lincyaw/addon-lecture",
+      "@lincyaw/addon-speech"
+    ],
     "renderers": {
-      "web": {}
+      "web": {},
+      "slides": {},
+      "lecture": {}
     },
     "tags": [
       "Evaluate",
@@ -15,94 +21,120 @@
     ]
   },
   "sectionOrder": [
-    "claim",
-    "shortcut",
-    "travel",
-    "scores",
-    "cite"
+    "who-gets-blamed",
+    "the-shortcut",
+    "faults-that-travel",
+    "the-scores-fall"
   ],
   "sections": {
-    "claim": {
-      "id": "claim",
+    "who-gets-blamed": {
+      "id": "who-gets-blamed",
       "title": "Rethinking the Evaluation of Microservice RCA with a Fault Propagation-Aware Benchmark",
       "level": 1,
       "children": [
-        "claim-text-1"
+        "blamed-card",
+        "who-gets-blamed--scene"
       ],
       "stepOrder": [
-        "claim-step"
+        "who-gets-blamed--step-0",
+        "who-gets-blamed--step-1"
       ],
       "layout": {
-        "type": "stack"
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
       }
     },
-    "shortcut": {
-      "id": "shortcut",
+    "the-shortcut": {
+      "id": "the-shortcut",
       "title": "The shortcut",
       "level": 1,
       "children": [
-        "shortcut-text-5",
-        "shortcut-columns-7",
-        "shortcut-image-27"
+        "the-shortcut--scene",
+        "shortcut-text",
+        "shortcut-columns"
       ],
       "stepOrder": [
-        "shortcut-step"
+        "the-shortcut--step-0",
+        "the-shortcut--step-1"
       ],
       "layout": {
-        "type": "stack"
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
       }
     },
-    "travel": {
-      "id": "travel",
+    "faults-that-travel": {
+      "id": "faults-that-travel",
       "title": "Faults that travel",
       "level": 1,
       "children": [
-        "travel-text-28",
-        "travel-image-42"
+        "faults-that-travel--scene",
+        "travel-figure",
+        "travel-steps"
       ],
       "stepOrder": [
-        "travel-step"
+        "faults-that-travel--step-0",
+        "faults-that-travel--step-1"
       ],
       "layout": {
-        "type": "stack"
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
       }
     },
-    "scores": {
-      "id": "scores",
+    "the-scores-fall": {
+      "id": "the-scores-fall",
       "title": "The scores fall",
       "level": 1,
       "children": [
-        "scores-text-43"
+        "the-scores-fall--scene",
+        "scores-text",
+        "scores-bibtex",
+        "scores-credit"
       ],
       "stepOrder": [
-        "scores-step"
+        "the-scores-fall--step-0",
+        "the-scores-fall--step-1"
       ],
       "layout": {
-        "type": "stack"
-      }
-    },
-    "cite": {
-      "id": "cite",
-      "title": "Cite",
-      "level": 1,
-      "children": [
-        "cite-code-54"
-      ],
-      "stepOrder": [
-        "cite-step"
-      ],
-      "layout": {
-        "type": "stack"
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
       }
     }
   },
   "blocks": {
-    "claim-text-1": {
-      "id": "claim-text-1",
+    "who-gets-blamed--scene": {
+      "id": "who-gets-blamed--scene",
+      "type": "component",
+      "definitionId": "who-gets-blamed--scene--definition",
+      "parameters": {
+        "scene": "blamed",
+        "alt": "A service call graph: a fault rings one service, its alerts stack up, and an RCA model points at it: the cause, or just the loudest?"
+      }
+    },
+    "blamed-card": {
+      "id": "blamed-card",
       "type": "text",
+      "only": [
+        "web"
+      ],
       "content": [
         {
-          "id": "p-2",
+          "id": "p-1",
           "type": "paragraph",
           "children": [
             {
@@ -134,7 +166,7 @@
           ]
         },
         {
-          "id": "p-3",
+          "id": "p-2",
           "type": "paragraph",
           "children": [
             {
@@ -185,7 +217,21 @@
               "children": [
                 {
                   "type": "text",
-                  "text": "Project"
+                  "text": "Project and code"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " · "
+            },
+            {
+              "type": "link",
+              "href": "https://doi.org/10.5281/zenodo.19494725",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "Artifact"
                 }
               ]
             },
@@ -206,7 +252,7 @@
           ]
         },
         {
-          "id": "p-4",
+          "id": "p-3",
           "type": "paragraph",
           "children": [
             {
@@ -230,28 +276,61 @@
         }
       ]
     },
-    "shortcut-text-5": {
-      "id": "shortcut-text-5",
+    "the-shortcut--scene": {
+      "id": "the-shortcut--scene",
+      "type": "component",
+      "definitionId": "the-shortcut--scene--definition",
+      "parameters": {
+        "scene": "shortcut",
+        "alt": "A rule that blames the service with the most alerts matches Nezha on Nezha-TT (Top@1 0.93 vs 0.87, Table 2); in 86% of 737 public cases the fault is loud only where it was injected, or nowhere (Table 3)."
+      }
+    },
+    "shortcut-text": {
+      "id": "shortcut-text",
       "type": "text",
+      "only": [
+        "web"
+      ],
       "content": [
         {
-          "id": "p-6",
+          "id": "p-4",
           "type": "paragraph",
           "children": [
             {
               "type": "text",
-              "text": "SimpleRCA, a naive rule that ranks services by their number of alerts, matches or beats state-of-the-art models on four widely used public benchmarks: Top@1 0.93 against Nezha's 0.87 on Nezha-TT."
+              "text": "SimpleRCA, a rule that ranks services by their number of alerts, matches or beats state-of-the-art models on four widely used public benchmarks: Top@1 0.93 against Nezha's 0.87 on Nezha-TT, 0.83 against BARO's 0.50 on RE3-TT. It wins because in 86% of 737 cases from 11 public datasets the fault is loud only in the injected service, or in none, so the root cause is the loudest symptom and causal reasoning is never tested."
             }
           ]
         }
       ]
     },
-    "shortcut-column-8": {
-      "id": "shortcut-column-8",
+    "shortcut-columns": {
+      "id": "shortcut-columns",
+      "type": "container",
+      "only": [
+        "web"
+      ],
+      "layout": "columns",
+      "children": [
+        "shortcut-old",
+        "shortcut-new"
+      ],
+      "properties": {
+        "columnWidths": [
+          1,
+          1
+        ]
+      }
+    },
+    "shortcut-old": {
+      "id": "shortcut-old",
       "type": "text",
+      "only": [
+        "web"
+      ],
       "content": [
         {
-          "id": "h-9",
+          "id": "h-5",
           "type": "heading",
           "level": 3,
           "children": [
@@ -262,16 +341,16 @@
           ]
         },
         {
-          "id": "list-10",
+          "id": "list-6",
           "type": "list",
           "ordered": false,
           "children": [
             {
-              "id": "li-11",
+              "id": "li-7",
               "type": "listItem",
               "children": [
                 {
-                  "id": "p-12",
+                  "id": "p-8",
                   "type": "paragraph",
                   "children": [
                     {
@@ -283,11 +362,11 @@
               ]
             },
             {
-              "id": "li-13",
+              "id": "li-9",
               "type": "listItem",
               "children": [
                 {
-                  "id": "p-14",
+                  "id": "p-10",
                   "type": "paragraph",
                   "children": [
                     {
@@ -299,11 +378,11 @@
               ]
             },
             {
-              "id": "li-15",
+              "id": "li-11",
               "type": "listItem",
               "children": [
                 {
-                  "id": "p-16",
+                  "id": "p-12",
                   "type": "paragraph",
                   "children": [
                     {
@@ -318,12 +397,15 @@
         }
       ]
     },
-    "shortcut-column-17": {
-      "id": "shortcut-column-17",
+    "shortcut-new": {
+      "id": "shortcut-new",
       "type": "text",
+      "only": [
+        "web"
+      ],
       "content": [
         {
-          "id": "h-18",
+          "id": "h-13",
           "type": "heading",
           "level": 3,
           "children": [
@@ -334,16 +416,16 @@
           ]
         },
         {
-          "id": "list-19",
+          "id": "list-14",
           "type": "list",
           "ordered": false,
           "children": [
             {
-              "id": "li-20",
+              "id": "li-15",
               "type": "listItem",
               "children": [
                 {
-                  "id": "p-21",
+                  "id": "p-16",
                   "type": "paragraph",
                   "children": [
                     {
@@ -355,11 +437,11 @@
               ]
             },
             {
-              "id": "li-22",
+              "id": "li-17",
               "type": "listItem",
               "children": [
                 {
-                  "id": "p-23",
+                  "id": "p-18",
                   "type": "paragraph",
                   "children": [
                     {
@@ -371,11 +453,11 @@
               ]
             },
             {
-              "id": "li-24",
+              "id": "li-19",
               "type": "listItem",
               "children": [
                 {
-                  "id": "p-25",
+                  "id": "p-20",
                   "type": "paragraph",
                   "children": [
                     {
@@ -390,41 +472,41 @@
         }
       ]
     },
-    "shortcut-columns-7": {
-      "id": "shortcut-columns-7",
-      "type": "container",
-      "layout": "columns",
-      "children": [
-        "shortcut-column-8",
-        "shortcut-column-17"
-      ],
-      "properties": {
-        "columnWidths": [
-          1,
-          1
-        ]
+    "faults-that-travel--scene": {
+      "id": "faults-that-travel--scene",
+      "type": "component",
+      "definitionId": "faults-that-travel--scene--definition",
+      "parameters": {
+        "scene": "travel",
+        "alt": "On TrainTicket (50 services), an injected fault travels to the callers and the alerts pile up two hops from the cause; of 9,152 injections, the 1,430 failures users could feel are kept."
       }
     },
-    "shortcut-image-27": {
-      "id": "shortcut-image-27",
+    "travel-figure": {
+      "id": "travel-figure",
       "type": "image",
-      "assetId": "shortcut-asset-26",
-      "alt": "CPU of five TrainTicket services during CPU faults in a public dataset: only the injected services spike",
+      "only": [
+        "web"
+      ],
+      "assetId": "pipeline-asset",
+      "alt": "The closed-loop benchmark construction pipeline: load generator, TrainTicket, ChaosMesh injection, OpenTelemetry collection, validator and feedback",
       "caption": [
         {
           "type": "text",
-          "text": "In most benchmark cases the root cause is the loudest symptom. Across 737 cases in 11 public datasets, 86% show pronounced symptoms only at the injected service, or none at all."
+          "text": "The closed loop that generates the benchmark (paper, Fig. 3)."
         }
       ],
       "width": 100,
       "alignment": "center"
     },
-    "travel-text-28": {
-      "id": "travel-text-28",
+    "travel-steps": {
+      "id": "travel-steps",
       "type": "text",
+      "only": [
+        "web"
+      ],
       "content": [
         {
-          "id": "p-29",
+          "id": "p-21",
           "type": "paragraph",
           "children": [
             {
@@ -434,16 +516,16 @@
           ]
         },
         {
-          "id": "list-30",
+          "id": "list-22",
           "type": "list",
           "ordered": true,
           "children": [
             {
-              "id": "li-31",
+              "id": "li-23",
               "type": "listItem",
               "children": [
                 {
-                  "id": "p-32",
+                  "id": "p-24",
                   "type": "paragraph",
                   "children": [
                     {
@@ -464,11 +546,11 @@
               ]
             },
             {
-              "id": "li-33",
+              "id": "li-25",
               "type": "listItem",
               "children": [
                 {
-                  "id": "p-34",
+                  "id": "p-26",
                   "type": "paragraph",
                   "children": [
                     {
@@ -489,11 +571,11 @@
               ]
             },
             {
-              "id": "li-35",
+              "id": "li-27",
               "type": "listItem",
               "children": [
                 {
-                  "id": "p-36",
+                  "id": "p-28",
                   "type": "paragraph",
                   "children": [
                     {
@@ -514,11 +596,11 @@
               ]
             },
             {
-              "id": "li-37",
+              "id": "li-29",
               "type": "listItem",
               "children": [
                 {
-                  "id": "p-38",
+                  "id": "p-30",
                   "type": "paragraph",
                   "children": [
                     {
@@ -539,11 +621,11 @@
               ]
             },
             {
-              "id": "li-39",
+              "id": "li-31",
               "type": "listItem",
               "children": [
                 {
-                  "id": "p-40",
+                  "id": "p-32",
                   "type": "paragraph",
                   "children": [
                     {
@@ -567,26 +649,24 @@
         }
       ]
     },
-    "travel-image-42": {
-      "id": "travel-image-42",
-      "type": "image",
-      "assetId": "travel-asset-41",
-      "alt": "The closed-loop benchmark construction pipeline",
-      "caption": [
-        {
-          "type": "text",
-          "text": "The pipeline as drawn in the paper."
-        }
-      ],
-      "width": 100,
-      "alignment": "center"
+    "the-scores-fall--scene": {
+      "id": "the-scores-fall--scene",
+      "type": "component",
+      "definitionId": "the-scores-fall--scene--definition",
+      "parameters": {
+        "scene": "scores",
+        "alt": "Top@1 of 11 state-of-the-art models on the new benchmark (Table 5): the best, MicroRCA, 0.37; the average 0.21; the alert rule 0.28. The pointer lands on the loudest service, not the cause."
+      }
     },
-    "scores-text-43": {
-      "id": "scores-text-43",
+    "scores-text": {
+      "id": "scores-text",
       "type": "text",
+      "only": [
+        "web"
+      ],
       "content": [
         {
-          "id": "p-44",
+          "id": "p-33",
           "type": "paragraph",
           "children": [
             {
@@ -596,7 +676,158 @@
           ]
         },
         {
-          "id": "p-45",
+          "id": "table-34",
+          "type": "table",
+          "headerRows": 1,
+          "children": [
+            {
+              "id": "tr-35",
+              "type": "tableRow",
+              "children": [
+                {
+                  "id": "td-36",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Goal"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-37",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Best model"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-38",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Score"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "tr-39",
+              "type": "tableRow",
+              "children": [
+                {
+                  "id": "td-40",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Right service first (Top@1)"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-41",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "MicroRCA"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-42",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "0.37"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "tr-43",
+              "type": "tableRow",
+              "children": [
+                {
+                  "id": "td-44",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "In the top three (Top@3)"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-45",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "MicroDig"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-46",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "0.61"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "tr-47",
+              "type": "tableRow",
+              "children": [
+                {
+                  "id": "td-48",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "In the top five (Top@5), fastest"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-49",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "SimpleRCA"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-50",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "0.80, 0.90 s"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "p-51",
           "type": "paragraph",
           "children": [
             {
@@ -606,16 +837,16 @@
           ]
         },
         {
-          "id": "list-46",
+          "id": "list-52",
           "type": "list",
           "ordered": false,
           "children": [
             {
-              "id": "li-47",
+              "id": "li-53",
               "type": "listItem",
               "children": [
                 {
-                  "id": "p-48",
+                  "id": "p-54",
                   "type": "paragraph",
                   "children": [
                     {
@@ -636,11 +867,11 @@
               ]
             },
             {
-              "id": "li-49",
+              "id": "li-55",
               "type": "listItem",
               "children": [
                 {
-                  "id": "p-50",
+                  "id": "p-56",
                   "type": "paragraph",
                   "children": [
                     {
@@ -661,11 +892,11 @@
               ]
             },
             {
-              "id": "li-51",
+              "id": "li-57",
               "type": "listItem",
               "children": [
                 {
-                  "id": "p-52",
+                  "id": "p-58",
                   "type": "paragraph",
                   "children": [
                     {
@@ -688,7 +919,7 @@
           ]
         },
         {
-          "id": "p-53",
+          "id": "p-59",
           "type": "paragraph",
           "children": [
             {
@@ -699,109 +930,675 @@
         }
       ]
     },
-    "cite-code-54": {
-      "id": "cite-code-54",
+    "scores-bibtex": {
+      "id": "scores-bibtex",
       "type": "code",
+      "only": [
+        "web"
+      ],
       "language": "bibtex",
-      "value": "@article{fang2026rethinking,\n  title   = {Rethinking the Evaluation of Microservice RCA with a Fault Propagation-Aware Benchmark},\n  author  = {Fang, Aoyang and Zhang, Songhan and Yang, Yifan and Wu, Haotong and Xu, Junjielong and Wang, Xuyang and Wang, Rui and Wang, Manyi and Lu, Qisheng and He, Pinjia},\n  journal = {Proc. ACM Softw. Eng.},\n  volume  = {3},\n  number  = {FSE},\n  pages   = {1605--1627},\n  year    = {2026},\n  doi     = {10.1145/3797100}\n}"
+      "value": "@article{fang2026rethinking,\n  title     = {Rethinking the Evaluation of Microservice {RCA} with a Fault Propagation-Aware Benchmark},\n  author    = {Fang, Aoyang and Zhang, Songhan and Yang, Yifan and Wu, Haotong and Xu, Junjielong and Wang, Xuyang and Wang, Rui and Wang, Manyi and Lu, Qisheng and He, Pinjia},\n  journal   = {Proceedings of the ACM on Software Engineering},\n  volume    = {3},\n  number    = {FSE},\n  articleno = {FSE072},\n  pages     = {1605--1627},\n  year      = {2026},\n  doi       = {10.1145/3797100},\n  eprint    = {2510.04711},\n  archivePrefix = {arXiv}\n}"
+    },
+    "scores-credit": {
+      "id": "scores-credit",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "p-60",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Film music: “Investigations” by Kevin MacLeod ("
+            },
+            {
+              "type": "link",
+              "href": "https://incompetech.com",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "incompetech.com"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "), licensed under "
+            },
+            {
+              "type": "link",
+              "href": "http://creativecommons.org/licenses/by/4.0/",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "CC BY 4.0"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "."
+            }
+          ]
+        }
+      ]
     }
   },
   "steps": {
-    "claim-step": {
-      "id": "claim-step",
-      "sectionId": "claim",
+    "who-gets-blamed--step-0": {
+      "id": "who-gets-blamed--step-0",
+      "sectionId": "who-gets-blamed",
       "visuals": [
         {
-          "blockId": "claim-text-1",
+          "blockId": "blamed-card",
           "visible": true
+        },
+        {
+          "blockId": "who-gets-blamed--scene",
+          "visible": true,
+          "state": "alarm"
         }
       ],
-      "narrationIds": []
+      "narrationIds": [
+        "who-gets-blamed--narration-0"
+      ]
     },
-    "shortcut-step": {
-      "id": "shortcut-step",
-      "sectionId": "shortcut",
+    "who-gets-blamed--step-1": {
+      "id": "who-gets-blamed--step-1",
+      "sectionId": "who-gets-blamed",
       "visuals": [
         {
-          "blockId": "shortcut-text-5",
+          "blockId": "blamed-card",
           "visible": true
         },
         {
-          "blockId": "shortcut-columns-7",
-          "visible": true
-        },
-        {
-          "blockId": "shortcut-column-8",
-          "visible": true
-        },
-        {
-          "blockId": "shortcut-column-17",
-          "visible": true
-        },
-        {
-          "blockId": "shortcut-image-27",
-          "visible": true
+          "blockId": "who-gets-blamed--scene",
+          "visible": true,
+          "state": "question"
         }
       ],
-      "narrationIds": []
+      "narrationIds": [
+        "who-gets-blamed--narration-1"
+      ]
     },
-    "travel-step": {
-      "id": "travel-step",
-      "sectionId": "travel",
+    "the-shortcut--step-0": {
+      "id": "the-shortcut--step-0",
+      "sectionId": "the-shortcut",
       "visuals": [
         {
-          "blockId": "travel-text-28",
+          "blockId": "shortcut-text",
           "visible": true
         },
         {
-          "blockId": "travel-image-42",
+          "blockId": "shortcut-columns",
           "visible": true
+        },
+        {
+          "blockId": "shortcut-old",
+          "visible": true
+        },
+        {
+          "blockId": "shortcut-new",
+          "visible": true
+        },
+        {
+          "blockId": "the-shortcut--scene",
+          "visible": true,
+          "state": "rule"
         }
       ],
-      "narrationIds": []
+      "narrationIds": [
+        "the-shortcut--narration-0"
+      ]
     },
-    "scores-step": {
-      "id": "scores-step",
-      "sectionId": "scores",
+    "the-shortcut--step-1": {
+      "id": "the-shortcut--step-1",
+      "sectionId": "the-shortcut",
       "visuals": [
         {
-          "blockId": "scores-text-43",
+          "blockId": "shortcut-text",
           "visible": true
+        },
+        {
+          "blockId": "shortcut-columns",
+          "visible": true
+        },
+        {
+          "blockId": "shortcut-old",
+          "visible": true
+        },
+        {
+          "blockId": "shortcut-new",
+          "visible": true
+        },
+        {
+          "blockId": "the-shortcut--scene",
+          "visible": true,
+          "state": "local"
         }
       ],
-      "narrationIds": []
+      "narrationIds": [
+        "the-shortcut--narration-1"
+      ]
     },
-    "cite-step": {
-      "id": "cite-step",
-      "sectionId": "cite",
+    "faults-that-travel--step-0": {
+      "id": "faults-that-travel--step-0",
+      "sectionId": "faults-that-travel",
       "visuals": [
         {
-          "blockId": "cite-code-54",
+          "blockId": "travel-figure",
           "visible": true
+        },
+        {
+          "blockId": "travel-steps",
+          "visible": true
+        },
+        {
+          "blockId": "faults-that-travel--scene",
+          "visible": true,
+          "state": "spread"
         }
       ],
-      "narrationIds": []
+      "narrationIds": [
+        "faults-that-travel--narration-0"
+      ]
+    },
+    "faults-that-travel--step-1": {
+      "id": "faults-that-travel--step-1",
+      "sectionId": "faults-that-travel",
+      "visuals": [
+        {
+          "blockId": "travel-figure",
+          "visible": true
+        },
+        {
+          "blockId": "travel-steps",
+          "visible": true
+        },
+        {
+          "blockId": "faults-that-travel--scene",
+          "visible": true,
+          "state": "keep"
+        }
+      ],
+      "narrationIds": [
+        "faults-that-travel--narration-1"
+      ]
+    },
+    "the-scores-fall--step-0": {
+      "id": "the-scores-fall--step-0",
+      "sectionId": "the-scores-fall",
+      "visuals": [
+        {
+          "blockId": "scores-text",
+          "visible": true
+        },
+        {
+          "blockId": "scores-bibtex",
+          "visible": true
+        },
+        {
+          "blockId": "scores-credit",
+          "visible": true
+        },
+        {
+          "blockId": "the-scores-fall--scene",
+          "visible": true,
+          "state": "miss"
+        }
+      ],
+      "narrationIds": [
+        "the-scores-fall--narration-0"
+      ]
+    },
+    "the-scores-fall--step-1": {
+      "id": "the-scores-fall--step-1",
+      "sectionId": "the-scores-fall",
+      "visuals": [
+        {
+          "blockId": "scores-text",
+          "visible": true
+        },
+        {
+          "blockId": "scores-bibtex",
+          "visible": true
+        },
+        {
+          "blockId": "scores-credit",
+          "visible": true
+        },
+        {
+          "blockId": "the-scores-fall--scene",
+          "visible": true,
+          "state": "hold"
+        }
+      ],
+      "narrationIds": [
+        "the-scores-fall--narration-1"
+      ]
     }
   },
-  "narrations": {},
-  "assets": {
-    "shortcut-asset-26": {
-      "id": "shortcut-asset-26",
-      "kind": "image",
-      "location": "figures/symptom-only-at-injected-service.png",
-      "mediaType": "image/png"
+  "narrations": {
+    "who-gets-blamed--narration-0": {
+      "id": "who-gets-blamed--narration-0",
+      "content": [
+        {
+          "type": "text",
+          "text": "When a microservice system fails, root cause analysis models read its metrics, logs and traces to name the service that started it."
+        }
+      ]
     },
-    "travel-asset-41": {
-      "id": "travel-asset-41",
+    "who-gets-blamed--narration-1": {
+      "id": "who-gets-blamed--narration-1",
+      "content": [
+        {
+          "type": "text",
+          "text": "Do they find the cause, or just the loudest service?"
+        }
+      ]
+    },
+    "the-shortcut--narration-0": {
+      "id": "the-shortcut--narration-0",
+      "content": [
+        {
+          "type": "text",
+          "text": "On public benchmarks, a crude rule does as well as they do: blame whichever service raises the most alerts."
+        }
+      ]
+    },
+    "the-shortcut--narration-1": {
+      "id": "the-shortcut--narration-1",
+      "content": [
+        {
+          "type": "text",
+          "text": "It works because in 86 percent of benchmark cases the fault is loud only where it was injected, or barely shows at all. Following a failure as it spreads is rarely tested."
+        }
+      ]
+    },
+    "faults-that-travel--narration-0": {
+      "id": "faults-that-travel--narration-0",
+      "content": [
+        {
+          "type": "text",
+          "text": "So we built one where failures do spread. On a fifty-service ticketing system under shifting traffic, we injected thirty-one kinds of fault."
+        }
+      ]
+    },
+    "faults-that-travel--narration-1": {
+      "id": "faults-that-travel--narration-1",
+      "content": [
+        {
+          "type": "text",
+          "text": "We kept only the failures users could feel: 1,430."
+        }
+      ]
+    },
+    "the-scores-fall--narration-0": {
+      "id": "the-scores-fall--narration-0",
+      "content": [
+        {
+          "type": "text",
+          "text": "Eleven state-of-the-art models, on average, name the right service first just 21 percent of the time, and the alert rule falls apart too."
+        }
+      ]
+    },
+    "the-scores-fall--narration-1": {
+      "id": "the-scores-fall--narration-1",
+      "content": [
+        {
+          "type": "text",
+          "text": "Progress in root cause analysis has to be measured where failures travel."
+        }
+      ]
+    }
+  },
+  "assets": {
+    "pipeline-asset": {
+      "id": "pipeline-asset",
       "kind": "image",
       "location": "figures/benchmark-pipeline.png",
       "mediaType": "image/png"
+    },
+    "film-score": {
+      "id": "film-score",
+      "kind": "audio",
+      "location": "audio/score.ogg",
+      "title": "Film score (music: “Investigations”, Kevin MacLeod, incompetech.com, CC BY 4.0)",
+      "mediaType": "audio/ogg"
     }
   },
-  "definitions": {},
+  "definitions": {
+    "who-gets-blamed--scene--definition": {
+      "id": "who-gets-blamed--scene--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/blamed.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "alarm"
+        },
+        {
+          "id": "question"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          8000,
+          5000
+        ],
+        "language": "typescript",
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "A service call graph: a fault rings one service, its alerts stack up, and an RCA model points at it: the cause, or just the loudest?"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "the-shortcut--scene--definition": {
+      "id": "the-shortcut--scene--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/shortcut.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "rule"
+        },
+        {
+          "id": "local"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          7000,
+          11000
+        ],
+        "language": "typescript",
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "A rule that blames the service with the most alerts matches Nezha on Nezha-TT (Top@1 0.93 vs 0.87, Table 2); in 86% of 737 public cases the fault is loud only where it was injected, or nowhere (Table 3)."
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "faults-that-travel--scene--definition": {
+      "id": "faults-that-travel--scene--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/travel.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "spread"
+        },
+        {
+          "id": "keep"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          9500,
+          5000
+        ],
+        "language": "typescript",
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "On TrainTicket (50 services), an injected fault travels to the callers and the alerts pile up two hops from the cause; of 9,152 injections, the 1,430 failures users could feel are kept."
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "the-scores-fall--scene--definition": {
+      "id": "the-scores-fall--scene--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/scores.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "miss"
+        },
+        {
+          "id": "hold"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          9000,
+          6000
+        ],
+        "language": "typescript",
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Top@1 of 11 state-of-the-art models on the new benchmark (Table 5): the best, MicroRCA, 0.37; the average 0.21; the alert rule 0.28. The pointer lands on the loudest service, not the cause."
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
   "production": {
-    "defaults": {},
-    "stepOverrides": {},
-    "mediaClips": []
+    "defaults": {
+      "voiceSource": {
+        "type": "none"
+      },
+      "narrationStart": "with-animation",
+      "trailingPauseMs": 0
+    },
+    "stepOverrides": {
+      "who-gets-blamed--step-0": {
+        "minimumHoldMs": 8000,
+        "trailingPauseMs": 0
+      },
+      "who-gets-blamed--step-1": {
+        "minimumHoldMs": 5000,
+        "trailingPauseMs": 0
+      },
+      "the-shortcut--step-0": {
+        "minimumHoldMs": 7000,
+        "trailingPauseMs": 0
+      },
+      "the-shortcut--step-1": {
+        "minimumHoldMs": 11000,
+        "trailingPauseMs": 0
+      },
+      "faults-that-travel--step-0": {
+        "minimumHoldMs": 9500,
+        "trailingPauseMs": 0
+      },
+      "faults-that-travel--step-1": {
+        "minimumHoldMs": 5000,
+        "trailingPauseMs": 0
+      },
+      "the-scores-fall--step-0": {
+        "minimumHoldMs": 9000,
+        "trailingPauseMs": 0
+      },
+      "the-scores-fall--step-1": {
+        "minimumHoldMs": 6000,
+        "trailingPauseMs": 0
+      }
+    },
+    "mediaClips": [
+      {
+        "id": "score--who-gets-blamed--step-0",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 0,
+          "endMs": 8000
+        },
+        "attachment": {
+          "stepId": "who-gets-blamed--step-0",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--who-gets-blamed--step-1",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 8000,
+          "endMs": 13000
+        },
+        "attachment": {
+          "stepId": "who-gets-blamed--step-1",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--the-shortcut--step-0",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 13000,
+          "endMs": 20000
+        },
+        "attachment": {
+          "stepId": "the-shortcut--step-0",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--the-shortcut--step-1",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 20000,
+          "endMs": 31000
+        },
+        "attachment": {
+          "stepId": "the-shortcut--step-1",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--faults-that-travel--step-0",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 31000,
+          "endMs": 40500
+        },
+        "attachment": {
+          "stepId": "faults-that-travel--step-0",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--faults-that-travel--step-1",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 40500,
+          "endMs": 45500
+        },
+        "attachment": {
+          "stepId": "faults-that-travel--step-1",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--the-scores-fall--step-0",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 45500,
+          "endMs": 54500
+        },
+        "attachment": {
+          "stepId": "the-scores-fall--step-0",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--the-scores-fall--step-1",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 54500,
+          "endMs": 60500
+        },
+        "attachment": {
+          "stepId": "the-scores-fall--step-1",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      }
+    ]
   }
 }

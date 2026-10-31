@@ -51,7 +51,7 @@ export const PAPERS: Paper[] = [
     claim: 'Public benchmarks made RCA look solved. When faults travel, 11 state-of-the-art models find the root cause first 21% of the time.',
     badge: 'Direct accept · 87 of 920',
     links: [{ label: 'PDF', href: 'https://dl.acm.org/doi/pdf/10.1145/3797100' }, { label: 'arXiv', href: 'https://arxiv.org/abs/2510.04711' }, { label: 'Project', href: 'https://operationspai.github.io/revisiting-rca-evaluation/' }],
-    chapters: [['0:00', 'Who gets blamed?'], ['0:13', 'The shortcut'], ['0:33', 'Faults that travel'], ['0:46', 'The scores fall']],
+    chapters: [['0:00', 'Who gets blamed?'], ['0:13', 'The shortcut'], ['0:31', 'Faults that travel'], ['0:46', 'The scores fall']],
   },
   {
     id: 'dynacausal', venue: "arXiv'25", short: 'DynaCausal', at: 2025.85, thread: 'diagnose',
@@ -67,7 +67,7 @@ export const PAPERS: Paper[] = [
     authors: 'Aoyang Fang, Haowen Yang, Haoze Dong, Qisheng Lu, Junjielong Xu, Pinjia He',
     claim: '135 RCA papers, sorted by the goal they serve, each explain points of an incident. None yet returns its whole propagation path.',
     links: [{ label: 'arXiv', href: 'https://arxiv.org/abs/2510.19593' }],
-    chapters: [['0:00', 'One incident, 135 papers'], ['0:16', 'Same data, different goals'], ['0:32', 'Sorted by goal'], ['0:44', 'Points, not the path']],
+    chapters: [['0:00', 'One incident, 135 papers'], ['0:15', 'Same data, different goals'], ['0:30', 'Sorted by goal'], ['0:43', 'Points, not the path']],
   },
   {
     id: 'triangle', venue: "ASE'25", short: 'Triangle', at: 2025.55, thread: 'diagnose',

@@ -1,0 +1,1219 @@
+{
+  "schemaVersion": 1,
+  "id": "paper-openrca2",
+  "metadata": {
+    "title": "OpenRCA 2.0: From Outcome Labels to Causal Process Supervision",
+    "lang": "en",
+    "description": "PAVE uses known fault injections to verify causal propagation paths, yielding OpenRCA 2.0: 500 RCA instances with step-wise causal ground truth.",
+    "plugins": [
+      "@lincyaw/addon-motion",
+      "@lincyaw/addon-lecture",
+      "@lincyaw/addon-speech"
+    ],
+    "renderers": {
+      "web": {},
+      "slides": {},
+      "lecture": {}
+    },
+    "tags": [
+      "Evaluate",
+      "arXiv'26"
+    ]
+  },
+  "sectionOrder": [
+    "right-answer-skipped-step",
+    "the-cause-is-known",
+    "following-the-fault-forward",
+    "grading-the-chain"
+  ],
+  "sections": {
+    "right-answer-skipped-step": {
+      "id": "right-answer-skipped-step",
+      "title": "OpenRCA 2.0: From Outcome Labels to Causal Process Supervision",
+      "level": 1,
+      "children": [
+        "right-answer-skipped-step--text-34",
+        "right-answer-skipped-step--scene",
+        "right-answer-skipped-step--text-35"
+      ],
+      "stepOrder": [
+        "right-answer-skipped-step--outcome",
+        "right-answer-skipped-step--truth"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    },
+    "the-cause-is-known": {
+      "id": "the-cause-is-known",
+      "title": "The cause is known",
+      "level": 1,
+      "children": [
+        "the-cause-is-known--scene",
+        "the-cause-is-known--columns-38"
+      ],
+      "stepOrder": [
+        "the-cause-is-known--forward"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    },
+    "following-the-fault-forward": {
+      "id": "following-the-fault-forward",
+      "title": "Following the fault forward",
+      "level": 1,
+      "children": [
+        "following-the-fault-forward--text-39",
+        "following-the-fault-forward--image-40",
+        "following-the-fault-forward--scene"
+      ],
+      "stepOrder": [
+        "following-the-fault-forward--verify",
+        "following-the-fault-forward--benchmark"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    },
+    "grading-the-chain": {
+      "id": "grading-the-chain",
+      "title": "Grading the chain",
+      "level": 1,
+      "children": [
+        "grading-the-chain--scene",
+        "grading-the-chain--text-41",
+        "grading-the-chain--code-42",
+        "grading-the-chain--text-43"
+      ],
+      "stepOrder": [
+        "grading-the-chain--grid"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    }
+  },
+  "blocks": {
+    "right-answer-skipped-step--text-34": {
+      "id": "right-answer-skipped-step--text-34",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "p-1",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Aoyang Fang",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": ", Yifan Yang, Jin'ao Shang, Qisheng Lu, Junjielong Xu, Rui Wang, Songhan Zhang, Yuzhong Zhang, Boxi Yu, Pinjia He. "
+            },
+            {
+              "type": "text",
+              "text": "arXiv preprint",
+              "marks": [
+                {
+                  "type": "italic"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": ", 2026."
+            }
+          ]
+        },
+        {
+          "id": "p-2",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "link",
+              "href": "https://arxiv.org/abs/2606.27154",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "arXiv"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " · "
+            },
+            {
+              "type": "link",
+              "href": "https://arxiv.org/pdf/2606.27154",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "PDF"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " · "
+            },
+            {
+              "type": "link",
+              "href": "https://doi.org/10.48550/arXiv.2606.27154",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "DOI"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "p-3",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "LLM agents name a correct root-cause service in "
+            },
+            {
+              "type": "text",
+              "text": "76.0%",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " of failures but connect it to the observed symptom through a verified causal path in only "
+            },
+            {
+              "type": "text",
+              "text": "61.5%",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": ", averaged over 11 frontier LLMs. OpenRCA 2.0 makes that gap measurable: 500 failures, each labelled with the path the fault actually took."
+            }
+          ]
+        }
+      ]
+    },
+    "right-answer-skipped-step--scene": {
+      "id": "right-answer-skipped-step--scene",
+      "type": "component",
+      "definitionId": "right-answer-skipped-step--definition",
+      "parameters": {
+        "alt": "An agent's chain Seat, Order, Gateway is scored correct; the true chain runs Seat, Travel, Order, Gateway, and the agent skipped Travel."
+      }
+    },
+    "right-answer-skipped-step--text-35": {
+      "id": "right-answer-skipped-step--text-35",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "p-4",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Outcome-only grading scores this answer as a success: the agent names Seat, the service where the delay was injected, while its explanation skips Travel, the service the failure passed through (Figure 1)."
+            }
+          ]
+        }
+      ]
+    },
+    "the-cause-is-known--scene": {
+      "id": "the-cause-is-known--scene",
+      "type": "component",
+      "definitionId": "the-cause-is-known--definition",
+      "parameters": {
+        "alt": "Telemetry fits two possible causes; the injected fault lands on Seat and the arrows turn to run forward from it."
+      }
+    },
+    "the-cause-is-known--column-36": {
+      "id": "the-cause-is-known--column-36",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "h-5",
+          "type": "heading",
+          "level": 3,
+          "children": [
+            {
+              "type": "text",
+              "text": "What the labels miss"
+            }
+          ]
+        },
+        {
+          "id": "list-6",
+          "type": "list",
+          "ordered": false,
+          "children": [
+            {
+              "id": "li-7",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-8",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Benchmarks inject a fault and record only the injected component as the answer; the derivation behind an answer is never examined."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-9",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-10",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Labelling the path from telemetry alone puts the annotator in the agent's seat: reasoning backward, while many faults produce similar telemetry."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-11",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-12",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "No single signal settles a step: a plausible chain may not have carried the failure, a co-occurrence may be coincidence, and aligned timing alone is not causation."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "the-cause-is-known--column-37": {
+      "id": "the-cause-is-known--column-37",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "h-13",
+          "type": "heading",
+          "level": 3,
+          "children": [
+            {
+              "type": "text",
+              "text": "What the annotator knows"
+            }
+          ]
+        },
+        {
+          "id": "p-14",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Fault-injection records hold the one thing the agent never sees: the intervention do(v_root) that started the cascade. With the cause given, labelling turns from inference into forward verification: check which downstream effects actually followed."
+            }
+          ]
+        }
+      ]
+    },
+    "the-cause-is-known--columns-38": {
+      "id": "the-cause-is-known--columns-38",
+      "type": "container",
+      "only": [
+        "web"
+      ],
+      "layout": "columns",
+      "children": [
+        "the-cause-is-known--column-36",
+        "the-cause-is-known--column-37"
+      ],
+      "properties": {
+        "columnWidths": [
+          1,
+          1
+        ]
+      }
+    },
+    "following-the-fault-forward--text-39": {
+      "id": "following-the-fault-forward--text-39",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "p-15",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "PAVE (Path Annotation via Verified Effects) starts from the recorded intervention and admits a path only when three conditions hold together:"
+            }
+          ]
+        },
+        {
+          "id": "list-16",
+          "type": "list",
+          "ordered": true,
+          "children": [
+            {
+              "id": "li-17",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-18",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Structure.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " The hop is a transition backed by a known propagation mechanism in the system's dependency graph (Phase 1, Structural Pruning)."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-19",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-20",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Statistics.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " Every service on the path deviates from a pre-injection baseline collected on a fresh, warmed-up instance (Phase 2, Causal Verification)."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-21",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-22",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Time.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " Every downstream anomaly starts no earlier than its upstream cause."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "p-23",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Across TrainTicket, the OpenTelemetry Demo and DeathStarBench Hotel Reservation, 27 fault types and 8,137 injected runs, this yields 500 failures with 7.5 verified causal edges on average. A two-annotator audit of 100 random instances agreed with the verified graph in 94."
+            }
+          ]
+        }
+      ]
+    },
+    "following-the-fault-forward--image-40": {
+      "id": "following-the-fault-forward--image-40",
+      "type": "image",
+      "only": [
+        "web"
+      ],
+      "assetId": "following-the-fault-forward--asset-1",
+      "alt": "PAVE's two phases on a TrainTicket example: raw graph, after structural pruning, verified chain",
+      "caption": [
+        {
+          "type": "text",
+          "text": "Figure 3: structural pruning removes edges the topology forbids; causal verification drops Route, whose deviation matches baseline noise."
+        }
+      ],
+      "width": 100,
+      "alignment": "center"
+    },
+    "following-the-fault-forward--scene": {
+      "id": "following-the-fault-forward--scene",
+      "type": "component",
+      "definitionId": "following-the-fault-forward--definition",
+      "parameters": {
+        "alt": "PAVE checks each hop for topology, baseline deviation and time order; the verified chains stack into OpenRCA 2.0's 500 failures."
+      }
+    },
+    "grading-the-chain--scene": {
+      "id": "grading-the-chain--scene",
+      "type": "component",
+      "definitionId": "grading-the-chain--definition",
+      "parameters": {
+        "alt": "A grid of 200 small chains: 76.0% name a correct root-cause service, 61.5% connect it to the symptom."
+      }
+    },
+    "grading-the-chain--text-41": {
+      "id": "grading-the-chain--text-41",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "p-24",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "The exact root-cause set is recovered in only 20.7% of cases on average (best 29.4%, Gemini 3.1 Pro). The process layer shows where the reasoning breaks:"
+            }
+          ]
+        },
+        {
+          "id": "list-25",
+          "type": "list",
+          "ordered": false,
+          "children": [
+            {
+              "id": "li-26",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-27",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Edges trail nodes.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " Mean Edge F1 is 43.4% against Node F1 62.2%, for every model: agents find the services involved more reliably than the direction of the fault between them."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-28",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-29",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Equal scores, different reasoning.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " Qwen3.6-Max grounds 91% of its correct services in a path; Claude Sonnet 4.6, with comparable F1, 66%."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-30",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-31",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Three habits behind ungrounded answers.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " Stopping at the first plausible cause, reading a silent (killed) service as healthy, and following the loudest downstream signal."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "p-32",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Outcome scores alone hide every one of these failures; grading the path against verified ground truth makes them visible."
+            }
+          ]
+        }
+      ]
+    },
+    "grading-the-chain--code-42": {
+      "id": "grading-the-chain--code-42",
+      "type": "code",
+      "only": [
+        "web"
+      ],
+      "language": "bibtex",
+      "value": "@misc{fang2026openrca2,\n  title         = {{OpenRCA} 2.0: From Outcome Labels to Causal Process Supervision},\n  author        = {Fang, Aoyang and Yang, Yifan and Shang, Jin'ao and Lu, Qisheng and Xu, Junjielong and Wang, Rui and Zhang, Songhan and Zhang, Yuzhong and Yu, Boxi and He, Pinjia},\n  year          = {2026},\n  eprint        = {2606.27154},\n  archivePrefix = {arXiv},\n  primaryClass  = {cs.AI},\n  doi           = {10.48550/arXiv.2606.27154},\n  url           = {https://arxiv.org/abs/2606.27154}\n}"
+    },
+    "grading-the-chain--text-43": {
+      "id": "grading-the-chain--text-43",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "p-33",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Film music: \"Investigations\" by Kevin MacLeod ("
+            },
+            {
+              "type": "link",
+              "href": "https://incompetech.com/",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "incompetech.com"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "), licensed under "
+            },
+            {
+              "type": "link",
+              "href": "http://creativecommons.org/licenses/by/4.0/",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "CC BY 4.0"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "."
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "steps": {
+    "right-answer-skipped-step--outcome": {
+      "id": "right-answer-skipped-step--outcome",
+      "sectionId": "right-answer-skipped-step",
+      "visuals": [
+        {
+          "blockId": "right-answer-skipped-step--scene",
+          "visible": true,
+          "state": "outcome"
+        },
+        {
+          "blockId": "right-answer-skipped-step--text-34",
+          "visible": true
+        },
+        {
+          "blockId": "right-answer-skipped-step--text-35",
+          "visible": true
+        }
+      ],
+      "narrationIds": [
+        "right-answer-skipped-step--outcome--narration"
+      ]
+    },
+    "right-answer-skipped-step--truth": {
+      "id": "right-answer-skipped-step--truth",
+      "sectionId": "right-answer-skipped-step",
+      "visuals": [
+        {
+          "blockId": "right-answer-skipped-step--scene",
+          "visible": true,
+          "state": "truth"
+        },
+        {
+          "blockId": "right-answer-skipped-step--text-34",
+          "visible": true
+        },
+        {
+          "blockId": "right-answer-skipped-step--text-35",
+          "visible": true
+        }
+      ],
+      "narrationIds": [
+        "right-answer-skipped-step--truth--narration"
+      ]
+    },
+    "the-cause-is-known--forward": {
+      "id": "the-cause-is-known--forward",
+      "sectionId": "the-cause-is-known",
+      "visuals": [
+        {
+          "blockId": "the-cause-is-known--scene",
+          "visible": true,
+          "state": "forward"
+        },
+        {
+          "blockId": "the-cause-is-known--column-36",
+          "visible": true
+        },
+        {
+          "blockId": "the-cause-is-known--column-37",
+          "visible": true
+        },
+        {
+          "blockId": "the-cause-is-known--columns-38",
+          "visible": true
+        }
+      ],
+      "narrationIds": [
+        "the-cause-is-known--forward--narration"
+      ]
+    },
+    "following-the-fault-forward--verify": {
+      "id": "following-the-fault-forward--verify",
+      "sectionId": "following-the-fault-forward",
+      "visuals": [
+        {
+          "blockId": "following-the-fault-forward--scene",
+          "visible": true,
+          "state": "verify"
+        },
+        {
+          "blockId": "following-the-fault-forward--text-39",
+          "visible": true
+        },
+        {
+          "blockId": "following-the-fault-forward--image-40",
+          "visible": true
+        }
+      ],
+      "narrationIds": [
+        "following-the-fault-forward--verify--narration"
+      ]
+    },
+    "following-the-fault-forward--benchmark": {
+      "id": "following-the-fault-forward--benchmark",
+      "sectionId": "following-the-fault-forward",
+      "visuals": [
+        {
+          "blockId": "following-the-fault-forward--scene",
+          "visible": true,
+          "state": "benchmark"
+        },
+        {
+          "blockId": "following-the-fault-forward--text-39",
+          "visible": true
+        },
+        {
+          "blockId": "following-the-fault-forward--image-40",
+          "visible": true
+        }
+      ],
+      "narrationIds": [
+        "following-the-fault-forward--benchmark--narration"
+      ]
+    },
+    "grading-the-chain--grid": {
+      "id": "grading-the-chain--grid",
+      "sectionId": "grading-the-chain",
+      "visuals": [
+        {
+          "blockId": "grading-the-chain--scene",
+          "visible": true,
+          "state": "grid"
+        },
+        {
+          "blockId": "grading-the-chain--text-41",
+          "visible": true
+        },
+        {
+          "blockId": "grading-the-chain--code-42",
+          "visible": true
+        },
+        {
+          "blockId": "grading-the-chain--text-43",
+          "visible": true
+        }
+      ],
+      "narrationIds": [
+        "grading-the-chain--grid--narration"
+      ]
+    }
+  },
+  "narrations": {
+    "right-answer-skipped-step--outcome--narration": {
+      "id": "right-answer-skipped-step--outcome--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "An AI agent diagnoses a failing train-ticket system and names the right culprit, the Seat service. The benchmark marks it correct."
+        }
+      ]
+    },
+    "right-answer-skipped-step--truth--narration": {
+      "id": "right-answer-skipped-step--truth--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "Yet the failure reached users through Travel, and the agent's explanation skips Travel entirely."
+        }
+      ]
+    },
+    "the-cause-is-known--forward--narration": {
+      "id": "the-cause-is-known--forward--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "Benchmarks never checked the path, because from telemetry alone many faults look alike. But every benchmark failure is injected on purpose. Whoever labels it knows the cause, and can follow it forward."
+        }
+      ]
+    },
+    "following-the-fault-forward--verify--narration": {
+      "id": "following-the-fault-forward--verify--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "That is what PAVE does. From the injected fault, it keeps a hop only if the system's topology allows it, the next service departs from its normal baseline, and the effect comes after its cause."
+        }
+      ]
+    },
+    "following-the-fault-forward--benchmark--narration": {
+      "id": "following-the-fault-forward--benchmark--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "Fault after fault, the verified chains become the "
+        },
+        {
+          "type": "pronunciation",
+          "display": "OpenRCA 2.0",
+          "spoken": "Open R C A two point oh"
+        },
+        {
+          "type": "text",
+          "text": " benchmark."
+        }
+      ]
+    },
+    "grading-the-chain--grid--narration": {
+      "id": "grading-the-chain--grid--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "Now grade eleven frontier models on the chain, not just the name. They find a correct service 76 percent of the time, yet connect it to the symptom only 61.5 percent. Before you trust an agent's diagnosis, check its chain."
+        }
+      ]
+    }
+  },
+  "assets": {
+    "film-score": {
+      "id": "film-score",
+      "kind": "audio",
+      "location": "audio/score.ogg",
+      "title": "OpenRCA 2.0 film score (music: \"Investigations\", Kevin MacLeod, CC BY 4.0)",
+      "fingerprint": "sha256:071e0cad49fd0d6a8631f2383f08519b869b0b034eb7ce27616121dea99d7797",
+      "mediaType": "audio/ogg"
+    },
+    "following-the-fault-forward--asset-1": {
+      "id": "following-the-fault-forward--asset-1",
+      "kind": "image",
+      "location": "figures/pave-two-phase-verification.png",
+      "mediaType": "image/png"
+    }
+  },
+  "definitions": {
+    "right-answer-skipped-step--definition": {
+      "id": "right-answer-skipped-step--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/right-answer.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "outcome"
+        },
+        {
+          "id": "truth"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          8500,
+          6200
+        ],
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "The agent names Seat, the right root cause, and is scored correct; the verified chain runs Seat → Travel → Order → Gateway, and the agent's chain skips Travel."
+                }
+              ]
+            }
+          ]
+        },
+        "language": "typescript"
+      }
+    },
+    "the-cause-is-known--definition": {
+      "id": "the-cause-is-known--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/cause-known.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "forward"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          12700
+        ],
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "From telemetry alone, Seat and Route both explain the symptoms. The injected fault, do(Seat = NetworkDelay), is known to whoever labels the failure, so the chain is followed forward from Seat."
+                }
+              ]
+            }
+          ]
+        },
+        "language": "typescript"
+      }
+    },
+    "following-the-fault-forward--definition": {
+      "id": "following-the-fault-forward--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/following-forward.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "verify"
+        },
+        {
+          "id": "benchmark"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          12000,
+          6100
+        ],
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "PAVE keeps a hop only if the topology allows it, the next service deviates from its pre-injection baseline and the effect starts after its cause. The verified chains make OpenRCA 2.0: TrainTicket 320, Hotel Reservation 142, OTel Demo 38 failures."
+                }
+              ]
+            }
+          ]
+        },
+        "language": "typescript"
+      }
+    },
+    "grading-the-chain--definition": {
+      "id": "grading-the-chain--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/grading.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "grid"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          15300
+        ],
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Averaged over 11 frontier LLMs, agents name a correct root-cause service in 76.0% of failures and connect it to the symptom through a verified path in 61.5%."
+                }
+              ]
+            }
+          ]
+        },
+        "language": "typescript"
+      }
+    }
+  },
+  "production": {
+    "defaults": {
+      "voiceSource": {
+        "type": "none"
+      },
+      "narrationStart": "with-animation",
+      "trailingPauseMs": 0
+    },
+    "stepOverrides": {
+      "right-answer-skipped-step--outcome": {
+        "minimumHoldMs": 8500,
+        "trailingPauseMs": 0
+      },
+      "right-answer-skipped-step--truth": {
+        "minimumHoldMs": 6200,
+        "trailingPauseMs": 0
+      },
+      "the-cause-is-known--forward": {
+        "minimumHoldMs": 12700,
+        "trailingPauseMs": 0
+      },
+      "following-the-fault-forward--verify": {
+        "minimumHoldMs": 12000,
+        "trailingPauseMs": 0
+      },
+      "following-the-fault-forward--benchmark": {
+        "minimumHoldMs": 6100,
+        "trailingPauseMs": 0
+      },
+      "grading-the-chain--grid": {
+        "minimumHoldMs": 15300,
+        "trailingPauseMs": 0
+      }
+    },
+    "mediaClips": [
+      {
+        "id": "score-right-answer-skipped-step--outcome",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 0,
+          "endMs": 8500
+        },
+        "attachment": {
+          "stepId": "right-answer-skipped-step--outcome",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score-right-answer-skipped-step--truth",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 8500,
+          "endMs": 14700
+        },
+        "attachment": {
+          "stepId": "right-answer-skipped-step--truth",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score-the-cause-is-known--forward",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 14700,
+          "endMs": 27400
+        },
+        "attachment": {
+          "stepId": "the-cause-is-known--forward",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score-following-the-fault-forward--verify",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 27400,
+          "endMs": 39400
+        },
+        "attachment": {
+          "stepId": "following-the-fault-forward--verify",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score-following-the-fault-forward--benchmark",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 39400,
+          "endMs": 45500
+        },
+        "attachment": {
+          "stepId": "following-the-fault-forward--benchmark",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score-grading-the-chain--grid",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 45500,
+          "endMs": 60800
+        },
+        "attachment": {
+          "stepId": "grading-the-chain--grid",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      }
+    ]
+  }
+}

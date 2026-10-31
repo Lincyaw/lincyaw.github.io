@@ -1,0 +1,13 @@
+{
+  "music": {
+    "title": "Investigations",
+    "author": "Kevin MacLeod",
+    "url": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Investigations.mp3",
+    "license": "CC BY 4.0",
+    "credit": "Music: \"Investigations\" by Kevin MacLeod (incompetech.com). Licensed under Creative Commons: By Attribution 4.0 License, http://creativecommons.org/licenses/by/4.0/",
+    "excerpt": { "from": 0, "seconds": 60.5, "fadeOutSeconds": 2 }
+  },
+  "made": "ffmpeg -i source/investigations.mp3 -af 'atrim=start=0:duration=60.5,asetpts=PTS-STARTPTS,afade=t=out:st=58.5:d=2,loudnorm=I=-16:TP=-1.5:LRA=11,aresample=48000' -c:a libopus -b:a 128k score.ogg",
+  "target": { "lufs": -16, "truePeak": -1.5 },
+  "fingerprint": "sha256:68294c051e9fee5528879099e0c1651b96dcbf939c366c3653b0345312289374"
+}

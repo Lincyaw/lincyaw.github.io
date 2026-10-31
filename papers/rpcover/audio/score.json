@@ -1,0 +1,27 @@
+{
+  "title": "rpcover film · score",
+  "music": {
+    "title": "Wallpaper",
+    "author": "Kevin MacLeod",
+    "url": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Wallpaper.mp3",
+    "license": "CC BY 4.0",
+    "from": 0,
+    "length": 60,
+    "credit": "Music: \"Wallpaper\" by Kevin MacLeod (incompetech.com). Licensed under Creative Commons: By Attribution 4.0 License, http://creativecommons.org/licenses/by/4.0/",
+    "excerpt": {
+      "from": 0,
+      "seconds": 60,
+      "fadeInSeconds": 0.3,
+      "fadeOutSeconds": 2.5
+    }
+  },
+  "target": {
+    "lufs": -16,
+    "truePeak": -1.5
+  },
+  "measured": {
+    "integratedLufs": -15.8,
+    "normalization": "ffmpeg loudnorm"
+  },
+  "fingerprint": "sha256:7a0f64d76fa2cd1340d80064f38ec1d3340c73774b1e053cd27a33b09dcebfe5"
+}

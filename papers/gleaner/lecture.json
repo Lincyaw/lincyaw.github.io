@@ -1,0 +1,1187 @@
+{
+  "schemaVersion": 1,
+  "id": "paper-gleaner",
+  "metadata": {
+    "title": "Gleaner: A Semantically-Rich and Efficient Online Sampler for Microservice Diagnostics",
+    "lang": "en",
+    "description": "Gleaner samples microservice traces online by encoding traces and their logs as event-pair sets, keeping anomalous, diverse traces at 0.74 ms each.",
+    "plugins": [
+      "@lincyaw/addon-motion",
+      "@lincyaw/addon-lecture",
+      "@lincyaw/addon-speech"
+    ],
+    "renderers": {
+      "web": {},
+      "slides": {},
+      "lecture": {}
+    },
+    "tags": [
+      "Collect",
+      "ISSTA'26"
+    ]
+  },
+  "sectionOrder": [
+    "a-trace-that-looks-fine",
+    "why-samplers-drop-it",
+    "traces-as-sets-of-pairs",
+    "one-percent-better-diagnosis"
+  ],
+  "sections": {
+    "a-trace-that-looks-fine": {
+      "id": "a-trace-that-looks-fine",
+      "title": "Gleaner: A Semantically-Rich and Efficient Online Sampler for Microservice Diagnostics",
+      "level": 1,
+      "children": [
+        "a-trace-that-looks-fine--text-27",
+        "a-trace-that-looks-fine--scene",
+        "a-trace-that-looks-fine--text-28"
+      ],
+      "stepOrder": [
+        "a-trace-that-looks-fine--bins",
+        "a-trace-that-looks-fine--trace"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    },
+    "why-samplers-drop-it": {
+      "id": "why-samplers-drop-it",
+      "title": "Why samplers drop it",
+      "level": 1,
+      "children": [
+        "why-samplers-drop-it--scene",
+        "why-samplers-drop-it--columns-31",
+        "why-samplers-drop-it--text-32"
+      ],
+      "stepOrder": [
+        "why-samplers-drop-it--lanes"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    },
+    "traces-as-sets-of-pairs": {
+      "id": "traces-as-sets-of-pairs",
+      "title": "Traces as sets of pairs",
+      "level": 1,
+      "children": [
+        "traces-as-sets-of-pairs--text-33",
+        "traces-as-sets-of-pairs--image-34",
+        "traces-as-sets-of-pairs--scene"
+      ],
+      "stepOrder": [
+        "traces-as-sets-of-pairs--set",
+        "traces-as-sets-of-pairs--select"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    },
+    "one-percent-better-diagnosis": {
+      "id": "one-percent-better-diagnosis",
+      "title": "One percent, better diagnosis",
+      "level": 1,
+      "children": [
+        "one-percent-better-diagnosis--scene",
+        "one-percent-better-diagnosis--text-35",
+        "one-percent-better-diagnosis--code-36",
+        "one-percent-better-diagnosis--text-37"
+      ],
+      "stepOrder": [
+        "one-percent-better-diagnosis--result"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    }
+  },
+  "blocks": {
+    "a-trace-that-looks-fine--text-27": {
+      "id": "a-trace-that-looks-fine--text-27",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "p-1",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Yifan Yang, "
+            },
+            {
+              "type": "text",
+              "text": "Aoyang Fang",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": ", Songhan Zhang, Pinjia He. "
+            },
+            {
+              "type": "text",
+              "text": "ISSTA 2026",
+              "marks": [
+                {
+                  "type": "italic"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": ". Direct accept, one of 90 among 888 papers."
+            }
+          ]
+        },
+        {
+          "id": "p-2",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "link",
+              "href": "https://arxiv.org/abs/2604.16810",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "arXiv"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " · "
+            },
+            {
+              "type": "link",
+              "href": "https://arxiv.org/pdf/2604.16810",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "PDF"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " · "
+            },
+            {
+              "type": "link",
+              "href": "https://github.com/OperationsPAI/Gleaner",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "Code"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " · "
+            },
+            {
+              "type": "link",
+              "href": "https://doi.org/10.5281/zenodo.19637628",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "Dataset"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "p-3",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "A 1% sample chosen by Gleaner makes root cause analysis more accurate than all the traces: ShapleyIQ ranks the true root cause first in "
+            },
+            {
+              "type": "text",
+              "text": "0.56",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " of the failures on Gleaner's 1% sample, against "
+            },
+            {
+              "type": "text",
+              "text": "0.41",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " on the unsampled data (Table 6). Gleaner reads each trace together with its logs and decides in 0.741 ms per trace."
+            }
+          ]
+        }
+      ]
+    },
+    "a-trace-that-looks-fine--scene": {
+      "id": "a-trace-that-looks-fine--scene",
+      "type": "component",
+      "definitionId": "a-trace-that-looks-fine--definition",
+      "parameters": {
+        "alt": "A large bin of all traces and a thin 1% bin, the thin one's diagnosis dial higher; then one trace whose spans are all OK hides two ERROR log lines."
+      }
+    },
+    "a-trace-that-looks-fine--text-28": {
+      "id": "a-trace-that-looks-fine--text-28",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "p-4",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "The trace is Fig. 1 of the paper: every span reports OK and the root span takes 47 ms, while its logs record a price configuration that failed to parse and a fallback price."
+            }
+          ]
+        }
+      ]
+    },
+    "why-samplers-drop-it--scene": {
+      "id": "why-samplers-drop-it--scene",
+      "type": "component",
+      "definitionId": "why-samplers-drop-it--definition",
+      "parameters": {
+        "alt": "A fast sampler reads only calls, status and latency and discards the trace; a log-aware sampler builds a graph for a trained network while traces queue."
+      }
+    },
+    "why-samplers-drop-it--column-29": {
+      "id": "why-samplers-drop-it--column-29",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "h-5",
+          "type": "heading",
+          "level": 3,
+          "children": [
+            {
+              "type": "text",
+              "text": "Built for speed"
+            }
+          ]
+        },
+        {
+          "id": "p-6",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Tail-based samplers that run online judge a trace by its call structure, span status and latency. A trace whose spans all report OK at normal latency looks routine to them, even when its logs record the failure."
+            }
+          ]
+        }
+      ]
+    },
+    "why-samplers-drop-it--column-30": {
+      "id": "why-samplers-drop-it--column-30",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "h-7",
+          "type": "heading",
+          "level": 3,
+          "children": [
+            {
+              "type": "text",
+              "text": "Built to read logs"
+            }
+          ]
+        },
+        {
+          "id": "p-8",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Samplers that also read log events rely on heterogeneous graph neural networks. They need offline training and are too slow for online, high-throughput use."
+            }
+          ]
+        }
+      ]
+    },
+    "why-samplers-drop-it--columns-31": {
+      "id": "why-samplers-drop-it--columns-31",
+      "type": "container",
+      "only": [
+        "web"
+      ],
+      "layout": "columns",
+      "children": [
+        "why-samplers-drop-it--column-29",
+        "why-samplers-drop-it--column-30"
+      ],
+      "properties": {
+        "columnWidths": [
+          1,
+          1
+        ]
+      }
+    },
+    "why-samplers-drop-it--text-32": {
+      "id": "why-samplers-drop-it--text-32",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "p-9",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Sampling itself is unavoidable: trace volume reaches terabytes a day, and in Train-Ticket the top 24.3% of execution paths account for 82.3% of traces, so random sampling keeps the common and drops the rare."
+            }
+          ]
+        }
+      ]
+    },
+    "traces-as-sets-of-pairs--text-33": {
+      "id": "traces-as-sets-of-pairs--text-33",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "p-10",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Gleaner replaces the graph with a set. Each trace becomes an event-pair set: bi-grams over every span's start, log templates, error and slowdown markers and end, plus links from each parent's end to its child's start. Similar traces share pairs, so comparing two traces is a Jaccard computation."
+            }
+          ]
+        },
+        {
+          "id": "list-11",
+          "type": "list",
+          "ordered": true,
+          "children": [
+            {
+              "id": "li-12",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-13",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Trace Encoder.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " Builds the set and an anomaly score from span errors, WARN and ERROR log counts, and latency above 1.2 times the group's p90."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-14",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-15",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Quota Allocator.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " Groups traces by entry API; when an alarm fires it raises the budget if traffic drops and boosts the alerted API up to 3 times the average, under a cap."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-16",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-17",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "DPP Selector.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " Keeps traces that are anomalous and diverse with a fast greedy Determinantal Point Process; early termination and a cross-batch similarity cache with a 91.8% hit rate keep it online."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "traces-as-sets-of-pairs--image-34": {
+      "id": "traces-as-sets-of-pairs--image-34",
+      "type": "image",
+      "only": [
+        "web"
+      ],
+      "assetId": "traces-as-sets-of-pairs--asset-1",
+      "alt": "Gleaner's pipeline: trace encoder, quota allocator with normal, buffer and alarm periods, DPP selector, backend storage",
+      "caption": [
+        {
+          "type": "text",
+          "text": "Fig. 2: from a trace with log events to the scored event-pair set, the per-API quota and the selected sample."
+        }
+      ],
+      "width": 100,
+      "alignment": "center"
+    },
+    "traces-as-sets-of-pairs--scene": {
+      "id": "traces-as-sets-of-pairs--scene",
+      "type": "component",
+      "definitionId": "traces-as-sets-of-pairs--definition",
+      "parameters": {
+        "alt": "The trace becomes a set of event pairs that shares one pair with a healthy trace; grouped by API, an alarm raises one group's quota and the selector keeps unusual, diverse traces."
+      }
+    },
+    "one-percent-better-diagnosis--scene": {
+      "id": "one-percent-better-diagnosis--scene",
+      "type": "component",
+      "definitionId": "one-percent-better-diagnosis--definition",
+      "parameters": {
+        "alt": "ShapleyIQ's top-1 accuracy: 0.41 on all traces, 0.56 on Gleaner's 1% sample."
+      }
+    },
+    "one-percent-better-diagnosis--text-35": {
+      "id": "one-percent-better-diagnosis--text-35",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "list-18",
+          "type": "list",
+          "ordered": false,
+          "children": [
+            {
+              "id": "li-19",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-20",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Better diagnosis on less data.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " On the 1% sample, ShapleyIQ's top-1 accuracy is 0.56 against 0.41 unsampled, and Nezha's 0.19 against 0.11; MicroRCA matches its unsampled accuracy with 99% less data (Table 6)."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-21",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-22",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "More of the rare behaviour kept.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " At a 10% rate, Trace Pattern Coverage is 11.6% to 128.7% higher and Shannon entropy 2.8% to 32.9% higher than the baselines'."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-23",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-24",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Fast and on budget.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " 0.741 ms per trace against TracePicker's 1.008 ms, the highest benefit-cost ratio (0.81), and exactly the 5% rate asked for (Table 8)."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "p-25",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Anomaly priority and diversity work only together: each alone fails to beat the full data. The gains are largest in systems with several entry APIs and rich in-span events. The benchmark behind these numbers, 161 fault-injection cases and over 1.4 million traces, is public with the code."
+            }
+          ]
+        }
+      ]
+    },
+    "one-percent-better-diagnosis--code-36": {
+      "id": "one-percent-better-diagnosis--code-36",
+      "type": "code",
+      "only": [
+        "web"
+      ],
+      "language": "bibtex",
+      "value": "@inproceedings{yang2026gleaner,\n  title     = {Gleaner: A Semantically-Rich and Efficient Online Sampler for Microservice Diagnostics},\n  author    = {Yang, Yifan and Fang, Aoyang and Zhang, Songhan and He, Pinjia},\n  booktitle = {Proceedings of the ACM SIGSOFT International Symposium on Software Testing and Analysis (ISSTA)},\n  year      = {2026},\n  eprint    = {2604.16810},\n  archivePrefix = {arXiv},\n  url       = {https://arxiv.org/abs/2604.16810}\n}"
+    },
+    "one-percent-better-diagnosis--text-37": {
+      "id": "one-percent-better-diagnosis--text-37",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "p-26",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Film music: \"Digital Lemonade\" by Kevin MacLeod ("
+            },
+            {
+              "type": "link",
+              "href": "https://incompetech.com/",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "incompetech.com"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "), licensed under "
+            },
+            {
+              "type": "link",
+              "href": "http://creativecommons.org/licenses/by/4.0/",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "CC BY 4.0"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "."
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "steps": {
+    "a-trace-that-looks-fine--bins": {
+      "id": "a-trace-that-looks-fine--bins",
+      "sectionId": "a-trace-that-looks-fine",
+      "visuals": [
+        {
+          "blockId": "a-trace-that-looks-fine--scene",
+          "visible": true,
+          "state": "bins"
+        },
+        {
+          "blockId": "a-trace-that-looks-fine--text-27",
+          "visible": true
+        },
+        {
+          "blockId": "a-trace-that-looks-fine--text-28",
+          "visible": true
+        }
+      ],
+      "narrationIds": [
+        "a-trace-that-looks-fine--bins--narration"
+      ]
+    },
+    "a-trace-that-looks-fine--trace": {
+      "id": "a-trace-that-looks-fine--trace",
+      "sectionId": "a-trace-that-looks-fine",
+      "visuals": [
+        {
+          "blockId": "a-trace-that-looks-fine--scene",
+          "visible": true,
+          "state": "trace"
+        },
+        {
+          "blockId": "a-trace-that-looks-fine--text-27",
+          "visible": true
+        },
+        {
+          "blockId": "a-trace-that-looks-fine--text-28",
+          "visible": true
+        }
+      ],
+      "narrationIds": [
+        "a-trace-that-looks-fine--trace--narration"
+      ]
+    },
+    "why-samplers-drop-it--lanes": {
+      "id": "why-samplers-drop-it--lanes",
+      "sectionId": "why-samplers-drop-it",
+      "visuals": [
+        {
+          "blockId": "why-samplers-drop-it--scene",
+          "visible": true,
+          "state": "lanes"
+        },
+        {
+          "blockId": "why-samplers-drop-it--column-29",
+          "visible": true
+        },
+        {
+          "blockId": "why-samplers-drop-it--column-30",
+          "visible": true
+        },
+        {
+          "blockId": "why-samplers-drop-it--columns-31",
+          "visible": true
+        },
+        {
+          "blockId": "why-samplers-drop-it--text-32",
+          "visible": true
+        }
+      ],
+      "narrationIds": [
+        "why-samplers-drop-it--lanes--narration"
+      ]
+    },
+    "traces-as-sets-of-pairs--set": {
+      "id": "traces-as-sets-of-pairs--set",
+      "sectionId": "traces-as-sets-of-pairs",
+      "visuals": [
+        {
+          "blockId": "traces-as-sets-of-pairs--scene",
+          "visible": true,
+          "state": "set"
+        },
+        {
+          "blockId": "traces-as-sets-of-pairs--text-33",
+          "visible": true
+        },
+        {
+          "blockId": "traces-as-sets-of-pairs--image-34",
+          "visible": true
+        }
+      ],
+      "narrationIds": [
+        "traces-as-sets-of-pairs--set--narration"
+      ]
+    },
+    "traces-as-sets-of-pairs--select": {
+      "id": "traces-as-sets-of-pairs--select",
+      "sectionId": "traces-as-sets-of-pairs",
+      "visuals": [
+        {
+          "blockId": "traces-as-sets-of-pairs--scene",
+          "visible": true,
+          "state": "select"
+        },
+        {
+          "blockId": "traces-as-sets-of-pairs--text-33",
+          "visible": true
+        },
+        {
+          "blockId": "traces-as-sets-of-pairs--image-34",
+          "visible": true
+        }
+      ],
+      "narrationIds": [
+        "traces-as-sets-of-pairs--select--narration"
+      ]
+    },
+    "one-percent-better-diagnosis--result": {
+      "id": "one-percent-better-diagnosis--result",
+      "sectionId": "one-percent-better-diagnosis",
+      "visuals": [
+        {
+          "blockId": "one-percent-better-diagnosis--scene",
+          "visible": true,
+          "state": "result"
+        },
+        {
+          "blockId": "one-percent-better-diagnosis--text-35",
+          "visible": true
+        },
+        {
+          "blockId": "one-percent-better-diagnosis--code-36",
+          "visible": true
+        },
+        {
+          "blockId": "one-percent-better-diagnosis--text-37",
+          "visible": true
+        }
+      ],
+      "narrationIds": [
+        "one-percent-better-diagnosis--result--narration"
+      ]
+    }
+  },
+  "narrations": {
+    "a-trace-that-looks-fine--bins--narration": {
+      "id": "a-trace-that-looks-fine--bins--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "Keep the right one percent of your traces, and you can diagnose failures better than with all of them. The question is which."
+        }
+      ]
+    },
+    "a-trace-that-looks-fine--trace--narration": {
+      "id": "a-trace-that-looks-fine--trace--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "This trace reports success at normal speed, yet hides an error log inside."
+        }
+      ]
+    },
+    "why-samplers-drop-it--lanes--narration": {
+      "id": "why-samplers-drop-it--lanes--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "Fast samplers read only calls, status and latency, so they drop it. Samplers that do read logs turn every trace into a graph for a trained neural network, too slow for a live stream."
+        }
+      ]
+    },
+    "traces-as-sets-of-pairs--set--narration": {
+      "id": "traces-as-sets-of-pairs--set--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "Gleaner skips the graph: each trace becomes a set of event pairs, a call followed by a log line, so similar traces simply share pairs."
+        }
+      ]
+    },
+    "traces-as-sets-of-pairs--select--narration": {
+      "id": "traces-as-sets-of-pairs--select--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "Per API, alarms raise the quota, and a selector keeps traces both unusual and unlike each other. This trace's error log makes it stand out."
+        }
+      ]
+    },
+    "one-percent-better-diagnosis--result--narration": {
+      "id": "one-percent-better-diagnosis--result--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "On Gleaner's one percent, the RCA tool ShapleyIQ ranks the true root cause first 56 percent of the time; on every trace, 41. Chosen well, a sample does not just save storage. It improves the diagnosis."
+        }
+      ]
+    }
+  },
+  "assets": {
+    "film-score": {
+      "id": "film-score",
+      "kind": "audio",
+      "location": "audio/score.ogg",
+      "title": "Gleaner film score (music: \"Digital Lemonade\", Kevin MacLeod, CC BY 4.0)",
+      "fingerprint": "sha256:12bb740ad130608151ae999e63f6234448a2d810c5118470696fc29dd3b22c95",
+      "mediaType": "audio/ogg"
+    },
+    "traces-as-sets-of-pairs--asset-1": {
+      "id": "traces-as-sets-of-pairs--asset-1",
+      "kind": "image",
+      "location": "figures/gleaner-pipeline.png",
+      "mediaType": "image/png"
+    }
+  },
+  "definitions": {
+    "a-trace-that-looks-fine--definition": {
+      "id": "a-trace-that-looks-fine--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/looks-fine.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "bins"
+        },
+        {
+          "id": "trace"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          6000,
+          8000
+        ],
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "All traces against a 1% sample; then one Train-Ticket trace: every span OK, the root span 47 ms, and inside it two ERROR log lines about a failed price configuration."
+                }
+              ]
+            }
+          ]
+        },
+        "language": "typescript"
+      }
+    },
+    "why-samplers-drop-it--definition": {
+      "id": "why-samplers-drop-it--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/drop.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "lanes"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          13000
+        ],
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Samplers built for speed read only calls, status and latency, so the trace with the hidden error log is discarded; samplers built to read logs build a graph for a trained neural network, too slow for a live stream."
+                }
+              ]
+            }
+          ]
+        },
+        "language": "typescript"
+      }
+    },
+    "traces-as-sets-of-pairs--definition": {
+      "id": "traces-as-sets-of-pairs--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/pairs.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "set"
+        },
+        {
+          "id": "select"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          10000,
+          9000
+        ],
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Each trace becomes a set of event pairs, a call or log event followed by the next; similar traces share pairs. Traces are grouped by entry API, an alarm raises its API's quota, and a selector keeps traces that are unusual and unlike each other."
+                }
+              ]
+            }
+          ]
+        },
+        "language": "typescript"
+      }
+    },
+    "one-percent-better-diagnosis--definition": {
+      "id": "one-percent-better-diagnosis--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/result.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "result"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          14000
+        ],
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "ShapleyIQ ranks the true root cause first in 0.41 of the failures with all traces and in 0.56 with Gleaner's 1% sample (Table 6)."
+                }
+              ]
+            }
+          ]
+        },
+        "language": "typescript"
+      }
+    }
+  },
+  "production": {
+    "defaults": {
+      "voiceSource": {
+        "type": "none"
+      },
+      "narrationStart": "with-animation",
+      "trailingPauseMs": 0
+    },
+    "stepOverrides": {
+      "a-trace-that-looks-fine--bins": {
+        "minimumHoldMs": 6000,
+        "trailingPauseMs": 0
+      },
+      "a-trace-that-looks-fine--trace": {
+        "minimumHoldMs": 8000,
+        "trailingPauseMs": 0
+      },
+      "why-samplers-drop-it--lanes": {
+        "minimumHoldMs": 13000,
+        "trailingPauseMs": 0
+      },
+      "traces-as-sets-of-pairs--set": {
+        "minimumHoldMs": 10000,
+        "trailingPauseMs": 0
+      },
+      "traces-as-sets-of-pairs--select": {
+        "minimumHoldMs": 9000,
+        "trailingPauseMs": 0
+      },
+      "one-percent-better-diagnosis--result": {
+        "minimumHoldMs": 14000,
+        "trailingPauseMs": 0
+      }
+    },
+    "mediaClips": [
+      {
+        "id": "score-a-trace-that-looks-fine--bins",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 0,
+          "endMs": 6000
+        },
+        "attachment": {
+          "stepId": "a-trace-that-looks-fine--bins",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score-a-trace-that-looks-fine--trace",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 6000,
+          "endMs": 14000
+        },
+        "attachment": {
+          "stepId": "a-trace-that-looks-fine--trace",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score-why-samplers-drop-it--lanes",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 14000,
+          "endMs": 27000
+        },
+        "attachment": {
+          "stepId": "why-samplers-drop-it--lanes",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score-traces-as-sets-of-pairs--set",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 27000,
+          "endMs": 37000
+        },
+        "attachment": {
+          "stepId": "traces-as-sets-of-pairs--set",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score-traces-as-sets-of-pairs--select",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 37000,
+          "endMs": 46000
+        },
+        "attachment": {
+          "stepId": "traces-as-sets-of-pairs--select",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score-one-percent-better-diagnosis--result",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 46000,
+          "endMs": 60000
+        },
+        "attachment": {
+          "stepId": "one-percent-better-diagnosis--result",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      }
+    ]
+  }
+}

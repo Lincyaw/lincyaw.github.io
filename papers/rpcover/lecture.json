@@ -1,0 +1,1672 @@
+{
+  "schemaVersion": 1,
+  "id": "paper-rpcover",
+  "metadata": {
+    "title": "RPCover: Recovering gRPC Dependency in Multilingual Projects",
+    "lang": "en",
+    "description": "RPCover links gRPC client and server stubs across languages through their shared Protobuf definitions, statically recovering cross-service call graphs from per-language SCIP indexes.",
+    "plugins": [
+      "@lincyaw/addon-motion",
+      "@lincyaw/addon-lecture",
+      "@lincyaw/addon-speech"
+    ],
+    "renderers": {
+      "web": {},
+      "slides": {},
+      "lecture": {}
+    },
+    "tags": [
+      "Testing & analysis",
+      "ASE'23"
+    ]
+  },
+  "sectionOrder": [
+    "a-call-loses-its-trail",
+    "tracing-waits-for-traffic",
+    "the-shared-blueprint",
+    "every-service-one-map",
+    "the-system-drawn-from-source"
+  ],
+  "sections": {
+    "a-call-loses-its-trail": {
+      "id": "a-call-loses-its-trail",
+      "title": "RPCover: Recovering gRPC Dependency in Multilingual Projects",
+      "level": 1,
+      "children": [
+        "a-call-loses-its-trail--text-0",
+        "a-call-loses-its-trail--scene",
+        "a-call-loses-its-trail--text-1"
+      ],
+      "stepOrder": [
+        "a-call-loses-its-trail--step"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    },
+    "tracing-waits-for-traffic": {
+      "id": "tracing-waits-for-traffic",
+      "title": "Tracing waits for traffic",
+      "level": 1,
+      "children": [
+        "tracing-waits-for-traffic--text-0",
+        "tracing-waits-for-traffic--scene",
+        "tracing-waits-for-traffic--columns-1"
+      ],
+      "stepOrder": [
+        "tracing-waits-for-traffic--step"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    },
+    "the-shared-blueprint": {
+      "id": "the-shared-blueprint",
+      "title": "The shared blueprint",
+      "level": 1,
+      "children": [
+        "the-shared-blueprint--text-0",
+        "the-shared-blueprint--scene",
+        "the-shared-blueprint--image-1"
+      ],
+      "stepOrder": [
+        "the-shared-blueprint--step"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    },
+    "every-service-one-map": {
+      "id": "every-service-one-map",
+      "title": "Every service, one map",
+      "level": 1,
+      "children": [
+        "every-service-one-map--text-0",
+        "every-service-one-map--scene",
+        "every-service-one-map--text-1"
+      ],
+      "stepOrder": [
+        "every-service-one-map--step"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    },
+    "the-system-drawn-from-source": {
+      "id": "the-system-drawn-from-source",
+      "title": "The system, drawn from source",
+      "level": 1,
+      "children": [
+        "the-system-drawn-from-source--text-0",
+        "the-system-drawn-from-source--scene",
+        "the-system-drawn-from-source--text-1",
+        "the-system-drawn-from-source--code-2",
+        "the-system-drawn-from-source--text-3"
+      ],
+      "stepOrder": [
+        "the-system-drawn-from-source--step"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    }
+  },
+  "blocks": {
+    "a-call-loses-its-trail--text-0": {
+      "id": "a-call-loses-its-trail--text-0",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "a-call-loses-its-trail--text-0-p-1",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Aoyang Fang",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": ", Ruiyu Zhou, Xiaoying Tang, Pinjia He. "
+            },
+            {
+              "type": "text",
+              "text": "ASE 2023",
+              "marks": [
+                {
+                  "type": "italic"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": ", the 38th IEEE/ACM International Conference on Automated Software Engineering, Industry Challenge Track. "
+            },
+            {
+              "type": "text",
+              "text": "Distinguished Paper Award.",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "a-call-loses-its-trail--text-0-p-2",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "link",
+              "href": "https://profile.aoyangfang.top/assets/publications/ase23/ASE_grpc.pdf",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "PDF"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " · "
+            },
+            {
+              "type": "link",
+              "href": "https://doi.org/10.1109/ASE56229.2023.00108",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "DOI 10.1109/ASE56229.2023.00108"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " · "
+            },
+            {
+              "type": "link",
+              "href": "https://github.com/CUHK-SE-Group/protoc-gen-scip",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "Code"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " · "
+            },
+            {
+              "type": "link",
+              "href": "https://github.com/CUHK-SE-Group/RPCoverBenchmark",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "Benchmark"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "a-call-loses-its-trail--text-0-p-3",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Cross-language gRPC calls can be traced from source code alone, by joining both ends of each call through the Protobuf definition they share. On DeathStarBench and the new five-language RPCoverBench, RPCover found all "
+            },
+            {
+              "type": "text",
+              "text": "149",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " gRPC calls (recall 100%) at 99.33% precision, without deploying anything."
+            }
+          ]
+        }
+      ]
+    },
+    "a-call-loses-its-trail--text-1": {
+      "id": "a-call-loses-its-trail--text-1",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "a-call-loses-its-trail--text-1-p-4",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Microservices in one system are often written in different languages and call each other through gRPC. A code indexer maps calls inside one service in one language; the call that matters for the architecture, from one service into another, is where it goes blind."
+            }
+          ]
+        }
+      ]
+    },
+    "a-call-loses-its-trail--scene": {
+      "id": "a-call-loses-its-trail--scene",
+      "type": "component",
+      "definitionId": "a-call-loses-its-trail--scene--definition",
+      "parameters": {
+        "scene": "trail",
+        "alt": "A Go service calls a C++ service over gRPC; a single-language indexer follows the call to the Go service's edge and loses it."
+      }
+    },
+    "tracing-waits-for-traffic--text-0": {
+      "id": "tracing-waits-for-traffic--text-0",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "tracing-waits-for-traffic--text-0-p-5",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Both established ways to recover service dependencies work under a condition that multilingual gRPC systems break."
+            }
+          ]
+        }
+      ]
+    },
+    "tracing-waits-for-traffic--columns-1-c0": {
+      "id": "tracing-waits-for-traffic--columns-1-c0",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "tracing-waits-for-traffic--columns-1-c0-h-6",
+          "type": "heading",
+          "level": 3,
+          "children": [
+            {
+              "type": "text",
+              "text": "Dynamic: tracing"
+            }
+          ]
+        },
+        {
+          "id": "tracing-waits-for-traffic--columns-1-c0-p-7",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Logs, traces and monitoring show real traffic, but they need the services deployed and a tracing infrastructure in place, and they capture only the calls made within the observed time frame. One online service can show up to nine topologically different call graphs."
+            }
+          ]
+        }
+      ]
+    },
+    "tracing-waits-for-traffic--columns-1-c1": {
+      "id": "tracing-waits-for-traffic--columns-1-c1",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "tracing-waits-for-traffic--columns-1-c1-h-8",
+          "type": "heading",
+          "level": 3,
+          "children": [
+            {
+              "type": "text",
+              "text": "Static: one language at a time"
+            }
+          ]
+        },
+        {
+          "id": "tracing-waits-for-traffic--columns-1-c1-p-9",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Static analysis needs no deployment, but it needs a frontend per language. gRPC calls are compiled from an interface definition into per-language code, so a single-language analyzer cannot follow a call into another service; language-agnostic ASTs (LAAST) are costly to extend because abstractions differ between languages."
+            }
+          ]
+        }
+      ]
+    },
+    "tracing-waits-for-traffic--columns-1": {
+      "id": "tracing-waits-for-traffic--columns-1",
+      "type": "container",
+      "layout": "columns",
+      "only": [
+        "web"
+      ],
+      "children": [
+        "tracing-waits-for-traffic--columns-1-c0",
+        "tracing-waits-for-traffic--columns-1-c1"
+      ],
+      "properties": {
+        "columnWidths": [
+          1,
+          1
+        ]
+      }
+    },
+    "tracing-waits-for-traffic--scene": {
+      "id": "tracing-waits-for-traffic--scene",
+      "type": "component",
+      "definitionId": "tracing-waits-for-traffic--scene--definition",
+      "parameters": {
+        "scene": "tracing",
+        "alt": "Tracing a running system draws only the calls made inside the observed time window."
+      }
+    },
+    "the-shared-blueprint--text-0": {
+      "id": "the-shared-blueprint--text-0",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "the-shared-blueprint--text-0-p-10",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "A gRPC service is written once in a "
+            },
+            {
+              "type": "text",
+              "text": ".proto",
+              "marks": [
+                {
+                  "type": "code"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " file and compiled into bindings for every language. Inside each service an existing SCIP indexer already records two relations: the "
+            },
+            {
+              "type": "text",
+              "text": "reference",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " from a call site to the generated client stub, and the "
+            },
+            {
+              "type": "text",
+              "text": "implementation",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " from the server code to the generated server stub."
+            }
+          ]
+        },
+        {
+          "id": "the-shared-blueprint--text-0-p-11",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "RPCover's gRPC Matcher matches every stub to the Protobuf service and request it was generated from. Two stubs from different services that match the same service definition are joined, for example "
+            },
+            {
+              "type": "text",
+              "text": "Conn(clientStub_go, serverStub_c++, reference)",
+              "marks": [
+                {
+                  "type": "code"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": ", and the two call graphs become one. The default matcher compares lower-cased alphanumeric names; users can plug in their own."
+            }
+          ]
+        }
+      ]
+    },
+    "the-shared-blueprint--image-1": {
+      "id": "the-shared-blueprint--image-1",
+      "type": "image",
+      "only": [
+        "web"
+      ],
+      "assetId": "the-shared-blueprint--image-1-asset",
+      "alt": "A Protobuf Greeter service, its generated Python stubs, the server implementation and the client code",
+      "caption": [
+        {
+          "type": "text",
+          "text": "One "
+        },
+        {
+          "type": "text",
+          "text": "service Greeter",
+          "marks": [
+            {
+              "type": "code"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": ": the generated server stub is implemented, the generated client stub is referenced (paper, Fig. 3)."
+        }
+      ],
+      "width": 80,
+      "alignment": "center"
+    },
+    "the-shared-blueprint--scene": {
+      "id": "the-shared-blueprint--scene",
+      "type": "component",
+      "definitionId": "the-shared-blueprint--scene--definition",
+      "parameters": {
+        "scene": "blueprint",
+        "alt": "Both stubs are generated from one Protobuf service definition; matching each stub to it continues the call from Go into C++."
+      }
+    },
+    "every-service-one-map--text-0": {
+      "id": "every-service-one-map--text-0",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "every-service-one-map--text-0-l-12",
+          "type": "list",
+          "ordered": true,
+          "children": [
+            {
+              "id": "every-service-one-map--text-0-li-13",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "every-service-one-map--text-0-p-14",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Index.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " An off-the-shelf SCIP indexer runs on each microservice and records its function-level dependencies."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "every-service-one-map--text-0-li-15",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "every-service-one-map--text-0-p-16",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Match.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " The gRPC Matcher reads language-neutral "
+                    },
+                    {
+                      "type": "text",
+                      "text": "index type",
+                      "marks": [
+                        {
+                          "type": "code"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " objects from those indexes, matches them to the "
+                    },
+                    {
+                      "type": "text",
+                      "text": ".proto",
+                      "marks": [
+                        {
+                          "type": "code"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " services and requests, adds the cross-service connections and merges all indexes into one SCIP index."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "every-service-one-map--text-0-li-17",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "every-service-one-map--text-0-p-18",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Convert.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " The merged index becomes LSIF for editors and graph viewers such as Memgraph."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "every-service-one-map--text-1": {
+      "id": "every-service-one-map--text-1",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "every-service-one-map--text-1-p-19",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "To test this, the paper builds "
+            },
+            {
+              "type": "text",
+              "text": "RPCoverBench",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": ": 15 services, three each in C++, Java, Python, Go and TypeScript, each acting as client, server or both, with 142 gRPC calls. Before it, no multilingual gRPC microservice benchmark existed: DeathStarBench and TrainTicket use one or two languages, and only DeathStarBench uses gRPC."
+            }
+          ]
+        }
+      ]
+    },
+    "every-service-one-map--scene": {
+      "id": "every-service-one-map--scene",
+      "type": "component",
+      "definitionId": "every-service-one-map--scene--definition",
+      "parameters": {
+        "scene": "pipeline",
+        "alt": "Each service is indexed by its SCIP indexer, the gRPC Matcher joins the stubs through the .proto files, and one merged index comes out as LSIF."
+      }
+    },
+    "the-system-drawn-from-source--text-0": {
+      "id": "the-system-drawn-from-source--text-0",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "the-system-drawn-from-source--text-0-t-20",
+          "type": "table",
+          "headerRows": 1,
+          "children": [
+            {
+              "id": "the-system-drawn-from-source--text-0-tr-21",
+              "type": "tableRow",
+              "children": [
+                {
+                  "id": "the-system-drawn-from-source--text-0-td-22",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Benchmark"
+                    }
+                  ]
+                },
+                {
+                  "id": "the-system-drawn-from-source--text-0-td-23",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "gRPC calls"
+                    }
+                  ]
+                },
+                {
+                  "id": "the-system-drawn-from-source--text-0-td-24",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Found"
+                    }
+                  ]
+                },
+                {
+                  "id": "the-system-drawn-from-source--text-0-td-25",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "False positives"
+                    }
+                  ]
+                },
+                {
+                  "id": "the-system-drawn-from-source--text-0-td-26",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Missed"
+                    }
+                  ]
+                },
+                {
+                  "id": "the-system-drawn-from-source--text-0-td-27",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Precision"
+                    }
+                  ]
+                },
+                {
+                  "id": "the-system-drawn-from-source--text-0-td-28",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Recall"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "the-system-drawn-from-source--text-0-tr-29",
+              "type": "tableRow",
+              "children": [
+                {
+                  "id": "the-system-drawn-from-source--text-0-td-30",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "DeathStarBench"
+                    }
+                  ]
+                },
+                {
+                  "id": "the-system-drawn-from-source--text-0-td-31",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "7"
+                    }
+                  ]
+                },
+                {
+                  "id": "the-system-drawn-from-source--text-0-td-32",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "7"
+                    }
+                  ]
+                },
+                {
+                  "id": "the-system-drawn-from-source--text-0-td-33",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "0"
+                    }
+                  ]
+                },
+                {
+                  "id": "the-system-drawn-from-source--text-0-td-34",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "0"
+                    }
+                  ]
+                },
+                {
+                  "id": "the-system-drawn-from-source--text-0-td-35",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "100%"
+                    }
+                  ]
+                },
+                {
+                  "id": "the-system-drawn-from-source--text-0-td-36",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "100%"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "the-system-drawn-from-source--text-0-tr-37",
+              "type": "tableRow",
+              "children": [
+                {
+                  "id": "the-system-drawn-from-source--text-0-td-38",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "RPCoverBench"
+                    }
+                  ]
+                },
+                {
+                  "id": "the-system-drawn-from-source--text-0-td-39",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "142"
+                    }
+                  ]
+                },
+                {
+                  "id": "the-system-drawn-from-source--text-0-td-40",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "142"
+                    }
+                  ]
+                },
+                {
+                  "id": "the-system-drawn-from-source--text-0-td-41",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "1"
+                    }
+                  ]
+                },
+                {
+                  "id": "the-system-drawn-from-source--text-0-td-42",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "0"
+                    }
+                  ]
+                },
+                {
+                  "id": "the-system-drawn-from-source--text-0-td-43",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "99.30%"
+                    }
+                  ]
+                },
+                {
+                  "id": "the-system-drawn-from-source--text-0-td-44",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "100%"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "the-system-drawn-from-source--text-0-tr-45",
+              "type": "tableRow",
+              "children": [
+                {
+                  "id": "the-system-drawn-from-source--text-0-td-46",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Overall",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "the-system-drawn-from-source--text-0-td-47",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "149"
+                    }
+                  ]
+                },
+                {
+                  "id": "the-system-drawn-from-source--text-0-td-48",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "149",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "the-system-drawn-from-source--text-0-td-49",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "1"
+                    }
+                  ]
+                },
+                {
+                  "id": "the-system-drawn-from-source--text-0-td-50",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "0"
+                    }
+                  ]
+                },
+                {
+                  "id": "the-system-drawn-from-source--text-0-td-51",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "99.33%",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "the-system-drawn-from-source--text-0-td-52",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "100%",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "the-system-drawn-from-source--text-0-p-53",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Coverage on both benchmarks (Table II). Time overhead stays under 200% of single-language LSIF indexers: from −47.97% (TypeScript) to +104.72% (C++) on the benchmarks, +175.73% on grpc (934,936 lines) and +22.68% on grpc-go (Table III). Peak memory falls by 70.93% on grpc (Table IV)."
+            }
+          ]
+        }
+      ]
+    },
+    "the-system-drawn-from-source--text-1": {
+      "id": "the-system-drawn-from-source--text-1",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "the-system-drawn-from-source--text-1-l-54",
+          "type": "list",
+          "ordered": false,
+          "children": [
+            {
+              "id": "the-system-drawn-from-source--text-1-li-55",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "the-system-drawn-from-source--text-1-p-56",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "The single false positive is a struct that shares a Protobuf service's name and method names, which the name-based matcher takes for an implementation."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "the-system-drawn-from-source--text-1-li-57",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "the-system-drawn-from-source--text-1-p-58",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Run time is set by the underlying SCIP indexer; gRPC matching is 3–5% of the indexing work."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "the-system-drawn-from-source--text-1-li-59",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "the-system-drawn-from-source--text-1-p-60",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "RPCover costs extra time only in C++, where the SCIP indexer analyses every translation unit; in Go, Python and TypeScript it is faster than the LSIF baseline."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "the-system-drawn-from-source--code-2": {
+      "id": "the-system-drawn-from-source--code-2",
+      "type": "code",
+      "only": [
+        "web"
+      ],
+      "language": "bibtex",
+      "value": "@inproceedings{fang2023rpcover,\n  title        = {RPCover: Recovering gRPC Dependency in Multilingual Projects},\n  author       = {Fang, Aoyang and Zhou, Ruiyu and Tang, Xiaoying and He, Pinjia},\n  booktitle    = {2023 38th IEEE/ACM International Conference on Automated Software Engineering (ASE)},\n  pages        = {1930--1939},\n  year         = {2023},\n  organization = {IEEE},\n  doi          = {10.1109/ASE56229.2023.00108}\n}"
+    },
+    "the-system-drawn-from-source--text-3": {
+      "id": "the-system-drawn-from-source--text-3",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "the-system-drawn-from-source--text-3-p-61",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Film music: “Wallpaper” by Kevin MacLeod ("
+            },
+            {
+              "type": "link",
+              "href": "https://incompetech.com",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "incompetech.com"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "), licensed under "
+            },
+            {
+              "type": "link",
+              "href": "http://creativecommons.org/licenses/by/4.0/",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "Creative Commons: By Attribution 4.0"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "."
+            }
+          ]
+        }
+      ]
+    },
+    "the-system-drawn-from-source--scene": {
+      "id": "the-system-drawn-from-source--scene",
+      "type": "component",
+      "definitionId": "the-system-drawn-from-source--scene--definition",
+      "parameters": {
+        "scene": "system",
+        "alt": "DeathStarBench's hotel reservation services recovered from source, beside 149 of 149 gRPC calls found."
+      }
+    }
+  },
+  "steps": {
+    "a-call-loses-its-trail--step": {
+      "id": "a-call-loses-its-trail--step",
+      "sectionId": "a-call-loses-its-trail",
+      "visuals": [
+        {
+          "blockId": "a-call-loses-its-trail--text-0",
+          "visible": true
+        },
+        {
+          "blockId": "a-call-loses-its-trail--scene",
+          "visible": true,
+          "state": "main"
+        },
+        {
+          "blockId": "a-call-loses-its-trail--text-1",
+          "visible": true
+        }
+      ],
+      "narrationIds": [
+        "a-call-loses-its-trail--narration"
+      ]
+    },
+    "tracing-waits-for-traffic--step": {
+      "id": "tracing-waits-for-traffic--step",
+      "sectionId": "tracing-waits-for-traffic",
+      "visuals": [
+        {
+          "blockId": "tracing-waits-for-traffic--text-0",
+          "visible": true
+        },
+        {
+          "blockId": "tracing-waits-for-traffic--scene",
+          "visible": true,
+          "state": "main"
+        },
+        {
+          "blockId": "tracing-waits-for-traffic--columns-1",
+          "visible": true
+        },
+        {
+          "blockId": "tracing-waits-for-traffic--columns-1-c0",
+          "visible": true
+        },
+        {
+          "blockId": "tracing-waits-for-traffic--columns-1-c1",
+          "visible": true
+        }
+      ],
+      "narrationIds": [
+        "tracing-waits-for-traffic--narration"
+      ]
+    },
+    "the-shared-blueprint--step": {
+      "id": "the-shared-blueprint--step",
+      "sectionId": "the-shared-blueprint",
+      "visuals": [
+        {
+          "blockId": "the-shared-blueprint--text-0",
+          "visible": true
+        },
+        {
+          "blockId": "the-shared-blueprint--scene",
+          "visible": true,
+          "state": "main"
+        },
+        {
+          "blockId": "the-shared-blueprint--image-1",
+          "visible": true
+        }
+      ],
+      "narrationIds": [
+        "the-shared-blueprint--narration"
+      ]
+    },
+    "every-service-one-map--step": {
+      "id": "every-service-one-map--step",
+      "sectionId": "every-service-one-map",
+      "visuals": [
+        {
+          "blockId": "every-service-one-map--text-0",
+          "visible": true
+        },
+        {
+          "blockId": "every-service-one-map--scene",
+          "visible": true,
+          "state": "main"
+        },
+        {
+          "blockId": "every-service-one-map--text-1",
+          "visible": true
+        }
+      ],
+      "narrationIds": [
+        "every-service-one-map--narration"
+      ]
+    },
+    "the-system-drawn-from-source--step": {
+      "id": "the-system-drawn-from-source--step",
+      "sectionId": "the-system-drawn-from-source",
+      "visuals": [
+        {
+          "blockId": "the-system-drawn-from-source--text-0",
+          "visible": true
+        },
+        {
+          "blockId": "the-system-drawn-from-source--scene",
+          "visible": true,
+          "state": "main"
+        },
+        {
+          "blockId": "the-system-drawn-from-source--text-1",
+          "visible": true
+        },
+        {
+          "blockId": "the-system-drawn-from-source--code-2",
+          "visible": true
+        },
+        {
+          "blockId": "the-system-drawn-from-source--text-3",
+          "visible": true
+        }
+      ],
+      "narrationIds": [
+        "the-system-drawn-from-source--narration"
+      ]
+    }
+  },
+  "narrations": {
+    "a-call-loses-its-trail--narration": {
+      "id": "a-call-loses-its-trail--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "A Go service calls a C++ service over gRPC. Ask a code indexer who answers that call, and the trail stops at the Go service's edge: it reads one language."
+        }
+      ]
+    },
+    "tracing-waits-for-traffic--narration": {
+      "id": "tracing-waits-for-traffic--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "Tracing live traffic needs the whole system running, and still only sees the calls made while it watched."
+        }
+      ]
+    },
+    "the-shared-blueprint--narration": {
+      "id": "the-shared-blueprint--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "Both ends, though, were generated from one blueprint, a Protocol Buffer definition. The Go client stub and the C++ server stub carry its service's names, so match both to it, and the trail continues."
+        }
+      ]
+    },
+    "every-service-one-map--narration": {
+      "id": "every-service-one-map--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "RPCover does this for every service: standard indexers map each one, its gRPC Matcher joins the stubs across languages, and one merged index opens in a graph viewer."
+        }
+      ]
+    },
+    "the-system-drawn-from-source--narration": {
+      "id": "the-system-drawn-from-source--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "Here is "
+        },
+        {
+          "type": "pronunciation",
+          "display": "DeathStarBench",
+          "spoken": "Death Star Bench"
+        },
+        {
+          "type": "text",
+          "text": "'s hotel reservation system, drawn without running it. In two benchmarks across five languages, "
+        },
+        {
+          "type": "pronunciation",
+          "display": "RPCover",
+          "spoken": "R P Cover"
+        },
+        {
+          "type": "text",
+          "text": " found all 149 gRPC calls: follow the shared definition, and no call gets lost."
+        }
+      ]
+    }
+  },
+  "assets": {
+    "film-score": {
+      "id": "film-score",
+      "kind": "audio",
+      "location": "audio/score.ogg",
+      "title": "RPCover film · score (music: “Wallpaper”, Kevin MacLeod, incompetech.com, CC BY 4.0)",
+      "fingerprint": "sha256:7a0f64d76fa2cd1340d80064f38ec1d3340c73774b1e053cd27a33b09dcebfe5",
+      "mediaType": "audio/ogg"
+    },
+    "the-shared-blueprint--image-1-asset": {
+      "id": "the-shared-blueprint--image-1-asset",
+      "kind": "image",
+      "location": "figures/grpc-stub-reference-implementation.png",
+      "mediaType": "image/png"
+    }
+  },
+  "definitions": {
+    "a-call-loses-its-trail--scene--definition": {
+      "id": "a-call-loses-its-trail--scene--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/trail.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "main"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          10000
+        ],
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "A Go service calls a C++ service over gRPC; a single-language indexer follows the call to the Go service's edge and loses it."
+                }
+              ]
+            }
+          ]
+        },
+        "language": "typescript"
+      }
+    },
+    "tracing-waits-for-traffic--scene--definition": {
+      "id": "tracing-waits-for-traffic--scene--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/tracing.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "main"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          6000
+        ],
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Tracing a running system draws only the calls made inside the observed time window."
+                }
+              ]
+            }
+          ]
+        },
+        "language": "typescript"
+      }
+    },
+    "the-shared-blueprint--scene--definition": {
+      "id": "the-shared-blueprint--scene--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/blueprint.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "main"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          11000
+        ],
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Both stubs are generated from one Protobuf service definition; matching each stub to it continues the call from Go into C++."
+                }
+              ]
+            }
+          ]
+        },
+        "language": "typescript"
+      }
+    },
+    "every-service-one-map--scene--definition": {
+      "id": "every-service-one-map--scene--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/pipeline.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "main"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          9500
+        ],
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Each service is indexed by its SCIP indexer, the gRPC Matcher joins the stubs through the .proto files, and one merged index comes out as LSIF."
+                }
+              ]
+            }
+          ]
+        },
+        "language": "typescript"
+      }
+    },
+    "the-system-drawn-from-source--scene--definition": {
+      "id": "the-system-drawn-from-source--scene--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/system.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "main"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          10000
+        ],
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "DeathStarBench's hotel reservation services recovered from source, beside 149 of 149 gRPC calls found."
+                }
+              ]
+            }
+          ]
+        },
+        "language": "typescript"
+      }
+    }
+  },
+  "production": {
+    "defaults": {
+      "voiceSource": {
+        "type": "none"
+      },
+      "narrationStart": "with-animation",
+      "trailingPauseMs": 0
+    },
+    "stepOverrides": {
+      "a-call-loses-its-trail--step": {
+        "minimumHoldMs": 12000,
+        "trailingPauseMs": 0
+      },
+      "tracing-waits-for-traffic--step": {
+        "minimumHoldMs": 7000,
+        "trailingPauseMs": 0
+      },
+      "the-shared-blueprint--step": {
+        "minimumHoldMs": 13000,
+        "trailingPauseMs": 0
+      },
+      "every-service-one-map--step": {
+        "minimumHoldMs": 11000,
+        "trailingPauseMs": 0
+      },
+      "the-system-drawn-from-source--step": {
+        "minimumHoldMs": 17000,
+        "trailingPauseMs": 0
+      }
+    },
+    "mediaClips": [
+      {
+        "id": "score-a-call-loses-its-trail",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 0,
+          "endMs": 12000
+        },
+        "attachment": {
+          "stepId": "a-call-loses-its-trail--step",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score-tracing-waits-for-traffic",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 12000,
+          "endMs": 19000
+        },
+        "attachment": {
+          "stepId": "tracing-waits-for-traffic--step",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score-the-shared-blueprint",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 19000,
+          "endMs": 32000
+        },
+        "attachment": {
+          "stepId": "the-shared-blueprint--step",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score-every-service-one-map",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 32000,
+          "endMs": 43000
+        },
+        "attachment": {
+          "stepId": "every-service-one-map--step",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score-the-system-drawn-from-source",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 43000,
+          "endMs": 60000
+        },
+        "attachment": {
+          "stepId": "the-system-drawn-from-source--step",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      }
+    ]
+  }
+}

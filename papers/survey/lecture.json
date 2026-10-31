@@ -1,0 +1,1417 @@
+{
+  "schemaVersion": 1,
+  "id": "paper-survey",
+  "metadata": {
+    "title": "A Goal-Driven Survey on Root Cause Analysis",
+    "lang": "en",
+    "description": "135 RCA papers, sorted by the goal they serve, each explain points of an incident; none yet returns its whole propagation path.",
+    "plugins": [
+      "@lincyaw/addon-motion",
+      "@lincyaw/addon-lecture",
+      "@lincyaw/addon-speech"
+    ],
+    "renderers": {
+      "web": {},
+      "slides": {},
+      "lecture": {}
+    },
+    "tags": [
+      "Evaluate",
+      "arXiv'25"
+    ]
+  },
+  "sectionOrder": [
+    "one-incident-135-papers",
+    "same-data-different-goals",
+    "sorted-by-goal",
+    "points-not-the-path"
+  ],
+  "sections": {
+    "one-incident-135-papers": {
+      "id": "one-incident-135-papers",
+      "title": "A Goal-Driven Survey on Root Cause Analysis",
+      "level": 1,
+      "children": [
+        "incident-card",
+        "one-incident-135-papers--scene"
+      ],
+      "stepOrder": [
+        "one-incident-135-papers--step-0",
+        "one-incident-135-papers--step-1"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    },
+    "same-data-different-goals": {
+      "id": "same-data-different-goals",
+      "title": "Same data, different goals",
+      "level": 1,
+      "children": [
+        "same-data-different-goals--scene",
+        "bins-text",
+        "bins-columns"
+      ],
+      "stepOrder": [
+        "same-data-different-goals--step-0",
+        "same-data-different-goals--step-1"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    },
+    "sorted-by-goal": {
+      "id": "sorted-by-goal",
+      "title": "Sorted by goal",
+      "level": 1,
+      "children": [
+        "sorted-by-goal--scene",
+        "goals-figure",
+        "goals-text"
+      ],
+      "stepOrder": [
+        "sorted-by-goal--step-0",
+        "sorted-by-goal--step-1"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    },
+    "points-not-the-path": {
+      "id": "points-not-the-path",
+      "title": "Points, not the path",
+      "level": 1,
+      "children": [
+        "points-not-the-path--scene",
+        "points-text",
+        "points-figure",
+        "points-bibtex",
+        "points-credit"
+      ],
+      "stepOrder": [
+        "points-not-the-path--step-0",
+        "points-not-the-path--step-1"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    }
+  },
+  "blocks": {
+    "one-incident-135-papers--scene": {
+      "id": "one-incident-135-papers--scene",
+      "type": "component",
+      "definitionId": "one-incident-135-papers--scene--definition",
+      "parameters": {
+        "scene": "incident",
+        "alt": "The paper's out-of-memory incident as three events, root cause, trigger and symptom, joined by the path RCA should recover; 135 surveyed papers above it, none returning the whole chain."
+      }
+    },
+    "incident-card": {
+      "id": "incident-card",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "p-1",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Aoyang Fang",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": ", Haowen Yang, Haoze Dong, Qisheng Lu, Junjielong Xu, Pinjia He. arXiv preprint 2510.19593, 2025."
+            }
+          ]
+        },
+        {
+          "id": "p-2",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "link",
+              "href": "https://arxiv.org/abs/2510.19593",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "arXiv"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " · "
+            },
+            {
+              "type": "link",
+              "href": "https://arxiv.org/pdf/2510.19593",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "PDF"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " · "
+            },
+            {
+              "type": "link",
+              "href": "https://doi.org/10.48550/arXiv.2510.19593",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "DOI"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "p-3",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Root cause analysis research explains points of an incident, not its path. Across "
+            },
+            {
+              "type": "text",
+              "text": "135 papers",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " from 2014 to 2025, sorted by the goal each one serves, none returns the complete incident propagation graph; most stop at the root cause."
+            }
+          ]
+        }
+      ]
+    },
+    "same-data-different-goals--scene": {
+      "id": "same-data-different-goals--scene",
+      "type": "component",
+      "definitionId": "same-data-different-goals--scene--definition",
+      "parameters": {
+        "scene": "bins",
+        "alt": "The 135 papers fall into three bins by input data (metrics, logs, traces); two papers from the same bin serve different events: the trigger, for an SRE restoring service, and the root cause, for a developer fixing it for good."
+      }
+    },
+    "bins-text": {
+      "id": "bins-text",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "p-4",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Earlier surveys sort RCA papers by the data they read. Input and objective are not one-to-one, so that sorting puts papers with different goals together and splits papers with the same goal. The difference shows in what each reader of an incident needs:"
+            }
+          ]
+        }
+      ]
+    },
+    "bins-columns": {
+      "id": "bins-columns",
+      "type": "container",
+      "only": [
+        "web"
+      ],
+      "layout": "columns",
+      "children": [
+        "bins-sre",
+        "bins-dev"
+      ],
+      "properties": {
+        "columnWidths": [
+          1,
+          1
+        ]
+      }
+    },
+    "bins-sre": {
+      "id": "bins-sre",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "h-5",
+          "type": "heading",
+          "level": 3,
+          "children": [
+            {
+              "type": "text",
+              "text": "An SRE restoring service"
+            }
+          ]
+        },
+        {
+          "id": "list-6",
+          "type": "list",
+          "ordered": false,
+          "children": [
+            {
+              "id": "li-7",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-8",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Minimizes time to recovery"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-9",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-10",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Needs the trigger, e.g. a traffic spike"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-11",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-12",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Mitigating it is a quick fix"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "bins-dev": {
+      "id": "bins-dev",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "h-13",
+          "type": "heading",
+          "level": 3,
+          "children": [
+            {
+              "type": "text",
+              "text": "A developer fixing it for good"
+            }
+          ]
+        },
+        {
+          "id": "list-14",
+          "type": "list",
+          "ordered": false,
+          "children": [
+            {
+              "id": "li-15",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-16",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Prevents the failure from coming back"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-17",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-18",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Needs the root cause, e.g. a buggy commit"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-19",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-20",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Resolving it is a permanent fix"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "sorted-by-goal--scene": {
+      "id": "sorted-by-goal--scene",
+      "type": "component",
+      "definitionId": "sorted-by-goal--scene--definition",
+      "parameters": {
+        "scene": "goals",
+        "alt": "The seven goals of the taxonomy form a ring round the incident and the papers move from the data bins to the goals; in the middle, the Effectiveness–Data–Cost triangle each line of work pushes along."
+      }
+    },
+    "goals-figure": {
+      "id": "goals-figure",
+      "type": "image",
+      "only": [
+        "web"
+      ],
+      "assetId": "overview-asset",
+      "alt": "Root cause analysis as observation, inference and result: monitoring units with code, configuration, resources and telemetry; RCA methods and metrics; an incident propagation graph of root causes, triggers and symptoms",
+      "caption": [
+        {
+          "type": "text",
+          "text": "Ideal RCA maps observations O to an incident propagation graph G (paper, Fig. 3). The root cause answers \"what\"; the paths answer \"how\" and \"why\"."
+        }
+      ],
+      "width": 100,
+      "alignment": "center"
+    },
+    "goals-text": {
+      "id": "goals-text",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "p-21",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "From the incident management lifecycle the survey derives seven goals, and files each paper under the one it mainly pursues:"
+            }
+          ]
+        },
+        {
+          "id": "list-22",
+          "type": "list",
+          "ordered": true,
+          "children": [
+            {
+              "id": "li-23",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-24",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Multi-dimensional data correlation"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-25",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-26",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Robustness"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-27",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-28",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Adaptive learning"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-29",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-30",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Real-time performance"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-31",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-32",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Interpretability"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-33",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-34",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Multi-granularity"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-35",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-36",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Actionability"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "p-37",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "The goals are rational responses to one trade-off: better diagnosis needs more and better data, which costs more to collect and compute. They also interact. Causal graphs built for interpretability give actionability its basis; real-time performance tends to cost interpretability; adaptivity can work against robustness. Early work centred on real-time performance and multi-granularity; with LLMs the frontier moves to interpretability and actionability."
+            }
+          ]
+        }
+      ]
+    },
+    "points-not-the-path--scene": {
+      "id": "points-not-the-path--scene",
+      "type": "component",
+      "definitionId": "points-not-the-path--scene--definition",
+      "parameters": {
+        "scene": "points",
+        "alt": "The papers settle on the incident's events, most on the root cause; its edges stay dark, no paper returns the path. Resource faults are 56.9% of the root causes studied (Fig. 8)."
+      }
+    },
+    "points-text": {
+      "id": "points-text",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "p-38",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "More than half of the root causes studied are resource faults, which metrics reveal plainly; code (8.5%) and configuration (6.2%) together stay under 15%. Several foundational benchmarks are stale: TrainTicket has not been updated in over two years, and Sock Shop is archived."
+            }
+          ]
+        },
+        {
+          "id": "p-39",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Three gaps stand between point-finding and graph-building RCA, and the survey's agenda follows them:"
+            }
+          ]
+        },
+        {
+          "id": "list-40",
+          "type": "list",
+          "ordered": true,
+          "children": [
+            {
+              "id": "li-41",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-42",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Benchmarks",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " whose incidents carry ground-truth propagation graphs."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-43",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-44",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Models",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " built for end-to-end causal graph generation."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-45",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-46",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Integration",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " with the software engineering lifecycle, from the graph back to the faulty commit and new regression tests."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "points-figure": {
+      "id": "points-figure",
+      "type": "image",
+      "only": [
+        "web"
+      ],
+      "assetId": "types-asset",
+      "alt": "Root-cause types studied across the 135 papers: resource 148 (56.9%), infrastructure dependency 32, service dependency 31, code 22, configuration 16, user request 11",
+      "caption": [
+        {
+          "type": "text",
+          "text": "Root causes the 135 papers study, counted across papers (paper, Fig. 8)."
+        }
+      ],
+      "width": 100,
+      "alignment": "center"
+    },
+    "points-bibtex": {
+      "id": "points-bibtex",
+      "type": "code",
+      "only": [
+        "web"
+      ],
+      "language": "bibtex",
+      "value": "@misc{fang2025goaldriven,\n  title         = {A Goal-Driven Survey on Root Cause Analysis},\n  author        = {Fang, Aoyang and Yang, Haowen and Dong, Haoze and Lu, Qisheng and Xu, Junjielong and He, Pinjia},\n  year          = {2025},\n  eprint        = {2510.19593},\n  archivePrefix = {arXiv},\n  primaryClass  = {cs.SE},\n  doi           = {10.48550/arXiv.2510.19593},\n  url           = {https://arxiv.org/abs/2510.19593}\n}"
+    },
+    "points-credit": {
+      "id": "points-credit",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "p-47",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Film music: “Deliberate Thought” by Kevin MacLeod ("
+            },
+            {
+              "type": "link",
+              "href": "https://incompetech.com",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "incompetech.com"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "), licensed under "
+            },
+            {
+              "type": "link",
+              "href": "http://creativecommons.org/licenses/by/4.0/",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "CC BY 4.0"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "."
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "steps": {
+    "one-incident-135-papers--step-0": {
+      "id": "one-incident-135-papers--step-0",
+      "sectionId": "one-incident-135-papers",
+      "visuals": [
+        {
+          "blockId": "incident-card",
+          "visible": true
+        },
+        {
+          "blockId": "one-incident-135-papers--scene",
+          "visible": true,
+          "state": "incident"
+        }
+      ],
+      "narrationIds": [
+        "one-incident-135-papers--narration-0"
+      ]
+    },
+    "one-incident-135-papers--step-1": {
+      "id": "one-incident-135-papers--step-1",
+      "sectionId": "one-incident-135-papers",
+      "visuals": [
+        {
+          "blockId": "incident-card",
+          "visible": true
+        },
+        {
+          "blockId": "one-incident-135-papers--scene",
+          "visible": true,
+          "state": "papers"
+        }
+      ],
+      "narrationIds": [
+        "one-incident-135-papers--narration-1"
+      ]
+    },
+    "same-data-different-goals--step-0": {
+      "id": "same-data-different-goals--step-0",
+      "sectionId": "same-data-different-goals",
+      "visuals": [
+        {
+          "blockId": "bins-text",
+          "visible": true
+        },
+        {
+          "blockId": "bins-columns",
+          "visible": true
+        },
+        {
+          "blockId": "bins-sre",
+          "visible": true
+        },
+        {
+          "blockId": "bins-dev",
+          "visible": true
+        },
+        {
+          "blockId": "same-data-different-goals--scene",
+          "visible": true,
+          "state": "bins"
+        }
+      ],
+      "narrationIds": [
+        "same-data-different-goals--narration-0"
+      ]
+    },
+    "same-data-different-goals--step-1": {
+      "id": "same-data-different-goals--step-1",
+      "sectionId": "same-data-different-goals",
+      "visuals": [
+        {
+          "blockId": "bins-text",
+          "visible": true
+        },
+        {
+          "blockId": "bins-columns",
+          "visible": true
+        },
+        {
+          "blockId": "bins-sre",
+          "visible": true
+        },
+        {
+          "blockId": "bins-dev",
+          "visible": true
+        },
+        {
+          "blockId": "same-data-different-goals--scene",
+          "visible": true,
+          "state": "goals"
+        }
+      ],
+      "narrationIds": [
+        "same-data-different-goals--narration-1"
+      ]
+    },
+    "sorted-by-goal--step-0": {
+      "id": "sorted-by-goal--step-0",
+      "sectionId": "sorted-by-goal",
+      "visuals": [
+        {
+          "blockId": "goals-figure",
+          "visible": true
+        },
+        {
+          "blockId": "goals-text",
+          "visible": true
+        },
+        {
+          "blockId": "sorted-by-goal--scene",
+          "visible": true,
+          "state": "ring"
+        }
+      ],
+      "narrationIds": [
+        "sorted-by-goal--narration-0"
+      ]
+    },
+    "sorted-by-goal--step-1": {
+      "id": "sorted-by-goal--step-1",
+      "sectionId": "sorted-by-goal",
+      "visuals": [
+        {
+          "blockId": "goals-figure",
+          "visible": true
+        },
+        {
+          "blockId": "goals-text",
+          "visible": true
+        },
+        {
+          "blockId": "sorted-by-goal--scene",
+          "visible": true,
+          "state": "triangle"
+        }
+      ],
+      "narrationIds": [
+        "sorted-by-goal--narration-1"
+      ]
+    },
+    "points-not-the-path--step-0": {
+      "id": "points-not-the-path--step-0",
+      "sectionId": "points-not-the-path",
+      "visuals": [
+        {
+          "blockId": "points-text",
+          "visible": true
+        },
+        {
+          "blockId": "points-figure",
+          "visible": true
+        },
+        {
+          "blockId": "points-bibtex",
+          "visible": true
+        },
+        {
+          "blockId": "points-credit",
+          "visible": true
+        },
+        {
+          "blockId": "points-not-the-path--scene",
+          "visible": true,
+          "state": "points"
+        }
+      ],
+      "narrationIds": [
+        "points-not-the-path--narration-0"
+      ]
+    },
+    "points-not-the-path--step-1": {
+      "id": "points-not-the-path--step-1",
+      "sectionId": "points-not-the-path",
+      "visuals": [
+        {
+          "blockId": "points-text",
+          "visible": true
+        },
+        {
+          "blockId": "points-figure",
+          "visible": true
+        },
+        {
+          "blockId": "points-bibtex",
+          "visible": true
+        },
+        {
+          "blockId": "points-credit",
+          "visible": true
+        },
+        {
+          "blockId": "points-not-the-path--scene",
+          "visible": true,
+          "state": "hold"
+        }
+      ],
+      "narrationIds": [
+        "points-not-the-path--narration-1"
+      ]
+    }
+  },
+  "narrations": {
+    "one-incident-135-papers--narration-0": {
+      "id": "one-incident-135-papers--narration-0",
+      "content": [
+        {
+          "type": "text",
+          "text": "Here is an incident. A code change leaks memory, a surge of traffic sets it off, and a service runs out of memory. Root cause analysis should recover that whole chain."
+        }
+      ]
+    },
+    "one-incident-135-papers--narration-1": {
+      "id": "one-incident-135-papers--narration-1",
+      "content": [
+        {
+          "type": "text",
+          "text": "We read 135 papers that try, and none returns it whole."
+        }
+      ]
+    },
+    "same-data-different-goals--narration-0": {
+      "id": "same-data-different-goals--narration-0",
+      "content": [
+        {
+          "type": "text",
+          "text": "Sorted by the data they consume, metrics, logs or traces, they look like one task."
+        }
+      ]
+    },
+    "same-data-different-goals--narration-1": {
+      "id": "same-data-different-goals--narration-1",
+      "content": [
+        {
+          "type": "text",
+          "text": "But an engineer restoring service needs the trigger, the surge, while a developer fixing it for good needs the root cause, the leaking commit."
+        }
+      ]
+    },
+    "sorted-by-goal--narration-0": {
+      "id": "sorted-by-goal--narration-0",
+      "content": [
+        {
+          "type": "text",
+          "text": "So we sorted the papers by goal: seven of them, from correlating data to acting on a diagnosis."
+        }
+      ]
+    },
+    "sorted-by-goal--narration-1": {
+      "id": "sorted-by-goal--narration-1",
+      "content": [
+        {
+          "type": "text",
+          "text": "Each pushes one edge of a trade-off between effectiveness, data and cost."
+        }
+      ]
+    },
+    "points-not-the-path--narration-0": {
+      "id": "points-not-the-path--narration-0",
+      "content": [
+        {
+          "type": "text",
+          "text": "On the incident, the papers gather on single points, mostly the root cause, and over half of the causes they study are resource faults."
+        }
+      ]
+    },
+    "points-not-the-path--narration-1": {
+      "id": "points-not-the-path--narration-1",
+      "content": [
+        {
+          "type": "text",
+          "text": "The path between the points is still missing. Building it is the next step."
+        }
+      ]
+    }
+  },
+  "assets": {
+    "overview-asset": {
+      "id": "overview-asset",
+      "kind": "image",
+      "location": "figures/rca-overview-observation-to-graph.png",
+      "mediaType": "image/png"
+    },
+    "types-asset": {
+      "id": "types-asset",
+      "kind": "image",
+      "location": "figures/root-cause-type-distribution.png",
+      "mediaType": "image/png"
+    },
+    "film-score": {
+      "id": "film-score",
+      "kind": "audio",
+      "location": "audio/score.ogg",
+      "title": "Film score (music: “Deliberate Thought”, Kevin MacLeod, incompetech.com, CC BY 4.0)",
+      "mediaType": "audio/ogg"
+    }
+  },
+  "definitions": {
+    "one-incident-135-papers--scene--definition": {
+      "id": "one-incident-135-papers--scene--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/incident.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "incident"
+        },
+        {
+          "id": "papers"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          10000,
+          5500
+        ],
+        "language": "typescript",
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "The paper's out-of-memory incident as three events, root cause, trigger and symptom, joined by the path RCA should recover; 135 surveyed papers above it, none returning the whole chain."
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "same-data-different-goals--scene--definition": {
+      "id": "same-data-different-goals--scene--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/bins.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "bins"
+        },
+        {
+          "id": "goals"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          6000,
+          8500
+        ],
+        "language": "typescript",
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "The 135 papers fall into three bins by input data (metrics, logs, traces); two papers from the same bin serve different events: the trigger, for an SRE restoring service, and the root cause, for a developer fixing it for good."
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "sorted-by-goal--scene--definition": {
+      "id": "sorted-by-goal--scene--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/goals.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "ring"
+        },
+        {
+          "id": "triangle"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          7500,
+          5500
+        ],
+        "language": "typescript",
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "The seven goals of the taxonomy form a ring round the incident and the papers move from the data bins to the goals; in the middle, the Effectiveness–Data–Cost triangle each line of work pushes along."
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "points-not-the-path--scene--definition": {
+      "id": "points-not-the-path--scene--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/points.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "points"
+        },
+        {
+          "id": "hold"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          9500,
+          6500
+        ],
+        "language": "typescript",
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "The papers settle on the incident's events, most on the root cause; its edges stay dark, no paper returns the path. Resource faults are 56.9% of the root causes studied (Fig. 8)."
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
+  "production": {
+    "defaults": {
+      "voiceSource": {
+        "type": "none"
+      },
+      "narrationStart": "with-animation",
+      "trailingPauseMs": 0
+    },
+    "stepOverrides": {
+      "one-incident-135-papers--step-0": {
+        "minimumHoldMs": 10000,
+        "trailingPauseMs": 0
+      },
+      "one-incident-135-papers--step-1": {
+        "minimumHoldMs": 5500,
+        "trailingPauseMs": 0
+      },
+      "same-data-different-goals--step-0": {
+        "minimumHoldMs": 6000,
+        "trailingPauseMs": 0
+      },
+      "same-data-different-goals--step-1": {
+        "minimumHoldMs": 8500,
+        "trailingPauseMs": 0
+      },
+      "sorted-by-goal--step-0": {
+        "minimumHoldMs": 7500,
+        "trailingPauseMs": 0
+      },
+      "sorted-by-goal--step-1": {
+        "minimumHoldMs": 5500,
+        "trailingPauseMs": 0
+      },
+      "points-not-the-path--step-0": {
+        "minimumHoldMs": 9500,
+        "trailingPauseMs": 0
+      },
+      "points-not-the-path--step-1": {
+        "minimumHoldMs": 6500,
+        "trailingPauseMs": 0
+      }
+    },
+    "mediaClips": [
+      {
+        "id": "score--one-incident-135-papers--step-0",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 0,
+          "endMs": 10000
+        },
+        "attachment": {
+          "stepId": "one-incident-135-papers--step-0",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--one-incident-135-papers--step-1",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 10000,
+          "endMs": 15500
+        },
+        "attachment": {
+          "stepId": "one-incident-135-papers--step-1",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--same-data-different-goals--step-0",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 15500,
+          "endMs": 21500
+        },
+        "attachment": {
+          "stepId": "same-data-different-goals--step-0",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--same-data-different-goals--step-1",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 21500,
+          "endMs": 30000
+        },
+        "attachment": {
+          "stepId": "same-data-different-goals--step-1",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--sorted-by-goal--step-0",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 30000,
+          "endMs": 37500
+        },
+        "attachment": {
+          "stepId": "sorted-by-goal--step-0",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--sorted-by-goal--step-1",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 37500,
+          "endMs": 43000
+        },
+        "attachment": {
+          "stepId": "sorted-by-goal--step-1",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--points-not-the-path--step-0",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 43000,
+          "endMs": 52500
+        },
+        "attachment": {
+          "stepId": "points-not-the-path--step-0",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--points-not-the-path--step-1",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 52500,
+          "endMs": 59000
+        },
+        "attachment": {
+          "stepId": "points-not-the-path--step-1",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      }
+    ]
+  }
+}

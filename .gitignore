@@ -18,3 +18,6 @@ node_modules/
 papers/*/.presmium/*
 !papers/*/.presmium/speech/
 !papers/*/.presmium/speech.lock.json
+# The full tracks a score was cut from.
+papers/*/audio/source/
+papers/*/audio/*.mp3

@@ -58,3 +58,18 @@ Narration as one story:
 - **Spoken numbers:** 135 (abstract; Sec. 4.2). "Seven" is the taxonomy's size (Solution). "Over half" stands for 56.9% (Fig. 8), which is shown on screen and not spoken.
 - **Where each claim comes from in highlights.md:** the OOM chain and the roles (Solution, Fig. 4), "none returns it whole" (Results bullet 2), sorting by data type (Challenge bullet 3), trigger vs root cause (Challenge bullet 1), the seven goals and the triangle (Solution, Insight), "mostly the root cause" (Findings bullet 1), resource faults (Results bullet 3), "the next step" (Findings bullet 1, "graph-building").
 - **Still to do:** the thumbnail strip, read-aloud timing and cold-viewer review happen at the animatic stage.
+
+## The music cut (current film)
+
+For now the film has no voice. Each step is held for a fixed time, and one track plays across the whole film: “Deliberate Thought” by Kevin MacLeod (incompetech.com, CC BY 4.0), cut to 59.0 s in `audio/score.ogg`, with one media clip per step. The narration above stays in `lecture.json` for a later voiced cut. Without a voice, each scene state shows one line at the top left that carries the story:
+
+| Starts | Section | State | Hold | Line on screen |
+|---|---|---|---|---|
+| 0.0 s | one-incident-135-papers | step-0 | 10.0 s | An incident: root cause → trigger → symptom |
+| 10.0 s | one-incident-135-papers | step-1 | 5.5 s | 135 RCA papers try to recover it |
+| 15.5 s | same-data-different-goals | step-0 | 6.0 s | Sorted by input data, they look alike |
+| 21.5 s | same-data-different-goals | step-1 | 8.5 s | Same data, different goals |
+| 30.0 s | sorted-by-goal | step-0 | 7.5 s | Sorted by goal instead: seven goals |
+| 37.5 s | sorted-by-goal | step-1 | 5.5 s | Each trades effectiveness, data and cost |
+| 43.0 s | points-not-the-path | step-0 | 9.5 s | Papers find points, mostly the root cause |
+| 52.5 s | points-not-the-path | step-1 | 6.5 s | (none: end card) |
