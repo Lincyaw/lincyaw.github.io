@@ -1,0 +1,1447 @@
+{
+  "schemaVersion": 1,
+  "id": "paper-dynacausal",
+  "metadata": {
+    "title": "DynaCausal: Dynamic Causality-Aware Root Cause Analysis for Distributed Microservices",
+    "lang": "en",
+    "description": "DynaCausal ranks root-cause microservices with a dynamic call graph, a Hybrid-Aware GAT and two causal losses, reaching average AC@1 0.63.",
+    "plugins": [
+      "@lincyaw/addon-motion",
+      "@lincyaw/addon-lecture",
+      "@lincyaw/addon-speech"
+    ],
+    "renderers": {
+      "web": {},
+      "slides": {},
+      "lecture": {}
+    },
+    "tags": [
+      "Diagnose",
+      "arXiv'25"
+    ]
+  },
+  "sectionOrder": [
+    "which-service-broke",
+    "the-loudest-are-victims",
+    "follow-the-fault-upstream",
+    "where-to-look-first"
+  ],
+  "sections": {
+    "which-service-broke": {
+      "id": "which-service-broke",
+      "title": "DynaCausal: Dynamic Causality-Aware Root Cause Analysis for Distributed Microservices",
+      "level": 1,
+      "children": [
+        "which-service-broke-text-4",
+        "which-service-broke--scene"
+      ],
+      "stepOrder": [
+        "which-service-broke--alarms",
+        "which-service-broke--question"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    },
+    "the-loudest-are-victims": {
+      "id": "the-loudest-are-victims",
+      "title": "The loudest are victims",
+      "level": 1,
+      "children": [
+        "the-loudest-are-victims-text-7",
+        "the-loudest-are-victims-columns-12",
+        "the-loudest-are-victims--scene"
+      ],
+      "stepOrder": [
+        "the-loudest-are-victims--reveal",
+        "the-loudest-are-victims--models"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    },
+    "follow-the-fault-upstream": {
+      "id": "follow-the-fault-upstream",
+      "title": "Follow the fault upstream",
+      "level": 1,
+      "children": [
+        "follow-the-fault-upstream-text-21",
+        "follow-the-fault-upstream--scene",
+        "follow-the-fault-upstream-image-23"
+      ],
+      "stepOrder": [
+        "follow-the-fault-upstream--windows",
+        "follow-the-fault-upstream--rank"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    },
+    "where-to-look-first": {
+      "id": "where-to-look-first",
+      "title": "Where to look first",
+      "level": 1,
+      "children": [
+        "where-to-look-first--scene",
+        "where-to-look-first-text-49",
+        "where-to-look-first-code-50",
+        "where-to-look-first-text-52"
+      ],
+      "stepOrder": [
+        "where-to-look-first--bars",
+        "where-to-look-first--average",
+        "where-to-look-first--end"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    }
+  },
+  "blocks": {
+    "which-service-broke-text-4": {
+      "id": "which-service-broke-text-4",
+      "type": "text",
+      "content": [
+        {
+          "id": "p-1",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Songhan Zhang, "
+            },
+            {
+              "type": "text",
+              "text": "Aoyang Fang",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": ", Yifan Yang, Ruiyi Cheng, Xiaoying Tang, Pinjia He. "
+            },
+            {
+              "type": "text",
+              "text": "arXiv preprint",
+              "marks": [
+                {
+                  "type": "italic"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " 2510.22613, 2025."
+            }
+          ]
+        },
+        {
+          "id": "p-2",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "link",
+              "href": "https://arxiv.org/abs/2510.22613",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "arXiv"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " · "
+            },
+            {
+              "type": "link",
+              "href": "https://arxiv.org/pdf/2510.22613",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "PDF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "p-3",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "When a fault cascades through a microservice system, the service that looks most abnormal is often a victim, not the source. DynaCausal follows the fault over a call graph rebuilt in every time window and trains the source to outrank every service it affected. On two public benchmarks it ranks the true root cause first with an average AC@1 of "
+            },
+            {
+              "type": "text",
+              "text": "0.63",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": ", 0.25 to 0.46 above the baselines."
+            }
+          ]
+        }
+      ],
+      "only": [
+        "web"
+      ]
+    },
+    "which-service-broke--scene": {
+      "id": "which-service-broke--scene",
+      "type": "component",
+      "definitionId": "which-service-broke--scene--definition",
+      "parameters": {
+        "scene": "which-service-broke",
+        "alt": "An online shop's services on their call graph; after a network delay, payment and ad glow the most abnormal."
+      }
+    },
+    "the-loudest-are-victims-text-7": {
+      "id": "the-loudest-are-victims-text-7",
+      "type": "text",
+      "content": [
+        {
+          "id": "p-5",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "The fault case behind the film comes from the RCAEval-RE2-OB benchmark: a network delay injected into "
+            },
+            {
+              "type": "text",
+              "text": "checkoutservice",
+              "marks": [
+                {
+                  "type": "code"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": ". Checkout only slows down, its latency rising from about 0.2 s to 4.8 s, while "
+            },
+            {
+              "type": "text",
+              "text": "paymentservice",
+              "marks": [
+                {
+                  "type": "code"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " and "
+            },
+            {
+              "type": "text",
+              "text": "adservice",
+              "marks": [
+                {
+                  "type": "code"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " shift their memory by about an order of magnitude. ART and Eadro score services by how abnormal they look, and both rank paymentservice (0.89 and 0.94) above checkout (0.85 and 0.92)."
+            }
+          ]
+        },
+        {
+          "id": "p-6",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Two more effects blur the picture. Normal fluctuations such as peak-hour traffic resemble fault signals, and what counts as normal drifts as the system evolves."
+            }
+          ]
+        }
+      ],
+      "only": [
+        "web"
+      ]
+    },
+    "the-loudest-are-victims-image-9": {
+      "id": "the-loudest-are-victims-image-9",
+      "type": "image",
+      "assetId": "the-loudest-are-victims-asset-8",
+      "alt": "Service metrics before and after the delay is injected into checkoutservice",
+      "caption": [
+        {
+          "type": "text",
+          "text": "Figure 2a: metrics before and after the fault. Payment and ad memory deviate more than the root cause."
+        }
+      ],
+      "width": 100,
+      "alignment": "center",
+      "only": [
+        "web"
+      ]
+    },
+    "the-loudest-are-victims-image-11": {
+      "id": "the-loudest-are-victims-image-11",
+      "type": "image",
+      "assetId": "the-loudest-are-victims-asset-10",
+      "alt": "Root cause scores of ART and Eadro for five services",
+      "caption": [
+        {
+          "type": "text",
+          "text": "Figure 2b: both models score paymentservice above the true root cause, checkoutservice."
+        }
+      ],
+      "width": 100,
+      "alignment": "center",
+      "only": [
+        "web"
+      ]
+    },
+    "the-loudest-are-victims-columns-12": {
+      "id": "the-loudest-are-victims-columns-12",
+      "type": "container",
+      "layout": "columns",
+      "children": [
+        "the-loudest-are-victims-image-9",
+        "the-loudest-are-victims-image-11"
+      ],
+      "properties": {
+        "columnWidths": [
+          1,
+          1
+        ]
+      },
+      "only": [
+        "web"
+      ]
+    },
+    "the-loudest-are-victims--scene": {
+      "id": "the-loudest-are-victims--scene",
+      "type": "component",
+      "definitionId": "the-loudest-are-victims--scene--definition",
+      "parameters": {
+        "scene": "the-loudest-are-victims",
+        "alt": "The question gives way to a ring on checkout, the root cause; ART and Eadro both score payment higher."
+      }
+    },
+    "follow-the-fault-upstream-text-21": {
+      "id": "follow-the-fault-upstream-text-21",
+      "type": "text",
+      "content": [
+        {
+          "id": "p-13",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "DynaCausal learns where a fault came from by reading the calls between services, window by window, rather than how loud each service is. It has three stages:"
+            }
+          ]
+        },
+        {
+          "id": "list-14",
+          "type": "list",
+          "ordered": true,
+          "children": [
+            {
+              "id": "li-15",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-16",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "A call graph per time window.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " Metrics, logs and traces become one normalized time series per service; each call gets an edge weight from its live request count and error rate."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-17",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-18",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Hybrid-Aware GAT.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " A Transformer encodes each service over time; graph attention passes messages scaled by the dynamic edge weights, and an MLP scores every service."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-19",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-20",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Causal Representation Discrimination.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " Temporal Causal Disentanglement contrasts each service with its own normal baseline; Spatial Causal Ordering ranks the root cause above the upstream and downstream services it affected."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "only": [
+        "web"
+      ]
+    },
+    "follow-the-fault-upstream-image-23": {
+      "id": "follow-the-fault-upstream-image-23",
+      "type": "image",
+      "assetId": "follow-the-fault-upstream-asset-22",
+      "alt": "The DynaCausal framework",
+      "caption": [
+        {
+          "type": "text",
+          "text": "The framework (Figure 3): dynamic alignment and representation learning on the left, the two causal losses and the ranking on the right."
+        }
+      ],
+      "width": 100,
+      "alignment": "center",
+      "only": [
+        "web"
+      ]
+    },
+    "follow-the-fault-upstream--scene": {
+      "id": "follow-the-fault-upstream--scene",
+      "type": "component",
+      "definitionId": "follow-the-fault-upstream--scene--definition",
+      "parameters": {
+        "scene": "follow-the-fault-upstream",
+        "alt": "The graph is rebuilt per time window with calls weighted by traffic and errors; pulses trace the fault back to checkout, which rises to the top of the ranking."
+      }
+    },
+    "where-to-look-first-text-49": {
+      "id": "where-to-look-first-text-49",
+      "type": "text",
+      "content": [
+        {
+          "id": "p-24",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "How often the top-ranked service is the true root cause (AC@1, Table 1), against the strongest baseline, Eadro. Online Boutique is the RCAEval-RE2-OB benchmark with 90 faults; Train-Ticket has 1,430."
+            }
+          ]
+        },
+        {
+          "id": "table-25",
+          "type": "table",
+          "headerRows": 1,
+          "children": [
+            {
+              "id": "tr-26",
+              "type": "tableRow",
+              "children": [
+                {
+                  "id": "td-27",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Benchmark"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-28",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "DynaCausal"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-29",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Eadro"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-30",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Gain"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "tr-31",
+              "type": "tableRow",
+              "children": [
+                {
+                  "id": "td-32",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Online Boutique, 12 services"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-33",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "0.769",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "td-34",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "0.459"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-35",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "+0.310"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "tr-36",
+              "type": "tableRow",
+              "children": [
+                {
+                  "id": "td-37",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Train-Ticket, 50 services"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-38",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "0.481",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "td-39",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "0.301"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-40",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "+0.180"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "p-41",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Mean reciprocal rank rises to 0.873 and 0.626 (from 0.570 for MicroRank and 0.467 for Eadro). What drives the gain:"
+            }
+          ]
+        },
+        {
+          "id": "list-42",
+          "type": "list",
+          "ordered": false,
+          "children": [
+            {
+              "id": "li-43",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-44",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "The dynamic graph matters most: replacing it with a static one costs the most, AC@1 0.481 to 0.395 on Train-Ticket (Table 2)."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-45",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-46",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Every component helps, and each matters more on the 50-service Train-Ticket system than on the 12-service shop."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-47",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-48",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Two Transformer layers and a ranking weight of 0.2 work best; deeper encoders overfit (Figure 4)."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "only": [
+        "web"
+      ]
+    },
+    "where-to-look-first-code-50": {
+      "id": "where-to-look-first-code-50",
+      "type": "code",
+      "language": "bibtex",
+      "value": "@article{zhang2025dynacausal,\n  title   = {DynaCausal: Dynamic Causality-Aware Root Cause Analysis for Distributed Microservices},\n  author  = {Zhang, Songhan and Fang, Aoyang and Yang, Yifan and Cheng, Ruiyi and Tang, Xiaoying and He, Pinjia},\n  journal = {arXiv preprint arXiv:2510.22613},\n  year    = {2025},\n  url     = {https://arxiv.org/abs/2510.22613}\n}",
+      "only": [
+        "web"
+      ]
+    },
+    "where-to-look-first-text-52": {
+      "id": "where-to-look-first-text-52",
+      "type": "text",
+      "content": [
+        {
+          "id": "p-51",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Music: \"Hidden Agenda\" by Kevin MacLeod (incompetech.com). Licensed under Creative Commons: By Attribution 4.0 License, http://creativecommons.org/licenses/by/4.0/",
+              "marks": [
+                {
+                  "type": "italic"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "only": [
+        "web"
+      ]
+    },
+    "where-to-look-first--scene": {
+      "id": "where-to-look-first--scene",
+      "type": "component",
+      "definitionId": "where-to-look-first--scene--definition",
+      "parameters": {
+        "scene": "where-to-look-first",
+        "alt": "On Train-Ticket, DynaCausal ranks the true root cause first in 0.481 of cases against 0.301 for Eadro; the average AC@1 over both benchmarks is 0.63."
+      }
+    }
+  },
+  "steps": {
+    "which-service-broke--alarms": {
+      "id": "which-service-broke--alarms",
+      "sectionId": "which-service-broke",
+      "visuals": [
+        {
+          "blockId": "which-service-broke-text-4",
+          "visible": true
+        },
+        {
+          "blockId": "which-service-broke--scene",
+          "visible": true,
+          "state": "alarms"
+        }
+      ],
+      "narrationIds": [
+        "which-service-broke--alarms--narration"
+      ]
+    },
+    "which-service-broke--question": {
+      "id": "which-service-broke--question",
+      "sectionId": "which-service-broke",
+      "visuals": [
+        {
+          "blockId": "which-service-broke-text-4",
+          "visible": true
+        },
+        {
+          "blockId": "which-service-broke--scene",
+          "visible": true,
+          "state": "question"
+        }
+      ],
+      "narrationIds": [
+        "which-service-broke--question--narration"
+      ]
+    },
+    "the-loudest-are-victims--reveal": {
+      "id": "the-loudest-are-victims--reveal",
+      "sectionId": "the-loudest-are-victims",
+      "visuals": [
+        {
+          "blockId": "the-loudest-are-victims-text-7",
+          "visible": true
+        },
+        {
+          "blockId": "the-loudest-are-victims-columns-12",
+          "visible": true
+        },
+        {
+          "blockId": "the-loudest-are-victims-image-9",
+          "visible": true
+        },
+        {
+          "blockId": "the-loudest-are-victims-image-11",
+          "visible": true
+        },
+        {
+          "blockId": "the-loudest-are-victims--scene",
+          "visible": true,
+          "state": "reveal"
+        }
+      ],
+      "narrationIds": [
+        "the-loudest-are-victims--reveal--narration"
+      ]
+    },
+    "the-loudest-are-victims--models": {
+      "id": "the-loudest-are-victims--models",
+      "sectionId": "the-loudest-are-victims",
+      "visuals": [
+        {
+          "blockId": "the-loudest-are-victims-text-7",
+          "visible": true
+        },
+        {
+          "blockId": "the-loudest-are-victims-columns-12",
+          "visible": true
+        },
+        {
+          "blockId": "the-loudest-are-victims-image-9",
+          "visible": true
+        },
+        {
+          "blockId": "the-loudest-are-victims-image-11",
+          "visible": true
+        },
+        {
+          "blockId": "the-loudest-are-victims--scene",
+          "visible": true,
+          "state": "models"
+        }
+      ],
+      "narrationIds": [
+        "the-loudest-are-victims--models--narration"
+      ]
+    },
+    "follow-the-fault-upstream--windows": {
+      "id": "follow-the-fault-upstream--windows",
+      "sectionId": "follow-the-fault-upstream",
+      "visuals": [
+        {
+          "blockId": "follow-the-fault-upstream-text-21",
+          "visible": true
+        },
+        {
+          "blockId": "follow-the-fault-upstream--scene",
+          "visible": true,
+          "state": "windows"
+        },
+        {
+          "blockId": "follow-the-fault-upstream-image-23",
+          "visible": true
+        }
+      ],
+      "narrationIds": [
+        "follow-the-fault-upstream--windows--narration"
+      ]
+    },
+    "follow-the-fault-upstream--rank": {
+      "id": "follow-the-fault-upstream--rank",
+      "sectionId": "follow-the-fault-upstream",
+      "visuals": [
+        {
+          "blockId": "follow-the-fault-upstream-text-21",
+          "visible": true
+        },
+        {
+          "blockId": "follow-the-fault-upstream--scene",
+          "visible": true,
+          "state": "rank"
+        },
+        {
+          "blockId": "follow-the-fault-upstream-image-23",
+          "visible": true
+        }
+      ],
+      "narrationIds": [
+        "follow-the-fault-upstream--rank--narration"
+      ]
+    },
+    "where-to-look-first--bars": {
+      "id": "where-to-look-first--bars",
+      "sectionId": "where-to-look-first",
+      "visuals": [
+        {
+          "blockId": "where-to-look-first--scene",
+          "visible": true,
+          "state": "bars"
+        },
+        {
+          "blockId": "where-to-look-first-text-49",
+          "visible": true
+        },
+        {
+          "blockId": "where-to-look-first-code-50",
+          "visible": true
+        },
+        {
+          "blockId": "where-to-look-first-text-52",
+          "visible": true
+        }
+      ],
+      "narrationIds": [
+        "where-to-look-first--bars--narration"
+      ]
+    },
+    "where-to-look-first--average": {
+      "id": "where-to-look-first--average",
+      "sectionId": "where-to-look-first",
+      "visuals": [
+        {
+          "blockId": "where-to-look-first--scene",
+          "visible": true,
+          "state": "average"
+        },
+        {
+          "blockId": "where-to-look-first-text-49",
+          "visible": true
+        },
+        {
+          "blockId": "where-to-look-first-code-50",
+          "visible": true
+        },
+        {
+          "blockId": "where-to-look-first-text-52",
+          "visible": true
+        }
+      ],
+      "narrationIds": [
+        "where-to-look-first--average--narration"
+      ]
+    },
+    "where-to-look-first--end": {
+      "id": "where-to-look-first--end",
+      "sectionId": "where-to-look-first",
+      "visuals": [
+        {
+          "blockId": "where-to-look-first--scene",
+          "visible": true,
+          "state": "end"
+        },
+        {
+          "blockId": "where-to-look-first-text-49",
+          "visible": true
+        },
+        {
+          "blockId": "where-to-look-first-code-50",
+          "visible": true
+        },
+        {
+          "blockId": "where-to-look-first-text-52",
+          "visible": true
+        }
+      ],
+      "narrationIds": []
+    }
+  },
+  "narrations": {
+    "which-service-broke--alarms--narration": {
+      "id": "which-service-broke--alarms--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "Inject a network delay into an online shop, and alarms fire across its services. Payment and ads swing hardest."
+        }
+      ]
+    },
+    "which-service-broke--question--narration": {
+      "id": "which-service-broke--question--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "So which one broke?"
+        }
+      ]
+    },
+    "the-loudest-are-victims--reveal--narration": {
+      "id": "the-loudest-are-victims--reveal--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "Neither. The delay hit checkout, which only slowed down; the others were reacting to it."
+        }
+      ]
+    },
+    "the-loudest-are-victims--models--narration": {
+      "id": "the-loudest-are-victims--models--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "Leading models "
+        },
+        {
+          "type": "pronunciation",
+          "display": "ART",
+          "spoken": "A R T"
+        },
+        {
+          "type": "text",
+          "text": " and Eadro make the same guess: they rank services by how abnormal they look. In a cascade, the loudest service is often a victim."
+        }
+      ]
+    },
+    "follow-the-fault-upstream--windows--narration": {
+      "id": "follow-the-fault-upstream--windows--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "DynaCausal ranks by cause instead. It redraws the call graph every time window, weighting each call by live request count and error rate, so a graph network can trace the fault upstream."
+        }
+      ]
+    },
+    "follow-the-fault-upstream--rank--narration": {
+      "id": "follow-the-fault-upstream--rank--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "Training pushes the source above every service it affected."
+        }
+      ]
+    },
+    "where-to-look-first--bars--narration": {
+      "id": "where-to-look-first--bars--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "On Train-Ticket, the true root cause comes first in 48 percent of cases, up from 30 for Eadro, whose graph never changes."
+        }
+      ]
+    },
+    "where-to-look-first--average--narration": {
+      "id": "where-to-look-first--average--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "Across both benchmarks, the average is 0.63: the first service you check is more often where the cascade started."
+        }
+      ]
+    }
+  },
+  "assets": {
+    "the-loudest-are-victims-asset-8": {
+      "id": "the-loudest-are-victims-asset-8",
+      "kind": "image",
+      "location": "figures/motivation-metrics-before-after-fault.png",
+      "mediaType": "image/png"
+    },
+    "the-loudest-are-victims-asset-10": {
+      "id": "the-loudest-are-victims-asset-10",
+      "kind": "image",
+      "location": "figures/motivation-baseline-scores-misrank.png",
+      "mediaType": "image/png"
+    },
+    "follow-the-fault-upstream-asset-22": {
+      "id": "follow-the-fault-upstream-asset-22",
+      "kind": "image",
+      "location": "figures/framework-overview.png",
+      "mediaType": "image/png"
+    },
+    "film-score": {
+      "id": "film-score",
+      "kind": "audio",
+      "location": "audio/score.ogg",
+      "title": "Film score (music: “Hidden Agenda”, Kevin MacLeod, CC BY 4.0)",
+      "fingerprint": "sha256:b602ffad8b330e8df25df2862c36614e7ddbe9c32cf0215b74d5c5eace777ab4",
+      "mediaType": "audio/ogg"
+    }
+  },
+  "definitions": {
+    "which-service-broke--scene--definition": {
+      "id": "which-service-broke--scene--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/which-service-broke.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "alarms"
+        },
+        {
+          "id": "question"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          9092,
+          3637
+        ],
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Six services of an online shop on their call graph. After a network delay is injected, red halos swell on the services; payment and adservice swell the most. Which one broke?"
+                }
+              ]
+            }
+          ]
+        },
+        "language": "typescript"
+      }
+    },
+    "the-loudest-are-victims--scene--definition": {
+      "id": "the-loudest-are-victims--scene--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/the-loudest-are-victims.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "reveal"
+        },
+        {
+          "id": "models"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          5456,
+          9092
+        ],
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Checkout, the root cause, only slows down (latency about 0.2 s to 4.8 s). ART and Eadro score payment (0.89, 0.94) above checkout (0.85, 0.92): the loudest service is not the cause."
+                }
+              ]
+            }
+          ]
+        },
+        "language": "typescript"
+      }
+    },
+    "follow-the-fault-upstream--scene--definition": {
+      "id": "follow-the-fault-upstream--scene--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/follow-the-fault-upstream.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "windows"
+        },
+        {
+          "id": "rank"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          10911,
+          3637
+        ],
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Each time window gets a call graph whose lines carry live request counts and error rates. Pulses run from the reacting services back to checkout, and training ranks checkout above every service it affected."
+                }
+              ]
+            }
+          ]
+        },
+        "language": "typescript"
+      }
+    },
+    "where-to-look-first--scene--definition": {
+      "id": "where-to-look-first--scene--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/where-to-look-first.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "bars"
+        },
+        {
+          "id": "average"
+        },
+        {
+          "id": "end"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          7274,
+          5455,
+          3637
+        ],
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Train-Ticket AC@1 (Table 1): MicroRank 0.013, Nezha 0.092, ART 0.176, Baro 0.263, Eadro 0.301, DynaCausal 0.481. Average AC@1 over both benchmarks: 0.63."
+                }
+              ]
+            }
+          ]
+        },
+        "language": "typescript"
+      }
+    }
+  },
+  "production": {
+    "defaults": {
+      "voiceSource": {
+        "type": "none"
+      },
+      "trailingPauseMs": 0
+    },
+    "stepOverrides": {
+      "which-service-broke--alarms": {
+        "minimumHoldMs": 9092,
+        "trailingPauseMs": 0
+      },
+      "which-service-broke--question": {
+        "minimumHoldMs": 3637,
+        "trailingPauseMs": 0
+      },
+      "the-loudest-are-victims--reveal": {
+        "minimumHoldMs": 5456,
+        "trailingPauseMs": 0
+      },
+      "the-loudest-are-victims--models": {
+        "minimumHoldMs": 9092,
+        "trailingPauseMs": 0
+      },
+      "follow-the-fault-upstream--windows": {
+        "minimumHoldMs": 10911,
+        "trailingPauseMs": 0
+      },
+      "follow-the-fault-upstream--rank": {
+        "minimumHoldMs": 3637,
+        "trailingPauseMs": 0
+      },
+      "where-to-look-first--bars": {
+        "minimumHoldMs": 7274,
+        "trailingPauseMs": 0
+      },
+      "where-to-look-first--average": {
+        "minimumHoldMs": 5455,
+        "trailingPauseMs": 0
+      },
+      "where-to-look-first--end": {
+        "minimumHoldMs": 3637,
+        "trailingPauseMs": 0
+      }
+    },
+    "mediaClips": [
+      {
+        "id": "score--which-service-broke--alarms",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 0,
+          "endMs": 9092
+        },
+        "attachment": {
+          "stepId": "which-service-broke--alarms",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--which-service-broke--question",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 9092,
+          "endMs": 12729
+        },
+        "attachment": {
+          "stepId": "which-service-broke--question",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--the-loudest-are-victims--reveal",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 12729,
+          "endMs": 18185
+        },
+        "attachment": {
+          "stepId": "the-loudest-are-victims--reveal",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--the-loudest-are-victims--models",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 18185,
+          "endMs": 27277
+        },
+        "attachment": {
+          "stepId": "the-loudest-are-victims--models",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--follow-the-fault-upstream--windows",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 27277,
+          "endMs": 38188
+        },
+        "attachment": {
+          "stepId": "follow-the-fault-upstream--windows",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--follow-the-fault-upstream--rank",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 38188,
+          "endMs": 41825
+        },
+        "attachment": {
+          "stepId": "follow-the-fault-upstream--rank",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--where-to-look-first--bars",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 41825,
+          "endMs": 49099
+        },
+        "attachment": {
+          "stepId": "where-to-look-first--bars",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--where-to-look-first--average",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 49099,
+          "endMs": 54554
+        },
+        "attachment": {
+          "stepId": "where-to-look-first--average",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--where-to-look-first--end",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 54554,
+          "endMs": 58191
+        },
+        "attachment": {
+          "stepId": "where-to-look-first--end",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      }
+    ]
+  }
+}

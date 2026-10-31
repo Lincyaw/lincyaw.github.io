@@ -1,0 +1,1387 @@
+{
+  "schemaVersion": 1,
+  "id": "paper-triangle",
+  "metadata": {
+    "title": "Triangle: Empowering Incident Triage with Multi-Agent",
+    "lang": "en",
+    "description": "Triangle triages cloud incidents with Analyzer, Decider and per-team Team Manager agents that enrich and vote, reaching 91.7% hop-5 accuracy.",
+    "plugins": [
+      "@lincyaw/addon-motion",
+      "@lincyaw/addon-lecture",
+      "@lincyaw/addon-speech"
+    ],
+    "renderers": {
+      "web": {},
+      "slides": {},
+      "lecture": {}
+    },
+    "tags": [
+      "Diagnose",
+      "ASE'25"
+    ]
+  },
+  "sectionOrder": [
+    "a-ticket-nobody-owns",
+    "the-answer-isn-t-in-the-ticket",
+    "agents-go-and-look",
+    "fewer-hops-sooner"
+  ],
+  "sections": {
+    "a-ticket-nobody-owns": {
+      "id": "a-ticket-nobody-owns",
+      "title": "Triangle: Empowering Incident Triage with Multi-Agent",
+      "level": 1,
+      "children": [
+        "a-ticket-nobody-owns-text-4",
+        "a-ticket-nobody-owns--scene"
+      ],
+      "stepOrder": [
+        "a-ticket-nobody-owns--hops",
+        "a-ticket-nobody-owns--curve"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    },
+    "the-answer-isn-t-in-the-ticket": {
+      "id": "the-answer-isn-t-in-the-ticket",
+      "title": "The answer isn't in the ticket",
+      "level": 1,
+      "children": [
+        "the-answer-isn-t-in-the-ticket-text-7",
+        "the-answer-isn-t-in-the-ticket-columns-12",
+        "the-answer-isn-t-in-the-ticket--scene"
+      ],
+      "stepOrder": [
+        "the-answer-isn-t-in-the-ticket--thin"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    },
+    "agents-go-and-look": {
+      "id": "agents-go-and-look",
+      "title": "Agents go and look",
+      "level": 1,
+      "children": [
+        "agents-go-and-look-text-22",
+        "agents-go-and-look-image-24",
+        "agents-go-and-look--scene"
+      ],
+      "stepOrder": [
+        "agents-go-and-look--analyze",
+        "agents-go-and-look--vote"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    },
+    "fewer-hops-sooner": {
+      "id": "fewer-hops-sooner",
+      "title": "Fewer hops, sooner",
+      "level": 1,
+      "children": [
+        "fewer-hops-sooner--scene",
+        "fewer-hops-sooner-text-52",
+        "fewer-hops-sooner-code-53",
+        "fewer-hops-sooner-text-55"
+      ],
+      "stepOrder": [
+        "fewer-hops-sooner--accuracy",
+        "fewer-hops-sooner--tte",
+        "fewer-hops-sooner--end"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    }
+  },
+  "blocks": {
+    "a-ticket-nobody-owns-text-4": {
+      "id": "a-ticket-nobody-owns-text-4",
+      "type": "text",
+      "content": [
+        {
+          "id": "p-1",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Zhaoyang Yu*, "
+            },
+            {
+              "type": "text",
+              "text": "Aoyang Fang*",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": ", Minghua Ma, Jaskaran Singh Walia, Chaoyun Zhang, Shu Chi, Ze Li, Murali Chintalapati, Xuchao Zhang, Rujia Wang, Chetan Bansal, Saravan Rajmohan, Qingwei Lin, Shenglin Zhang, Dan Pei, Pinjia He (* equal contribution). "
+            },
+            {
+              "type": "text",
+              "text": "ASE 2025",
+              "marks": [
+                {
+                  "type": "italic"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": ", 674–686. Directly accepted; deployed in production at a leading global technology company."
+            }
+          ]
+        },
+        {
+          "id": "p-2",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "link",
+              "href": "https://profile.aoyangfang.top/assets/publications/ase25/ASE_triangle.pdf",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "PDF"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " · "
+            },
+            {
+              "type": "link",
+              "href": "https://doi.org/10.1109/ASE63991.2025.00062",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "DOI"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " · "
+            },
+            {
+              "type": "link",
+              "href": "https://aka.ms/triangle-open-source",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "Code"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "p-3",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "An incident ticket rarely says which team owns the problem; the evidence sits in each team’s own logs. Triangle gives every team an LLM agent that reads those logs, adds what it finds to the ticket and votes on the owner. In production it cut Time to Engage by up to "
+            },
+            {
+              "type": "text",
+              "text": "91%",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": ". On three months of production incidents it finds the right team within five hops 91.7% of the time, against 67.6% for DeepCT."
+            }
+          ]
+        }
+      ],
+      "only": [
+        "web"
+      ]
+    },
+    "a-ticket-nobody-owns--scene": {
+      "id": "a-ticket-nobody-owns--scene",
+      "type": "component",
+      "definitionId": "a-ticket-nobody-owns--scene--definition",
+      "parameters": {
+        "scene": "a-ticket-nobody-owns",
+        "alt": "A sign-in ticket hops from Team A to B to C, each hop adding to the wait; then Figure 3 shows triage time climbing with every hop."
+      }
+    },
+    "the-answer-isn-t-in-the-ticket-text-7": {
+      "id": "the-answer-isn-t-in-the-ticket-text-7",
+      "type": "text",
+      "content": [
+        {
+          "id": "p-5",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Incidents arrive as sparse alerts or vague complaints, and similar problems are described in different words. The knowledge that decides ownership belongs to many teams and keeps changing, so a misrouted incident hops from team to team while the system stays degraded. Across more than 3,000 teams over 12 months, median triage time and human discussion turns grow exponentially with the number of transfer hops."
+            }
+          ]
+        },
+        {
+          "id": "p-6",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "The best prior method, DeepCT, learns from the discussions engineers write while they investigate, so it routes well only after people have done the work."
+            }
+          ]
+        }
+      ],
+      "only": [
+        "web"
+      ]
+    },
+    "the-answer-isn-t-in-the-ticket-image-9": {
+      "id": "the-answer-isn-t-in-the-ticket-image-9",
+      "type": "image",
+      "assetId": "the-answer-isn-t-in-the-ticket-asset-8",
+      "alt": "Manual triage passes a Mac sign-in incident from Team A to B to C; Triangle triages it automatically",
+      "caption": [
+        {
+          "type": "text",
+          "text": "Figure 1: by hand, the incident passes three teams before Team C resolves it."
+        }
+      ],
+      "width": 100,
+      "alignment": "center",
+      "only": [
+        "web"
+      ]
+    },
+    "the-answer-isn-t-in-the-ticket-image-11": {
+      "id": "the-answer-isn-t-in-the-ticket-image-11",
+      "type": "image",
+      "assetId": "the-answer-isn-t-in-the-ticket-asset-10",
+      "alt": "Median triage time and human discussions per incident by number of transfer hops",
+      "caption": [
+        {
+          "type": "text",
+          "text": "Figure 3: median triage time (green) and human discussion turns (red) by transfer hops, over 3,000+ teams and 12 months."
+        }
+      ],
+      "width": 100,
+      "alignment": "center",
+      "only": [
+        "web"
+      ]
+    },
+    "the-answer-isn-t-in-the-ticket-columns-12": {
+      "id": "the-answer-isn-t-in-the-ticket-columns-12",
+      "type": "container",
+      "layout": "columns",
+      "children": [
+        "the-answer-isn-t-in-the-ticket-image-9",
+        "the-answer-isn-t-in-the-ticket-image-11"
+      ],
+      "properties": {
+        "columnWidths": [
+          1,
+          1
+        ]
+      },
+      "only": [
+        "web"
+      ]
+    },
+    "the-answer-isn-t-in-the-ticket--scene": {
+      "id": "the-answer-isn-t-in-the-ticket--scene",
+      "type": "component",
+      "definitionId": "the-answer-isn-t-in-the-ticket--scene--definition",
+      "parameters": {
+        "scene": "the-answer-isn-t-in-the-ticket",
+        "alt": "The ticket fills the frame with one line of text and empty lines; below it, the teams’ log boxes stay closed."
+      }
+    },
+    "agents-go-and-look-text-22": {
+      "id": "agents-go-and-look-text-22",
+      "type": "text",
+      "content": [
+        {
+          "id": "p-13",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Triangle works the way a group of on-call engineers does, with one agent per role and one per team:"
+            }
+          ]
+        },
+        {
+          "id": "list-14",
+          "type": "list",
+          "ordered": true,
+          "children": [
+            {
+              "id": "li-15",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-16",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Analyzer: semantic distillation.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " It aligns the incident’s wording with the teams’ functional documents and extracts key phrases for the failure’s location, its symptoms and the capabilities needed to fix it."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-17",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-18",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Decider: candidate teams.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " It combines the teams that handled the most similar past incidents with the teams whose compressed documents match best, and ranks them into a shortlist."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-19",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-20",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Team Manager agents: enrichment and vote.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " Each shortlisted team’s agent queries its own monitoring data, adds an enriched discussion to the incident and votes. A majority assigns the incident; without one, the Decider drops those teams and shortlists new ones, for at most five rounds."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "p-21",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "When a team’s responsibilities change, only its functional document needs updating: its agent reads the new version."
+            }
+          ]
+        }
+      ],
+      "only": [
+        "web"
+      ]
+    },
+    "agents-go-and-look-image-24": {
+      "id": "agents-go-and-look-image-24",
+      "type": "image",
+      "assetId": "agents-go-and-look-asset-23",
+      "alt": "The Triangle framework: Analyzer, Decider and Team Manager agents with external environments",
+      "caption": [
+        {
+          "type": "text",
+          "text": "The framework (Figure 4): incident ingestion and semantic distillation, candidate generation, and the collaborative negotiation loop."
+        }
+      ],
+      "width": 100,
+      "alignment": "center",
+      "only": [
+        "web"
+      ]
+    },
+    "agents-go-and-look--scene": {
+      "id": "agents-go-and-look--scene",
+      "type": "component",
+      "definitionId": "agents-go-and-look--scene--definition",
+      "parameters": {
+        "scene": "agents-go-and-look",
+        "alt": "An analyzer marks the ticket’s key phrases, a decider pins a shortlist, and each team’s agent opens its logs, adds findings and votes; the second round reaches a majority."
+      }
+    },
+    "fewer-hops-sooner-text-52": {
+      "id": "fewer-hops-sooner-text-52",
+      "type": "text",
+      "content": [
+        {
+          "id": "table-25",
+          "type": "table",
+          "headerRows": 1,
+          "children": [
+            {
+              "id": "tr-26",
+              "type": "tableRow",
+              "children": [
+                {
+                  "id": "td-27",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Measure"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-28",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Triangle"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-29",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Best other"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "tr-30",
+              "type": "tableRow",
+              "children": [
+                {
+                  "id": "td-31",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Right team, first hop"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-32",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "54.7%",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "td-33",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "DeepCT 43.4%"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "tr-34",
+              "type": "tableRow",
+              "children": [
+                {
+                  "id": "td-35",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Right team within five hops"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-36",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "91.7%",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "td-37",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "DeepCT 67.6%"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "tr-38",
+              "type": "tableRow",
+              "children": [
+                {
+                  "id": "td-39",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Bug triage, MSR 2013"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-40",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "63.2%",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "td-41",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "LGBM 54.8%"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "p-42",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Hop accuracy is measured on three months of production incidents (Table II); DeepCT is given the discussions engineers wrote, while Triangle writes its own. The bug-triage row uses 200 cases of the MSR 2013 dataset (Table IV). In production, across six services, triage accuracy is 64–97% and Time to Engage is 18–91% shorter than in the three months before deployment (Table I). Triangle runs on about 600 million logs and more than 20 TB of data a day, across over 2,000 fault types. What drives the accuracy:"
+            }
+          ]
+        },
+        {
+          "id": "list-43",
+          "type": "list",
+          "ordered": false,
+          "children": [
+            {
+              "id": "li-44",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-45",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Team Information Enrichment matters most: without it, accuracy within five hops falls from 91.7% to 65.8% (Table III)."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-46",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-47",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Negotiation matters at the first hop: when the Decider assigns from its ranking alone, accuracy falls from 54.7% to 42.8%."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-48",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-49",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "The gap to DeepCT widens with every hop: 11.3 points at the first, 24.1 at the fifth."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-50",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-51",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Accuracy is lowest where tickets are generated from templates with little context: 64% for service D."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "only": [
+        "web"
+      ]
+    },
+    "fewer-hops-sooner-code-53": {
+      "id": "fewer-hops-sooner-code-53",
+      "type": "code",
+      "language": "bibtex",
+      "value": "@inproceedings{yu2025triangle,\n  title     = {Triangle: Empowering Incident Triage with Multi-Agent},\n  author    = {Yu, Zhaoyang and Fang, Aoyang and Ma, Minghua and Walia, Jaskaran Singh and Zhang, Chaoyun and Chi, Shu and Li, Ze and Chintalapati, Murali and Zhang, Xuchao and Wang, Rujia and Bansal, Chetan and Rajmohan, Saravan and Lin, Qingwei and Zhang, Shenglin and Pei, Dan and He, Pinjia},\n  booktitle = {Proceedings of the 40th IEEE/ACM International Conference on Automated Software Engineering (ASE)},\n  pages     = {674--686},\n  year      = {2025},\n  doi       = {10.1109/ASE63991.2025.00062}\n}",
+      "only": [
+        "web"
+      ]
+    },
+    "fewer-hops-sooner-text-55": {
+      "id": "fewer-hops-sooner-text-55",
+      "type": "text",
+      "content": [
+        {
+          "id": "p-54",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Music: \"Inspired\" by Kevin MacLeod (incompetech.com). Licensed under Creative Commons: By Attribution 4.0 License, http://creativecommons.org/licenses/by/4.0/",
+              "marks": [
+                {
+                  "type": "italic"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "only": [
+        "web"
+      ]
+    },
+    "fewer-hops-sooner--scene": {
+      "id": "fewer-hops-sooner--scene",
+      "type": "component",
+      "definitionId": "fewer-hops-sooner--scene--definition",
+      "parameters": {
+        "scene": "fewer-hops-sooner",
+        "alt": "Hop accuracy at hops 1 to 5: Triangle reaches 91.7% at hop 5 against 67.6% for DeepCT; in production, Time to Engage falls by up to 91%."
+      }
+    }
+  },
+  "steps": {
+    "a-ticket-nobody-owns--hops": {
+      "id": "a-ticket-nobody-owns--hops",
+      "sectionId": "a-ticket-nobody-owns",
+      "visuals": [
+        {
+          "blockId": "a-ticket-nobody-owns-text-4",
+          "visible": true
+        },
+        {
+          "blockId": "a-ticket-nobody-owns--scene",
+          "visible": true,
+          "state": "hops"
+        }
+      ],
+      "narrationIds": [
+        "a-ticket-nobody-owns--hops--narration"
+      ]
+    },
+    "a-ticket-nobody-owns--curve": {
+      "id": "a-ticket-nobody-owns--curve",
+      "sectionId": "a-ticket-nobody-owns",
+      "visuals": [
+        {
+          "blockId": "a-ticket-nobody-owns-text-4",
+          "visible": true
+        },
+        {
+          "blockId": "a-ticket-nobody-owns--scene",
+          "visible": true,
+          "state": "curve"
+        }
+      ],
+      "narrationIds": [
+        "a-ticket-nobody-owns--curve--narration"
+      ]
+    },
+    "the-answer-isn-t-in-the-ticket--thin": {
+      "id": "the-answer-isn-t-in-the-ticket--thin",
+      "sectionId": "the-answer-isn-t-in-the-ticket",
+      "visuals": [
+        {
+          "blockId": "the-answer-isn-t-in-the-ticket-text-7",
+          "visible": true
+        },
+        {
+          "blockId": "the-answer-isn-t-in-the-ticket-columns-12",
+          "visible": true
+        },
+        {
+          "blockId": "the-answer-isn-t-in-the-ticket-image-9",
+          "visible": true
+        },
+        {
+          "blockId": "the-answer-isn-t-in-the-ticket-image-11",
+          "visible": true
+        },
+        {
+          "blockId": "the-answer-isn-t-in-the-ticket--scene",
+          "visible": true,
+          "state": "thin"
+        }
+      ],
+      "narrationIds": [
+        "the-answer-isn-t-in-the-ticket--thin--narration"
+      ]
+    },
+    "agents-go-and-look--analyze": {
+      "id": "agents-go-and-look--analyze",
+      "sectionId": "agents-go-and-look",
+      "visuals": [
+        {
+          "blockId": "agents-go-and-look-text-22",
+          "visible": true
+        },
+        {
+          "blockId": "agents-go-and-look-image-24",
+          "visible": true
+        },
+        {
+          "blockId": "agents-go-and-look--scene",
+          "visible": true,
+          "state": "analyze"
+        }
+      ],
+      "narrationIds": [
+        "agents-go-and-look--analyze--narration"
+      ]
+    },
+    "agents-go-and-look--vote": {
+      "id": "agents-go-and-look--vote",
+      "sectionId": "agents-go-and-look",
+      "visuals": [
+        {
+          "blockId": "agents-go-and-look-text-22",
+          "visible": true
+        },
+        {
+          "blockId": "agents-go-and-look-image-24",
+          "visible": true
+        },
+        {
+          "blockId": "agents-go-and-look--scene",
+          "visible": true,
+          "state": "vote"
+        }
+      ],
+      "narrationIds": [
+        "agents-go-and-look--vote--narration"
+      ]
+    },
+    "fewer-hops-sooner--accuracy": {
+      "id": "fewer-hops-sooner--accuracy",
+      "sectionId": "fewer-hops-sooner",
+      "visuals": [
+        {
+          "blockId": "fewer-hops-sooner--scene",
+          "visible": true,
+          "state": "accuracy"
+        },
+        {
+          "blockId": "fewer-hops-sooner-text-52",
+          "visible": true
+        },
+        {
+          "blockId": "fewer-hops-sooner-code-53",
+          "visible": true
+        },
+        {
+          "blockId": "fewer-hops-sooner-text-55",
+          "visible": true
+        }
+      ],
+      "narrationIds": [
+        "fewer-hops-sooner--accuracy--narration"
+      ]
+    },
+    "fewer-hops-sooner--tte": {
+      "id": "fewer-hops-sooner--tte",
+      "sectionId": "fewer-hops-sooner",
+      "visuals": [
+        {
+          "blockId": "fewer-hops-sooner--scene",
+          "visible": true,
+          "state": "tte"
+        },
+        {
+          "blockId": "fewer-hops-sooner-text-52",
+          "visible": true
+        },
+        {
+          "blockId": "fewer-hops-sooner-code-53",
+          "visible": true
+        },
+        {
+          "blockId": "fewer-hops-sooner-text-55",
+          "visible": true
+        }
+      ],
+      "narrationIds": [
+        "fewer-hops-sooner--tte--narration"
+      ]
+    },
+    "fewer-hops-sooner--end": {
+      "id": "fewer-hops-sooner--end",
+      "sectionId": "fewer-hops-sooner",
+      "visuals": [
+        {
+          "blockId": "fewer-hops-sooner--scene",
+          "visible": true,
+          "state": "end"
+        },
+        {
+          "blockId": "fewer-hops-sooner-text-52",
+          "visible": true
+        },
+        {
+          "blockId": "fewer-hops-sooner-code-53",
+          "visible": true
+        },
+        {
+          "blockId": "fewer-hops-sooner-text-55",
+          "visible": true
+        }
+      ],
+      "narrationIds": []
+    }
+  },
+  "narrations": {
+    "a-ticket-nobody-owns--hops--narration": {
+      "id": "a-ticket-nobody-owns--hops--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "A customer can’t sign in on a Mac. The ticket goes to Team A, then B, then C, and every hop is more waiting while the service stays degraded."
+        }
+      ]
+    },
+    "a-ticket-nobody-owns--curve--narration": {
+      "id": "a-ticket-nobody-owns--curve--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "Across thousands of teams, triage time climbs with every hop."
+        }
+      ]
+    },
+    "the-answer-isn-t-in-the-ticket--thin--narration": {
+      "id": "the-answer-isn-t-in-the-ticket--thin--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "Why so many hops? The ticket alone can’t say who owns the problem; the clues sit in each team’s own logs, and someone has to go and look."
+        }
+      ]
+    },
+    "agents-go-and-look--analyze--narration": {
+      "id": "agents-go-and-look--analyze--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "Triangle sends agents. An analyzer turns the ticket into key phrases; a decider shortlists teams from past incidents and team documents."
+        }
+      ]
+    },
+    "agents-go-and-look--vote--narration": {
+      "id": "agents-go-and-look--vote--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "Each shortlisted team’s agent queries its own logs, writes what it found onto the ticket, and votes. No majority? The richer ticket gets a new shortlist."
+        }
+      ]
+    },
+    "fewer-hops-sooner--accuracy--narration": {
+      "id": "fewer-hops-sooner--accuracy--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "Within five hops, Triangle routes 91.7 percent correctly, well ahead of "
+        },
+        {
+          "type": "pronunciation",
+          "display": "DeepCT",
+          "spoken": "Deep C T"
+        },
+        {
+          "type": "text",
+          "text": ", which needs engineers to write those discussions."
+        }
+      ]
+    },
+    "fewer-hops-sooner--tte--narration": {
+      "id": "fewer-hops-sooner--tte--narration",
+      "content": [
+        {
+          "type": "text",
+          "text": "In production, time to engage fell by up to 91 percent. What the ticket lacks, the teams’ agents can fetch."
+        }
+      ]
+    }
+  },
+  "assets": {
+    "the-answer-isn-t-in-the-ticket-asset-8": {
+      "id": "the-answer-isn-t-in-the-ticket-asset-8",
+      "kind": "image",
+      "location": "figures/manual-vs-triangle-triage.png",
+      "mediaType": "image/png"
+    },
+    "the-answer-isn-t-in-the-ticket-asset-10": {
+      "id": "the-answer-isn-t-in-the-ticket-asset-10",
+      "kind": "image",
+      "location": "figures/triage-time-vs-transfer-hops.png",
+      "mediaType": "image/png"
+    },
+    "agents-go-and-look-asset-23": {
+      "id": "agents-go-and-look-asset-23",
+      "kind": "image",
+      "location": "figures/triangle-framework.png",
+      "mediaType": "image/png"
+    },
+    "film-score": {
+      "id": "film-score",
+      "kind": "audio",
+      "location": "audio/score.ogg",
+      "title": "Film score (music: “Inspired”, Kevin MacLeod, CC BY 4.0)",
+      "fingerprint": "sha256:0d692317ef64b366f8ce0a20d290033ace25331d818b5df180f3e40ae4169ac4",
+      "mediaType": "audio/ogg"
+    }
+  },
+  "definitions": {
+    "a-ticket-nobody-owns--scene--definition": {
+      "id": "a-ticket-nobody-owns--scene--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/a-ticket-nobody-owns.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "hops"
+        },
+        {
+          "id": "curve"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          10000,
+          6000
+        ],
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "A ticket about a Mac sign-in failure hops from Team A to Team B to Team C, and each hop adds a longer slice of waiting. Across more than 3,000 teams over 12 months, median triage time climbs with every transfer hop (Figure 3)."
+                }
+              ]
+            }
+          ]
+        },
+        "language": "typescript"
+      }
+    },
+    "the-answer-isn-t-in-the-ticket--scene--definition": {
+      "id": "the-answer-isn-t-in-the-ticket--scene--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/the-answer-isn-t-in-the-ticket.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "thin"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          8000
+        ],
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "The ticket has one line of text and no owner; the clues are in the teams’ own logs, still closed."
+                }
+              ]
+            }
+          ]
+        },
+        "language": "typescript"
+      }
+    },
+    "agents-go-and-look--scene--definition": {
+      "id": "agents-go-and-look--scene--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/agents-go-and-look.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "analyze"
+        },
+        {
+          "id": "vote"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          8001,
+          12000
+        ],
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Illustration: the Analyzer marks sign in, desktop client and Mac; the Decider shortlists teams A, B and C from past incidents and team documents. Each team’s agent reads its logs, adds findings and votes; round 1 splits, round 2 shortlists D, E and F and two of three agents choose E."
+                }
+              ]
+            }
+          ]
+        },
+        "language": "typescript"
+      }
+    },
+    "fewer-hops-sooner--scene--definition": {
+      "id": "fewer-hops-sooner--scene--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/fewer-hops-sooner.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "accuracy"
+        },
+        {
+          "id": "tte"
+        },
+        {
+          "id": "end"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          8000,
+          6000,
+          4000
+        ],
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Hop accuracy (Table II), DeepCT vs Triangle: 43.4/54.7, 54.6/70.4, 60.4/80.5, 64.4/86.0, 67.6/91.7. In production, Time to Engage fell by up to 91% (Table I)."
+                }
+              ]
+            }
+          ]
+        },
+        "language": "typescript"
+      }
+    }
+  },
+  "production": {
+    "defaults": {
+      "voiceSource": {
+        "type": "none"
+      },
+      "trailingPauseMs": 0
+    },
+    "stepOverrides": {
+      "a-ticket-nobody-owns--hops": {
+        "minimumHoldMs": 10000,
+        "trailingPauseMs": 0
+      },
+      "a-ticket-nobody-owns--curve": {
+        "minimumHoldMs": 6000,
+        "trailingPauseMs": 0
+      },
+      "the-answer-isn-t-in-the-ticket--thin": {
+        "minimumHoldMs": 8000,
+        "trailingPauseMs": 0
+      },
+      "agents-go-and-look--analyze": {
+        "minimumHoldMs": 8001,
+        "trailingPauseMs": 0
+      },
+      "agents-go-and-look--vote": {
+        "minimumHoldMs": 12000,
+        "trailingPauseMs": 0
+      },
+      "fewer-hops-sooner--accuracy": {
+        "minimumHoldMs": 8000,
+        "trailingPauseMs": 0
+      },
+      "fewer-hops-sooner--tte": {
+        "minimumHoldMs": 6000,
+        "trailingPauseMs": 0
+      },
+      "fewer-hops-sooner--end": {
+        "minimumHoldMs": 4000,
+        "trailingPauseMs": 0
+      }
+    },
+    "mediaClips": [
+      {
+        "id": "score--a-ticket-nobody-owns--hops",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 0,
+          "endMs": 10000
+        },
+        "attachment": {
+          "stepId": "a-ticket-nobody-owns--hops",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--a-ticket-nobody-owns--curve",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 10000,
+          "endMs": 16000
+        },
+        "attachment": {
+          "stepId": "a-ticket-nobody-owns--curve",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--the-answer-isn-t-in-the-ticket--thin",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 16000,
+          "endMs": 24000
+        },
+        "attachment": {
+          "stepId": "the-answer-isn-t-in-the-ticket--thin",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--agents-go-and-look--analyze",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 24000,
+          "endMs": 32001
+        },
+        "attachment": {
+          "stepId": "agents-go-and-look--analyze",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--agents-go-and-look--vote",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 32001,
+          "endMs": 44001
+        },
+        "attachment": {
+          "stepId": "agents-go-and-look--vote",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--fewer-hops-sooner--accuracy",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 44001,
+          "endMs": 52001
+        },
+        "attachment": {
+          "stepId": "fewer-hops-sooner--accuracy",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--fewer-hops-sooner--tte",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 52001,
+          "endMs": 58001
+        },
+        "attachment": {
+          "stepId": "fewer-hops-sooner--tte",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--fewer-hops-sooner--end",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 58001,
+          "endMs": 62001
+        },
+        "attachment": {
+          "stepId": "fewer-hops-sooner--end",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      }
+    ]
+  }
+}

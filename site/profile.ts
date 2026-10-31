@@ -59,7 +59,7 @@ export const PAPERS: Paper[] = [
     authors: 'Songhan Zhang, Aoyang Fang, Yifan Yang, Ruiyi Cheng, Xiaoying Tang, Pinjia He',
     claim: 'The loudest services are often victims. DynaCausal follows a fault upstream over a call graph rebuilt in every time window.',
     links: [{ label: 'arXiv', href: 'https://arxiv.org/abs/2510.22613' }],
-    chapters: [['0:00', 'Which service broke?'], ['0:10', 'The loudest are victims'], ['0:25', 'Follow the fault upstream'], ['0:41', 'Where to look first']],
+    chapters: [['0:00', 'Which service broke?'], ['0:13', 'The loudest are victims'], ['0:27', 'Follow the fault upstream'], ['0:42', 'Where to look first']],
   },
   {
     id: 'survey', venue: "arXiv'25", short: 'RCA survey', at: 2025.62, thread: 'evaluate',
@@ -76,7 +76,7 @@ export const PAPERS: Paper[] = [
     claim: 'An incident ticket alone cannot name its owner. One LLM agent per team fetches evidence and votes, so tickets reach the right team in fewer hops.',
     badge: 'Co-first author',
     links: [{ label: 'PDF', href: 'https://profile.aoyangfang.top/assets/publications/ase25/ASE_triangle.pdf' }, { label: 'DOI', href: 'https://doi.org/10.1109/ASE63991.2025.00062' }],
-    chapters: [['0:00', 'A ticket nobody owns'], ['0:14', "The answer isn't in the ticket"], ['0:24', 'Agents go and look'], ['0:43', 'Fewer hops, sooner']],
+    chapters: [['0:00', 'A ticket nobody owns'], ['0:16', "The answer isn't in the ticket"], ['0:24', 'Agents go and look'], ['0:44', 'Fewer hops, sooner']],
   },
   {
     id: 'grev', venue: "ICSE'24", short: 'GRev', at: 2024.3, thread: 'testing',

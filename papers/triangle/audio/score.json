@@ -1,0 +1,68 @@
+{
+  "music": {
+    "title": "Inspired",
+    "author": "Kevin MacLeod",
+    "url": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Inspired.mp3",
+    "license": "CC BY 4.0",
+    "credit": "Music: \"Inspired\" by Kevin MacLeod (incompetech.com). Licensed under Creative Commons: By Attribution 4.0 License, http://creativecommons.org/licenses/by/4.0/",
+    "from": 0.44,
+    "seconds": 62.001,
+    "fadeOutSeconds": 2.5,
+    "bpm": 119.998
+  },
+  "steps": [
+    {
+      "step": "hops",
+      "bars": 5,
+      "startMs": 0,
+      "endMs": 10000
+    },
+    {
+      "step": "curve",
+      "bars": 3,
+      "startMs": 10000,
+      "endMs": 16000
+    },
+    {
+      "step": "thin",
+      "bars": 4,
+      "startMs": 16000,
+      "endMs": 24000
+    },
+    {
+      "step": "analyze",
+      "bars": 4,
+      "startMs": 24000,
+      "endMs": 32001
+    },
+    {
+      "step": "vote",
+      "bars": 6,
+      "startMs": 32001,
+      "endMs": 44001
+    },
+    {
+      "step": "accuracy",
+      "bars": 4,
+      "startMs": 44001,
+      "endMs": 52001
+    },
+    {
+      "step": "tte",
+      "bars": 3,
+      "startMs": 52001,
+      "endMs": 58001
+    },
+    {
+      "step": "end",
+      "bars": 2,
+      "startMs": 58001,
+      "endMs": 62001
+    }
+  ],
+  "target": {
+    "lufs": -16,
+    "truePeak": -1.5
+  },
+  "fingerprint": "sha256:0d692317ef64b366f8ce0a20d290033ace25331d818b5df180f3e40ae4169ac4"
+}
