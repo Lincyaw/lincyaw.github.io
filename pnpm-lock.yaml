@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@lincyaw/presmium':
-        specifier: 1.0.0-rc.5
-        version: 1.0.0-rc.5(@lincyaw/compiler@1.0.0-rc.5(supports-color@9.4.0))(@types/node@26.6.6)(debug@4.4.3(supports-color@9.4.0))(markmap-common@0.18.9)(playwright-chromium@1.64.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(supports-color@9.4.0)(yaml@2.9.1)
+        specifier: 1.0.0-rc.6
+        version: 1.0.0-rc.6(@lincyaw/compiler@1.0.0-rc.6(supports-color@9.4.0))(@types/node@26.6.6)(debug@4.4.3(supports-color@9.4.0))(markmap-common@0.18.9)(playwright-chromium@1.64.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(supports-color@9.4.0)(yaml@2.9.1)
       '@modelcontextprotocol/client':
         specifier: 2.3.1
         version: 2.3.1
@@ -260,93 +260,93 @@ packages:
   '@lezer/python@1.1.19':
     resolution: {integrity: sha512-MhQIURHRytsNzP/YXnqpYKW6la6voAH3kyplTOOiCdjyFY6cWWGFVmYVdHIPrElqSDf4iCDktQCockB9FxuhzQ==}
 
-  '@lincyaw/addon-assistant@1.0.0-rc.5':
-    resolution: {integrity: sha512-g7I8m3hzLeqdmlaNVcUkCq+9E3F8/Od3coq3jyDfp/vSTIZav7Zl8PmoROlRZTIt7buU1J++yF/sngjmNDkZ+A==}
+  '@lincyaw/addon-assistant@1.0.0-rc.6':
+    resolution: {integrity: sha512-ugQg6soarV9kINUeYHyBLWSuLP6szpLTMUm/zPqQLIF+zaHUiET5uWYeaywWUpIW3UJnGcfXiFb+z16NVk6SSg==}
     engines: {node: '>=22.19'}
     peerDependencies:
-      '@lincyaw/host': ^1.0.0-rc.5
-      '@lincyaw/kernel': ^1.0.0-rc.5
+      '@lincyaw/host': ^1.0.0-rc.6
+      '@lincyaw/kernel': ^1.0.0-rc.6
       react: ^18.3.1
       react-dom: ^18.3.1
 
-  '@lincyaw/addon-classroom@1.0.0-rc.5':
-    resolution: {integrity: sha512-ob3PcDJ/Qo+F81XGBSEx9XPkMNgGROTHuTrtV3MLLqCQBLKo7syB+ktW5U/40xwHlQQLbGn7nM3h/spWKozvzg==}
+  '@lincyaw/addon-classroom@1.0.0-rc.6':
+    resolution: {integrity: sha512-jx9+tbZtAYErlmw/bn1iAXrTMNdkbtpOSIHkgoEoiCgrQiYSBtcDfxJTtvMqENsI0FDRifwdcyAO2R1UUZ2X6A==}
     engines: {node: '>=22.19'}
     peerDependencies:
-      '@lincyaw/host': ^1.0.0-rc.5
-      '@lincyaw/kernel': ^1.0.0-rc.5
+      '@lincyaw/host': ^1.0.0-rc.6
+      '@lincyaw/kernel': ^1.0.0-rc.6
       react: ^18.3.1
       react-dom: ^18.3.1
 
-  '@lincyaw/addon-code@1.0.0-rc.5':
-    resolution: {integrity: sha512-VVQ+AXEisGee6DfnDm7Pt1WP9Y+uSTsLhn09tExHfTGo9vvU9rjagTqPPxmgPN5CFCBDQk9HM3UfOiPgZPxjjg==}
+  '@lincyaw/addon-code@1.0.0-rc.6':
+    resolution: {integrity: sha512-vGCvHqMgMGTXjWH2mqAQm19GfjAHXVhe9kBPEfUTFcHfZ2c4n3YC+S2WIiXAiUCy/lMTN1xrLBgIFCMoIF6Sqw==}
     engines: {node: '>=22.19'}
     peerDependencies:
-      '@lincyaw/kernel': ^1.0.0-rc.5
+      '@lincyaw/kernel': ^1.0.0-rc.6
 
-  '@lincyaw/addon-content@1.0.0-rc.5':
-    resolution: {integrity: sha512-NHHTmQ4vMx/pzLK0lKh0H8yTpJiH6Mp4YQh1xoCo1PoX5WD62RQlpHz9YqgFmFyV1E6beIXwHZJVF6X5t22BLA==}
+  '@lincyaw/addon-content@1.0.0-rc.6':
+    resolution: {integrity: sha512-K9iNu8Mz1NnzQ1P1v6nJ88dZ5LLCDb86GRAj3hX+TY9KXm6rWp0Gb1Ap3Bn6YERdgV9sHj4FPfvh4iNRQvlM1A==}
     engines: {node: '>=22.19'}
     peerDependencies:
-      '@lincyaw/host': ^1.0.0-rc.5
-      '@lincyaw/kernel': ^1.0.0-rc.5
+      '@lincyaw/host': ^1.0.0-rc.6
+      '@lincyaw/kernel': ^1.0.0-rc.6
       react: ^18.3.1
 
-  '@lincyaw/addon-exec-jupyter@1.0.0-rc.5':
-    resolution: {integrity: sha512-TPeK09LvuO9Jox906Gj3e+ewCus0iP9ibVDmXrBHiqgwlG+Uxmo/aJYGCAwNDVakbTJOT/kOGDh5HfQQ6hfzhg==}
+  '@lincyaw/addon-exec-jupyter@1.0.0-rc.6':
+    resolution: {integrity: sha512-gjKdX0PH6y2Qe3XMbdutPZWxzGlmqJfD5g9NMgMbeBzJIj3skMiKMy32CFnqaeZwvyE9SL6w+Zer8HXj1w54gQ==}
     engines: {node: '>=22.19'}
     peerDependencies:
-      '@lincyaw/host': ^1.0.0-rc.5
-      '@lincyaw/kernel': ^1.0.0-rc.5
+      '@lincyaw/host': ^1.0.0-rc.6
+      '@lincyaw/kernel': ^1.0.0-rc.6
       react: ^18.3.1
       react-dom: ^18.3.1
 
-  '@lincyaw/addon-exec-local@1.0.0-rc.5':
-    resolution: {integrity: sha512-Chv41gBcSVwZnlWMNYZ4092lMKyauriVXLAds6LdUlS/YpKFccu6Shu07H/joP8ZQL2ZJJWAAgcQQWY0D2uLkQ==}
+  '@lincyaw/addon-exec-local@1.0.0-rc.6':
+    resolution: {integrity: sha512-VTr7eFmYv1NJxDw7QOD8jy2OQ1aBqTP6Saa8SyNJ0q/5fXiFXo2754IMbyi8DAh3oUC2AQ727OnNTAsuj92TVQ==}
     engines: {node: '>=22.19'}
     peerDependencies:
-      '@lincyaw/host': ^1.0.0-rc.5
-      '@lincyaw/kernel': ^1.0.0-rc.5
+      '@lincyaw/host': ^1.0.0-rc.6
+      '@lincyaw/kernel': ^1.0.0-rc.6
       react: ^18.3.1
 
-  '@lincyaw/addon-exec-wasi@1.0.0-rc.5':
-    resolution: {integrity: sha512-zWsMv2xX9hiIUKLHTEk1GpFTy5M6WfjeBR4GEzGfAIeZGCvS3z5tXW0/XIK/zOBRg6cWytZk/WowTLzgQNaaQg==}
+  '@lincyaw/addon-exec-wasi@1.0.0-rc.6':
+    resolution: {integrity: sha512-KhIIReDQ3GiiB2e0XsHR2eBHLIFywFMH1mLjhOM/XWiPp7iMJ519XUieSIgoI2RIg0GfF2p+lO4NIj+ytHNAGQ==}
     engines: {node: '>=22.19'}
     peerDependencies:
-      '@lincyaw/host': ^1.0.0-rc.5
-      '@lincyaw/kernel': ^1.0.0-rc.5
+      '@lincyaw/host': ^1.0.0-rc.6
+      '@lincyaw/kernel': ^1.0.0-rc.6
 
-  '@lincyaw/addon-exec-webgpu@1.0.0-rc.5':
-    resolution: {integrity: sha512-+lca4WteIz9QgqkqfILv9nn+KXwC23X5uxZQygI5d6wqMfzeH86V+x9fqkH/olkls57mDMT2JBniwEgFk+kZOg==}
+  '@lincyaw/addon-exec-webgpu@1.0.0-rc.6':
+    resolution: {integrity: sha512-gUnCVmLRspDfkkg7MsXGHcYD3Tn1sloyvWoRp4r4JUKSTTGna+hK8InQhoK/jb4dtPsOjuw/2QqbMYE/zySMOw==}
     engines: {node: '>=22.19'}
     peerDependencies:
-      '@lincyaw/host': ^1.0.0-rc.5
-      '@lincyaw/kernel': ^1.0.0-rc.5
+      '@lincyaw/host': ^1.0.0-rc.6
+      '@lincyaw/kernel': ^1.0.0-rc.6
 
-  '@lincyaw/addon-exec@1.0.0-rc.5':
-    resolution: {integrity: sha512-I1yM9rlf1MD0zE4BV+qh6+ZZSLl0g6qbJMSYslqKFjVbS+1ogkzT2m/IrNVTLZFfJldb7qnGR9sfch7frQA0Mg==}
+  '@lincyaw/addon-exec@1.0.0-rc.6':
+    resolution: {integrity: sha512-Zl3q9wto2dPa+mymbObln7b/rsHB6Exd3BGA6dkYihkAqCVBGNaikjiENrEuFnnb0vZPCPyyhpiWHTsLn8LPQw==}
     engines: {node: '>=22.19'}
     peerDependencies:
-      '@lincyaw/host': ^1.0.0-rc.5
-      '@lincyaw/kernel': ^1.0.0-rc.5
+      '@lincyaw/host': ^1.0.0-rc.6
+      '@lincyaw/kernel': ^1.0.0-rc.6
       react: ^18.3.1
 
-  '@lincyaw/addon-guide@1.0.0-rc.5':
-    resolution: {integrity: sha512-zAceL2Q+h9x7HzWj4vbyYKGV73dKAU9SNwVLqvRKzWqI9k0xRTgw22bpwijt82Jc244pyXzucFMfz44VUZxexw==}
+  '@lincyaw/addon-guide@1.0.0-rc.6':
+    resolution: {integrity: sha512-WMWxe+sx6Sq/XENvfFWV8AD5zCFWlN++eKP8U5JJhYCfjwvLfHNIitUvAuhKfsUBe5nTDY92RB6YcG99Zi02OA==}
     engines: {node: '>=22.19'}
     peerDependencies:
-      '@lincyaw/host': ^1.0.0-rc.5
-      '@lincyaw/kernel': ^1.0.0-rc.5
+      '@lincyaw/host': ^1.0.0-rc.6
+      '@lincyaw/kernel': ^1.0.0-rc.6
       react: ^18.3.1
 
-  '@lincyaw/addon-lecture@1.0.0-rc.5':
-    resolution: {integrity: sha512-fmaH5PgKl/KBF1H2iy0xFuHwy3vl4l5SLU2MK2uMQpSArICU+dzLCLKb908BtgCdepg6Rk6i539eDUasuBPd/g==}
+  '@lincyaw/addon-lecture@1.0.0-rc.6':
+    resolution: {integrity: sha512-ZkVQV29EuBS4IK3mumLZPZcs41skWvLO5xOYstvynitMvL1e4uoq4x+sPEECxVvCWkJCvaqsNbg/6GL0n6v3qw==}
     engines: {node: '>=22.19'}
     hasBin: true
     peerDependencies:
-      '@lincyaw/compiler': ^1.0.0-rc.5
-      '@lincyaw/host': ^1.0.0-rc.5
-      '@lincyaw/kernel': ^1.0.0-rc.5
+      '@lincyaw/compiler': ^1.0.0-rc.6
+      '@lincyaw/host': ^1.0.0-rc.6
+      '@lincyaw/kernel': ^1.0.0-rc.6
       playwright-chromium: ^1.40.0
       react: ^18.3.1
       react-dom: ^18.3.1
@@ -354,131 +354,131 @@ packages:
       playwright-chromium:
         optional: true
 
-  '@lincyaw/addon-motion@1.0.0-rc.5':
-    resolution: {integrity: sha512-f8rWTtE7/Cs8R5PG63tpKs7ICEE+CWx3P4sDcmxhDt7A3BcBKjIePgsWOg9zH5rtPz7hAXI6bKS2nzquGc5Z1A==}
+  '@lincyaw/addon-motion@1.0.0-rc.6':
+    resolution: {integrity: sha512-R8CTlJYFYQPPvyagLuA2rmItzfbKg5OPSwLpZJfaiFNZlhEt0qT33eghnTOEmp8PL727o5ECzehmf6L26IoKXw==}
     engines: {node: '>=22.19'}
     peerDependencies:
-      '@lincyaw/host': ^1.0.0-rc.5
-      '@lincyaw/kernel': ^1.0.0-rc.5
+      '@lincyaw/host': ^1.0.0-rc.6
+      '@lincyaw/kernel': ^1.0.0-rc.6
       react: ^18.3.1
       react-dom: ^18.3.1
 
-  '@lincyaw/addon-publish@1.0.0-rc.5':
-    resolution: {integrity: sha512-Whr/A1Ql9AYtlve4d0dyGmtW6Xtshgcivsy+Xl5h63kbUl9Ef41iB8UShQmDPsp9/dK74n/i9GGXX5xnaYtHug==}
+  '@lincyaw/addon-publish@1.0.0-rc.6':
+    resolution: {integrity: sha512-czxVHDTuClkLrCVzrVugEYOBTBH8KJRnQR5VGiA0KLtaqDgU5IQLwnC+s+hldsshP+PBrQ8ToExdEUOT/oAnOw==}
     engines: {node: '>=22.19'}
     hasBin: true
     peerDependencies:
-      '@lincyaw/compiler': ^1.0.0-rc.5
-      '@lincyaw/host': ^1.0.0-rc.5
-      '@lincyaw/kernel': ^1.0.0-rc.5
+      '@lincyaw/compiler': ^1.0.0-rc.6
+      '@lincyaw/host': ^1.0.0-rc.6
+      '@lincyaw/kernel': ^1.0.0-rc.6
       react: ^18.3.1
 
-  '@lincyaw/addon-session@1.0.0-rc.5':
-    resolution: {integrity: sha512-K0BET6ZyIbkFa5t2iqMuJ/SXnY+jF1TuoKjYG5YLjCbDyvuRonJ/UJQPyL6hZL/kXGawoeuHl+Vg51/B8oc6ww==}
+  '@lincyaw/addon-session@1.0.0-rc.6':
+    resolution: {integrity: sha512-cvQsbdPHMrl0uXVIMrQMuSSoIcv6hCLIzXQobHXSiip0GT8Sg//qaSAPHqlrkwpVIBvksvZhUB6fuIjqLHgBZQ==}
     engines: {node: '>=22.19'}
     peerDependencies:
-      '@lincyaw/host': ^1.0.0-rc.5
-      '@lincyaw/kernel': ^1.0.0-rc.5
+      '@lincyaw/host': ^1.0.0-rc.6
+      '@lincyaw/kernel': ^1.0.0-rc.6
       react: ^18.3.1
       react-dom: ^18.3.1
 
-  '@lincyaw/addon-speech@1.0.0-rc.5':
-    resolution: {integrity: sha512-qXE22tw+IhfnN81BejpVGDDZKbGAlaeJtq9IVDg+mYU3YyqqXN2ch13fa/YpfOiIK0G79iz7kkooc3fI64HrQg==}
+  '@lincyaw/addon-speech@1.0.0-rc.6':
+    resolution: {integrity: sha512-ixgblV0PZCzvJELGcvS1Xpi7HYxPQUoq+J3CrTXfN8g/2wq6ETCqzaofPSnFMYA9857Prb9aWAnx4jxMw7bPDw==}
     engines: {node: '>=22.19'}
     hasBin: true
     peerDependencies:
-      '@lincyaw/compiler': ^1.0.0-rc.5
-      '@lincyaw/host': ^1.0.0-rc.5
-      '@lincyaw/kernel': ^1.0.0-rc.5
+      '@lincyaw/compiler': ^1.0.0-rc.6
+      '@lincyaw/host': ^1.0.0-rc.6
+      '@lincyaw/kernel': ^1.0.0-rc.6
 
-  '@lincyaw/addon-stage@1.0.0-rc.5':
-    resolution: {integrity: sha512-uRaPIQrOq52Ad5LdCQJ+XLnqQ6B5MGEWJPYo58y8G3env4sX1eKRcBm4+TQbM1fNM8g4DhndQXcnVAtBGNgFlg==}
+  '@lincyaw/addon-stage@1.0.0-rc.6':
+    resolution: {integrity: sha512-ik7zjuFPc4sPo+wdW2Km5JSCU8mPKnYi15LwuEwcLbhctDxSCYN0Wbhas8MnlVT599OuU/bDSxAvq6TUJeD0WA==}
     engines: {node: '>=22.19'}
     peerDependencies:
-      '@lincyaw/host': ^1.0.0-rc.5
-      '@lincyaw/kernel': ^1.0.0-rc.5
+      '@lincyaw/host': ^1.0.0-rc.6
+      '@lincyaw/kernel': ^1.0.0-rc.6
       react: ^18.3.1
 
-  '@lincyaw/classroom-server@1.0.0-rc.5':
-    resolution: {integrity: sha512-ktgo/gh9QM174+xxCzrfKM9iHv/tFN7EctyStiv5elXeFTTQHGrhgcU3Rqu2f/LlJt0MaMqvAETudnZiQ1ehWQ==}
+  '@lincyaw/classroom-server@1.0.0-rc.6':
+    resolution: {integrity: sha512-q4A0Stiks7GV3zTozu1b9bOL44n9BsjKTYekRHmffPbPPa7n4HqOB3E9wwULJa5zpPotT58pD8XfSMay7qNBbg==}
     engines: {node: '>=22.19'}
     hasBin: true
 
-  '@lincyaw/cli@1.0.0-rc.5':
-    resolution: {integrity: sha512-16YdKVzAw+pPtaS6PnNDJSE4RIu6cBlYN9vD0FKF8kFg2E4LrzZdm+Uno7mhOZZ1YkAy7baNt/XUmQ6irdzrdQ==}
+  '@lincyaw/cli@1.0.0-rc.6':
+    resolution: {integrity: sha512-HEpOqiH8B2wkhcGpJ2aXHCtZcTb8Ihl9xtB2f2XswU+dcmSwK9L5s3SCCMKEA4PCB+bWlhvFVMG7oL3EAdY7HA==}
     engines: {node: '>=22.19'}
     hasBin: true
 
-  '@lincyaw/compiler@1.0.0-rc.5':
-    resolution: {integrity: sha512-871hybCcyQN5IqAVIdjght809sfwog1k3Ogrk+/ZK9F1jncDo1FkpVY70IYnltvvDKHVcSrY8Q/5pg+fLMcDBA==}
+  '@lincyaw/compiler@1.0.0-rc.6':
+    resolution: {integrity: sha512-d1t9/UcVavKK6fY8ncm+Bii91lhvOTzAp6/s7KzrzBKJo87fls6Fhu3agPv3I4ePczK6+bnTDWOkA8lJqYTQYg==}
     engines: {node: '>=22.19'}
 
-  '@lincyaw/design@1.0.0-rc.5':
-    resolution: {integrity: sha512-g3eNMpXZpLAbnGZ1APxiZtpN1nQs8Mg2r2AEg5sO6JOuVqEc8QQqr2WJS0qDR+7Qj1tTyXfBtEIogZhm3VvkHA==}
+  '@lincyaw/design@1.0.0-rc.6':
+    resolution: {integrity: sha512-RXyf+f7EinVTG/qZadBER+jzZNL0F21hVXGoJJhsikOBJzbmkWSp/ho6lXk5diI7vjn24D0lIQX3zLg6HOk51A==}
     engines: {node: '>=22.19'}
 
-  '@lincyaw/host@1.0.0-rc.5':
-    resolution: {integrity: sha512-3LuWqOD80tI+oWtO3fUVu545ERShI+5GjfjIm0sh4Onl8teysezHOawSv9J69CSQrxp5xTREMQ2f0ga1/kqLhg==}
+  '@lincyaw/host@1.0.0-rc.6':
+    resolution: {integrity: sha512-51GgxPw5AGE7VfW0uWdcC2YjkuBbJl2N2Jx36mtecwdqdGFCF8rtd6en8YQX7SviIjbKRj4iwT9roqZHJsA7IA==}
     engines: {node: '>=22.19'}
 
-  '@lincyaw/kernel@1.0.0-rc.5':
-    resolution: {integrity: sha512-7c0uu04SQrFxKGlIASSULn6UfCx1MJcdKMYh9KUJ8ssdxoVUTLZg3S0N8IYQNTkKte/+xZz5zwkhpQjRUOUTpQ==}
+  '@lincyaw/kernel@1.0.0-rc.6':
+    resolution: {integrity: sha512-IQ8krR84pV1PE4gcDgN5Cs1IRZjJIyR+sry/HQ1AIbA49wUmdJJZreGOBJu+SWxEJB+w+wijuUebnZLvILz/Bg==}
     engines: {node: '>=22.19'}
 
-  '@lincyaw/mcp@1.0.0-rc.5':
-    resolution: {integrity: sha512-FquIjvbVFwtdsWkzL48P3A47p2ZT74l16EXiQrE0u9eHmey8EO1VdLc1mHFgnLHv/pqwvsyf1fMpSPw3A8ITSA==}
-    engines: {node: '>=22.19'}
-    hasBin: true
-
-  '@lincyaw/presmium@1.0.0-rc.5':
-    resolution: {integrity: sha512-Re5snwN0Tn16oIcZzlEFrELe+VwZG89x7YYjOdVCiWXLlnCNGVwJcnkN5QLtLZkRS9YOwhNpoVZLxiS+b7WgTQ==}
+  '@lincyaw/mcp@1.0.0-rc.6':
+    resolution: {integrity: sha512-IxjuOLMS5bwWHZMWsQHkFiRWWEQ0MtMB1pikHq3zy1SmuReHthGNU9ciCF2oKhPFZBXFPEYzbjj+2VCRedUH+A==}
     engines: {node: '>=22.19'}
     hasBin: true
 
-  '@lincyaw/render-notebook@1.0.0-rc.5':
-    resolution: {integrity: sha512-qNeyEuOuQpfli2C1cfob0QRAvsLdQ6ILLr0qQKccG7GBUsnknqL3eLV57Ci8uOjUUQLwIadnwcthQIip1jtAXg==}
+  '@lincyaw/presmium@1.0.0-rc.6':
+    resolution: {integrity: sha512-ptXZhyT8kC6bApxtjcxpL6o2QGu2OL/zQhclR2FOcZIka+opJOTTRW24Z4Nfo80FOv0fvbBFZdKTV/c1ygdTVg==}
+    engines: {node: '>=22.19'}
+    hasBin: true
+
+  '@lincyaw/render-notebook@1.0.0-rc.6':
+    resolution: {integrity: sha512-1jA6Vu3h44LfktsOh0Yoj3ZLDc/Qf5LSC7HpQRVCqMClIyiyWy0GOYz0EM+SlC4D4pqw3Ak6XFQL5KtdL6hzGA==}
     engines: {node: '>=22.19'}
     peerDependencies:
-      '@lincyaw/kernel': ^1.0.0-rc.5
-      '@lincyaw/web': ^1.0.0-rc.5
+      '@lincyaw/kernel': ^1.0.0-rc.6
+      '@lincyaw/web': ^1.0.0-rc.6
     peerDependenciesMeta:
       '@lincyaw/web':
         optional: true
 
-  '@lincyaw/render-slides@1.0.0-rc.5':
-    resolution: {integrity: sha512-AgR1ym8uCJ51LHe9cTNUF3i+6lfMRmF+dx0EmuXhZARN6+WoG7CT5pR0Mq4sWzqcqm6fop0KubBCJ1vikqHG5w==}
+  '@lincyaw/render-slides@1.0.0-rc.6':
+    resolution: {integrity: sha512-XtlyX2DcH3dwdIac+Wtuf/cq3cag+0ODJr0Q/ML/7k1YDEYOZJqXU7MEDEZkoXBtUC6SEOCAHmKOt7avNY9e2Q==}
     engines: {node: '>=22.19'}
     peerDependencies:
-      '@lincyaw/kernel': ^1.0.0-rc.5
-      '@lincyaw/web': ^1.0.0-rc.5
+      '@lincyaw/kernel': ^1.0.0-rc.6
+      '@lincyaw/web': ^1.0.0-rc.6
       playwright-chromium: ^1.40.0
     peerDependenciesMeta:
       playwright-chromium:
         optional: true
 
-  '@lincyaw/server@1.0.0-rc.5':
-    resolution: {integrity: sha512-8dsm1TbU8WPsXcwwMgny8a2QseZOUJbZBE8lZ4VtyA3rmNtHKfEyPnzpA/KOf6c8ZYc6uaqtpiLVrMVOxtN7gg==}
+  '@lincyaw/server@1.0.0-rc.6':
+    resolution: {integrity: sha512-RilBvI6m1UJ6FL3WPcvaWkqL/p5Nywom4KQk2RnOyVO0NxTrDGSz+9q5ez5nu97XcHW+zaCsqsWT/DQ7pF1dhA==}
     engines: {node: '>=22.19'}
 
-  '@lincyaw/skills@1.0.0-rc.5':
-    resolution: {integrity: sha512-HcyzegOYhhQi94px+JKlJ+TNPXymg+N07aQqOS3jbshEC9eWzCs4qEhEpOJPFXlO5C5XByzzQ9zmqdD34opFaA==}
+  '@lincyaw/skills@1.0.0-rc.6':
+    resolution: {integrity: sha512-bVP8NWdfPSBKU+hR/gu2R216gpFmv/XDixAJdybUyFKgQGgx/tjSWQ2tPugHvCJvlB2j1Xmk7/LQNgQvzvZg9w==}
     engines: {node: '>=22.19'}
     hasBin: true
 
-  '@lincyaw/viewer@1.0.0-rc.5':
-    resolution: {integrity: sha512-PgGi8eGdIja7pmmKkRAo5/YmhRlzKYKtycGg5s8gJ6M8GhG2nJ9BYEgVOd8E+Jzz0mWGxaZ0OYncl2l53WTZdQ==}
+  '@lincyaw/viewer@1.0.0-rc.6':
+    resolution: {integrity: sha512-N7PQ5C7o49nzTO+75RaAHerzU6hKooJa+PWVvz03i6FVsBbnY4kSMHpYiQpd+FtwAxs7rSXRmdNXDAZx5xNL+g==}
     engines: {node: '>=22.19'}
 
-  '@lincyaw/web@1.0.0-rc.5':
-    resolution: {integrity: sha512-7zZdTh4BNgQe1LOr29FA3kilNMqHdGrAaXtMIWbyAnPYSi9Mp+e2yAb1GNM7Jc8qMqMKO59R7u7IVkr9NivOWw==}
+  '@lincyaw/web@1.0.0-rc.6':
+    resolution: {integrity: sha512-eMyWOWRMXkTQFi1WQilMsQdVmUowoaBdvPUEqU+Q1Dvw+WiieNN+OJAH0lsT1u9Q0nYo5qqhrWTlI57zErHUCQ==}
     engines: {node: '>=22.19'}
     peerDependencies:
-      '@lincyaw/host': ^1.0.0-rc.5
-      '@lincyaw/kernel': ^1.0.0-rc.5
-      '@lincyaw/viewer': ^1.0.0-rc.5
+      '@lincyaw/host': ^1.0.0-rc.6
+      '@lincyaw/kernel': ^1.0.0-rc.6
+      '@lincyaw/viewer': ^1.0.0-rc.6
 
-  '@lincyaw/workspace@1.0.0-rc.5':
-    resolution: {integrity: sha512-00imYiw46NViKIUkglIi8nIDSjzeqhaCYpO2eDQY2sdU2XbHZM++XxG4I6RDK7TMEjQib1geQtTvPNRcX9ttaA==}
+  '@lincyaw/workspace@1.0.0-rc.6':
+    resolution: {integrity: sha512-rKQxOhVa+k0dapxADYv+bokzViFcKbgBiPi9YmfFbIcsuNVXNfGFpDeYWn5JdHafsUKXKYPuz6iMpnZOxefngg==}
     engines: {node: '>=22.19'}
 
   '@lumino/algorithm@2.0.5':
@@ -1448,8 +1448,8 @@ packages:
       buffer:
         optional: true
 
-  create-presmium@1.0.0-rc.5:
-    resolution: {integrity: sha512-5T3wD8Bxup5Y7BReXtkGrNVNW8OXnMGZaTvpV+jnC2iShI1nMfWcoUUkt7HmlN4dhD2Ir7DO0w+QekgoBrxWCQ==}
+  create-presmium@1.0.0-rc.6:
+    resolution: {integrity: sha512-XJKgjBkiPk03Mjx7+EOcMA0s0cLP7UxR49060ACcsvxCiUcMapjB7ylCXjHGwtOPG5xaan8SmQXPfdt3XLiH7w==}
     engines: {node: '>=22.19'}
     hasBin: true
 
@@ -3653,36 +3653,36 @@ snapshots:
       '@lezer/highlight': 1.2.5
       '@lezer/lr': 1.4.12
 
-  '@lincyaw/addon-assistant@1.0.0-rc.5(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@lincyaw/addon-assistant@1.0.0-rc.6(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@lincyaw/host': 1.0.0-rc.5
-      '@lincyaw/kernel': 1.0.0-rc.5
+      '@lincyaw/host': 1.0.0-rc.6
+      '@lincyaw/kernel': 1.0.0-rc.6
       eventsource-parser: 4.1.2
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@lincyaw/addon-classroom@1.0.0-rc.5(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@lincyaw/addon-classroom@1.0.0-rc.6(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@lincyaw/host': 1.0.0-rc.5
-      '@lincyaw/kernel': 1.0.0-rc.5
+      '@lincyaw/host': 1.0.0-rc.6
+      '@lincyaw/kernel': 1.0.0-rc.6
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@lincyaw/addon-code@1.0.0-rc.5(@lincyaw/kernel@1.0.0-rc.5)(supports-color@9.4.0)':
+  '@lincyaw/addon-code@1.0.0-rc.6(@lincyaw/kernel@1.0.0-rc.6)(supports-color@9.4.0)':
     dependencies:
       '@ast-grep/lang-python': 0.0.6
       '@ast-grep/napi': 0.50.0
-      '@lincyaw/kernel': 1.0.0-rc.5
+      '@lincyaw/kernel': 1.0.0-rc.6
       diff: 9.0.0
       simple-git: 4.0.2(supports-color@9.4.0)
     transitivePeerDependencies:
       - supports-color
       - tree-sitter-cli
 
-  '@lincyaw/addon-content@1.0.0-rc.5(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)(markmap-common@0.18.9)(react@18.3.1)':
+  '@lincyaw/addon-content@1.0.0-rc.6(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)(markmap-common@0.18.9)(react@18.3.1)':
     dependencies:
-      '@lincyaw/host': 1.0.0-rc.5
-      '@lincyaw/kernel': 1.0.0-rc.5
+      '@lincyaw/host': 1.0.0-rc.6
+      '@lincyaw/kernel': 1.0.0-rc.6
       markmap-lib: 0.18.12(markmap-common@0.18.9)
       markmap-view: 0.18.12(markmap-common@0.18.9)
       plantuml-encoder: 1.4.0
@@ -3690,11 +3690,11 @@ snapshots:
     transitivePeerDependencies:
       - markmap-common
 
-  '@lincyaw/addon-exec-jupyter@1.0.0-rc.5(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@lincyaw/addon-exec-jupyter@1.0.0-rc.6(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@jupyterlab/services': 7.6.4(react@18.3.1)
-      '@lincyaw/host': 1.0.0-rc.5
-      '@lincyaw/kernel': 1.0.0-rc.5
+      '@lincyaw/host': 1.0.0-rc.6
+      '@lincyaw/kernel': 1.0.0-rc.6
       '@xterm/addon-fit': 0.11.0
       '@xterm/xterm': 6.0.0
       dompurify: 3.4.17
@@ -3705,34 +3705,34 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@lincyaw/addon-exec-local@1.0.0-rc.5(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)(react@18.3.1)':
+  '@lincyaw/addon-exec-local@1.0.0-rc.6(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)(react@18.3.1)':
     dependencies:
       '@devcontainers/cli': 0.89.0
-      '@lincyaw/host': 1.0.0-rc.5
-      '@lincyaw/kernel': 1.0.0-rc.5
+      '@lincyaw/host': 1.0.0-rc.6
+      '@lincyaw/kernel': 1.0.0-rc.6
       fflate: 0.8.3
       jsonc-parser: 3.3.1
       react: 18.3.1
 
-  '@lincyaw/addon-exec-wasi@1.0.0-rc.5(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)':
+  '@lincyaw/addon-exec-wasi@1.0.0-rc.6(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)':
     dependencies:
-      '@lincyaw/host': 1.0.0-rc.5
-      '@lincyaw/kernel': 1.0.0-rc.5
+      '@lincyaw/host': 1.0.0-rc.6
+      '@lincyaw/kernel': 1.0.0-rc.6
       '@runno/sandbox': 0.10.2
       '@runno/wasi': 0.10.0
 
-  '@lincyaw/addon-exec-webgpu@1.0.0-rc.5(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)':
+  '@lincyaw/addon-exec-webgpu@1.0.0-rc.6(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)':
     dependencies:
       '@jax-js/jax': 0.1.25
-      '@lincyaw/host': 1.0.0-rc.5
-      '@lincyaw/kernel': 1.0.0-rc.5
+      '@lincyaw/host': 1.0.0-rc.6
+      '@lincyaw/kernel': 1.0.0-rc.6
       playwright-chromium: 1.64.1
       yaml: 2.9.1
 
-  '@lincyaw/addon-exec@1.0.0-rc.5(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)(react@18.3.1)':
+  '@lincyaw/addon-exec@1.0.0-rc.6(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)(react@18.3.1)':
     dependencies:
-      '@lincyaw/host': 1.0.0-rc.5
-      '@lincyaw/kernel': 1.0.0-rc.5
+      '@lincyaw/host': 1.0.0-rc.6
+      '@lincyaw/kernel': 1.0.0-rc.6
       diff: 9.0.0
       dompurify: 3.4.17
       pyodide: 314.0.7
@@ -3743,18 +3743,18 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@lincyaw/addon-guide@1.0.0-rc.5(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)(react@18.3.1)':
+  '@lincyaw/addon-guide@1.0.0-rc.6(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)(react@18.3.1)':
     dependencies:
-      '@lincyaw/host': 1.0.0-rc.5
-      '@lincyaw/kernel': 1.0.0-rc.5
+      '@lincyaw/host': 1.0.0-rc.6
+      '@lincyaw/kernel': 1.0.0-rc.6
       driver.js: 1.10.2
       react: 18.3.1
 
-  '@lincyaw/addon-lecture@1.0.0-rc.5(@lincyaw/compiler@1.0.0-rc.5(supports-color@9.4.0))(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)(playwright-chromium@1.64.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@lincyaw/addon-lecture@1.0.0-rc.6(@lincyaw/compiler@1.0.0-rc.6(supports-color@9.4.0))(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)(playwright-chromium@1.64.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@lincyaw/compiler': 1.0.0-rc.5(supports-color@9.4.0)
-      '@lincyaw/host': 1.0.0-rc.5
-      '@lincyaw/kernel': 1.0.0-rc.5
+      '@lincyaw/compiler': 1.0.0-rc.6(supports-color@9.4.0)
+      '@lincyaw/host': 1.0.0-rc.6
+      '@lincyaw/kernel': 1.0.0-rc.6
       '@noble/hashes': 2.4.0
       jiti: 2.7.0
       mediabunny: 1.61.3
@@ -3763,10 +3763,10 @@ snapshots:
     optionalDependencies:
       playwright-chromium: 1.64.1
 
-  '@lincyaw/addon-motion@1.0.0-rc.5(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@lincyaw/addon-motion@1.0.0-rc.6(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@lincyaw/host': 1.0.0-rc.5
-      '@lincyaw/kernel': 1.0.0-rc.5
+      '@lincyaw/host': 1.0.0-rc.6
+      '@lincyaw/kernel': 1.0.0-rc.6
       '@remotion/player': 4.0.534(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       animejs: 4.5.0(three@0.186.1)
       d3: 7.9.0
@@ -3779,22 +3779,22 @@ snapshots:
     transitivePeerDependencies:
       - '@types/three'
 
-  '@lincyaw/addon-publish@1.0.0-rc.5(@lincyaw/compiler@1.0.0-rc.5(supports-color@9.4.0))(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)(react@18.3.1)':
+  '@lincyaw/addon-publish@1.0.0-rc.6(@lincyaw/compiler@1.0.0-rc.6(supports-color@9.4.0))(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)(react@18.3.1)':
     dependencies:
-      '@lincyaw/compiler': 1.0.0-rc.5(supports-color@9.4.0)
-      '@lincyaw/host': 1.0.0-rc.5
-      '@lincyaw/kernel': 1.0.0-rc.5
+      '@lincyaw/compiler': 1.0.0-rc.6(supports-color@9.4.0)
+      '@lincyaw/host': 1.0.0-rc.6
+      '@lincyaw/kernel': 1.0.0-rc.6
       jiti: 2.7.0
       pdf-lib: 1.17.1
       pixelmatch: 8.0.0
       pngjs: 7.0.0
       react: 18.3.1
 
-  '@lincyaw/addon-session@1.0.0-rc.5(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@lincyaw/addon-session@1.0.0-rc.6(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@lincyaw/classroom-server': 1.0.0-rc.5
-      '@lincyaw/host': 1.0.0-rc.5
-      '@lincyaw/kernel': 1.0.0-rc.5
+      '@lincyaw/classroom-server': 1.0.0-rc.6
+      '@lincyaw/host': 1.0.0-rc.6
+      '@lincyaw/kernel': 1.0.0-rc.6
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       uqr: 0.1.3
@@ -3804,11 +3804,11 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@lincyaw/addon-speech@1.0.0-rc.5(@lincyaw/compiler@1.0.0-rc.5(supports-color@9.4.0))(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)(debug@4.4.3(supports-color@9.4.0))(supports-color@9.4.0)':
+  '@lincyaw/addon-speech@1.0.0-rc.6(@lincyaw/compiler@1.0.0-rc.6(supports-color@9.4.0))(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)(debug@4.4.3(supports-color@9.4.0))(supports-color@9.4.0)':
     dependencies:
-      '@lincyaw/compiler': 1.0.0-rc.5(supports-color@9.4.0)
-      '@lincyaw/host': 1.0.0-rc.5
-      '@lincyaw/kernel': 1.0.0-rc.5
+      '@lincyaw/compiler': 1.0.0-rc.6(supports-color@9.4.0)
+      '@lincyaw/host': 1.0.0-rc.6
+      '@lincyaw/kernel': 1.0.0-rc.6
       '@volcengine/speechsaasprod': 1.0.5(debug@4.4.3(supports-color@9.4.0))(supports-color@9.4.0)
       '@volcengine/speechsaasprod20250521': 1.0.5(debug@4.4.3(supports-color@9.4.0))(supports-color@9.4.0)
       jiti: 2.7.0
@@ -3817,16 +3817,16 @@ snapshots:
       - debug
       - supports-color
 
-  '@lincyaw/addon-stage@1.0.0-rc.5(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)(react@18.3.1)':
+  '@lincyaw/addon-stage@1.0.0-rc.6(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)(react@18.3.1)':
     dependencies:
       '@drauu/core': 1.0.0
-      '@lincyaw/host': 1.0.0-rc.5
-      '@lincyaw/kernel': 1.0.0-rc.5
+      '@lincyaw/host': 1.0.0-rc.6
+      '@lincyaw/kernel': 1.0.0-rc.6
       react: 18.3.1
 
-  '@lincyaw/classroom-server@1.0.0-rc.5':
+  '@lincyaw/classroom-server@1.0.0-rc.6':
     dependencies:
-      '@lincyaw/kernel': 1.0.0-rc.5
+      '@lincyaw/kernel': 1.0.0-rc.6
       jiti: 2.7.0
       lib0: 0.2.119
       ws: 8.22.1
@@ -3836,20 +3836,20 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@lincyaw/cli@1.0.0-rc.5(supports-color@9.4.0)':
+  '@lincyaw/cli@1.0.0-rc.6(supports-color@9.4.0)':
     dependencies:
-      '@lincyaw/compiler': 1.0.0-rc.5(supports-color@9.4.0)
-      '@lincyaw/kernel': 1.0.0-rc.5
-      '@lincyaw/server': 1.0.0-rc.5(supports-color@9.4.0)
-      '@lincyaw/skills': 1.0.0-rc.5
-      '@lincyaw/workspace': 1.0.0-rc.5(supports-color@9.4.0)
+      '@lincyaw/compiler': 1.0.0-rc.6(supports-color@9.4.0)
+      '@lincyaw/kernel': 1.0.0-rc.6
+      '@lincyaw/server': 1.0.0-rc.6(supports-color@9.4.0)
+      '@lincyaw/skills': 1.0.0-rc.6
+      '@lincyaw/workspace': 1.0.0-rc.6(supports-color@9.4.0)
       jiti: 2.7.0
     transitivePeerDependencies:
       - supports-color
 
-  '@lincyaw/compiler@1.0.0-rc.5(supports-color@9.4.0)':
+  '@lincyaw/compiler@1.0.0-rc.6(supports-color@9.4.0)':
     dependencies:
-      '@lincyaw/kernel': 1.0.0-rc.5
+      '@lincyaw/kernel': 1.0.0-rc.6
       content-disposition: 1.0.0
       cors: 2.8.5
       jiti: 2.7.0
@@ -3862,20 +3862,20 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@lincyaw/design@1.0.0-rc.5':
+  '@lincyaw/design@1.0.0-rc.6':
     dependencies:
       '@fontsource/ibm-plex-mono': 5.3.0
       '@fontsource/ibm-plex-sans': 5.3.0
       '@fontsource/source-serif-4': 5.3.1
       lucide: 1.59.0
 
-  '@lincyaw/host@1.0.0-rc.5':
+  '@lincyaw/host@1.0.0-rc.6':
     dependencies:
       '@fontsource/ibm-plex-mono': 5.3.0
       '@fontsource/ibm-plex-sans': 5.3.0
       '@fontsource/source-serif-4': 5.3.1
-      '@lincyaw/design': 1.0.0-rc.5
-      '@lincyaw/kernel': 1.0.0-rc.5
+      '@lincyaw/design': 1.0.0-rc.6
+      '@lincyaw/kernel': 1.0.0-rc.6
       '@radix-ui/react-dialog': 1.3.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-dropdown-menu': 2.2.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-popover': 1.3.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -3888,7 +3888,7 @@ snapshots:
       - '@types/react'
       - '@types/react-dom'
 
-  '@lincyaw/kernel@1.0.0-rc.5':
+  '@lincyaw/kernel@1.0.0-rc.6':
     dependencies:
       '@cfworker/json-schema': 4.1.1
       '@types/semver': 7.8.0
@@ -3898,11 +3898,11 @@ snapshots:
       proper-lockfile: 4.1.2
       semver: 7.8.5
 
-  '@lincyaw/mcp@1.0.0-rc.5(supports-color@9.4.0)':
+  '@lincyaw/mcp@1.0.0-rc.6(supports-color@9.4.0)':
     dependencies:
-      '@lincyaw/compiler': 1.0.0-rc.5(supports-color@9.4.0)
-      '@lincyaw/kernel': 1.0.0-rc.5
-      '@lincyaw/skills': 1.0.0-rc.5
+      '@lincyaw/compiler': 1.0.0-rc.6(supports-color@9.4.0)
+      '@lincyaw/kernel': 1.0.0-rc.6
+      '@lincyaw/skills': 1.0.0-rc.6
       '@modelcontextprotocol/client': 2.3.1
       '@modelcontextprotocol/server': 2.3.1
       jiti: 2.7.0
@@ -3910,32 +3910,32 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@lincyaw/presmium@1.0.0-rc.5(@lincyaw/compiler@1.0.0-rc.5(supports-color@9.4.0))(@types/node@26.6.6)(debug@4.4.3(supports-color@9.4.0))(markmap-common@0.18.9)(playwright-chromium@1.64.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(supports-color@9.4.0)(yaml@2.9.1)':
+  '@lincyaw/presmium@1.0.0-rc.6(@lincyaw/compiler@1.0.0-rc.6(supports-color@9.4.0))(@types/node@26.6.6)(debug@4.4.3(supports-color@9.4.0))(markmap-common@0.18.9)(playwright-chromium@1.64.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(supports-color@9.4.0)(yaml@2.9.1)':
     dependencies:
-      '@lincyaw/addon-assistant': 1.0.0-rc.5(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@lincyaw/addon-classroom': 1.0.0-rc.5(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@lincyaw/addon-code': 1.0.0-rc.5(@lincyaw/kernel@1.0.0-rc.5)(supports-color@9.4.0)
-      '@lincyaw/addon-content': 1.0.0-rc.5(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)(markmap-common@0.18.9)(react@18.3.1)
-      '@lincyaw/addon-exec': 1.0.0-rc.5(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)(react@18.3.1)
-      '@lincyaw/addon-exec-jupyter': 1.0.0-rc.5(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@lincyaw/addon-exec-local': 1.0.0-rc.5(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)(react@18.3.1)
-      '@lincyaw/addon-exec-wasi': 1.0.0-rc.5(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)
-      '@lincyaw/addon-exec-webgpu': 1.0.0-rc.5(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)
-      '@lincyaw/addon-guide': 1.0.0-rc.5(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)(react@18.3.1)
-      '@lincyaw/addon-lecture': 1.0.0-rc.5(@lincyaw/compiler@1.0.0-rc.5(supports-color@9.4.0))(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)(playwright-chromium@1.64.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@lincyaw/addon-motion': 1.0.0-rc.5(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@lincyaw/addon-publish': 1.0.0-rc.5(@lincyaw/compiler@1.0.0-rc.5(supports-color@9.4.0))(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)(react@18.3.1)
-      '@lincyaw/addon-session': 1.0.0-rc.5(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@lincyaw/addon-speech': 1.0.0-rc.5(@lincyaw/compiler@1.0.0-rc.5(supports-color@9.4.0))(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)(debug@4.4.3(supports-color@9.4.0))(supports-color@9.4.0)
-      '@lincyaw/addon-stage': 1.0.0-rc.5(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)(react@18.3.1)
-      '@lincyaw/cli': 1.0.0-rc.5(supports-color@9.4.0)
-      '@lincyaw/host': 1.0.0-rc.5
-      '@lincyaw/kernel': 1.0.0-rc.5
-      '@lincyaw/render-notebook': 1.0.0-rc.5(@lincyaw/kernel@1.0.0-rc.5)(@lincyaw/web@1.0.0-rc.5(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)(@lincyaw/viewer@1.0.0-rc.5(supports-color@9.4.0))(@types/node@26.6.6)(jiti@2.7.0)(supports-color@9.4.0)(yaml@2.9.1))(supports-color@9.4.0)
-      '@lincyaw/render-slides': 1.0.0-rc.5(@lincyaw/kernel@1.0.0-rc.5)(@lincyaw/web@1.0.0-rc.5(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)(@lincyaw/viewer@1.0.0-rc.5(supports-color@9.4.0))(@types/node@26.6.6)(jiti@2.7.0)(supports-color@9.4.0)(yaml@2.9.1))(playwright-chromium@1.64.1)
-      '@lincyaw/viewer': 1.0.0-rc.5(supports-color@9.4.0)
-      '@lincyaw/web': 1.0.0-rc.5(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)(@lincyaw/viewer@1.0.0-rc.5(supports-color@9.4.0))(@types/node@26.6.6)(jiti@2.7.0)(supports-color@9.4.0)(yaml@2.9.1)
-      create-presmium: 1.0.0-rc.5
+      '@lincyaw/addon-assistant': 1.0.0-rc.6(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@lincyaw/addon-classroom': 1.0.0-rc.6(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@lincyaw/addon-code': 1.0.0-rc.6(@lincyaw/kernel@1.0.0-rc.6)(supports-color@9.4.0)
+      '@lincyaw/addon-content': 1.0.0-rc.6(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)(markmap-common@0.18.9)(react@18.3.1)
+      '@lincyaw/addon-exec': 1.0.0-rc.6(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)(react@18.3.1)
+      '@lincyaw/addon-exec-jupyter': 1.0.0-rc.6(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@lincyaw/addon-exec-local': 1.0.0-rc.6(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)(react@18.3.1)
+      '@lincyaw/addon-exec-wasi': 1.0.0-rc.6(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)
+      '@lincyaw/addon-exec-webgpu': 1.0.0-rc.6(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)
+      '@lincyaw/addon-guide': 1.0.0-rc.6(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)(react@18.3.1)
+      '@lincyaw/addon-lecture': 1.0.0-rc.6(@lincyaw/compiler@1.0.0-rc.6(supports-color@9.4.0))(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)(playwright-chromium@1.64.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@lincyaw/addon-motion': 1.0.0-rc.6(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@lincyaw/addon-publish': 1.0.0-rc.6(@lincyaw/compiler@1.0.0-rc.6(supports-color@9.4.0))(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)(react@18.3.1)
+      '@lincyaw/addon-session': 1.0.0-rc.6(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@lincyaw/addon-speech': 1.0.0-rc.6(@lincyaw/compiler@1.0.0-rc.6(supports-color@9.4.0))(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)(debug@4.4.3(supports-color@9.4.0))(supports-color@9.4.0)
+      '@lincyaw/addon-stage': 1.0.0-rc.6(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)(react@18.3.1)
+      '@lincyaw/cli': 1.0.0-rc.6(supports-color@9.4.0)
+      '@lincyaw/host': 1.0.0-rc.6
+      '@lincyaw/kernel': 1.0.0-rc.6
+      '@lincyaw/render-notebook': 1.0.0-rc.6(@lincyaw/kernel@1.0.0-rc.6)(@lincyaw/web@1.0.0-rc.6(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)(@lincyaw/viewer@1.0.0-rc.6(supports-color@9.4.0))(@types/node@26.6.6)(jiti@2.7.0)(supports-color@9.4.0)(yaml@2.9.1))(supports-color@9.4.0)
+      '@lincyaw/render-slides': 1.0.0-rc.6(@lincyaw/kernel@1.0.0-rc.6)(@lincyaw/web@1.0.0-rc.6(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)(@lincyaw/viewer@1.0.0-rc.6(supports-color@9.4.0))(@types/node@26.6.6)(jiti@2.7.0)(supports-color@9.4.0)(yaml@2.9.1))(playwright-chromium@1.64.1)
+      '@lincyaw/viewer': 1.0.0-rc.6(supports-color@9.4.0)
+      '@lincyaw/web': 1.0.0-rc.6(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)(@lincyaw/viewer@1.0.0-rc.6(supports-color@9.4.0))(@types/node@26.6.6)(jiti@2.7.0)(supports-color@9.4.0)(yaml@2.9.1)
+      create-presmium: 1.0.0-rc.6
       jiti: 2.7.0
     transitivePeerDependencies:
       - '@lincyaw/compiler'
@@ -3967,41 +3967,41 @@ snapshots:
       - vue
       - yaml
 
-  '@lincyaw/render-notebook@1.0.0-rc.5(@lincyaw/kernel@1.0.0-rc.5)(@lincyaw/web@1.0.0-rc.5(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)(@lincyaw/viewer@1.0.0-rc.5(supports-color@9.4.0))(@types/node@26.6.6)(jiti@2.7.0)(supports-color@9.4.0)(yaml@2.9.1))(supports-color@9.4.0)':
+  '@lincyaw/render-notebook@1.0.0-rc.6(@lincyaw/kernel@1.0.0-rc.6)(@lincyaw/web@1.0.0-rc.6(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)(@lincyaw/viewer@1.0.0-rc.6(supports-color@9.4.0))(@types/node@26.6.6)(jiti@2.7.0)(supports-color@9.4.0)(yaml@2.9.1))(supports-color@9.4.0)':
     dependencies:
-      '@lincyaw/kernel': 1.0.0-rc.5
+      '@lincyaw/kernel': 1.0.0-rc.6
       myst-to-md: 1.0.18(supports-color@9.4.0)
       vfile: 5.3.7
     optionalDependencies:
-      '@lincyaw/web': 1.0.0-rc.5(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)(@lincyaw/viewer@1.0.0-rc.5(supports-color@9.4.0))(@types/node@26.6.6)(jiti@2.7.0)(supports-color@9.4.0)(yaml@2.9.1)
+      '@lincyaw/web': 1.0.0-rc.6(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)(@lincyaw/viewer@1.0.0-rc.6(supports-color@9.4.0))(@types/node@26.6.6)(jiti@2.7.0)(supports-color@9.4.0)(yaml@2.9.1)
     transitivePeerDependencies:
       - supports-color
 
-  '@lincyaw/render-slides@1.0.0-rc.5(@lincyaw/kernel@1.0.0-rc.5)(@lincyaw/web@1.0.0-rc.5(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)(@lincyaw/viewer@1.0.0-rc.5(supports-color@9.4.0))(@types/node@26.6.6)(jiti@2.7.0)(supports-color@9.4.0)(yaml@2.9.1))(playwright-chromium@1.64.1)':
+  '@lincyaw/render-slides@1.0.0-rc.6(@lincyaw/kernel@1.0.0-rc.6)(@lincyaw/web@1.0.0-rc.6(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)(@lincyaw/viewer@1.0.0-rc.6(supports-color@9.4.0))(@types/node@26.6.6)(jiti@2.7.0)(supports-color@9.4.0)(yaml@2.9.1))(playwright-chromium@1.64.1)':
     dependencies:
-      '@lincyaw/kernel': 1.0.0-rc.5
-      '@lincyaw/web': 1.0.0-rc.5(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)(@lincyaw/viewer@1.0.0-rc.5(supports-color@9.4.0))(@types/node@26.6.6)(jiti@2.7.0)(supports-color@9.4.0)(yaml@2.9.1)
+      '@lincyaw/kernel': 1.0.0-rc.6
+      '@lincyaw/web': 1.0.0-rc.6(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)(@lincyaw/viewer@1.0.0-rc.6(supports-color@9.4.0))(@types/node@26.6.6)(jiti@2.7.0)(supports-color@9.4.0)(yaml@2.9.1)
       pptxgenjs: 4.0.1
     optionalDependencies:
       playwright-chromium: 1.64.1
 
-  '@lincyaw/server@1.0.0-rc.5(supports-color@9.4.0)':
+  '@lincyaw/server@1.0.0-rc.6(supports-color@9.4.0)':
     dependencies:
       '@hono/node-server': 2.1.3(hono@4.13.13)
-      '@lincyaw/compiler': 1.0.0-rc.5(supports-color@9.4.0)
-      '@lincyaw/kernel': 1.0.0-rc.5
-      '@lincyaw/mcp': 1.0.0-rc.5(supports-color@9.4.0)
+      '@lincyaw/compiler': 1.0.0-rc.6(supports-color@9.4.0)
+      '@lincyaw/kernel': 1.0.0-rc.6
+      '@lincyaw/mcp': 1.0.0-rc.6(supports-color@9.4.0)
       hono: 4.13.13
       http-proxy-3: 2.0.1(supports-color@9.4.0)
     transitivePeerDependencies:
       - supports-color
 
-  '@lincyaw/skills@1.0.0-rc.5':
+  '@lincyaw/skills@1.0.0-rc.6':
     dependencies:
-      '@lincyaw/kernel': 1.0.0-rc.5
+      '@lincyaw/kernel': 1.0.0-rc.6
       jiti: 2.7.0
 
-  '@lincyaw/viewer@1.0.0-rc.5(supports-color@9.4.0)':
+  '@lincyaw/viewer@1.0.0-rc.6(supports-color@9.4.0)':
     dependencies:
       '@codemirror/commands': 6.11.1
       '@codemirror/lang-javascript': 6.2.5
@@ -4010,8 +4010,8 @@ snapshots:
       '@codemirror/state': 6.7.6
       '@codemirror/view': 6.43.14
       '@lezer/highlight': 1.2.5
-      '@lincyaw/host': 1.0.0-rc.5
-      '@lincyaw/kernel': 1.0.0-rc.5
+      '@lincyaw/host': 1.0.0-rc.6
+      '@lincyaw/kernel': 1.0.0-rc.6
       '@radix-ui/react-focus-scope': 1.3.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-tabs': 1.2.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@shikijs/magic-move': 4.5.0(react@18.3.1)(shiki@4.5.0)
@@ -4038,12 +4038,12 @@ snapshots:
       - svelte
       - vue
 
-  '@lincyaw/web@1.0.0-rc.5(@lincyaw/host@1.0.0-rc.5)(@lincyaw/kernel@1.0.0-rc.5)(@lincyaw/viewer@1.0.0-rc.5(supports-color@9.4.0))(@types/node@26.6.6)(jiti@2.7.0)(supports-color@9.4.0)(yaml@2.9.1)':
+  '@lincyaw/web@1.0.0-rc.6(@lincyaw/host@1.0.0-rc.6)(@lincyaw/kernel@1.0.0-rc.6)(@lincyaw/viewer@1.0.0-rc.6(supports-color@9.4.0))(@types/node@26.6.6)(jiti@2.7.0)(supports-color@9.4.0)(yaml@2.9.1)':
     dependencies:
-      '@lincyaw/design': 1.0.0-rc.5
-      '@lincyaw/host': 1.0.0-rc.5
-      '@lincyaw/kernel': 1.0.0-rc.5
-      '@lincyaw/viewer': 1.0.0-rc.5(supports-color@9.4.0)
+      '@lincyaw/design': 1.0.0-rc.6
+      '@lincyaw/host': 1.0.0-rc.6
+      '@lincyaw/kernel': 1.0.0-rc.6
+      '@lincyaw/viewer': 1.0.0-rc.6(supports-color@9.4.0)
       escape-html: 1.0.3
       http-proxy-3: 2.0.1(supports-color@9.4.0)
       katex: 0.18.10
@@ -4069,11 +4069,11 @@ snapshots:
       - tsx
       - yaml
 
-  '@lincyaw/workspace@1.0.0-rc.5(supports-color@9.4.0)':
+  '@lincyaw/workspace@1.0.0-rc.6(supports-color@9.4.0)':
     dependencies:
-      '@lincyaw/compiler': 1.0.0-rc.5(supports-color@9.4.0)
-      '@lincyaw/kernel': 1.0.0-rc.5
-      '@lincyaw/server': 1.0.0-rc.5(supports-color@9.4.0)
+      '@lincyaw/compiler': 1.0.0-rc.6(supports-color@9.4.0)
+      '@lincyaw/kernel': 1.0.0-rc.6
+      '@lincyaw/server': 1.0.0-rc.6(supports-color@9.4.0)
       image-size: 2.0.4
       mime-types: 3.0.2
       yaml: 2.9.1
@@ -4984,9 +4984,9 @@ snapshots:
 
   crc@4.3.2: {}
 
-  create-presmium@1.0.0-rc.5:
+  create-presmium@1.0.0-rc.6:
     dependencies:
-      '@lincyaw/kernel': 1.0.0-rc.5
+      '@lincyaw/kernel': 1.0.0-rc.6
       jiti: 2.7.0
 
   credit-roles@2.1.0: {}
