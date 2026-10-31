@@ -1,12 +1,27 @@
 /** Everything the home page says about Aoyang Fang and his papers. Each paper's page is its document under papers/<id>/. */
 
-export type Thread = 'collect' | 'diagnose' | 'evaluate' | 'testing'
+export type Thread = 'incident' | 'testing' | 'agents'
+export type Direction = 'llm4se' | 'se4llm'
 
-export const THREADS: Record<Thread, { label: string, step?: string, question?: string, detail?: string }> = {
-  collect: { label: 'Collect', step: '01', question: 'Which telemetry is worth keeping?', detail: 'Traces are too many to store; what a sampler keeps decides what a diagnosis can see.' },
-  diagnose: { label: 'Diagnose', step: '02', question: 'Where did the failure start?', detail: 'The service that starts a failure is often quieter than its victims, and the ticket alone rarely names its owner.' },
-  evaluate: { label: 'Evaluate', step: '03', question: 'Which methods actually work?', detail: 'Benchmarks where faults travel, and grading of the reasoning, not only the answer.' },
+/** The two directions of the research, and the threads each one holds. */
+export const DIRECTIONS: Record<Direction, { label: string, from: string, to: string, says: string, threads: Thread[], now?: string }> = {
+  llm4se: {
+    label: 'LLM for SE', from: 'LLMs', to: 'Software',
+    says: 'Keeping large software systems reliable: testing them, recovering how they are built, and finding why they fail in production, more and more with LLM agents.',
+    threads: ['incident', 'testing'],
+  },
+  se4llm: {
+    label: 'SE for LLM', from: 'Software engineering', to: 'LLMs',
+    says: 'Engineering rigor for LLM agents: benchmarks that grade how they reason step by step, not only what they answer, and analysis of what they do.',
+    threads: ['agents'],
+    now: 'Now at ByteDance: analyzing and monitoring the trajectories of LLM agents.',
+  },
+}
+
+export const THREADS: Record<Thread, { label: string }> = {
+  incident: { label: 'Incident management' },
   testing: { label: 'Testing & analysis' },
+  agents: { label: 'LLM agents' },
 }
 
 export interface Paper {
@@ -28,7 +43,7 @@ export interface Paper {
 
 export const PAPERS: Paper[] = [
   {
-    id: 'openrca2', venue: "arXiv'26", short: 'OpenRCA 2.0', at: 2026.45, thread: 'evaluate',
+    id: 'openrca2', venue: "arXiv'26", short: 'OpenRCA 2.0', at: 2026.45, thread: 'agents',
     title: 'OpenRCA 2.0: From Outcome Labels to Causal Process Supervision',
     authors: "Aoyang Fang, Yifan Yang, Jin'ao Shang, Qisheng Lu, Junjielong Xu, Rui Wang, Songhan Zhang, Yuzhong Zhang, Boxi Yu, Pinjia He",
     claim: "A right root cause is not a right diagnosis. OpenRCA 2.0 grades whether an agent's reasoning follows the fault the way it really spread.",
@@ -36,7 +51,7 @@ export const PAPERS: Paper[] = [
     chapters: [['0:00', 'Right answer, skipped step'], ['0:14', 'The cause is known'], ['0:27', 'Following the fault forward'], ['0:45', 'Grading the chain']],
   },
   {
-    id: 'gleaner', venue: "ISSTA'26", short: 'Gleaner', at: 2026.3, thread: 'collect',
+    id: 'gleaner', venue: "ISSTA'26", short: 'Gleaner', at: 2026.3, thread: 'incident',
     title: 'Gleaner: A Semantically-Rich and Efficient Online Sampler for Microservice Diagnostics',
     authors: 'Yifan Yang, Aoyang Fang, Songhan Zhang, Pinjia He',
     claim: 'A trace that looks fine can hide the error in its logs. Gleaner reads traces and logs together, so a small sample keeps what diagnosis needs.',
@@ -45,7 +60,7 @@ export const PAPERS: Paper[] = [
     chapters: [['0:00', 'A trace that looks fine'], ['0:14', 'Why samplers drop it'], ['0:27', 'Traces as sets of pairs'], ['0:46', 'One percent, better diagnosis']],
   },
   {
-    id: 'fse26', venue: "FSE'26", short: 'RCA benchmark', at: 2026.0, thread: 'evaluate',
+    id: 'fse26', venue: "FSE'26", short: 'RCA benchmark', at: 2026.0, thread: 'incident',
     title: 'Rethinking the Evaluation of Microservice RCA with a Fault Propagation-Aware Benchmark',
     authors: 'Aoyang Fang, Songhan Zhang, Yifan Yang, Haotong Wu, Junjielong Xu, Xuyang Wang, Rui Wang, Manyi Wang, Qisheng Lu, Pinjia He',
     claim: 'Public benchmarks made RCA look solved. When faults travel, 11 state-of-the-art models find the root cause first 21% of the time.',
@@ -54,7 +69,7 @@ export const PAPERS: Paper[] = [
     chapters: [['0:00', 'Who gets blamed?'], ['0:13', 'The shortcut'], ['0:31', 'Faults that travel'], ['0:46', 'The scores fall']],
   },
   {
-    id: 'dynacausal', venue: "arXiv'25", short: 'DynaCausal', at: 2025.85, thread: 'diagnose',
+    id: 'dynacausal', venue: "arXiv'25", short: 'DynaCausal', at: 2025.85, thread: 'incident',
     title: 'DynaCausal: Dynamic Causality-Aware Root Cause Analysis for Distributed Microservices',
     authors: 'Songhan Zhang, Aoyang Fang, Yifan Yang, Ruiyi Cheng, Xiaoying Tang, Pinjia He',
     claim: 'The loudest services are often victims. DynaCausal follows a fault upstream over a call graph rebuilt in every time window.',
@@ -62,7 +77,7 @@ export const PAPERS: Paper[] = [
     chapters: [['0:00', 'Which service broke?'], ['0:13', 'The loudest are victims'], ['0:27', 'Follow the fault upstream'], ['0:42', 'Where to look first']],
   },
   {
-    id: 'survey', venue: "arXiv'25", short: 'RCA survey', at: 2025.62, thread: 'evaluate',
+    id: 'survey', venue: "arXiv'25", short: 'RCA survey', at: 2025.62, thread: 'incident',
     title: 'A Goal-Driven Survey on Root Cause Analysis',
     authors: 'Aoyang Fang, Haowen Yang, Haoze Dong, Qisheng Lu, Junjielong Xu, Pinjia He',
     claim: '135 RCA papers, sorted by the goal they serve, each explain points of an incident. None yet returns its whole propagation path.',
@@ -70,7 +85,7 @@ export const PAPERS: Paper[] = [
     chapters: [['0:00', 'One incident, 135 papers'], ['0:15', 'Same data, different goals'], ['0:30', 'Sorted by goal'], ['0:43', 'Points, not the path']],
   },
   {
-    id: 'triangle', venue: "ASE'25", short: 'Triangle', at: 2025.55, thread: 'diagnose',
+    id: 'triangle', venue: "ASE'25", short: 'Triangle', at: 2025.55, thread: 'incident',
     title: 'Triangle: Empowering Incident Triage with Multi-Agent',
     authors: 'Zhaoyang Yu, Aoyang Fang (co-first), Minghua Ma, Jaskaran Singh Walia, Chaoyun Zhang, Shu Chi, Ze Li, Murali Chintalapati, Xuchao Zhang, Rujia Wang, Chetan Bansal, Saravan Rajmohan, Qingwei Lin, Shenglin Zhang, Dan Pei, Pinjia He',
     claim: 'An incident ticket alone cannot name its owner. One LLM agent per team fetches evidence and votes, so tickets reach the right team in fewer hops.',

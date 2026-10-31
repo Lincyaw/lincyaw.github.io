@@ -1,7 +1,7 @@
 import './style.css'
 import avatar from './assets/avatar.jpg'
-import { ABOUT, NEWS, PAPERS, THREADS } from './profile.ts'
-import type { Paper, Thread } from './profile.ts'
+import { ABOUT, DIRECTIONS, NEWS, PAPERS, THREADS } from './profile.ts'
+import type { Direction, Paper, Thread } from './profile.ts'
 
 /** What Presmium injects into the page: the site's documents and its theme's stylesheets. */
 interface SiteData {
@@ -47,7 +47,7 @@ function header(): string {
       <a class="px-brand" href="#top"><span class="px-brand__mark" aria-hidden="true">AF</span><span class="px-brand__name">Aoyang Fang</span></a>
       <button class="px-menu" type="button" aria-expanded="false" aria-controls="px-links" aria-label="Menu"><span></span></button>
       <div class="px-links" id="px-links">
-        <a href="#now">Research</a><a href="#papers">Papers</a><a href="#talks">Talks</a><a href="#about">About</a>
+        <a href="#research">Research</a><a href="#papers">Papers</a><a href="#talks">Talks</a><a href="#about">About</a>
         <span class="px-links__soon">Blog <span class="px-chip">Soon</span></span>
         <button class="px-appearance" type="button" aria-label="Switch light and dark">${root.classList.contains('dark') ? 'Light' : 'Dark'}</button>
       </div>
@@ -59,10 +59,10 @@ function hero(): string {
   return `<section class="px-hero" id="top">
     <div class="px-hero__text">
       <p class="px-kicker">&gt; PhD candidate · CUHK-Shenzhen</p>
-      <h1>When a microservice system fails, which service is to blame?</h1>
-      <p class="px-lead">I study root cause analysis for microservices: keeping the telemetry that matters, locating the faulty service, and building benchmarks that show which methods hold up on realistic failures. Advised by <a href="https://pinjiahe.github.io/">Prof. Pinjia He</a>; research intern at ByteDance.</p>
+      <h1>LLM for SE,<br>and SE for LLM.</h1>
+      <p class="px-lead">I make large software systems more reliable with LLMs and program analysis, and make LLM agents more trustworthy with software-engineering methods. Advised by <a href="https://pinjiahe.github.io/">Prof. Pinjia He</a>; research intern at ByteDance.</p>
       <div class="px-actions">
-        <a class="px-button px-button--primary" href="#now">${PLAY}Watch the one-minute papers</a>
+        <a class="px-button px-button--primary" href="#research">${PLAY}Watch the one-minute papers</a>
         <a class="px-button" href="https://scholar.google.com/citations?user=fknpyMIAAAAJ">Google Scholar<span class="px-citations" data-citations hidden></span></a>
         <a class="px-button" href="${site.base}assets/pdf/cv/cv.pdf">CV</a>
         <a class="px-button" href="https://github.com/Lincyaw">GitHub</a>
@@ -73,35 +73,41 @@ function hero(): string {
   </section>`
 }
 
-function now(): string {
-  const stages = (['collect', 'diagnose', 'evaluate'] as Thread[]).map((thread) => {
-    const t = THREADS[thread]
-    const papers = PAPERS.filter(paper => paper.thread === thread)
-    return `<article class="px-stage" data-thread="${thread}">
-      <p class="px-stage__name"><span class="px-stage__step">${t.step}</span>${esc(t.label)}</p>
-      <h3>${esc(t.question!)}</h3>
-      <p>${esc(t.detail!)}</p>
-      <div class="px-stage__papers">${papers.map(paper => `<button type="button" class="px-paper-chip" data-open="${paper.id}">${PLAY}${tag(paper)}<span class="px-paper-chip__name">${esc(paper.short)}</span><span class="px-paper-chip__time">1:00</span></button>`).join('')}</div>
+const chip = (paper: Paper) => `<button type="button" class="px-paper-chip" data-open="${paper.id}">${PLAY}${tag(paper)}<span class="px-paper-chip__name">${esc(paper.short)}</span></button>`
+
+/** The research as two directions between LLMs and software; every paper sits in the direction it serves. */
+function research(): string {
+  const lane = (direction: Direction) => {
+    const d = DIRECTIONS[direction]
+    return `<article class="px-lane" data-direction="${direction}">
+      <div class="px-lane__arrow" aria-hidden="true"></div>
+      <p class="px-lane__head"><span class="px-lane__label">${esc(d.label)}</span><span class="px-lane__route">${esc(d.from)} → ${esc(d.to)}</span></p>
+      <p class="px-lane__says">${esc(d.says)}</p>
+      <div class="px-lane__threads">${d.threads.map(thread => `<section class="px-lane__thread" data-thread="${thread}"><h3>${esc(THREADS[thread].label)}</h3><div class="px-lane__papers">${PAPERS.filter(paper => paper.thread === thread).map(chip).join('')}</div></section>`).join('')}</div>
+      ${d.now ? `<p class="px-lane__now">${esc(d.now)}</p>` : ''}
     </article>`
-  }).join('')
-  const earlier = PAPERS.filter(paper => paper.thread === 'testing').map(paper => `<button type="button" class="px-inline" data-open="${paper.id}">${esc(paper.short)} (${esc(paper.venue)})</button>`).join(' and ')
-  return `<section class="px-section" id="now" aria-labelledby="now-title">
-    <div class="px-section__head"><h2 id="now-title">Now</h2><p>Three steps of one question. Every paper comes with a one-minute film.</p></div>
-    <div class="px-stages">${stages}</div>
-    <p class="px-earlier">Before root cause analysis, I worked on software testing and program analysis: ${earlier}.</p>
+  }
+  return `<section class="px-section" id="research" aria-labelledby="research-title">
+    <div class="px-section__head"><h2 id="research-title">Research</h2><p>Two directions between LLMs and software. Every paper comes with a one-minute film.</p></div>
+    <div class="px-research">
+      <div class="px-pole px-pole--left" aria-hidden="true"><strong>LLMs</strong><span>models and agents</span></div>
+      ${lane('llm4se')}
+      ${lane('se4llm')}
+      <div class="px-pole px-pole--right" aria-hidden="true"><strong>Software</strong><span>systems and how they are built</span></div>
+    </div>
   </section>`
 }
 
 function papers(): string {
-  const filters = (['all', 'collect', 'diagnose', 'evaluate', 'testing'] as const).map(key => `<button type="button" class="px-filter" data-filter="${key}" data-thread="${key}" aria-pressed="${state.thread === key}">${key === 'all' ? 'All' : esc(THREADS[key].label)}</button>`).join('')
+  const filters = (['all', 'agents', 'incident', 'testing'] as const).map(key => `<button type="button" class="px-filter" data-filter="${key}" data-thread="${key}" aria-pressed="${state.thread === key}">${key === 'all' ? 'All' : esc(THREADS[key].label)}</button>`).join('')
   const shown = PAPERS.filter(paper => state.thread === 'all' || paper.thread === state.thread)
-  const lanes: Thread[] = ['collect', 'diagnose', 'evaluate', 'testing']
+  const lanes: Thread[] = ['agents', 'incident', 'testing']
   const x = (at: number) => ((at - 2023.4) / 3.4 * 100).toFixed(2)
   const hovered = PAPERS.find(paper => paper.id === state.hover) ?? PAPERS[0]!
   const map = `<div class="px-map" role="group" aria-label="Papers by thread and year">
     <div class="px-map__scroll"><div class="px-map__plot">
       ${lanes.map(lane => `<div class="px-map__lane" data-thread="${lane}"><span class="px-map__label">${esc(THREADS[lane].label)}</span><span class="px-map__track">
-        ${PAPERS.filter(paper => paper.thread === lane).map(paper => `<button type="button" class="px-map__node" data-open="${paper.id}" data-hover="${paper.id}" style="left: ${x(paper.at)}%" aria-label="${esc(`${paper.venue}: ${paper.title}`)}" ${shown.includes(paper) ? '' : 'data-dim'} ${paper.id === hovered.id ? 'data-active' : ''}><span class="px-map__dot"></span><span class="px-map__venue">${esc(paper.venue)}</span></button>`).join('')}
+        ${PAPERS.filter(paper => paper.thread === lane).sort((a, b) => a.at - b.at).map((paper, i) => `<button type="button" class="px-map__node" data-open="${paper.id}" data-hover="${paper.id}" ${i % 2 ? 'data-label="above"' : ''} style="left: ${x(paper.at)}%" aria-label="${esc(`${paper.venue}: ${paper.title}`)}" ${shown.includes(paper) ? '' : 'data-dim'} ${paper.id === hovered.id ? 'data-active' : ''}><span class="px-map__dot"></span><span class="px-map__venue">${esc(paper.venue)}</span></button>`).join('')}
       </span></div>`).join('')}
       <div class="px-map__years"><span class="px-map__label"></span><span class="px-map__track">${[2024, 2025, 2026].map(year => `<span style="left: ${x(year)}%">${year}</span>`).join('')}</span></div>
     </div></div>
@@ -178,7 +184,7 @@ function opened(): Paper | undefined {
 
 function render(): void {
   const paper = opened()
-  app.innerHTML = `${header()}<main>${hero()}${now()}${papers()}${talks()}${about()}</main><footer class="px-footer">Built with Presmium · © 2026 Aoyang Fang</footer>${paper ? overlay(paper) : ''}`
+  app.innerHTML = `${header()}<main>${hero()}${research()}${papers()}${talks()}${about()}</main><footer class="px-footer">Built with Presmium · © 2026 Aoyang Fang</footer>${paper ? overlay(paper) : ''}`
   document.body.classList.toggle('px-locked', Boolean(paper))
   if (paper) app.querySelector<HTMLElement>('.px-dialog')?.focus()
 }

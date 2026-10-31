@@ -6,24 +6,22 @@
 [data-pm-site-theme-name='pixel'] {
   --px-font: 'Silkscreen', ui-monospace, monospace;
   --px-border: 3px;
-  --px-collect: #0f766e;
-  --px-diagnose: #2546b8;
-  --px-evaluate: #b93a0b;
+  --px-agents: #0f766e;
+  --px-incident: #b93a0b;
   --px-testing: #5b4b99;
-  --px-collect-soft: #e3f2f0;
-  --px-diagnose-soft: #e6ebfa;
-  --px-evaluate-soft: #fbeae2;
+  --px-llm4se: #2546b8;
+  --px-agents-soft: #e3f2f0;
+  --px-incident-soft: #fbeae2;
   --px-testing-soft: #edeaf6;
 }
 
 :root.dark [data-pm-site-theme-name='pixel'] {
-  --px-collect: #4fd1c5;
-  --px-diagnose: #8ea6ff;
-  --px-evaluate: #f28c5b;
+  --px-agents: #4fd1c5;
+  --px-incident: #f28c5b;
   --px-testing: #b6a6f2;
-  --px-collect-soft: #10302d;
-  --px-diagnose-soft: #1f2747;
-  --px-evaluate-soft: #3a2116;
+  --px-llm4se: #8ea6ff;
+  --px-agents-soft: #10302d;
+  --px-incident-soft: #3a2116;
   --px-testing-soft: #2a2442;
 }
 

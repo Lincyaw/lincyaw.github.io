@@ -1,12 +1,12 @@
 title: Aoyang Fang
-# The order of the sidebar and of the pager: by research thread, newest first within each.
+# The order of the sidebar and of the pager: LLM agents, incident management, testing and analysis; newest first.
 documents:
-  - "papers/gleaner/lecture.json"
-  - "papers/dynacausal/lecture.json"
-  - "papers/triangle/lecture.json"
   - "papers/openrca2/lecture.json"
+  - "papers/gleaner/lecture.json"
   - "papers/fse26/lecture.json"
+  - "papers/dynacausal/lecture.json"
   - "papers/survey/lecture.json"
+  - "papers/triangle/lecture.json"
   - "papers/grev/lecture.json"
   - "papers/rpcover/lecture.json"
   - "papers/*/lecture.json"
@@ -20,10 +20,10 @@ site:
   landing:
     template: ./site/home.html
   head:
-    description: Aoyang Fang, PhD candidate at CUHK-Shenzhen, works on root cause analysis for microservice systems. Each paper comes with a one-minute film.
+    description: Aoyang Fang, PhD candidate at CUHK-Shenzhen, works on LLM for software engineering and software engineering for LLMs. Each paper comes with a one-minute film.
   nav:
     - text: Research
-      link: /#now
+      link: /#research
     - text: Papers
       link: /#papers
     - text: Talks
