@@ -8,6 +8,6 @@
     "check": "presmium check papers/fse26"
   },
   "devDependencies": {
-    "@lincyaw/presmium": "1.0.0-rc.14"
+    "@lincyaw/presmium": "1.0.0-rc.117"
   }
 }
