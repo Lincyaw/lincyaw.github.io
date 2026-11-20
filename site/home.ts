@@ -2,7 +2,7 @@ import { prefetchPresentation, whenPresentationReady } from '@lincyaw/presmium/s
 import type { SiteContent } from '@lincyaw/presmium/site'
 import './style.css'
 import avatar from './assets/avatar.jpg'
-import { ABOUT, DIRECTIONS, NEWS, PAPERS, THREADS } from './profile.ts'
+import { ABOUT, DIRECTIONS, NEWS, PAPERS, PROJECTS, THREADS } from './profile.ts'
 import type { Direction, Paper, Thread } from './profile.ts'
 
 // What Presmium gives the page: the site's documents, each with its pages and its presentation.
@@ -48,7 +48,7 @@ function header(): string {
       <a class="px-brand" href="#top"><span class="px-brand__mark" aria-hidden="true">AF</span><span class="px-brand__name">Aoyang Fang</span></a>
       <button class="px-menu" type="button" aria-expanded="false" aria-controls="px-links" aria-label="Menu"><span></span></button>
       <div class="px-links" id="px-links">
-        <a href="#research">Research</a><a href="#papers">Papers</a><a href="#talks">Talks</a><a href="#about">About</a>
+        <a href="#research">Research</a><a href="#papers">Papers</a><a href="#talks">Talks</a><a href="#projects">Projects</a><a href="#about">About</a>
         <span class="px-links__soon">Blog <span class="px-chip">Soon</span></span>
         <button class="px-appearance" type="button" aria-label="Switch light and dark">${root.classList.contains('dark') ? 'Light' : 'Dark'}</button>
       </div>
@@ -146,6 +146,13 @@ function talks(): string {
   </section>`
 }
 
+function projects(): string {
+  return `<section class="px-section" id="projects" aria-labelledby="projects-title">
+    <div class="px-section__head"><h2 id="projects-title">Projects</h2><p>Open-source tools from my research and daily work</p></div>
+    <ul class="px-projects">${PROJECTS.map(project => `<li><a class="px-project" href="https://github.com/Lincyaw/${project.name}"><span class="px-project__name">${esc(project.name)}<span class="px-project__lang">${esc(project.lang)}</span></span><span class="px-project__does">${esc(project.does)}</span><span class="px-project__why">${esc(project.why)}</span></a></li>`).join('')}</ul>
+  </section>`
+}
+
 function about(): string {
   const news = state.newsAll ? NEWS : NEWS.slice(0, 4)
   const card = state.card === undefined ? undefined : ABOUT[state.card]
@@ -194,7 +201,7 @@ function opened(): Paper | undefined {
 
 function render(): void {
   const paper = opened()
-  app.innerHTML = `${header()}<main>${hero()}${research()}${papers()}${talks()}${about()}</main><footer class="px-footer">Built with Presmium · © 2026 Aoyang Fang</footer>${paper ? overlay(paper) : ''}`
+  app.innerHTML = `${header()}<main>${hero()}${research()}${papers()}${talks()}${projects()}${about()}</main><footer class="px-footer">Built with Presmium · © 2026 Aoyang Fang</footer>${paper ? overlay(paper) : ''}`
   document.body.classList.toggle('px-locked', Boolean(paper))
   if (paper) {
     app.querySelector<HTMLElement>('.px-dialog')?.focus()

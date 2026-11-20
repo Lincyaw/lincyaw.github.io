@@ -170,9 +170,35 @@ export const ABOUT: { label: string, summary: string, items: [string, string][] 
     ['2025 Fall', 'TA, CSC1001 Programming Methodology'],
     ['2025 Spring', 'TA, CSC4001 Software Engineering'],
   ] },
-  { label: 'Projects', summary: 'h-mem · agent-env · claude-notify', items: [
-    ['h-mem', 'A memory system for AI agents with two APIs: remember and recall'],
-    ['agent-env', 'A Kubernetes-native execution environment for AI agents with warm pools'],
-    ['claude-notify', 'Desktop and webhook notifications for Claude Code'],
-  ] },
+]
+
+export interface Project { name: string, lang: string, does: string, why: string }
+
+/** Open-source tools I built for my own research and daily work. */
+export const PROJECTS: Project[] = [
+  {
+    name: 'agent-env', lang: 'Go',
+    does: 'Kubernetes sandboxes for agentic RL, with warm pools, sidecar execution and a Python SDK.',
+    why: 'Agent training waits on environments more than on models; a pool of ready sandboxes keeps rollouts cheap.',
+  },
+  {
+    name: 'agentmesh', lang: 'Rust',
+    does: 'Connects Claude Code and Codex sessions across machines with iroh and MCP: one invite, then direct messages and broadcasts.',
+    why: 'My agents run on several servers at once; they should talk to each other, not only to me.',
+  },
+  {
+    name: 'ig', lang: 'Rust',
+    does: 'Peer-to-peer port forwarding over iroh: reach a machine\'s internal network with no open port or public IP.',
+    why: 'Lab machines sit behind NAT; both sides dial out, so nothing needs to be exposed.',
+  },
+  {
+    name: 'presmium', lang: 'TypeScript',
+    does: 'One lecture document becomes a website, slides, a notebook and a narrated video. This site is built with it.',
+    why: 'A paper should take a minute to grasp and an hour to check; one source keeps every form in sync.',
+  },
+  {
+    name: 'logwatch', lang: 'Go',
+    does: 'A single-binary log monitor: tail, multi-line merge, Drain templates, sliding-window alerts and webhooks.',
+    why: 'Template mining turns noisy logs into countable events without running a log platform.',
+  },
 ]
