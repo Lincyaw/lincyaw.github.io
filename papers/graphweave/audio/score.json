@@ -1,0 +1,17 @@
+{
+  "title": "graphweave film · score",
+  "music": {
+    "title": "Bit Shift",
+    "author": "Kevin MacLeod",
+    "url": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Bit%20Shift.mp3",
+    "license": "CC BY 4.0",
+    "credit": "Music: \"Bit Shift\" by Kevin MacLeod (incompetech.com). Licensed under Creative Commons: By Attribution 4.0 License, http://creativecommons.org/licenses/by/4.0/",
+    "excerpt": { "from": 1.34, "seconds": 62.5, "fadeInSeconds": 0.05, "fadeOutSeconds": 2.5 },
+    "bars": {
+      "note": "130 BPM, a bar every 1.8464 s; the track's bar lines fall at 1.39 + 1.8464 k s (fitted through the onsets from 1.39 to 60.48 s). Starting at 1.34 s puts bar k at film time 0.05 + 1.8464 k s, so the step boundaries 7.436, 12.975, 20.36, 25.9, 33.285, 38.824, 46.21, 51.749 and 57.288 s are bars 4, 7, 11, 14, 18, 21, 25, 28 and 31. The track changes section after the drum fills ending at bars 15 (27.75 s) and 31 (57.29 s, the end card)."
+    }
+  },
+  "made": "ffmpeg -i source/bit-shift.mp3 -af 'atrim=start=1.34:duration=62.5,asetpts=PTS-STARTPTS,afade=t=in:st=0:d=0.05,afade=t=out:st=60:d=2.5,loudnorm=I=-16:TP=-1.5:LRA=11,aresample=48000' -c:a libopus -b:a 64k score.ogg",
+  "target": { "lufs": -16, "truePeak": -1.5 },
+  "measured": { "integratedLufs": -16.1, "peak": -2.2 }
+}

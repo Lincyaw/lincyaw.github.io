@@ -1,0 +1,9 @@
+# GraphWeave figures
+
+From arXiv 2611.07754v1. All are rendered with `pdftoppm` (200–220 dpi) from the vector figures in the e-print (`source/tex/figures/`); captions are not part of the images and are summarised here.
+
+- `dialect-semantics-plan-collapse.png` — Figure 1 (three panels, `intro-a/b/c-tosem.pdf`, joined side by side): (a) dialect differences: `MATCH (a)-[r]->(b) WITH * RETURN a, b` is accepted by Neo4j and rejected by FalkorDB, which needs explicit variables (`WITH a, r, b`); (b) semantic differences: on one node with one `T4` self-loop, FalkorDB allows edge reuse and returns 1 row, Neo4j does not and returns 0; (c) plan collapse: a two-hop source query and its `CALL { … }` equivalent rewrite compile to the same plan.
+- `self-loop-falkordb-1-row-neo4j-0.png` — Figure 2 (page 1 of `semantic-cases-tosem.pdf`): a differential false positive caused by relationship-uniqueness semantics; GDsmith-style query, witness graph, Neo4j 0 rows, FalkorDB 1 row.
+- `same-plan-collapse-rate-54-transformations.png` — Figure 5: same-plan collapse rates of the 54 equivalence-preserving transformations on Neo4j, ranked, coloured by method (Dinkel, GraspDB, GraphGenie, GRev); 33 transformations never collapse.
+- `postprocess-gate-clusters-agents-feedback.png` — Figure 9: the postprocessing pipeline. Standardized testing artifacts → rule-based issue gate (matched against the issue library) → capability clustering and embedding → multi-agent analysis system (coordinator agent; cluster splitting, deep analysis, rules synthesis) → disposition (known issue, new bug, false positive); update specs go back to the issue library (gate-update spec) and the target adapter (adapter spec).
+- `neug-unique-bugs-per-method.png` — Figure 10: unique bugs found on NeuG per integrated method (GDsmith 2, GraphGenie 3, GRev 2, GraspDB 4, Dinkel 9, Gamera 2, GSlicer 3, GDBMeter 3) and in total under GraphWeave (19); per-method sets overlap.

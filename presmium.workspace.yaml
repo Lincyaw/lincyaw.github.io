@@ -9,6 +9,7 @@ documents:
   - "papers/dynacausal/lecture.json"
   - "papers/survey/lecture.json"
   - "papers/triangle/lecture.json"
+  - "papers/graphweave/lecture.json"
   - "papers/grev/lecture.json"
   - "papers/rpcover/lecture.json"
   - "papers/*/lecture.json"

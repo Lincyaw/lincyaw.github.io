@@ -43,6 +43,14 @@ export interface Paper {
 
 export const PAPERS: Paper[] = [
   {
+    id: 'graphweave', venue: "arXiv'26", short: 'GraphWeave', at: 2026.85, thread: 'testing',
+    title: 'Uncovering Systematic Blind Spots in Graph Database Testing through Integration and Process-Level Analysis',
+    authors: 'Tinghan Li, Aoyang Fang, Longbin Lai, Zifan Xie, Hongbo Zhao, Yu Shao, Ying Zhang, Pinjia He',
+    claim: 'Run together, graph-database testers mostly report false positives and duplicates, and many of their tests can never fail because the optimizer gives both queries one plan. GraphWeave filters the first and skips the second, and found 19 confirmed bugs in NeuG.',
+    links: [{ label: 'arXiv', href: 'https://arxiv.org/abs/2611.07754' }],
+    chapters: [['0:00', 'Four thousand reports', 'four-thousand-reports'], ['0:13', 'Both answers are right', 'both-answers-are-right'], ['0:26', 'Two queries, one plan', 'two-queries-one-plan'], ['0:39', 'Learned rules, skipped pairs', 'learned-rules-skipped-pairs'], ['0:52', 'Nineteen bugs in NeuG', 'nineteen-bugs-in-neug']],
+  },
+  {
     id: 'specguardbench', venue: "arXiv'26", short: 'SpecGuardBench', at: 2026.78, thread: 'agents',
     title: 'SpecGuardBench: Can Coding Agents Construct Reliable Validation Harnesses from Natural Language Specifications?',
     authors: 'Zhiqing Zhong, Mingyu Chen, Aoyang Fang, Yuzhong Zhang, Haoye Tian, Lionel Briand, Boxi Yu, Pinjia He',
@@ -131,6 +139,7 @@ export const PAPERS: Paper[] = [
 ]
 
 export const NEWS: [string, string][] = [
+  ['2026.11', 'Uncovering Systematic Blind Spots in Graph Database Testing through Integration and Process-Level Analysis is on arXiv; GraphWeave found 19 confirmed bugs in NeuG.'],
   ['2026.10', 'SpecGuardBench: Can Coding Agents Construct Reliable Validation Harnesses from Natural Language Specifications? is on arXiv.'],
   ['2026.08', 'Beyond Fault Localization: A Trajectory-Level Study of LLM Agents for Microservice Root Cause Analysis is on arXiv.'],
   ['2026.06', 'OpenRCA 2.0: From Outcome Labels to Causal Process Supervision is on arXiv.'],

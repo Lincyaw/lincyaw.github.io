@@ -1,0 +1,1992 @@
+{
+  "schemaVersion": 1,
+  "id": "paper-graphweave",
+  "metadata": {
+    "title": "Uncovering Systematic Blind Spots in Graph Database Testing through Integration and Process-Level Analysis",
+    "lang": "en",
+    "description": "Eight graph-database testers run together mostly report false positives and duplicates, and many of their metamorphic tests cannot fail because the optimizer compiles both queries to one plan; GraphWeave filters the reports with learned rules and skips same-plan pairs, finding 19 confirmed bugs in NeuG.",
+    "plugins": [
+      "@lincyaw/addon-motion",
+      "@lincyaw/addon-lecture",
+      "@lincyaw/addon-speech"
+    ],
+    "renderers": {
+      "web": {},
+      "slides": {},
+      "lecture": {}
+    },
+    "tags": [
+      "Testing & analysis",
+      "arXiv'26"
+    ]
+  },
+  "sectionOrder": [
+    "four-thousand-reports",
+    "both-answers-are-right",
+    "two-queries-one-plan",
+    "learned-rules-skipped-pairs",
+    "nineteen-bugs-in-neug"
+  ],
+  "sections": {
+    "four-thousand-reports": {
+      "id": "four-thousand-reports",
+      "title": "Uncovering Systematic Blind Spots in Graph Database Testing through Integration and Process-Level Analysis",
+      "level": 1,
+      "children": [
+        "intro-card",
+        "four-thousand-reports--scene",
+        "flood-text"
+      ],
+      "stepOrder": [
+        "four-thousand-reports--step-0",
+        "four-thousand-reports--step-1"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    },
+    "both-answers-are-right": {
+      "id": "both-answers-are-right",
+      "title": "Both answers are right",
+      "level": 1,
+      "children": [
+        "both-answers-are-right--scene",
+        "answers-figure",
+        "answers-text"
+      ],
+      "stepOrder": [
+        "both-answers-are-right--step-0",
+        "both-answers-are-right--step-1"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    },
+    "two-queries-one-plan": {
+      "id": "two-queries-one-plan",
+      "title": "Two queries, one plan",
+      "level": 1,
+      "children": [
+        "two-queries-one-plan--scene",
+        "plan-columns",
+        "plan-figure"
+      ],
+      "stepOrder": [
+        "two-queries-one-plan--step-0",
+        "two-queries-one-plan--step-1"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    },
+    "learned-rules-skipped-pairs": {
+      "id": "learned-rules-skipped-pairs",
+      "title": "Learned rules, skipped pairs",
+      "level": 1,
+      "children": [
+        "learned-rules-skipped-pairs--scene",
+        "weave-figure",
+        "weave-text"
+      ],
+      "stepOrder": [
+        "learned-rules-skipped-pairs--step-0",
+        "learned-rules-skipped-pairs--step-1"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    },
+    "nineteen-bugs-in-neug": {
+      "id": "nineteen-bugs-in-neug",
+      "title": "Nineteen bugs in NeuG",
+      "level": 1,
+      "children": [
+        "nineteen-bugs-in-neug--scene",
+        "neug-text",
+        "neug-bibtex",
+        "neug-credit"
+      ],
+      "stepOrder": [
+        "nineteen-bugs-in-neug--step-0",
+        "nineteen-bugs-in-neug--step-1"
+      ],
+      "layout": {
+        "type": "stack",
+        "renderers": {
+          "slides": {
+            "layout": "full"
+          }
+        }
+      }
+    }
+  },
+  "blocks": {
+    "intro-card": {
+      "id": "intro-card",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "p-1",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Tinghan Li, "
+            },
+            {
+              "type": "text",
+              "text": "Aoyang Fang",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": ", Longbin Lai, Zifan Xie, Hongbo Zhao, Yu Shao, Ying Zhang, Pinjia He. "
+            },
+            {
+              "type": "text",
+              "text": "arXiv preprint",
+              "marks": [
+                {
+                  "type": "italic"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " 2611.07754, 2026."
+            }
+          ]
+        },
+        {
+          "id": "p-2",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "link",
+              "href": "https://arxiv.org/abs/2611.07754",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "arXiv"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " · "
+            },
+            {
+              "type": "link",
+              "href": "https://arxiv.org/pdf/2611.07754v1",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "PDF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "p-3",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Graph databases have many automated testers, and each catches a different kind of defect. Run eight of them together and two blind spots appear: the reports are mostly false positives or duplicates, and many metamorphic tests can never fail because the optimizer compiles both of their queries to "
+            },
+            {
+              "type": "text",
+              "text": "the same plan",
+              "marks": [
+                {
+                  "type": "italic"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": ". GraphWeave turns analysed reports into filtering and dialect rules and skips query pairs that share a plan; on NeuG, a newly open-sourced industrial graph database, it found "
+            },
+            {
+              "type": "text",
+              "text": "19 previously unknown bugs, all confirmed",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "."
+            }
+          ]
+        }
+      ]
+    },
+    "flood-text": {
+      "id": "flood-text",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "p-4",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "The study integrates the test capabilities of eight methods behind one interface: the graph-derived Gamera and GSlicer, the statement-metamorphic GDBMeter, Gamera, GraphGenie, GraspDB, GRev and Dinkel, and the differential GDsmith. Each method runs for 12 hours against each of Neo4j, Memgraph and FalkorDB in an isolated container, and every run keeps its process-level data: how each graph and query was derived, the execution plans and the outputs."
+            }
+          ]
+        },
+        {
+          "id": "p-5",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "The campaigns file "
+            },
+            {
+              "type": "text",
+              "text": "4,114 raw reports",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": ", far more than the defects three mature databases are likely to hold. "
+            },
+            {
+              "type": "text",
+              "text": "3,136 (76.2%)",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " are false positives. GDsmith alone files 1,439 false positives in 1,584 reports, and every one of GraspDB's reports on Neo4j and FalkorDB is false. The real ones repeat: GraphGenie's 278 real reports on FalkorDB and Gamera's 111 on Memgraph each point to a single bug (paper, Table 2)."
+            }
+          ]
+        }
+      ]
+    },
+    "answers-figure": {
+      "id": "answers-figure",
+      "type": "image",
+      "only": [
+        "web"
+      ],
+      "assetId": "challenges-asset",
+      "alt": "Three panels. (a) Dialect differences: MATCH (a)-[r]->(b) WITH * RETURN a, b is accepted by Neo4j and rejected by FalkorDB, which requires explicit variables; rewritten as WITH a, r, b it is accepted by both. (b) Semantic differences: on one node with one T4 self-loop, FalkorDB allows edge reuse and returns 1 row, Neo4j does not and returns 0. (c) Plan collapse: a two-hop source query and its CALL subquery rewrite compile to the same plan.",
+      "caption": [
+        {
+          "type": "text",
+          "text": "Dialect differences, semantic differences and plan collapse: the three mechanisms behind the two blind spots (paper, Fig. 1)."
+        }
+      ],
+      "width": 100,
+      "alignment": "center"
+    },
+    "answers-text": {
+      "id": "answers-text",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "p-6",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Cypher leaves the semantics of pattern matching underspecified, and GQL makes path semantics user-selectable. The paper pins the design space down to three choices: "
+            },
+            {
+              "type": "text",
+              "text": "legality",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " (may one edge fill two relationship slots of a match), "
+            },
+            {
+              "type": "text",
+              "text": "multiplicity",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " (how many times one visible match is counted) and the "
+            },
+            {
+              "type": "text",
+              "text": "reset boundary",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " (where uniqueness restarts). Eight Cypher systems make five different combinations: Neo4j, Memgraph, ArcadeDB, Apache AGE and NebulaGraph forbid edge reuse; FalkorDB, NeuG and Kuzu allow it; NeuG and Kuzu count an undirected self-loop once per direction (paper, Table 4)."
+            }
+          ]
+        },
+        {
+          "id": "p-7",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "An oracle built on one of these choices fires on a system that makes another. Graph semantics cause false positives in five of the eight methods and more than half of those from Gamera (75.6%), Dinkel (56.2%) and GDsmith (51.1%); dialect incompatibilities cause most of GRev's (70.8%) and GDBMeter's (64.2%) (paper, Table 3)."
+            }
+          ]
+        },
+        {
+          "id": "p-8",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "The same study gives the rule that separates noise from bugs: "
+            },
+            {
+              "type": "text",
+              "text": "two systems that differ but are each consistent are a false positive; one system that contradicts itself across equivalent forms is a bug",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": ". FalkorDB returns 2 rows for the exact-length form of a two-hop pattern and 5 for its explicit and split forms, while Neo4j and Memgraph return 2 on all three: a real bug (paper, Fig. 4)."
+            }
+          ]
+        }
+      ]
+    },
+    "plan-columns": {
+      "id": "plan-columns",
+      "type": "container",
+      "only": [
+        "web"
+      ],
+      "layout": "columns",
+      "children": [
+        "plan-why",
+        "plan-resist"
+      ],
+      "properties": {
+        "columnWidths": [
+          1,
+          1
+        ]
+      }
+    },
+    "plan-why": {
+      "id": "plan-why",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "h-9",
+          "type": "heading",
+          "level": 3,
+          "children": [
+            {
+              "type": "text",
+              "text": "Why equivalent queries collapse"
+            }
+          ]
+        },
+        {
+          "id": "p-10",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "An equivalence-based metamorphic test rewrites a query into an equivalent one and expects the two results to match. The optimizer is built to erase exactly that difference:"
+            }
+          ]
+        },
+        {
+          "id": "list-11",
+          "type": "list",
+          "ordered": false,
+          "children": [
+            {
+              "id": "li-12",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-13",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Rule-based rewriting",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " normalizes the direction of a pattern and drops dead predicates, so "
+                    },
+                    {
+                      "type": "text",
+                      "text": "(b:B)<-[:R]-(a:A) WHERE true",
+                      "marks": [
+                        {
+                          "type": "code"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " becomes the source query's plan on any data (paper, Fig. 6)."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-14",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-15",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Cost-based optimization",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " anchors a pattern at its rarest label whatever order it is written in, so reordered comma patterns meet in one plan; move the rare label and they meet in another (Fig. 7)."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "p-16",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Same plan on the same graph means equal results by construction. If that plan is wrong, both queries are wrong together and the test stays silent."
+            }
+          ]
+        }
+      ]
+    },
+    "plan-resist": {
+      "id": "plan-resist",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "h-17",
+          "type": "heading",
+          "level": 3,
+          "children": [
+            {
+              "type": "text",
+              "text": "How often, and what survives"
+            }
+          ]
+        },
+        {
+          "id": "p-18",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Across three seeds of 5,000 comparable pairs each, "
+            },
+            {
+              "type": "text",
+              "text": "5–34%",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " of every equivalence-based method's pairs share a plan: GraspDB rises from 5.5% on Neo4j to 33.2% on FalkorDB, Dinkel reaches 34.2% (paper, Table 5)."
+            }
+          ]
+        },
+        {
+          "id": "p-19",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Collapse follows a transformation's shape, not its method: 33 of the 54 transformations on Neo4j never collapse. GraspDB's "
+            },
+            {
+              "type": "text",
+              "text": "net-zero writes",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": ", such as "
+            },
+            {
+              "type": "text",
+              "text": "CREATE (c0 {id:-1}) DELETE c0",
+              "marks": [
+                {
+                  "type": "code"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": ", leave the graph unchanged but keep their Create, Delete and Eager operators in the plan, because the optimizer may not drop a write (paper, Fig. 8)."
+            }
+          ]
+        }
+      ]
+    },
+    "plan-figure": {
+      "id": "plan-figure",
+      "type": "image",
+      "only": [
+        "web"
+      ],
+      "assetId": "collapse-asset",
+      "alt": "Ranked bar chart of the same-plan collapse rate of 54 equivalence-preserving transformations on Neo4j, coloured by method (Dinkel, GraspDB, GraphGenie, GRev): 21 transformations collapse at rates from about 100% down to about 10%; 33 never collapse.",
+      "caption": [
+        {
+          "type": "text",
+          "text": "Same-plan collapse rate of each of the 54 transformations on Neo4j; 33 never collapse (paper, Fig. 5)."
+        }
+      ],
+      "width": 100,
+      "alignment": "center"
+    },
+    "weave-figure": {
+      "id": "weave-figure",
+      "type": "image",
+      "only": [
+        "web"
+      ],
+      "assetId": "pipeline-asset",
+      "alt": "GraphWeave's postprocessing pipeline: standardized testing artifacts pass a rule-based issue gate matched against the issue library, then capability clustering with embeddings, then a multi-agent analysis system (a coordinator agent over cluster-splitting, deep-analysis and rules-synthesis agents) that decides known issue, new bug or false positive. Update specs flow back to the issue library (gate update) and to the target adapter (adapter spec) for the next testing run.",
+      "caption": [
+        {
+          "type": "text",
+          "text": "Issue gate, clustering, multi-agent analysis, and the two feedback channels to the issue library and the target adapter (paper, Fig. 9)."
+        }
+      ],
+      "width": 100,
+      "alignment": "center"
+    },
+    "weave-text": {
+      "id": "weave-text",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "p-20",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "GraphWeave follows the study with two designs on the shared execution path."
+            }
+          ]
+        },
+        {
+          "id": "list-21",
+          "type": "list",
+          "ordered": false,
+          "children": [
+            {
+              "id": "li-22",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-23",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Postprocessing with learned rules.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " Reports first meet an issue gate of known-issue rules, then are clustered. For each cluster a coordinator agent dispatches three sub-agents on Claude Code: one compares the cluster's medoid with its farthest outlier and splits the cluster if they differ, one minimizes the graph and query by delta debugging and attaches a debugger to a debug build for runtime evidence, and one writes the rule. A bug verdict needs dynamic-debugging evidence; a false positive needs either an adapter rule with alignment evidence (dialect) or evidence that the behaviour is valid (semantics)."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-24",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-25",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Two feedback channels.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " Dialect false positives change the target adapter, which rewrites later requests while keeping the testing intent; confirmed bugs and their duplicates add gate rules, with positive and negative cases, so their repeats never reach analysis again."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "li-26",
+              "type": "listItem",
+              "children": [
+                {
+                  "id": "p-27",
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Plan-aware triage.",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "text": " Each equivalent pair is compiled with EXPLAIN first. Same plan on the same graph state: dropped unexecuted, losing no detectable bug. Different plans, same result: kept with timings as a possible performance issue. Different results: a candidate logic bug."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "p-28",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "On three NeuG batches the workflow leaves "
+            },
+            {
+              "type": "text",
+              "text": "15–33%",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " of the raw reports for people to inspect (84.6%, 82.4% and 66.7% less; paper, Table 6). In an audit of 100 analysed reports it agrees with human verdicts on 91, keeps all 29 real-bug reports (100% recall) and marks 62 of 71 false positives (87.3%); all 100 sampled reports the gate filtered are duplicates of known issues (Table 7)."
+            }
+          ]
+        }
+      ]
+    },
+    "neug-text": {
+      "id": "neug-text",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "p-29",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "NeuG 0.1.1, a recently open-sourced industrial graph database from Alibaba's GraphScope team, had not been tested by any prior graph-database testing method. Each of the eight methods ran until its count of unique bugs stopped growing."
+            }
+          ]
+        },
+        {
+          "id": "table-30",
+          "type": "table",
+          "headerRows": 1,
+          "children": [
+            {
+              "id": "tr-31",
+              "type": "tableRow",
+              "children": [
+                {
+                  "id": "td-32",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Method"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-33",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Unique bugs on NeuG"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "tr-34",
+              "type": "tableRow",
+              "children": [
+                {
+                  "id": "td-35",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Dinkel"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-36",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "9"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "tr-37",
+              "type": "tableRow",
+              "children": [
+                {
+                  "id": "td-38",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "GraspDB"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-39",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "4"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "tr-40",
+              "type": "tableRow",
+              "children": [
+                {
+                  "id": "td-41",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "GraphGenie"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-42",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "3"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "tr-43",
+              "type": "tableRow",
+              "children": [
+                {
+                  "id": "td-44",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "GSlicer"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-45",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "3"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "tr-46",
+              "type": "tableRow",
+              "children": [
+                {
+                  "id": "td-47",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "GDBMeter"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-48",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "3"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "tr-49",
+              "type": "tableRow",
+              "children": [
+                {
+                  "id": "td-50",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "GDsmith"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-51",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "2"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "tr-52",
+              "type": "tableRow",
+              "children": [
+                {
+                  "id": "td-53",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "GRev"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-54",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "2"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "tr-55",
+              "type": "tableRow",
+              "children": [
+                {
+                  "id": "td-56",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "Gamera"
+                    }
+                  ]
+                },
+                {
+                  "id": "td-57",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "2"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "tr-58",
+              "type": "tableRow",
+              "children": [
+                {
+                  "id": "td-59",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "GraphWeave, all eight together",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "td-60",
+                  "type": "tableCell",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "19",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "p-61",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "All "
+            },
+            {
+              "type": "text",
+              "text": "19",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " were reported upstream and confirmed as genuine defects; "
+            },
+            {
+              "type": "text",
+              "text": "13",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " are already fixed (paper, §6.4, Fig. 10). The per-method sets overlap: Dinkel's 9 include almost every bug the other equivalence-based methods find, yet it misses those found by methods such as GSlicer, so no single method finds more than half."
+            }
+          ]
+        }
+      ]
+    },
+    "neug-bibtex": {
+      "id": "neug-bibtex",
+      "type": "code",
+      "only": [
+        "web"
+      ],
+      "language": "bibtex",
+      "value": "@misc{li2026graphweave,\n  title         = {Uncovering Systematic Blind Spots in Graph Database Testing through Integration and Process-Level Analysis},\n  author        = {Li, Tinghan and Fang, Aoyang and Lai, Longbin and Xie, Zifan and Zhao, Hongbo and Shao, Yu and Zhang, Ying and He, Pinjia},\n  year          = {2026},\n  eprint        = {2611.07754},\n  archivePrefix = {arXiv},\n  primaryClass  = {cs.SE},\n  url           = {https://arxiv.org/abs/2611.07754}\n}"
+    },
+    "neug-credit": {
+      "id": "neug-credit",
+      "type": "text",
+      "only": [
+        "web"
+      ],
+      "content": [
+        {
+          "id": "p-62",
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Film music: “Bit Shift” by Kevin MacLeod ("
+            },
+            {
+              "type": "link",
+              "href": "https://incompetech.com",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "incompetech.com"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "), licensed under "
+            },
+            {
+              "type": "link",
+              "href": "http://creativecommons.org/licenses/by/4.0/",
+              "children": [
+                {
+                  "type": "text",
+                  "text": "CC BY 4.0"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "."
+            }
+          ]
+        }
+      ]
+    },
+    "four-thousand-reports--scene": {
+      "id": "four-thousand-reports--scene",
+      "type": "component",
+      "definitionId": "four-thousand-reports--scene--definition",
+      "parameters": {
+        "scene": "flood",
+        "alt": "Eight graph-database testers (GDsmith, GDBMeter, Gamera, GraphGenie, GraspDB, GRev, GSlicer, Dinkel) run 12 hours each on Neo4j, Memgraph and FalkorDB and file 4,114 raw reports; 3,136 of them (76%) are false positives. GraphGenie's 527 reports on FalkorDB are 249 false positives and 278 reports of one single bug (paper, Table 2)."
+      }
+    },
+    "both-answers-are-right--scene": {
+      "id": "both-answers-are-right--scene",
+      "type": "component",
+      "definitionId": "both-answers-are-right--scene--definition",
+      "parameters": {
+        "scene": "answers",
+        "alt": "On a graph of one node with one self-loop, the query MATCH (n0:L1)-[:T4]-()-[:T4]-() RETURN 1 AS a7 returns 1 row on FalkorDB, which lets one edge fill both relationship slots, and 0 rows on Neo4j, which does not. A differential tester reports 1 ≠ 0 as a bug, but both rules are legal: a false positive (paper, Fig. 2). Likewise, WITH * is accepted by Neo4j and rejected by FalkorDB until it is rewritten as WITH a, r, b: a dialect false positive (Fig. 1a)."
+      }
+    },
+    "two-queries-one-plan--scene": {
+      "id": "two-queries-one-plan--scene",
+      "type": "component",
+      "definitionId": "two-queries-one-plan--scene--definition",
+      "parameters": {
+        "scene": "plan",
+        "alt": "MATCH (a:A)-[:R]->(b:B) RETURN count(*) and its equivalent rewrite MATCH (b:B)<-[:R]-(a:A) WHERE true RETURN count(*) compile to the same five-operator Neo4j plan, so both return 500 and the pair can never disagree, even if the plan is wrong (paper, Fig. 6). Across GraphGenie, GRev, GraspDB and Dinkel on Neo4j, Memgraph and FalkorDB, 5.5% to 34.2% of comparable equivalent pairs share a plan (Table 5)."
+      }
+    },
+    "learned-rules-skipped-pairs--scene": {
+      "id": "learned-rules-skipped-pairs--scene",
+      "type": "component",
+      "definitionId": "learned-rules-skipped-pairs--scene--definition",
+      "parameters": {
+        "scene": "weave",
+        "alt": "GraphWeave's postprocessing on NeuG, Batch #1: 26 raw reports; the issue gate matches 13 to known issues; the other 13 form 3 clusters; the agents (a coordinator with cluster-splitting, deep-analysis and rules-synthesis sub-agents) turn them into 2 adapter rules, which return to the target adapter, 1 gate rule, which returns to the issue gate, and 1 bug: 4 items to inspect instead of 26, 84.6% less (paper, Fig. 9, Table 6). Plan-aware triage compiles each equivalent pair with EXPLAIN first: a pair with the same plan is skipped, different plans with the same result are kept as a possible performance issue, different results make a candidate bug."
+      }
+    },
+    "nineteen-bugs-in-neug--scene": {
+      "id": "nineteen-bugs-in-neug--scene",
+      "type": "component",
+      "definitionId": "nineteen-bugs-in-neug--scene--definition",
+      "parameters": {
+        "scene": "neug",
+        "alt": "Unique bugs found on NeuG 0.1.1 by each tester: GDsmith 2, GraphGenie 3, GRev 2, GraspDB 4, Dinkel 9, Gamera 2, GSlicer 3, GDBMeter 3; together under GraphWeave 19, all confirmed by the developers and 13 already fixed (paper, Fig. 10, §6.4)."
+      }
+    }
+  },
+  "steps": {
+    "four-thousand-reports--step-0": {
+      "id": "four-thousand-reports--step-0",
+      "sectionId": "four-thousand-reports",
+      "visuals": [
+        {
+          "blockId": "intro-card",
+          "visible": true
+        },
+        {
+          "blockId": "flood-text",
+          "visible": true
+        },
+        {
+          "blockId": "four-thousand-reports--scene",
+          "visible": true,
+          "state": "flood"
+        }
+      ],
+      "narrationIds": [
+        "four-thousand-reports--narration-0"
+      ]
+    },
+    "four-thousand-reports--step-1": {
+      "id": "four-thousand-reports--step-1",
+      "sectionId": "four-thousand-reports",
+      "visuals": [
+        {
+          "blockId": "intro-card",
+          "visible": true
+        },
+        {
+          "blockId": "flood-text",
+          "visible": true
+        },
+        {
+          "blockId": "four-thousand-reports--scene",
+          "visible": true,
+          "state": "split"
+        }
+      ],
+      "narrationIds": [
+        "four-thousand-reports--narration-1"
+      ]
+    },
+    "both-answers-are-right--step-0": {
+      "id": "both-answers-are-right--step-0",
+      "sectionId": "both-answers-are-right",
+      "visuals": [
+        {
+          "blockId": "answers-figure",
+          "visible": true
+        },
+        {
+          "blockId": "answers-text",
+          "visible": true
+        },
+        {
+          "blockId": "both-answers-are-right--scene",
+          "visible": true,
+          "state": "reuse"
+        }
+      ],
+      "narrationIds": [
+        "both-answers-are-right--narration-0"
+      ]
+    },
+    "both-answers-are-right--step-1": {
+      "id": "both-answers-are-right--step-1",
+      "sectionId": "both-answers-are-right",
+      "visuals": [
+        {
+          "blockId": "answers-figure",
+          "visible": true
+        },
+        {
+          "blockId": "answers-text",
+          "visible": true
+        },
+        {
+          "blockId": "both-answers-are-right--scene",
+          "visible": true,
+          "state": "dialect"
+        }
+      ],
+      "narrationIds": [
+        "both-answers-are-right--narration-1"
+      ]
+    },
+    "two-queries-one-plan--step-0": {
+      "id": "two-queries-one-plan--step-0",
+      "sectionId": "two-queries-one-plan",
+      "visuals": [
+        {
+          "blockId": "plan-columns",
+          "visible": true
+        },
+        {
+          "blockId": "plan-why",
+          "visible": true
+        },
+        {
+          "blockId": "plan-resist",
+          "visible": true
+        },
+        {
+          "blockId": "plan-figure",
+          "visible": true
+        },
+        {
+          "blockId": "two-queries-one-plan--scene",
+          "visible": true,
+          "state": "collapse"
+        }
+      ],
+      "narrationIds": [
+        "two-queries-one-plan--narration-0"
+      ]
+    },
+    "two-queries-one-plan--step-1": {
+      "id": "two-queries-one-plan--step-1",
+      "sectionId": "two-queries-one-plan",
+      "visuals": [
+        {
+          "blockId": "plan-columns",
+          "visible": true
+        },
+        {
+          "blockId": "plan-why",
+          "visible": true
+        },
+        {
+          "blockId": "plan-resist",
+          "visible": true
+        },
+        {
+          "blockId": "plan-figure",
+          "visible": true
+        },
+        {
+          "blockId": "two-queries-one-plan--scene",
+          "visible": true,
+          "state": "ratios"
+        }
+      ],
+      "narrationIds": [
+        "two-queries-one-plan--narration-1"
+      ]
+    },
+    "learned-rules-skipped-pairs--step-0": {
+      "id": "learned-rules-skipped-pairs--step-0",
+      "sectionId": "learned-rules-skipped-pairs",
+      "visuals": [
+        {
+          "blockId": "weave-figure",
+          "visible": true
+        },
+        {
+          "blockId": "weave-text",
+          "visible": true
+        },
+        {
+          "blockId": "learned-rules-skipped-pairs--scene",
+          "visible": true,
+          "state": "rules"
+        }
+      ],
+      "narrationIds": [
+        "learned-rules-skipped-pairs--narration-0"
+      ]
+    },
+    "learned-rules-skipped-pairs--step-1": {
+      "id": "learned-rules-skipped-pairs--step-1",
+      "sectionId": "learned-rules-skipped-pairs",
+      "visuals": [
+        {
+          "blockId": "weave-figure",
+          "visible": true
+        },
+        {
+          "blockId": "weave-text",
+          "visible": true
+        },
+        {
+          "blockId": "learned-rules-skipped-pairs--scene",
+          "visible": true,
+          "state": "triage"
+        }
+      ],
+      "narrationIds": [
+        "learned-rules-skipped-pairs--narration-1"
+      ]
+    },
+    "nineteen-bugs-in-neug--step-0": {
+      "id": "nineteen-bugs-in-neug--step-0",
+      "sectionId": "nineteen-bugs-in-neug",
+      "visuals": [
+        {
+          "blockId": "neug-text",
+          "visible": true
+        },
+        {
+          "blockId": "neug-bibtex",
+          "visible": true
+        },
+        {
+          "blockId": "neug-credit",
+          "visible": true
+        },
+        {
+          "blockId": "nineteen-bugs-in-neug--scene",
+          "visible": true,
+          "state": "bugs"
+        }
+      ],
+      "narrationIds": [
+        "nineteen-bugs-in-neug--narration-0"
+      ]
+    },
+    "nineteen-bugs-in-neug--step-1": {
+      "id": "nineteen-bugs-in-neug--step-1",
+      "sectionId": "nineteen-bugs-in-neug",
+      "visuals": [
+        {
+          "blockId": "neug-text",
+          "visible": true
+        },
+        {
+          "blockId": "neug-bibtex",
+          "visible": true
+        },
+        {
+          "blockId": "neug-credit",
+          "visible": true
+        },
+        {
+          "blockId": "nineteen-bugs-in-neug--scene",
+          "visible": true,
+          "state": "end"
+        }
+      ],
+      "narrationIds": [
+        "nineteen-bugs-in-neug--narration-1"
+      ]
+    }
+  },
+  "narrations": {
+    "four-thousand-reports--narration-0": {
+      "id": "four-thousand-reports--narration-0",
+      "content": [
+        {
+          "type": "text",
+          "text": "Run eight graph database testers for twelve hours on three mature databases, and they file four thousand one hundred reports."
+        }
+      ]
+    },
+    "four-thousand-reports--narration-1": {
+      "id": "four-thousand-reports--narration-1",
+      "content": [
+        {
+          "type": "text",
+          "text": "Three in four are false positives, and most of the rest repeat the same bug."
+        }
+      ]
+    },
+    "both-answers-are-right--narration-0": {
+      "id": "both-answers-are-right--narration-0",
+      "content": [
+        {
+          "type": "text",
+          "text": "Here is one: a graph with a single self-loop. FalkorDB lets one edge fill two slots and returns a row; Neo4j forbids it and returns none. Both are right."
+        }
+      ]
+    },
+    "both-answers-are-right--narration-1": {
+      "id": "both-answers-are-right--narration-1",
+      "content": [
+        {
+          "type": "text",
+          "text": "Others are only dialect differences."
+        }
+      ]
+    },
+    "two-queries-one-plan--narration-0": {
+      "id": "two-queries-one-plan--narration-0",
+      "content": [
+        {
+          "type": "text",
+          "text": "The second blind spot is quieter. A rewritten query should take a different path, but the optimizer compiles both to the same plan, so the pair can never disagree."
+        }
+      ]
+    },
+    "two-queries-one-plan--narration-1": {
+      "id": "two-queries-one-plan--narration-1",
+      "content": [
+        {
+          "type": "text",
+          "text": "Five to thirty-four percent of pairs are like this."
+        }
+      ]
+    },
+    "learned-rules-skipped-pairs--narration-0": {
+      "id": "learned-rules-skipped-pairs--narration-0",
+      "content": [
+        {
+          "type": "text",
+          "text": "GraphWeave lets agents turn each cluster of reports into a rule, for the adapter or for the gate,"
+        }
+      ]
+    },
+    "learned-rules-skipped-pairs--narration-1": {
+      "id": "learned-rules-skipped-pairs--narration-1",
+      "content": [
+        {
+          "type": "text",
+          "text": "and skips any pair whose plans match."
+        }
+      ]
+    },
+    "nineteen-bugs-in-neug--narration-0": {
+      "id": "nineteen-bugs-in-neug--narration-0",
+      "content": [
+        {
+          "type": "text",
+          "text": "On NeuG, a new industrial graph database, it found nineteen unknown bugs,"
+        }
+      ]
+    },
+    "nineteen-bugs-in-neug--narration-1": {
+      "id": "nineteen-bugs-in-neug--narration-1",
+      "content": [
+        {
+          "type": "text",
+          "text": "all confirmed."
+        }
+      ]
+    }
+  },
+  "assets": {
+    "challenges-asset": {
+      "id": "challenges-asset",
+      "kind": "image",
+      "location": "figures/dialect-semantics-plan-collapse.png",
+      "mediaType": "image/png"
+    },
+    "collapse-asset": {
+      "id": "collapse-asset",
+      "kind": "image",
+      "location": "figures/same-plan-collapse-rate-54-transformations.png",
+      "mediaType": "image/png"
+    },
+    "pipeline-asset": {
+      "id": "pipeline-asset",
+      "kind": "image",
+      "location": "figures/postprocess-gate-clusters-agents-feedback.png",
+      "mediaType": "image/png"
+    },
+    "film-score": {
+      "id": "film-score",
+      "kind": "audio",
+      "location": "audio/score.ogg",
+      "title": "Film score (music: “Bit Shift”, Kevin MacLeod, incompetech.com, CC BY 4.0)",
+      "mediaType": "audio/ogg"
+    }
+  },
+  "definitions": {
+    "four-thousand-reports--scene--definition": {
+      "id": "four-thousand-reports--scene--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/flood.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "flood"
+        },
+        {
+          "id": "split"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          7436,
+          5539
+        ],
+        "language": "typescript",
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Eight graph-database testers (GDsmith, GDBMeter, Gamera, GraphGenie, GraspDB, GRev, GSlicer, Dinkel) run 12 hours each on Neo4j, Memgraph and FalkorDB and file 4,114 raw reports; 3,136 of them (76%) are false positives. GraphGenie's 527 reports on FalkorDB are 249 false positives and 278 reports of one single bug (paper, Table 2)."
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "both-answers-are-right--scene--definition": {
+      "id": "both-answers-are-right--scene--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/answers.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "reuse"
+        },
+        {
+          "id": "dialect"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          7385,
+          5540
+        ],
+        "language": "typescript",
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "On a graph of one node with one self-loop, the query MATCH (n0:L1)-[:T4]-()-[:T4]-() RETURN 1 AS a7 returns 1 row on FalkorDB, which lets one edge fill both relationship slots, and 0 rows on Neo4j, which does not. A differential tester reports 1 ≠ 0 as a bug, but both rules are legal: a false positive (paper, Fig. 2). Likewise, WITH * is accepted by Neo4j and rejected by FalkorDB until it is rewritten as WITH a, r, b: a dialect false positive (Fig. 1a)."
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "two-queries-one-plan--scene--definition": {
+      "id": "two-queries-one-plan--scene--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/plan.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "collapse"
+        },
+        {
+          "id": "ratios"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          7385,
+          5539
+        ],
+        "language": "typescript",
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "MATCH (a:A)-[:R]->(b:B) RETURN count(*) and its equivalent rewrite MATCH (b:B)<-[:R]-(a:A) WHERE true RETURN count(*) compile to the same five-operator Neo4j plan, so both return 500 and the pair can never disagree, even if the plan is wrong (paper, Fig. 6). Across GraphGenie, GRev, GraspDB and Dinkel on Neo4j, Memgraph and FalkorDB, 5.5% to 34.2% of comparable equivalent pairs share a plan (Table 5)."
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "learned-rules-skipped-pairs--scene--definition": {
+      "id": "learned-rules-skipped-pairs--scene--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/weave.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "rules"
+        },
+        {
+          "id": "triage"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          7386,
+          5539
+        ],
+        "language": "typescript",
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "GraphWeave's postprocessing on NeuG, Batch #1: 26 raw reports; the issue gate matches 13 to known issues; the other 13 form 3 clusters; the agents (a coordinator with cluster-splitting, deep-analysis and rules-synthesis sub-agents) turn them into 2 adapter rules, which return to the target adapter, 1 gate rule, which returns to the issue gate, and 1 bug: 4 items to inspect instead of 26, 84.6% less (paper, Fig. 9, Table 6). Plan-aware triage compiles each equivalent pair with EXPLAIN first: a pair with the same plan is skipped, different plans with the same result are kept as a possible performance issue, different results make a candidate bug."
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "nineteen-bugs-in-neug--scene--definition": {
+      "id": "nineteen-bugs-in-neug--scene--definition",
+      "kind": "scene",
+      "schemaVersion": 1,
+      "implementation": {
+        "type": "file",
+        "path": "scenes/neug.ts"
+      },
+      "parameterSchema": {
+        "type": "object"
+      },
+      "states": [
+        {
+          "id": "bugs"
+        },
+        {
+          "id": "end"
+        }
+      ],
+      "data": {
+        "plugin": "presmium.motion",
+        "name": "PmScene",
+        "durations": [
+          5539,
+          5212
+        ],
+        "language": "typescript",
+        "fallback": {
+          "type": "root",
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Unique bugs found on NeuG 0.1.1 by each tester: GDsmith 2, GraphGenie 3, GRev 2, GraspDB 4, Dinkel 9, Gamera 2, GSlicer 3, GDBMeter 3; together under GraphWeave 19, all confirmed by the developers and 13 already fixed (paper, Fig. 10, §6.4)."
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
+  "production": {
+    "defaults": {
+      "voiceSource": {
+        "type": "none"
+      },
+      "narrationStart": "with-animation",
+      "trailingPauseMs": 0
+    },
+    "stepOverrides": {
+      "four-thousand-reports--step-0": {
+        "minimumHoldMs": 7436,
+        "trailingPauseMs": 0
+      },
+      "four-thousand-reports--step-1": {
+        "minimumHoldMs": 5539,
+        "trailingPauseMs": 0
+      },
+      "both-answers-are-right--step-0": {
+        "minimumHoldMs": 7385,
+        "trailingPauseMs": 0
+      },
+      "both-answers-are-right--step-1": {
+        "minimumHoldMs": 5540,
+        "trailingPauseMs": 0
+      },
+      "two-queries-one-plan--step-0": {
+        "minimumHoldMs": 7385,
+        "trailingPauseMs": 0
+      },
+      "two-queries-one-plan--step-1": {
+        "minimumHoldMs": 5539,
+        "trailingPauseMs": 0
+      },
+      "learned-rules-skipped-pairs--step-0": {
+        "minimumHoldMs": 7386,
+        "trailingPauseMs": 0
+      },
+      "learned-rules-skipped-pairs--step-1": {
+        "minimumHoldMs": 5539,
+        "trailingPauseMs": 0
+      },
+      "nineteen-bugs-in-neug--step-0": {
+        "minimumHoldMs": 5539,
+        "trailingPauseMs": 0
+      },
+      "nineteen-bugs-in-neug--step-1": {
+        "minimumHoldMs": 5212,
+        "trailingPauseMs": 0
+      }
+    },
+    "mediaClips": [
+      {
+        "id": "score--four-thousand-reports--step-0",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 0,
+          "endMs": 7436
+        },
+        "attachment": {
+          "stepId": "four-thousand-reports--step-0",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--four-thousand-reports--step-1",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 7436,
+          "endMs": 12975
+        },
+        "attachment": {
+          "stepId": "four-thousand-reports--step-1",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--both-answers-are-right--step-0",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 12975,
+          "endMs": 20360
+        },
+        "attachment": {
+          "stepId": "both-answers-are-right--step-0",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--both-answers-are-right--step-1",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 20360,
+          "endMs": 25900
+        },
+        "attachment": {
+          "stepId": "both-answers-are-right--step-1",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--two-queries-one-plan--step-0",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 25900,
+          "endMs": 33285
+        },
+        "attachment": {
+          "stepId": "two-queries-one-plan--step-0",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--two-queries-one-plan--step-1",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 33285,
+          "endMs": 38824
+        },
+        "attachment": {
+          "stepId": "two-queries-one-plan--step-1",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--learned-rules-skipped-pairs--step-0",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 38824,
+          "endMs": 46210
+        },
+        "attachment": {
+          "stepId": "learned-rules-skipped-pairs--step-0",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--learned-rules-skipped-pairs--step-1",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 46210,
+          "endMs": 51749
+        },
+        "attachment": {
+          "stepId": "learned-rules-skipped-pairs--step-1",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--nineteen-bugs-in-neug--step-0",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 51749,
+          "endMs": 57288
+        },
+        "attachment": {
+          "stepId": "nineteen-bugs-in-neug--step-0",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      },
+      {
+        "id": "score--nineteen-bugs-in-neug--step-1",
+        "assetId": "film-score",
+        "sourceRange": {
+          "startMs": 57288,
+          "endMs": 62500
+        },
+        "attachment": {
+          "stepId": "nineteen-bugs-in-neug--step-1",
+          "offsetMs": 0
+        },
+        "volume": 1,
+        "muted": false
+      }
+    ]
+  }
+}
