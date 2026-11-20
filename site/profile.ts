@@ -144,7 +144,7 @@ export const NEWS: [string, string][] = [
 
 export const ABOUT: { label: string, summary: string, items: [string, string][] }[] = [
   { label: 'Experience', summary: 'Tencent Hunyuan · ByteDance · MSRA · Shopee', items: [
-    ['2026.09–now', 'Research intern, Tencent Hunyuan'],
+    ['2026.09–now', 'Research intern, Tencent Hunyuan (Tencent Qingyun Program, 青云计划)'],
     ['2025.08–2026.08', 'Research intern, ByteDance Byte Brain'],
     ['2025.01–2025.05', 'Research intern, Microsoft Research Asia'],
     ['2022.03–2022.09', 'Backend software engineer, Shopee'],

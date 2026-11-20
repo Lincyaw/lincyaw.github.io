@@ -61,7 +61,7 @@ function hero(): string {
     <div class="px-hero__text">
       <p class="px-kicker">&gt; PhD candidate · CUHK-Shenzhen</p>
       <h1>LLM for SE,<br>and SE for LLM.</h1>
-      <p class="px-lead">I make large software systems more reliable with LLMs and program analysis, and make LLM agents more trustworthy with software-engineering methods. Advised by <a href="https://pinjiahe.github.io/">Prof. Pinjia He</a>; research intern at Tencent Hunyuan.</p>
+      <p class="px-lead">I make large software systems more reliable with LLMs and program analysis, and make LLM agents more trustworthy with software-engineering methods. Advised by <a href="https://pinjiahe.github.io/">Prof. Pinjia He</a>; research intern at Tencent Hunyuan through the Tencent Qingyun Program (青云计划).</p>
       <div class="px-actions">
         <a class="px-button px-button--primary" href="#papers">${PLAY}Watch the one-minute papers</a>
         <a class="px-button" href="https://scholar.google.com/citations?user=fknpyMIAAAAJ">Google Scholar</a>
